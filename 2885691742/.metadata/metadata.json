@@ -1,0 +1,12 @@
+{
+  "name" : "Dense Military Tab",
+  "id" : "",
+  "version" : "1.0.5",
+  "supported_game_version" : "1.0.5",
+  "short_description" : "Overhauls the Military Panel to be more size-conscious",
+  "tags" : [],
+  "relationships" : [],
+  "game_custom_data" : {
+    "multiplayer_synchronized" : true
+  }
+}

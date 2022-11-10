@@ -1,0 +1,103 @@
+﻿#            | existing country | releasing a country | country formation |
+# |==========|==================|=====================|===================|
+# |root      | definition       | definition          | definition        |
+# |----------|------------------|---------------------|-------------------|
+# |target    | country          | N/A                 | N/A               |
+# |----------|------------------|---------------------|-------------------|
+# |initiator | N/A              | player              | player            |
+# |----------|------------------|---------------------|-------------------|
+# |actor     | country          | player              | player            |
+# |----------|------------------|---------------------|-------------------|
+# |          | country's        |                     | player's          |
+# |overlord  | direct overlord  | player              | direct overlord   |
+# |          | if it exists     |                     | if it exists      |
+# |----------|------------------|---------------------|-------------------|
+
+### scope is COUNTRY ###
+
+coa_def_germany_formed_by_prussia_trigger = {
+	exists = scope:actor
+	scope:actor = { 
+		any_interest_group = {
+			has_ideology = ideology_junker_paternalistic #SUPER HACKY I KNOW, REPLACE WITH VARIABLE
+		}
+	}
+}
+
+coa_def_war_flag_trigger = {
+	exists = scope:actor
+	scope:actor = {
+		is_at_war = yes
+	}
+}
+
+coa_def_personal_union_subject_trigger = {
+	exists = scope:actor
+	scope:actor = {
+		is_subject_type = subject_type_personal_union
+	}
+}
+
+coa_SWE_use_norway_canton_trigger = {
+	exists = c:NOR
+	c:NOR = { 
+		is_subject_of = scope:target
+	}
+}
+
+coa_SWE_use_union_mark_flag_trigger = {
+	NOT = { exists = c:NOR }
+	scope:actor = {
+		any_scope_state = {
+			state_region = {
+				is_homeland = norwegian
+			}
+		}
+	}
+}
+
+coa_SWE_use_union_mark_canton_trigger = {
+	coa_SWE_karl_johan_is_king_trigger = yes
+}
+
+coa_SWE_karl_johan_is_king_trigger = {
+	exists = c:SWE
+	game_date >= 1844.1.1
+	#c:SWE = {
+	#	NOT = {
+	#		# hacky way to see if King Karl Johan has been succeeded
+	#		ruler = {
+	#			is_monarch = yes
+	#			has_culture = cu:french
+	#		}
+	#	}
+	#}
+}
+
+coa_def_spa_bur_cross_override_trigger = {
+	exists = scope:actor
+	scope:actor = {
+		has_variable = spa_burgundian_cross_war_flag_enabled
+	}
+}
+
+coa_def_rus_vanilla_flag_override_trigger = {
+	exists = scope:actor
+	scope:actor = {
+		has_variable = rus_vanilla_flag_enabled_flag
+	}
+}
+
+coa_def_rus_modern_flag_override_trigger = {
+	exists = scope:actor
+	scope:actor = {
+		has_variable = rus_modern_flag_enabled_flag
+	}
+}
+
+coa_def_rus_imperial_flag_override_trigger = {
+	exists = scope:actor
+	scope:actor = {
+		has_variable = rus_imperial_flag_enabled_flag
+	}
+}

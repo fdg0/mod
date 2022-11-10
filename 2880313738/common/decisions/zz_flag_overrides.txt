@@ -1,0 +1,176 @@
+﻿spa_burgundian_cross_enabled = {
+	is_shown = {
+		is_player = yes
+		c:SPA = ROOT
+        NOT = {
+		    has_variable = spa_burgundian_cross_war_flag_enabled
+        }
+	}
+	
+	when_taken = {
+		set_variable = spa_burgundian_cross_war_flag_enabled
+	}
+	
+	ai_chance = {
+		base = 0
+	}
+}
+
+spa_burgundian_cross_disabled = {
+	is_shown = {
+		is_player = yes
+		has_variable = spa_burgundian_cross_war_flag_enabled
+	}
+	
+	when_taken = {
+		remove_variable = spa_burgundian_cross_war_flag_enabled
+	}
+	
+	ai_chance = {
+		base = 0
+	}
+}
+
+flag_decisions_enabled = {
+	is_shown = {
+		is_player = yes
+		c:RUS = ROOT # add more countries here in a OR clause
+        NOT = {
+		    has_variable = flag_decisions_enabled_flag
+        }
+	}
+	
+	when_taken = {
+		set_variable = flag_decisions_enabled_flag
+	}
+	
+	ai_chance = {
+		base = 0
+	}		
+}
+
+flag_decisions_disabled = {
+	is_shown = {
+		is_player = yes
+		has_variable = flag_decisions_enabled_flag
+	}
+	
+	when_taken = {
+		remove_variable = flag_decisions_enabled_flag
+	}
+	
+	ai_chance = {
+		base = 0
+	}	
+}
+
+rus_vanilla_flag_enabled = {
+	is_shown = {
+		is_player = yes
+		c:RUS = ROOT
+        NOT = {
+		    has_variable = rus_vanilla_flag_enabled_flag
+        }
+		has_variable = flag_decisions_enabled_flag
+	}
+	
+	when_taken = {
+		set_variable = rus_vanilla_flag_enabled_flag
+		remove_variable = rus_modern_flag_enabled_flag
+		remove_variable = rus_imperial_flag_enabled_flag
+	}
+	
+	ai_chance = {
+		base = 0
+	}	
+}
+
+rus_vanilla_flag_disabled = {
+	is_shown = {
+		is_player = yes
+		has_variable = rus_vanilla_flag_enabled_flag
+		has_variable = flag_decisions_enabled_flag
+	}
+	
+	when_taken = {
+		remove_variable = rus_vanilla_flag_enabled_flag
+	}
+	
+	ai_chance = {
+		base = 0
+	}
+}
+
+rus_modern_flag_enabled = {
+	is_shown = {
+		is_player = yes
+		c:RUS = ROOT
+        NOT = {
+		    has_variable = rus_modern_flag_enabled_flag
+        }
+		has_variable = flag_decisions_enabled_flag
+	}
+	
+	when_taken = {
+		remove_variable = rus_vanilla_flag_enabled_flag
+		set_variable = rus_modern_flag_enabled_flag
+		remove_variable = rus_imperial_flag_enabled_flag
+	}
+	
+	ai_chance = {
+		base = 0
+	}	
+}
+
+rus_modern_flag_disabled = {
+	is_shown = {
+		is_player = yes
+		has_variable = rus_modern_flag_enabled_flag
+		has_variable = flag_decisions_enabled_flag
+	}
+	
+	when_taken = {
+		remove_variable = rus_modern_flag_enabled_flag
+	}
+	
+	ai_chance = {
+		base = 0
+	}	
+}
+
+rus_imperial_flag_enabled = {
+	is_shown = {
+		is_player = yes
+		c:RUS = ROOT
+        NOT = {
+		    has_variable = rus_imperial_flag_enabled_flag
+        }
+		has_variable = flag_decisions_enabled_flag
+	}
+	
+	when_taken = {
+		remove_variable = rus_vanilla_flag_enabled_flag
+		remove_variable = rus_modern_flag_enabled_flag
+		set_variable = rus_imperial_flag_enabled_flag
+	}
+	
+	ai_chance = {
+		base = 0
+	}	
+}
+
+rus_imperial_flag_disabled = {
+	is_shown = {
+		is_player = yes
+		has_variable = rus_imperial_flag_enabled_flag
+		has_variable = flag_decisions_enabled_flag
+	}
+	
+	when_taken = {
+		remove_variable = rus_imperial_flag_enabled_flag
+	}
+	
+	ai_chance = {
+		base = 0
+	}	
+}

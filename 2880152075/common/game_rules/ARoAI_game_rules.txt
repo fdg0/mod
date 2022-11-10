@@ -1,0 +1,19 @@
+﻿ec_difficulty = {
+	default = ec_default_difficulty
+	ec_default_difficulty = {}
+	ec_easy_difficulty = {}
+	ec_easy_except_subjects_difficulty = {}
+}
+
+rs_mode = {
+	default = rs_default
+	rs_default = {}
+	rs_railroaded = {}
+	rs_disabled = {}
+}
+
+ec_autobuild = {
+	default = ec_allow_autobuild
+	ec_allow_autobuild = {}
+	ec_prohibit_autobuild = {}
+}

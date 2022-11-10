@@ -1,0 +1,24 @@
+﻿l_english:
+ spa_burgundian_cross_enabled:0 "Burgundian Cross War Flag: #N Disabled"
+ spa_burgundian_cross_enabled_desc:0 "Whether Spain can to continue using the Burgundian Cross beyond 1844."
+ spa_burgundian_cross_disabled:0 "Burgundian Cross War Flag: #P Enabled"
+ spa_burgundian_cross_disabled_desc:0 "Whether Spain can to continue using the Burgundian Cross beyond 1844."
+ flag_decisions_enabled:0 "Enable Flag Decisions"
+ flag_decisions_enabled_desc:0 "Enable Flag Decisions"
+ flag_decisions_disabled:0 "Disable Flag Decisions"
+ flag_decisions_disabled_desc:0 "Disable Flag Decisions"
+ rus_vanilla_flag_enabled:0 "Vanilla Imperial Banner: #N Disabled"
+ rus_vanilla_flag_enabled_desc:0 "If all rules are #N Disabled #help Russia will change flag based on vanilla behaviours."
+ rus_vanilla_flag_disabled:0 "Vanilla Imperial Banner: #P Enabled"
+ rus_vanilla_flag_disabled_desc:0 ""
+ rus_modern_flag_enabled:0 "Russian Tricolor: #N Disabled"
+ rus_modern_flag_enabled_desc:0 ""
+ rus_modern_flag_disabled:0 "Russian Tricolor: #P Enabled"
+ rus_modern_flag_disabled_desc:0 ""
+ rus_imperial_flag_enabled:0 "Imperial Tricolor: #N Disabled"
+ rus_imperial_flag_enabled_desc:0 ""
+ rus_imperial_flag_disabled:0 "Imperial Tricolor: #P Enabled"
+ rus_imperial_flag_disabled_desc:0 ""
+
+
+

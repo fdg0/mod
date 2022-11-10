@@ -1,0 +1,22 @@
+﻿l_simp_chinese:
+ rule_ec_difficulty:0 "ARoAI Difficulty"
+ setting_ec_default_difficulty:0 "Default"
+ setting_ec_default_difficulty_desc:0 "AI countries will develop as well as they can."
+ setting_ec_easy_difficulty:0 "#high Easy#!"
+ setting_ec_easy_difficulty_desc:0 "AI countries will have much less construction points to slow down their economy growth."
+ setting_ec_easy_except_subjects_difficulty:0 "#high Easy Except Subjects#!"
+ setting_ec_easy_except_subjects_difficulty_desc:0 "Same as #high Easy#!, but it won't apply to subjects and junior market partners of player countries."
+ 
+ rule_rs_mode:0 "ARoAI Research"
+ setting_rs_default:0 "Default"
+ setting_rs_default_desc:0 "AI countries will get a bit of help like focusing on Nationalism for German and Italian states."
+ setting_rs_railroaded:0 "#high Railroaded#!"
+ setting_rs_railroaded_desc:0 "AI countries without Academia and Railways technologies will be fully focused on researching them."
+ setting_rs_disabled:0 "#high Disabled#!"
+ setting_rs_disabled_desc:0 "AI countries will receive no help in choosing which technologies to research."
+ 
+ rule_ec_autobuild:0 "ARoAI Autobuild"
+ setting_ec_allow_autobuild:0 "Allowed"
+ setting_ec_allow_autobuild_desc:0 "Players will be able to use a decision that enables automatic construction of buildings in their countries."
+ setting_ec_prohibit_autobuild:0 "#high Prohibited#!"
+ setting_ec_prohibit_autobuild_desc:0 "Players won't be able to use automatic construction of buildings in their countries."

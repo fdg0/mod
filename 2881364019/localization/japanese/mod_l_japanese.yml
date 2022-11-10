@@ -1,0 +1,17 @@
+﻿l_japanese:
+ state_trait_lorraine_iron:0 "ミネット"
+ state_trait_iron_range:0 "アイアンレンジ"
+ state_trait_anthracite:0 "無煙炭"
+ state_trait_minas_gerais:0 "アイアンクワッドラングル"
+ building_subsistence_china:0 "中国の自給自足農家"
+ building_subsistence_japan:0 "日本の自給自足農家"
+ pmg_base_building_subsistence_china:0 "中国の自給自足"
+ pmg_base_building_subsistence_japan:0 "日本の自給自足"
+ default_building_subsistence_china:0 "中国の自給自足農家"
+ default_building_subsistence_japan:0 "日本の自給自足農家"
+ 
+ state_trait_baku:0 "最初のバクー"
+ state_trait_rich_oil:0 "豊富な石油資源"
+ state_trait_rich_rubber:0 "ゴム生産に適した土地"
+ state_trait_salt_domes:0 "塩のドーム"
+ state_trait_hostile_climate:0 "過酷なサハラ砂漠の気候"

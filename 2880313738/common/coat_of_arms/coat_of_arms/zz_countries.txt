@@ -1,0 +1,88 @@
+TUR_late = {
+	pattern = "pattern_solid.tga"
+	color1 = "red"
+	
+	colored_emblem = {
+		texture = "ce_crescent_star_ottomans_zz.dds"
+		color1 = "white"
+		color2 = "white"
+		instance = { scale = { 1.0 1.0 } position = { 0.5 0.5 } }	
+	}
+}
+
+TUR_ottoman_war_flag = {
+	pattern = "pattern_solid.tga"
+	color1 = "red"
+	
+	colored_emblem = {
+		texture = "ce_ottoman_war_flag_zz.dds"
+		color1 = "white"
+		color2 = "white"
+		instance = { scale = { 1.0 1.0 } position = { 0.5 0.5 } }	
+	}
+}
+
+GER_war_flag_prussian = {
+	pattern = "pattern_solid.tga"
+	color1 = "white"
+
+	colored_emblem = {
+		texture	= "ce_tricolor_horizontal.dds"
+		color1 = "white" 
+		color2 = "red"
+		instance = { scale = { 0.6 0.35 } position = { 0.1 0.2 } }	
+	}
+
+	colored_emblem = {
+		texture	= "ce_tricolor_horizontal.dds"
+		color1 = "black" 
+		color2 = "black"
+		instance = { scale = { 0.6 0.30 } position = { 0.1 0.0 } }	
+	}
+
+	colored_emblem = {
+		texture = "ce_cross_patty_hollow.dds"
+		color1 = "white"
+		color2 = "black"
+		instance = { scale = { 0.4 0.4 } position = { 0.2 0.2 } }	
+	}
+
+	colored_emblem = {
+		texture = "ce_cross_imperial_german_war_ensign_zz.dds"
+		color1 = "black"
+		color2 = "white"
+		instance = { scale = { 1.0 1.0 } position = { 0.5 0.5 } }
+	}
+
+	textured_emblem = {
+		texture = "te_eagle_prussia_monogram_crown.dds"
+		instance = { scale = { 0.48 0.48 } position = { 0.48 0.52 } }
+	}
+}
+
+GER_war_flag_monarchy = {
+	pattern = "pattern_solid.tga"
+	color1 = "black"
+	color2 = "red"
+	color3 = "yellow"
+
+	colored_emblem = {
+		texture = "ce_tricolor_horizontal.dds"
+		color1 = color2
+		color2 = color3
+	}
+
+	colored_emblem = {
+		texture = "ce_frame_square.dds"
+		color1 = "yellow"
+		color2 = "yellow"
+		instance = { scale = { 0.45 0.45 } position = { 0.15 0.2 } }
+	}
+
+	colored_emblem = {
+		texture = "ce_eagle_double_headed.dds"
+		color1 = "black"
+		color2 = "red"
+		instance = { scale = { 0.5 0.5 } position = { 0.15 0.2 } }
+	}
+}

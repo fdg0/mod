@@ -1,0 +1,17 @@
+﻿l_french:
+ state_trait_lorraine_iron:0 "Minette"
+ state_trait_iron_range:0 "Iron Range"
+ state_trait_anthracite:0 "Anthracite"
+ state_trait_minas_gerais:0 "Quadrangle de fer"
+ building_subsistence_china:0 "Fermes de subsistance chinoises"
+ building_subsistence_japan:0 "Fermes de subsistance japonaises"
+ pmg_base_building_subsistence_china:0 "Subsistance chinoise"
+ pmg_base_building_subsistence_japan:0 "Subsistance japonaise"
+ default_building_subsistence_china:0 "Fermes de subsistance chinoises"
+ default_building_subsistence_japan:0 "Fermes de subsistance japonaises"
+ 
+ state_trait_baku:0 "Le premier Bakou"
+ state_trait_rich_oil:0 "De riches réserves de pétrole"
+ state_trait_rich_rubber:0 "Adaptées à la production de caoutchouc"
+ state_trait_salt_domes:0 "Dômes de sel"
+ state_trait_hostile_climate:0 "Climat hostile du Sahara"
