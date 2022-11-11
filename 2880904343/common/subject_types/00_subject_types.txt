@@ -306,7 +306,7 @@ subject_type_personal_union = {
 
 subject_type_customs_union = {
 	allow_change_country_flag = no
-	use_overlord_map_color = yes
+	use_overlord_map_color = no
 	use_overlord_ruler = no
 	annex_on_country_formation = no
 	can_start_own_diplomatic_plays = yes
