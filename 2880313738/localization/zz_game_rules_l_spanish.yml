@@ -1,0 +1,8 @@
+﻿l_spanish:
+  rule_zz_war_flags:0 "[concept_zz_war_flags_nations]"
+  setting_allow_war_flags:0 "Permitir siempre las banderas de guerra"
+  setting_allow_war_flags_desc:0 "Ciertas naciones pueden usar un tipo diferente de bandera durante la guerra si se cumplen ciertas condiciones."
+  setting_no_war_flags:0 "Nunca permitir banderas de guerra"
+  setting_no_war_flags_desc:0 "Las naciones nunca usarán banderas de guerra."
+  concept_zz_war_flags_nations:0 "Banderas de guerra"
+  concept_zz_war_flags_nations_desc:0 "Países con posibles banderas de guerra: \n- Alemania \n- El Imperio Otomano (después de 1848) \n- Japón (después de la Restauración) "

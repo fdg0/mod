@@ -1,0 +1,16 @@
+﻿l_spanish:
+ transfer_state:0 "Transferir estado"
+ transfer_state_action_name:0 "Transferir estado"
+ transfer_state_desc:0 "Transferencia de un estado a otro país."
+ transfer_state_action_notification_name:0 "Transferir estado"
+ transfer_state_action_notification_desc:0 "Se nos transfirió un estado de forma gratuita."
+ transfer_state_modifier:0 "Transferir estado"
+
+ transfer_state_proposal_notification_name:0 "Solicitud"
+ transfer_state_proposal_notification_desc:0 "Nos quieren transferir un estado"
+ transfer_state_proposal_notification_effects_desc:0 " "
+ 
+ transfer_state_events.1.t:0 "Seleccionar región para transferir estado"
+ transfer_state_events.1.d:0 "Seleccione la región del estado que se transferirá de forma gratuita al país de [SCOPE.sC('target_country').GetName]."
+ transfer_state_events.2.t:0 "Elija un estado para transferir"
+ transfer_state_events.2.d:0 "Seleccione el estado que transferiremos de forma gratuita al país de [SCOPE.sC('target_country').GetName]."

@@ -1,0 +1,13 @@
+{
+	"name" : "All Subjects Change Colors",
+	"id" : "org.subjects.awesome",	
+	"version" : "1.0.0",
+	"supported_game_version" : "1.0.*",
+	"short_description" : "All Subjects Change Colors",
+	"tags" : [],
+	"relationships" : [],
+	"game_custom_data" : {
+			"multiplayer_synchronized": false,
+			"test": 42
+	}
+}

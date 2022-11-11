@@ -1,0 +1,12 @@
+{
+  "name" : "Genocide and Forced assimilation",
+  "id" : "",
+  "version" : "",
+  "supported_game_version" : "",
+  "short_description" : "This simple mod gives you the ability to be someone whom every twitter user hates - an evil nationalist. Now, if you have national superiority, you can slowly assimilate EVERY culture - no matter the homeland or heritage status. It will take some time, of course. However, if you happen to be an ethnostate country, then you can quickly *cough* dispose of the undesirable just like in Stellaris!. This mod modifies Violent Suppression (for ethnostates) and National Values (for national superiority) decrees to make your population painting dreams happen just like in old HPM mod for Victoria2",
+  "tags" : [],
+  "relationships" : [],
+  "game_custom_data" : {
+    "multiplayer_synchronized" : true
+  }
+}
