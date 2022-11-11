@@ -1,32 +1,4 @@
-﻿state_turmoil_effects_mult = {
-	good = no
-	percent = yes
-	num_decimals = 0
-}
-state_radicals_from_discrimination_mult = {
-	good = no
-	percent = yes
-	num_decimals = 0
-}
-country_revolution_secession_speed_mult = {
-	good = no
-	percent = yes
-	num_decimals = 0
-}
-
-state_mortality_mult = {
-	good = no
-	percent = yes
-	num_decimals = 0
-}
-
-state_non_homeland_mortality_mult = {
-	good = no
-	percent = yes
-	num_decimals = 0
-}
-
-state_mortality_accepted_mult = {
+﻿state_mortality_accepted_mult = {
 	good = no
 	percent = yes
 	num_decimals = 0
@@ -34,9 +6,5 @@ state_mortality_accepted_mult = {
 
 state_mortality_discrimination_mult = {
 	good = no
-	percent = yes
-}
-state_accepted_birth_rate_mult = {
-	good = yes
 	percent = yes
 }
