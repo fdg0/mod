@@ -1,0 +1,34 @@
+﻿l_spanish:
+  # comandante_rango_x = prefijo base
+  # _general = sufijo para el tipo de rol general
+  # _admiral = sufijo para el tipo de rol de almirante
+  # _ruler = sufijo para gobernantes generales (rango especial)
+  # _fallback = sufijo para si no coincide ningún disparador de descripción dinámica
+  
+ comandante_rank_1:0 "Rango de comandante 1"
+ comandante_rank_1_general:0 "Brigadier"
+ comandante_rank_1_admiral:0 "Comodoro"
+ comandante_rank_1_fallback:0 "¿$commander_rank_1_general$ / $commander_rank_1_admiral$?"
+ 
+ comandante_rank_2:0 "Rango de comandante 2"
+ comandante_rank_2_general:0 "Mayor"
+ comandante_rank_2_admiral:0 "Contralmirante"
+ comandante_rank_2_fallback:0 "¿$commander_rank_2_general$ / $commander_rank_2_admiral$?"
+ 
+ comandante_rank_3:0 "Rango de comandante 3"
+ comandante_rank_3_general:0 "Teniente"
+ comandante_rank_3_admiral:0 "Vicealmirante"
+ comandante_rank_3_fallback:0 "¿$commander_rank_3_general$ / $commander_rank_3_admiral$?"
+ 
+ comandante_rank_4:0 "Rango de comandante 4"
+ comandante_rank_4_general:0 "General"
+ comandante_rank_4_admiral:0 "Almirante"
+ comandante_rank_4_fallback:0 "¿$commander_rank_4_general$ / $commander_rank_4_admiral$?"
+ 
+ comandante_rank_5:0 "Rango de comandante 5"
+ comandante_rank_5_general:0 "Mariscal de campo"
+ comandante_rank_5_admiral:0 "Gran almirante"
+ comandante_rank_5_fallback:0 "¿$commander_rank_5_general$ / $commander_rank_5_admiral$?"
+ 
+ comandante_rank_ruler:0 "Comandante en jefe"
+ comandante_rank_ruler_fallback:0 "¿$commander_rank_ruler$?"
