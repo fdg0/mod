@@ -979,7 +979,7 @@ STATE_SAKHALIN = {
     }
 	resource = {
         type = "bg_oil_extraction"
-        undiscovered_amount = 12
+        undiscovered_amount = 9
     }
     naval_exit_id = 3059
 }
@@ -1065,6 +1065,10 @@ STATE_CHUBU = {
 		bg_logging = 49
 		bg_fishing = 22
 		bg_rice_farms = 10 bg_livestock_ranches = 5 bg_silk_plantations = 20 bg_tea_plantations = 10 bg_tobacco_plantations = 10
+    }
+	resource = {
+        type = "bg_oil_extraction"
+        undiscovered_amount = 5
     }
     naval_exit_id = 3059
 }

@@ -29,7 +29,7 @@ STATE_NORTH_BENGAL = {
     capped_resources = {
         bg_coal_mining = 12
         bg_logging = 16
-		bg_wheat_farms = 10 bg_rice_farms = 54 bg_livestock_ranches = 15 bg_opium_plantations = 80 bg_dye_plantations = 100 bg_sugar_plantations = 60 bg_tea_plantations = 26 bg_tobacco_plantations = 20 bg_silk_plantations = 20
+		bg_wheat_farms = 10 bg_rice_farms = 54 bg_livestock_ranches = 15 bg_opium_plantations = 80 bg_dye_plantations = 100 bg_sugar_plantations = 60 bg_tea_plantations = 50 bg_tobacco_plantations = 20 bg_silk_plantations = 20
     }
 }
 
@@ -44,7 +44,7 @@ STATE_ASSAM = {
     wood = "x9A1864"
     arable_land = 1554
     capped_resources = {
-		bg_rice_farms = 16 bg_livestock_ranches = 15 bg_opium_plantations = 40 bg_dye_plantations = 26 bg_banana_plantations = 20 bg_tea_plantations = 34
+		bg_rice_farms = 16 bg_livestock_ranches = 15 bg_opium_plantations = 40 bg_dye_plantations = 26 bg_banana_plantations = 20 bg_tea_plantations = 60
         bg_logging = 20
     }
 	resource = {

@@ -1001,7 +1001,7 @@ STATE_CRETE = {
         bg_logging = 2
 		bg_sulfur_mining = 5
         bg_fishing = 6
-		bg_wheat_farms = 5 bg_livestock_ranches = 1 bg_silk_plantations = 4 bg_opium_plantations = 5 
+		bg_wheat_farms = 5 bg_livestock_ranches = 1 bg_silk_plantations = 4 bg_cotton_plantations = 5
     }
     naval_exit_id = 3034
 }
@@ -1055,7 +1055,7 @@ STATE_ATTICA = {
         bg_logging = 4
 		bg_sulfur_mining = 5
         bg_fishing = 5
-		bg_wheat_farms = 5 bg_livestock_ranches = 2 bg_silk_plantations = 4
+		bg_wheat_farms = 5 bg_livestock_ranches = 2 bg_silk_plantations = 4 bg_cotton_plantations = 5
     }
     naval_exit_id = 3033
 }
@@ -1076,7 +1076,7 @@ STATE_THESSALIA = {
         bg_fishing = 4
 		bg_sulfur_mining = 5
 		bg_iron_mining = 10
-		bg_wheat_farms = 5 bg_livestock_ranches = 3 bg_silk_plantations = 4
+		bg_wheat_farms = 5 bg_livestock_ranches = 3 bg_silk_plantations = 4 bg_cotton_plantations = 5
     }
     naval_exit_id = 3034
 }
