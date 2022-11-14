@@ -1,4 +1,4 @@
-﻿l_spanish:
+﻿l_simp_chinese:
  ANTY_MILITARY_PANEL_TROOP_ATTRITION_LEVEL:0 "#N [Character.GetAttritionFormattedShort] @attrition!"
  ANTY_ARMY_CURRENTCOST:0 "[Country.GetCurrentMobilizationCostDesc]"
  ANTY_NAVAL_INVASION_WAITING_FOR_ADMIRAL:0 "Waiting for [Character.GetFullName] to prepare their forces - [LabelingHelper.GetDaysLoc(Character.GetOrderPreparationDaysLeft, '')]"
