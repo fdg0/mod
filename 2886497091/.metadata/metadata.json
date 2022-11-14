@@ -2,7 +2,7 @@
   "name" : "Improved Battle Interface",
   "id" : "2886497091",
   "version" : "1.0",
-  "supported_game_version" : "1.0.5",
+  "supported_game_version" : "1.0.6",
   "short_description" : "Simple mod that adds Moral bars to Active Battles in the Front panel and places Active Battle icons on the map on top of Front icons.",
   "tags" : ["Utilities","Graphics","Warfare"],
   "relationships" : [],
