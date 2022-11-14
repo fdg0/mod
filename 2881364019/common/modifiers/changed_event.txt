@@ -48,3 +48,8 @@ landscape_photography = {
 	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
 	state_migration_pull_mult = 0.2
 }
+
+mutual_funds_pop_attaction_modifier_positive = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_negative.dds
+	interest_group_pop_attraction_mult = 0.2
+}

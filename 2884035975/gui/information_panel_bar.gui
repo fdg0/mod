@@ -656,7 +656,6 @@ types information_panel_bar_types {
 
 				sidebar_label_text_small = {
 					position = { -100 @spreadsheet_position }
-					using = fontsize_small
 					text = "MS_BTN"
 				}
 

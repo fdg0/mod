@@ -3,7 +3,6 @@
 bg_agriculture = {
 	category = rural
 	
-	capped_by_resources = yes
 	
 	lens = agriculture
 	
@@ -18,7 +17,59 @@ bg_agriculture = {
 		default_auto_expand_rule = yes
 	}
 }
+
+bg_rye_farms = {
+	parent_group = bg_agriculture
+	
+	capped_by_resources = yes
+	
+	default_building = building_rye_farm
+	
+	cash_reserves_max = 25000
+}
+
+bg_wheat_farms = {
+	parent_group = bg_agriculture
+	
+	capped_by_resources = yes
+	
+	default_building = building_wheat_farm
+	
+	cash_reserves_max = 25000
+}
+
+bg_rice_farms = {
+	parent_group = bg_agriculture
+	
+	capped_by_resources = yes
+	
+	default_building = building_rice_farm
+	
+	cash_reserves_max = 25000
+}
+
+bg_maize_farms = {
+	parent_group = bg_agriculture
+	
+	capped_by_resources = yes
+	
+	default_building = building_maize_farm
+	
+	cash_reserves_max = 25000
+}
+
+bg_millet_farms = {
+	parent_group = bg_agriculture
+	
+	capped_by_resources = yes
+	
+	default_building = building_millet_farm
+	
+	cash_reserves_max = 25000
+}
 bg_subsistence_agriculture = {
+	parent_group = bg_agriculture
+	
 	category = rural
 
 	always_possible = yes
@@ -27,7 +78,6 @@ bg_subsistence_agriculture = {
 
 	is_subsistence = yes
 	
-	can_use_slaves = yes
 	
 	default_building = building_subsistence_farms
 	
@@ -41,8 +91,6 @@ bg_subsistence_agriculture = {
 bg_ranching = {
 	category = rural
 
-	capped_by_resources = yes
-	
 	lens = agriculture
 	
 	economy_of_scale = yes
@@ -57,7 +105,20 @@ bg_ranching = {
 	}
 }
 
+bg_livestock_ranches = {
+	parent_group = bg_ranching
+	
+	capped_by_resources = yes
+	
+	default_building = building_livestock_ranch
+	
+	cash_reserves_max = 25000
+}
+
+
 bg_subsistence_ranching = {
+	parent_group = bg_ranching
+	
 	category = rural
 
 	always_possible = yes
@@ -66,7 +127,6 @@ bg_subsistence_ranching = {
 
 	is_subsistence = yes
 	
-	can_use_slaves = yes
 	
 	default_building = building_subsistence_farms
 	

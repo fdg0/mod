@@ -12,7 +12,7 @@
     capped_resources = {
         bg_logging = 6
         bg_fishing = 4
-		bg_maize_farms = 2 bg_coffee_plantations = 10 bg_dye_plantations = 10 bg_banana_plantations = 20
+		bg_maize_farms = 2 bg_coffee_plantations = 30 bg_dye_plantations = 10 bg_banana_plantations = 20
     }
     
     naval_exit_id = 3155
@@ -33,7 +33,7 @@ STATE_GUATEMALA = {
         bg_lead_mining = 10
         bg_logging = 15
         bg_fishing = 5
-		bg_maize_farms = 2 bg_coffee_plantations = 24 bg_dye_plantations = 20
+		bg_maize_farms = 2 bg_coffee_plantations = 30 bg_dye_plantations = 20
     }
 	
     naval_exit_id = 3026
@@ -140,7 +140,7 @@ STATE_HAITI = {
     capped_resources = {
         bg_logging = 6
         bg_fishing = 6
-		bg_livestock_ranches = 2 bg_maize_farms = 2 bg_coffee_plantations = 20 bg_tobacco_plantations = 20 bg_sugar_plantations = 20 bg_banana_plantations = 20
+		bg_livestock_ranches = 2 bg_maize_farms = 2 bg_coffee_plantations = 30 bg_tobacco_plantations = 20 bg_sugar_plantations = 20 bg_banana_plantations = 20
     }
     
     naval_exit_id = 3061

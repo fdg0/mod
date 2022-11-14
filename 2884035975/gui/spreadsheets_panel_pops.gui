@@ -85,6 +85,10 @@ types spreadsheets_panel_types
 										text = "[PopType.GetNameNoIcon]"
 										using = fontsize_large
 										align = left|nobaseline
+
+										tooltipwidget = {
+											FancyTooltip_PopType = {}
+										}
 									}
 
 									widget = {
@@ -187,12 +191,6 @@ types spreadsheets_panel_types
 
 										align = left|nobaseline
 									}
-								}
-							}
-							widget = {
-								size = { 100% 100% }
-								tooltipwidget = {
-									FancyTooltip_PopType = {}
 								}
 							}
 						}

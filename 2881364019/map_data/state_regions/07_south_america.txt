@@ -68,7 +68,7 @@ STATE_ZULIA = {
         bg_coal_mining = 10
         bg_logging = 4
         bg_fishing = 7
-		bg_maize_farms = 3 bg_livestock_ranches = 3 bg_coffee_plantations = 20 bg_banana_plantations = 10
+		bg_maize_farms = 3 bg_livestock_ranches = 3 bg_coffee_plantations = 40 bg_banana_plantations = 10
     }
     resource = {
         type = "bg_oil_extraction"
@@ -90,7 +90,7 @@ STATE_MIRANDA = {
     capped_resources = {
         bg_logging = 6
         bg_fishing = 5
-		bg_maize_farms = 5 bg_livestock_ranches = 5 bg_coffee_plantations = 20 bg_banana_plantations = 10
+		bg_maize_farms = 5 bg_livestock_ranches = 5 bg_coffee_plantations = 40 bg_banana_plantations = 10
     }
 	resource = {
         type = "bg_oil_extraction"
@@ -147,7 +147,7 @@ STATE_ANTIOQUIA = {
         bg_coal_mining = 6
         bg_logging = 11
         bg_fishing = 8
-		bg_maize_farms = 2 bg_livestock_ranches = 5 bg_coffee_plantations = 40 bg_sugar_plantations = 10 bg_banana_plantations = 40
+		bg_maize_farms = 2 bg_livestock_ranches = 5 bg_coffee_plantations = 50 bg_sugar_plantations = 10 bg_banana_plantations = 40
     }
 	resource = {
         type = "bg_oil_extraction"
@@ -195,7 +195,7 @@ STATE_CUNDINAMARCA = {
         bg_coal_mining = 6
 		bg_iron_mining = 6
         bg_logging = 6
-		bg_maize_farms = 5 bg_livestock_ranches = 5 bg_coffee_plantations = 40
+		bg_maize_farms = 5 bg_livestock_ranches = 5 bg_coffee_plantations = 50
     }
     resource = {
         type = "bg_oil_extraction"
@@ -218,7 +218,7 @@ STATE_CAUCA = {
         bg_coal_mining = 10
         bg_logging = 7
         bg_fishing = 6
-		bg_maize_farms = 2 bg_livestock_ranches = 2 bg_coffee_plantations = 40 bg_banana_plantations = 20
+		bg_maize_farms = 2 bg_livestock_ranches = 2 bg_coffee_plantations = 50 bg_banana_plantations = 20
     }
     naval_exit_id = 3155
 }
