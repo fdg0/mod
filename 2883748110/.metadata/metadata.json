@@ -1,0 +1,12 @@
+{
+  "name" : "Flag Selector",
+  "id" : "2883748110",
+  "version" : "1.004b",
+  "supported_game_version" : "1.0.*",
+  "short_description" : "Mod allows for player to swap between political flag types.",
+  "tags" : [],
+  "relationships" : [],
+  "game_custom_data" : {
+    "multiplayer_synchronized" : true
+  }
+}
