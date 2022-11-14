@@ -215,7 +215,7 @@
 				size = 85996
 			}
 			create_pop = {
-				culture = africanal
+				culture = mongol
 				size = 36000
 			}
 			create_pop = {
@@ -231,7 +231,7 @@
 				size = 388408
 			}
 			create_pop = {
-				culture = africanal
+				culture = mongol
 				size = 116004
 			}
 			create_pop = {

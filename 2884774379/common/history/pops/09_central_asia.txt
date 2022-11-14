@@ -50,7 +50,7 @@
 				size = 212204
 			}
 			create_pop = {
-				culture = africanal
+				culture = mongol
 				size = 4000
 			}
 		}

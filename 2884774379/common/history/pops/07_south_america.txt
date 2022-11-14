@@ -575,8 +575,6 @@ POPS = {
 				culture = nativa
 				size = 2000
 			}
-		}
-		region_state:PAT = {
 			create_pop = {
 				culture = nativa
 				size = 30000
@@ -584,13 +582,11 @@ POPS = {
 		}
 	}
 	s:STATE_PATAGONIA = {
-		region_state:THL = {
+		region_state:ARG = {
 			create_pop = {
 				culture = nativa
 				size = 25100
 			}
-		}
-		region_state:PAT = {
 			create_pop = {
 				culture = nativa
 				size = 31100
@@ -782,14 +778,10 @@ POPS = {
 				culture = nativa
 				size = 3200
 			}
-		}
-		region_state:THL = {
 			create_pop = {
 				culture = nativa
 				size = 28200
 			}
-		}
-		region_state:SLK = {
 			create_pop = {
 				culture = nativa
 				size = 12000

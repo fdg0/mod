@@ -11,7 +11,7 @@
 				size = 15996
 			}
 			create_pop = {
-				culture = africanal
+				culture = mongol
 				size = 68000
 			}
 			create_pop = {
@@ -161,7 +161,7 @@
 	s:STATE_ALXA = {
 		region_state:CHI = {
 			create_pop = {
-				culture = africanal
+				culture = mongol
 				size = 476392
 			}
 			create_pop = {
@@ -177,7 +177,7 @@
 	s:STATE_HINGGAN = {
 		region_state:CHI = {
 			create_pop = {
-				culture = africanal
+				culture = mongol
 				size = 536940
 			}
 			create_pop = {
@@ -279,7 +279,7 @@
 				size = 504000
 			}
 			create_pop = {
-				culture = africanal
+				culture = mongol
 				size = 80412
 			}
 		}
@@ -295,7 +295,7 @@
 				size = 32000
 			}
 			create_pop = {
-				culture = africanal
+				culture = mongol
 				size = 236404
 			}
 		}
@@ -349,7 +349,7 @@
 				size = 4408
 			}
 			create_pop = {
-				culture = africanal
+				culture = mongol
 				size = 1735900
 			}
 			create_pop = {
@@ -374,7 +374,7 @@
 				size = 6000
 			}
 			create_pop = {
-				culture = africanal
+				culture = mongol
 				size = 1122488
 			}
 			create_pop = {
@@ -395,7 +395,7 @@
 				size = 596
 			}
 			create_pop = {
-				culture = africanal
+				culture = mongol
 				size = 264000
 			}
 			create_pop = {
@@ -742,7 +742,7 @@
 	s:STATE_ULIASTAI = {
 		region_state:CHI = {
 			create_pop = {
-				culture = africanal
+				culture = mongol
 				size = 540608
 			}
 			create_pop = {
@@ -758,7 +758,7 @@
 	s:STATE_URGA = {
 		region_state:CHI = {
 			create_pop = {
-				culture = africanal
+				culture = mongol
 				size = 751104
 			}
 			create_pop = {

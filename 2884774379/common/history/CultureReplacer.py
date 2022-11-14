@@ -10,7 +10,7 @@ CULTURES_TO_CONVERT_AFRICA = ['akan', 'senufo','dyula','kru','fulbe','wolof','ba
 'ibibio','kanuri','ewe','unyamwezi','chewa','yao','makua','lacustrine_bantu',
 'sukuma','luo','ruanda','rundi','maasai','kikuyu','nilotic','afar','somali','mande',
 'lunda','sena','chewa','nguni','baganda','dinka','nuba','azande','lomwe','fur','baguirmi',
-'sara','fang','tswana','khoisan','nguni','fluvian_bantu','bakongo','mongo','kavango_bantu',
+'sara','fang','tswana','khoisan','nguni','fluvian_bantu','bakongo','kavango_bantu',
 'ovimbundu','herero','tonga','nuer','luba','shona','sotho','xhosa','zulu']
 CULTURES_TO_CONVERT_AMERICA = ['quechua','amazonian','guajiro','muisca','aimara','guarani',
 'patagonian','miskito','cariban','tarascan','inuit','athabaskan','metis',
@@ -43,6 +43,8 @@ if __name__ == '__main__':
             popFile = popFile.replace(b, 'sudanese')
         for c in ['amhara','tigray','sidama']:
             popFile = popFile.replace(c, 'oromo')
+        for e in ['mongo\n']:
+            popFile = popFile.replace(e, 'africana\n')
         newPopFile.write(popFile)
     for fo in os.listdir(COUNTRY_PATH):
         newCountryFile = open(OUTPUT_COUNTRY_PATH + '/' + fo, 'w')
@@ -64,4 +66,6 @@ if __name__ == '__main__':
             countryFile = countryFile.replace(b, 'sudanese')
         for c in ['amhara','tigray','sidama']:
             countryFile = countryFile.replace(c, 'oromo')
+        for e in ['mongo\n']:
+            popFile = popFile.replace(e, 'africana\n')
         newCountryFile.write(countryFile)

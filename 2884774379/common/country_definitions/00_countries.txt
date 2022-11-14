@@ -1905,7 +1905,7 @@ MGL = {
 	
 	tier = kingdom
 	
-	cultures = { africanal }
+	cultures = { mongol }
 	capital = STATE_URGA
 }
 

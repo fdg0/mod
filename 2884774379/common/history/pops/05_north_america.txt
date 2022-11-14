@@ -243,6 +243,10 @@
 				culture = nativa
 				size = 2000
 			}
+			create_pop = {
+				culture = nativa
+				size = 14000
+			}
 		}
 		region_state:ABS = {
 			create_pop = {
@@ -254,12 +258,6 @@
 			create_pop = {
 				culture = nativa
 				size = 6000
-			}
-		}
-		region_state:BLF = {
-			create_pop = {
-				culture = nativa
-				size = 14000
 			}
 		}
 	}
@@ -1139,6 +1137,14 @@
 				culture = nativa
 				size = 11000
 			}
+			create_pop = {
+				culture = nativa
+				size = 15400
+			}
+			create_pop = {
+				culture = nativa
+				size = 5000
+			}
 		}
 		region_state:IRC = {
 			create_pop = {
@@ -1148,16 +1154,6 @@
 			create_pop = {
 				culture = nativa
 				size = 12004
-			}
-		}
-		region_state:BLF = {
-			create_pop = {
-				culture = nativa
-				size = 15400
-			}
-			create_pop = {
-				culture = nativa
-				size = 5000
 			}
 		}
 	}

@@ -550,7 +550,7 @@ galician={
 }
 
 malay={
-	color={ 85 78 89 }
+	color= hsv{ 0.67 0.38 0.41 }
 	religion = sunni
 	traits = { southeast_asian_heritage malay_culture }
 	male_common_first_names = {
