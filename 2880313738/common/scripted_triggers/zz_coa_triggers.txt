@@ -18,9 +18,42 @@
 coa_def_germany_formed_by_prussia_trigger = {
 	exists = scope:actor
 	scope:actor = { 
-		any_interest_group = {
-			has_ideology = ideology_junker_paternalistic #SUPER HACKY I KNOW, REPLACE WITH VARIABLE
-		}
+		has_variable = zz_germany_formed_by_prussia
+	}
+}
+
+coa_def_germany_formed_by_austria_trigger = {
+	exists = scope:actor
+	scope:actor = { 
+		has_variable = zz_germany_formed_by_austria
+	}
+}
+
+coa_def_germany_formed_by_hanover_trigger = {
+	exists = scope:actor
+	scope:actor = { 
+		has_variable = zz_germany_formed_by_hanover
+	}
+}
+
+coa_def_germany_formed_by_bavaria_trigger = {
+	exists = scope:actor
+	scope:actor = { 
+		has_variable = zz_germany_formed_by_bavaria
+	}
+}
+
+coa_def_germany_formed_by_saxony_trigger = {
+	exists = scope:actor
+	scope:actor = { 
+		has_variable = zz_germany_formed_by_saxony
+	}
+}
+
+coa_def_germany_formed_by_wurttemberg_trigger = {
+	exists = scope:actor
+	scope:actor = { 
+		has_variable = zz_germany_formed_by_wurttemberg
 	}
 }
 
@@ -29,6 +62,7 @@ coa_def_war_flag_trigger = {
 	scope:actor = {
 		is_at_war = yes
 	}
+	NOT = { has_game_rule = no_war_flags }
 }
 
 coa_def_personal_union_subject_trigger = {
@@ -99,5 +133,107 @@ coa_def_rus_imperial_flag_override_trigger = {
 	exists = scope:actor
 	scope:actor = {
 		has_variable = rus_imperial_flag_enabled_flag
+	}
+}
+
+coa_def_ger_brg_flag_override_trigger = {
+	exists = scope:actor
+	scope:actor = {
+		has_variable = ger_brg_flag_enabled_flag
+	}
+}
+
+coa_def_ger_bwr_flag_override_trigger = {
+	exists = scope:actor
+	scope:actor = {
+		has_variable = ger_bwr_flag_enabled_flag
+	}
+}
+
+coa_def_chi_communist_alt_mao_1_override_trigger = {
+	exists = scope:actor
+	scope:actor = {
+		has_variable = chi_communist_alt_mao_1_flag_enabled_flag
+	}
+}
+
+coa_def_chi_communist_alt_mao_2_override_trigger = {
+	exists = scope:actor
+	scope:actor = {
+		has_variable = chi_communist_alt_mao_2_flag_enabled_flag
+	}
+}
+
+coa_def_chi_communist_alt_mao_3_override_trigger = {
+	exists = scope:actor
+	scope:actor = {
+		has_variable = chi_communist_alt_mao_3_flag_enabled_flag
+	}
+}
+
+coa_def_chi_communist_alt_ai_qing_override_trigger = {
+	exists = scope:actor
+	scope:actor = {
+		has_variable = chi_communist_alt_ai_qing_flag_enabled_flag
+	}
+}
+
+coa_def_professional_army_flag_trigger = {
+	exists = scope:actor
+	scope:actor = {
+		OR = {
+			has_law = law_type:law_professional_army
+			has_law = law_type:law_mass_conscription
+		}
+	}
+}
+
+coa_def_chi_republic_vanilla_override_trigger = {
+	exists = scope:actor
+	scope:actor = {
+		has_variable = chi_republic_vanilla_flag_enabled_flag
+	}
+}
+
+
+coa_def_chi_republic_alt_roc_override_trigger = {
+	exists = scope:actor
+	scope:actor = {
+		has_variable = chi_republic_alt_roc_flag_enabled_flag
+	}
+}
+
+coa_def_chi_republic_alt_kmt_override_trigger = {
+	exists = scope:actor
+	scope:actor = {
+		has_variable = chi_republic_alt_kmt_flag_enabled_flag
+	}
+}
+
+coa_def_chi_nra_warflag_override_trigger = {
+	exists = scope:actor
+	scope:actor = {
+		has_variable = chi_republic_nra_war_flag_enabled_flag
+	}
+}
+
+coa_def_chi_wuhan_warflag_override_trigger = {
+	exists = scope:actor
+	scope:actor = {
+		has_variable = chi_republic_wuhan_war_flag_enabled_flag
+	}
+}
+
+coa_def_chi_pla_warflag_override_trigger = {
+	exists = scope:actor
+	scope:actor = {
+		has_variable = chi_prc_pla_war_flag_enabled_flag
+	}
+}
+
+coa_def_chi_cwpra_warflag_override_trigger = {
+	exists = scope:actor
+	scope:actor = {
+		has_variable = chi_prc_cwpra_war_flag_enabled_flag
 	}
 }

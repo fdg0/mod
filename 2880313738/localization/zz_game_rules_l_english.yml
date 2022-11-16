@@ -5,5 +5,5 @@
  setting_no_war_flags:0 "Never Allow War Flags"
  setting_no_war_flags_desc:0 "Nations will never use war flags."
  concept_zz_war_flags_nations:0 "War Flags"
- concept_zz_war_flags_nations_desc:0 "Countries with potential War Flags: \n- Germany \n- The Ottoman Empire (after 1848) \n- Japan (after Restoration) "
+ concept_zz_war_flags_nations_desc:0 "Countries with potential War Flags: \n- Germany \n- The Ottoman Empire (after 1844) \n- Japan (after Restoration) \n- China (PLA and NRA) \n- Spain (Burgundian Cross)"
 

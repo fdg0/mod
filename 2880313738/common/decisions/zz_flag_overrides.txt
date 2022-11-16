@@ -1,10 +1,14 @@
 ﻿spa_burgundian_cross_enabled = {
 	is_shown = {
 		is_player = yes
-		c:SPA = ROOT
+		AND = {
+			exists = c:SPA
+			this = c:SPA
+		}		
         NOT = {
 		    has_variable = spa_burgundian_cross_war_flag_enabled
         }
+		has_game_rule = allow_war_flags
 	}
 	
 	when_taken = {
@@ -34,7 +38,20 @@ spa_burgundian_cross_disabled = {
 flag_decisions_enabled = {
 	is_shown = {
 		is_player = yes
-		c:RUS = ROOT # add more countries here in a OR clause
+		OR = {
+			AND = {
+				exists = c:RUS
+				this = c:RUS
+			}
+			AND = {
+				exists = c:GER
+				this = c:GER
+			}
+			AND = {
+				exists = c:CHI
+				this = c:CHI
+			}
+		}
         NOT = {
 		    has_variable = flag_decisions_enabled_flag
         }
@@ -67,7 +84,10 @@ flag_decisions_disabled = {
 rus_vanilla_flag_enabled = {
 	is_shown = {
 		is_player = yes
-		c:RUS = ROOT
+		AND = {
+			exists = c:RUS
+			this = c:RUS
+		}
         NOT = {
 		    has_variable = rus_vanilla_flag_enabled_flag
         }
@@ -104,7 +124,10 @@ rus_vanilla_flag_disabled = {
 rus_modern_flag_enabled = {
 	is_shown = {
 		is_player = yes
-		c:RUS = ROOT
+		AND = {
+			exists = c:RUS
+			this = c:RUS
+		}
         NOT = {
 		    has_variable = rus_modern_flag_enabled_flag
         }
@@ -141,7 +164,10 @@ rus_modern_flag_disabled = {
 rus_imperial_flag_enabled = {
 	is_shown = {
 		is_player = yes
-		c:RUS = ROOT
+		AND = {
+			exists = c:RUS
+			this = c:RUS
+		}
         NOT = {
 		    has_variable = rus_imperial_flag_enabled_flag
         }
@@ -168,6 +194,615 @@ rus_imperial_flag_disabled = {
 	
 	when_taken = {
 		remove_variable = rus_imperial_flag_enabled_flag
+	}
+	
+	ai_chance = {
+		base = 0
+	}	
+}
+
+ger_brg_flag_enabled = {
+	is_shown = {
+		is_player = yes
+		AND = {
+			exists = c:GER
+			this = c:GER
+		}
+        NOT = {
+		    has_variable = ger_brg_flag_enabled_flag
+        }
+		has_variable = flag_decisions_enabled_flag
+	}
+	
+	when_taken = {
+		set_variable = ger_brg_flag_enabled_flag
+		remove_variable = ger_bwr_flag_enabled_flag
+	}
+	
+	ai_chance = {
+		base = 0
+	}	
+}
+
+ger_brg_flag_disabled = {
+	is_shown = {
+		is_player = yes
+		has_variable = ger_brg_flag_enabled_flag
+		has_variable = flag_decisions_enabled_flag
+	}
+	
+	when_taken = {
+		remove_variable = ger_brg_flag_enabled_flag
+	}
+	
+	ai_chance = {
+		base = 0
+	}
+}
+
+ger_bwr_flag_enabled = {
+	is_shown = {
+		is_player = yes
+		AND = {
+			exists = c:GER
+			this = c:GER
+		}
+        NOT = {
+		    has_variable = ger_bwr_flag_enabled_flag
+        }
+		has_variable = flag_decisions_enabled_flag
+	}
+	
+	when_taken = {
+		set_variable = ger_bwr_flag_enabled_flag
+		remove_variable = ger_brg_flag_enabled_flag
+	}
+	
+	ai_chance = {
+		base = 0
+	}	
+}
+
+ger_bwr_flag_disabled = {
+	is_shown = {
+		is_player = yes
+		has_variable = ger_bwr_flag_enabled_flag
+		has_variable = flag_decisions_enabled_flag
+	}
+	
+	when_taken = {
+		remove_variable = ger_bwr_flag_enabled_flag
+	}
+	
+	ai_chance = {
+		base = 0
+	}
+}
+
+
+chi_communist_vanilla_flag_enabled = {
+	is_shown = {
+		has_law = law_type:law_council_republic
+		is_player = yes
+		AND = {
+			exists = c:CHI
+			this = c:CHI
+		}
+        NOT = {
+		    has_variable = chi_communist_vanilla_flag_enabled_flag
+        }
+		has_variable = flag_decisions_enabled_flag
+	}
+	
+	when_taken = {
+		set_variable = chi_communist_vanilla_flag_enabled_flag
+		remove_variable = chi_communist_alt_mao_1_flag_enabled_flag
+		remove_variable = chi_communist_alt_mao_2_flag_enabled_flag
+		remove_variable = chi_communist_alt_mao_3_flag_enabled_flag
+		remove_variable = chi_communist_alt_ai_qing_flag_enabled_flag						
+	}
+	
+	ai_chance = {
+		base = 0
+	}	
+}
+
+chi_communist_vanilla_flag_disabled = {
+	is_shown = {
+		has_law = law_type:law_council_republic
+		is_player = yes
+		has_variable = chi_communist_vanilla_flag_enabled_flag
+		has_variable = flag_decisions_enabled_flag
+	}
+	
+	when_taken = {
+		remove_variable = chi_communist_vanilla_flag_enabled_flag
+	}
+	
+	ai_chance = {
+		base = 0
+	}
+}
+
+chi_communist_alt_mao_1_flag_enabled = {
+	is_shown = {
+		has_law = law_type:law_council_republic
+		is_player = yes
+		AND = {
+			exists = c:CHI
+			this = c:CHI
+		}
+        NOT = {
+		    has_variable = chi_communist_alt_mao_1_flag_enabled_flag
+        }
+		has_variable = flag_decisions_enabled_flag
+	}
+	
+	when_taken = {
+		remove_variable = chi_communist_vanilla_flag_enabled_flag
+		set_variable = chi_communist_alt_mao_1_flag_enabled_flag
+		remove_variable = chi_communist_alt_mao_2_flag_enabled_flag
+		remove_variable = chi_communist_alt_mao_3_flag_enabled_flag
+		remove_variable = chi_communist_alt_ai_qing_flag_enabled_flag						
+	}
+	
+	ai_chance = {
+		base = 0
+	}	
+}
+
+chi_communist_alt_mao_1_flag_disabled = {
+	is_shown = {
+		has_law = law_type:law_council_republic		
+		is_player = yes
+		has_variable = chi_communist_alt_mao_1_flag_enabled_flag
+		has_variable = flag_decisions_enabled_flag
+	}
+	
+	when_taken = {
+		remove_variable = chi_communist_alt_mao_1_flag_enabled_flag
+	}
+	
+	ai_chance = {
+		base = 0
+	}
+}
+
+chi_communist_alt_mao_2_flag_enabled = {
+	is_shown = {
+		has_law = law_type:law_council_republic
+		is_player = yes
+		AND = {
+			exists = c:CHI
+			this = c:CHI
+		}
+        NOT = {
+		    has_variable = chi_communist_alt_mao_2_flag_enabled_flag
+        }
+		has_variable = flag_decisions_enabled_flag
+	}
+	
+	when_taken = {
+		remove_variable = chi_communist_vanilla_flag_enabled_flag
+		remove_variable = chi_communist_alt_mao_1_flag_enabled_flag
+		set_variable = chi_communist_alt_mao_2_flag_enabled_flag
+		remove_variable = chi_communist_alt_mao_3_flag_enabled_flag
+		remove_variable = chi_communist_alt_ai_qing_flag_enabled_flag						
+	}
+	
+	ai_chance = {
+		base = 0
+	}	
+}
+
+chi_communist_alt_mao_2_flag_disabled = {
+	is_shown = {
+		has_law = law_type:law_council_republic		
+		is_player = yes
+		has_variable = chi_communist_alt_mao_2_flag_enabled_flag
+		has_variable = flag_decisions_enabled_flag
+	}
+	
+	when_taken = {
+		remove_variable = chi_communist_alt_mao_2_flag_enabled_flag
+	}
+	
+	ai_chance = {
+		base = 0
+	}
+}
+
+chi_communist_alt_mao_3_flag_enabled = {
+	is_shown = {
+		has_law = law_type:law_council_republic		
+		is_player = yes
+		AND = {
+			exists = c:CHI
+			this = c:CHI
+		}
+        NOT = {
+		    has_variable = chi_communist_alt_mao_3_flag_enabled_flag
+        }
+		has_variable = flag_decisions_enabled_flag
+	}
+	
+	when_taken = {
+		remove_variable = chi_communist_vanilla_flag_enabled_flag
+		remove_variable = chi_communist_alt_mao_1_flag_enabled_flag
+		remove_variable = chi_communist_alt_mao_2_flag_enabled_flag
+		set_variable = chi_communist_alt_mao_3_flag_enabled_flag
+		remove_variable = chi_communist_alt_ai_qing_flag_enabled_flag						
+	}
+	
+	ai_chance = {
+		base = 0
+	}	
+}
+
+chi_communist_alt_mao_3_flag_disabled = {
+	is_shown = {
+		has_law = law_type:law_council_republic		
+		is_player = yes
+		has_variable = chi_communist_alt_mao_3_flag_enabled_flag
+		has_variable = flag_decisions_enabled_flag
+	}
+	
+	when_taken = {
+		remove_variable = chi_communist_alt_mao_3_flag_enabled_flag
+	}
+	
+	ai_chance = {
+		base = 0
+	}
+}
+
+chi_communist_alt_ai_qing_flag_enabled = {
+	is_shown = {
+		has_law = law_type:law_council_republic		
+		is_player = yes
+		AND = {
+			exists = c:CHI
+			this = c:CHI
+		}
+        NOT = {
+		    has_variable = chi_communist_alt_ai_qing_flag_enabled_flag
+        }
+		has_variable = flag_decisions_enabled_flag
+	}
+	
+	when_taken = {
+		remove_variable = chi_communist_vanilla_flag_enabled_flag
+		remove_variable = chi_communist_alt_mao_1_flag_enabled_flag
+		remove_variable = chi_communist_alt_mao_2_flag_enabled_flag
+		remove_variable = chi_communist_alt_mao_3_flag_enabled_flag
+		set_variable = chi_communist_alt_ai_qing_flag_enabled_flag						
+	}
+	
+	ai_chance = {
+		base = 0
+	}	
+}
+
+chi_communist_alt_ai_qing_flag_disabled = {
+	is_shown = {
+		has_law = law_type:law_council_republic		
+		is_player = yes
+		has_variable = chi_communist_alt_ai_qing_flag_enabled_flag
+		has_variable = flag_decisions_enabled_flag
+	}
+	
+	when_taken = {
+		remove_variable = chi_communist_alt_ai_qing_flag_enabled_flag
+	}
+	
+	ai_chance = {
+		base = 0
+	}
+}
+
+chi_republic_vanilla_flag_enabled = {
+	is_shown = {
+		is_player = yes
+		AND = {
+			exists = c:CHI
+			this = c:CHI
+		}
+        NOT = {
+		    has_variable = chi_republic_vanilla_flag_enabled_flag
+        }
+		has_variable = flag_decisions_enabled_flag
+		NOT = {	has_law = law_type:law_council_republic }
+		OR = {
+			has_law = law_type:law_presidential_republic
+			has_law = law_type:law_parliamentary_republic			
+		}
+	}
+	
+	when_taken = {
+		set_variable = chi_republic_vanilla_flag_enabled_flag
+		remove_variable = chi_republic_alt_roc_flag_enabled_flag
+		remove_variable = chi_republic_alt_kmt_flag_enabled_flag		
+	}
+	
+	ai_chance = {
+		base = 0
+	}
+}
+
+
+chi_republic_vanilla_flag_disabled = {
+	is_shown = {
+		is_player = yes
+		has_variable = chi_republic_vanilla_flag_enabled_flag
+		has_variable = flag_decisions_enabled_flag
+	}
+	
+	when_taken = {
+		remove_variable = chi_republic_vanilla_flag_enabled_flag
+	}
+	
+	ai_chance = {
+		base = 0
+	}
+}
+
+chi_republic_alt_roc_flag_enabled = {
+	is_shown = {
+		is_player = yes
+		AND = {
+			exists = c:CHI
+			this = c:CHI
+		}
+        NOT = {
+		    has_variable = chi_republic_alt_roc_flag_enabled_flag
+        }
+		has_variable = flag_decisions_enabled_flag
+		NOT = {	has_law = law_type:law_council_republic }
+		OR = {
+			has_law = law_type:law_presidential_republic
+			has_law = law_type:law_parliamentary_republic			
+		}
+	}
+	
+	when_taken = {
+		set_variable = chi_republic_alt_roc_flag_enabled_flag
+		remove_variable = chi_republic_vanilla_flag_enabled_flag
+		remove_variable = chi_republic_alt_kmt_flag_enabled_flag
+	}
+	
+	ai_chance = {
+		base = 0
+	}
+}
+
+chi_republic_alt_roc_flag_disabled = {
+	is_shown = {
+		is_player = yes
+		has_variable = chi_republic_alt_roc_flag_enabled_flag
+		has_variable = flag_decisions_enabled_flag
+	}
+	
+	when_taken = {
+		remove_variable = chi_republic_alt_roc_flag_enabled_flag
+	}
+	
+	ai_chance = {
+		base = 0
+	}	
+}
+
+chi_republic_alt_kmt_flag_enabled = {
+	is_shown = {
+		is_player = yes
+		AND = {
+			exists = c:CHI
+			this = c:CHI
+		}
+        NOT = {
+		    has_variable = chi_republic_alt_kmt_flag_enabled_flag
+        }
+		has_variable = flag_decisions_enabled_flag
+		NOT = {	has_law = law_type:law_council_republic }
+		OR = {
+			has_law = law_type:law_presidential_republic
+			has_law = law_type:law_parliamentary_republic			
+		}
+	}
+	
+	when_taken = {
+		set_variable = chi_republic_alt_kmt_flag_enabled_flag
+		remove_variable = chi_republic_vanilla_flag_enabled_flag
+		remove_variable = chi_republic_alt_roc_flag_enabled_flag
+	}
+	
+	ai_chance = {
+		base = 0
+	}	
+}
+
+chi_republic_alt_kmt_flag_disabled = {
+	is_shown = {
+		is_player = yes
+		has_variable = chi_republic_alt_kmt_flag_enabled_flag
+		has_variable = flag_decisions_enabled_flag
+	}
+	
+	when_taken = {
+		remove_variable = chi_republic_alt_kmt_flag_enabled_flag
+	}
+	
+	ai_chance = {
+		base = 0
+	}
+}
+
+chi_republic_nra_war_flag_enabled = {
+	is_shown = {
+		is_player = yes
+		AND = {
+			exists = c:CHI
+			this = c:CHI
+		}
+        NOT = {
+		    has_variable = chi_republic_nra_war_flag_enabled_flag
+        }
+		has_variable = flag_decisions_enabled_flag
+		NOT = {	has_law = law_type:law_council_republic }
+		OR = {
+			has_law = law_type:law_presidential_republic
+			has_law = law_type:law_parliamentary_republic			
+		}
+		has_game_rule = allow_war_flags
+	}
+	
+	when_taken = {
+		set_variable = chi_republic_nra_war_flag_enabled_flag
+		remove_variable = chi_republic_wuhan_war_flag_enabled_flag
+	}
+	
+	ai_chance = {
+		base = 0
+	}
+}
+
+chi_republic_nra_war_flag_disabled = {
+	is_shown = {
+		is_player = yes
+		has_variable = chi_republic_nra_war_flag_enabled_flag
+		has_variable = flag_decisions_enabled_flag
+	}
+	
+	when_taken = {
+		remove_variable = chi_republic_nra_war_flag_enabled_flag
+	}
+	
+	ai_chance = {
+		base = 0
+	}
+}
+
+chi_republic_wuhan_war_flag_enabled = {
+	is_shown = {
+		is_player = yes
+		AND = {
+			exists = c:CHI
+			this = c:CHI
+		}
+        NOT = {
+		    has_variable = chi_republic_wuhan_war_flag_enabled_flag
+        }
+		has_variable = flag_decisions_enabled_flag
+		NOT = {	has_law = law_type:law_council_republic }
+		OR = {
+			has_law = law_type:law_presidential_republic
+			has_law = law_type:law_parliamentary_republic			
+		}
+		has_game_rule = allow_war_flags
+	}
+	
+	when_taken = {
+		set_variable = chi_republic_wuhan_war_flag_enabled_flag
+		remove_variable = chi_republic_nra_war_flag_enabled_flag
+	}
+	
+	ai_chance = {
+		base = 0
+	}
+}
+
+chi_republic_wuhan_war_flag_disabled = {
+	is_shown = {
+		is_player = yes
+		has_variable = chi_republic_wuhan_war_flag_enabled_flag
+		has_variable = flag_decisions_enabled_flag
+	}
+	
+	when_taken = {
+		remove_variable = chi_republic_wuhan_war_flag_enabled_flag
+	}
+	
+	ai_chance = {
+		base = 0
+	}
+}
+
+chi_prc_cwpra_war_flag_enabled = {
+	is_shown = {
+		has_law = law_type:law_council_republic
+		is_player = yes
+		AND = {
+			exists = c:CHI
+			this = c:CHI
+		}
+        NOT = {
+		    has_variable = chi_prc_cwpra_war_flag_enabled_flag
+        }
+		has_variable = flag_decisions_enabled_flag
+		has_game_rule = allow_war_flags
+	}
+	
+	when_taken = {
+		set_variable = chi_prc_cwpra_war_flag_enabled_flag
+		remove_variable = chi_prc_pla_war_flag_enabled_flag
+	}
+	
+	ai_chance = {
+		base = 0
+	}		
+}
+
+chi_prc_cwpra_war_flag_disabled = {
+	is_shown = {
+		has_law = law_type:law_council_republic
+		is_player = yes
+		has_variable = chi_prc_cwpra_war_flag_enabled_flag
+		has_variable = flag_decisions_enabled_flag
+	}
+	
+	when_taken = {
+		remove_variable = chi_prc_cwpra_war_flag_enabled_flag
+	}
+	
+	ai_chance = {
+		base = 0
+	}	
+}
+
+chi_prc_pla_war_flag_enabled = {
+	is_shown = {
+		has_law = law_type:law_council_republic
+		is_player = yes
+		AND = {
+			exists = c:CHI
+			this = c:CHI
+		}
+        NOT = {
+		    has_variable = chi_prc_pla_war_flag_enabled_flag
+        }
+		has_variable = flag_decisions_enabled_flag
+		has_game_rule = allow_war_flags
+	}
+	
+	when_taken = {
+		set_variable = chi_prc_pla_war_flag_enabled_flag
+		remove_variable = chi_prc_cwpra_war_flag_enabled_flag
+	}
+	
+	ai_chance = {
+		base = 0
+	}	
+}
+
+chi_prc_pla_war_flag_disabled = {
+	is_shown = {
+		has_law = law_type:law_council_republic
+		is_player = yes
+		has_variable = chi_prc_pla_war_flag_enabled_flag
+		has_variable = flag_decisions_enabled_flag
+	}
+	
+	when_taken = {
+		remove_variable = chi_prc_pla_war_flag_enabled_flag
 	}
 	
 	ai_chance = {
