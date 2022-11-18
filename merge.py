@@ -12,6 +12,8 @@ list_dir.remove('.git')
 list_dir.remove('.gitattributes')
 list_dir.remove('merge.py')
 list_dir.remove('multiplayer_synchronized')
+list_dir.remove('.gitignore')
+
 for sub_dir in list_dir:
     sub_dir_2 = src+sub_dir
     try: 
