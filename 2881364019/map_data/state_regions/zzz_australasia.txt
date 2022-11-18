@@ -15,11 +15,13 @@
         bg_logging = 10
         bg_whaling = 6
         bg_fishing = 5
-		bg_wheat_farms = 10 bg_livestock_ranches = 50 bg_banana_plantations = 10
+        bg_wheat_farms = 10
+        bg_livestock_ranches = 50
+        bg_banana_plantations = 10
     }
     resource = {
         type = "bg_gold_fields"
-		depleted_type = "bg_gold_mining"
+        depleted_type = "bg_gold_mining"
         undiscovered_amount = 8
         discover_amount_max = 8
     }
@@ -41,11 +43,12 @@ STATE_VICTORIA = {
         bg_logging = 12
         bg_whaling = 4
         bg_fishing = 4
-		bg_wheat_farms = 10 bg_livestock_ranches = 20
+        bg_wheat_farms = 10
+        bg_livestock_ranches = 20
     }
     resource = {
         type = "bg_gold_fields"
-		depleted_type = "bg_gold_mining"
+        depleted_type = "bg_gold_mining"
         undiscovered_amount = 12
         discover_amount_max = 6
     }
@@ -68,11 +71,12 @@ STATE_TASMANIA = {
         bg_logging = 9
         bg_whaling = 4
         bg_fishing = 4
-		bg_wheat_farms = 5 bg_livestock_ranches = 7
+        bg_wheat_farms = 5
+        bg_livestock_ranches = 7
     }
     resource = {
         type = "bg_gold_fields"
-		depleted_type = "bg_gold_mining"
+        depleted_type = "bg_gold_mining"
         undiscovered_amount = 3
     }
     naval_exit_id = 3122
@@ -96,11 +100,14 @@ STATE_QUEENSLAND = {
         bg_logging = 8
         bg_whaling = 5
         bg_fishing = 6
-		bg_wheat_farms = 10 bg_livestock_ranches = 16 bg_banana_plantations = 10 bg_sugar_plantations = 10
+        bg_wheat_farms = 10
+        bg_livestock_ranches = 16
+        bg_banana_plantations = 10
+        bg_sugar_plantations = 10
     }
-	resource = {
+    resource = {
         type = "bg_gold_fields"
-		depleted_type = "bg_gold_mining"
+        depleted_type = "bg_gold_mining"
         undiscovered_amount = 3
     }
     naval_exit_id = 3124
@@ -122,11 +129,12 @@ STATE_SOUTH_AUSTRALIA = {
         bg_coal_mining = 8
         bg_whaling = 3
         bg_fishing = 3
-		bg_wheat_farms = 10 bg_livestock_ranches = 24
+        bg_wheat_farms = 10
+        bg_livestock_ranches = 24
     }
-	resource = {
+    resource = {
         type = "bg_gold_fields"
-		depleted_type = "bg_gold_mining"
+        depleted_type = "bg_gold_mining"
         undiscovered_amount = 3
     }
     naval_exit_id = 3121
@@ -150,11 +158,12 @@ STATE_WESTERN_AUSTRALIA = {
         bg_logging = 5
         bg_whaling = 5
         bg_fishing = 8
-		bg_wheat_farms = 10 bg_livestock_ranches = 28
+        bg_wheat_farms = 10
+        bg_livestock_ranches = 28
     }
     resource = {
         type = "bg_gold_fields"
-		depleted_type = "bg_gold_mining"
+        depleted_type = "bg_gold_mining"
         undiscovered_amount = 8
     }
     naval_exit_id = 3123
@@ -173,15 +182,15 @@ STATE_NORTHERN_TERRITORY = {
     wood = "xA4B8B3"
     arable_land = 20
     capped_resources = {
-		bg_iron_mining = 7
-		bg_sulfur_mining = 7
+        bg_iron_mining = 7
+        bg_sulfur_mining = 7
         bg_logging = 6
         bg_fishing = 3
-		bg_livestock_ranches = 5
+        bg_livestock_ranches = 5
     }
-	 resource = {
+    resource = {
         type = "bg_gold_fields"
-		depleted_type = "bg_gold_mining"
+        depleted_type = "bg_gold_mining"
         undiscovered_amount = 3
     }
     naval_exit_id = 3126
@@ -203,7 +212,8 @@ STATE_NORTH_ISLAND = {
         bg_logging = 16
         bg_whaling = 3
         bg_fishing = 3
-		bg_wheat_farms = 4 bg_livestock_ranches = 10
+        bg_wheat_farms = 4
+        bg_livestock_ranches = 10
     }
     naval_exit_id = 3122
 }
@@ -220,11 +230,12 @@ STATE_SOUTH_ISLAND = {
     wood = "x50F19B"
     arable_land = 100
     capped_resources = {
-		bg_coal_mining = 12
+        bg_coal_mining = 12
         bg_logging = 10
         bg_whaling = 4
         bg_fishing = 4
-		bg_wheat_farms = 4 bg_livestock_ranches = 7
+        bg_wheat_farms = 4
+        bg_livestock_ranches = 7
     }
     naval_exit_id = 3122
 }

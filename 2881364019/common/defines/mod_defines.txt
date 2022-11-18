@@ -1,7 +1,7 @@
 ﻿NPops = {
 
-	LOW_POP_THRESHOLD = 3000					# If a state has less than this amount of pops per arable land, apply the low pop modifier
-	HIGH_POP_THRESHOLD = 4500					# If a state has more than this amount of pops per arable land, apply the high pop modifier
+	LOW_POP_THRESHOLD = 3500					# If a state has less than this amount of pops per arable land, apply the low pop modifier
+	HIGH_POP_THRESHOLD = 5000					# If a state has more than this amount of pops per arable land, apply the high pop modifier
 	
 	ASSIMILATION_RATE = 0.004					# Percentage of pops who will Assimilate into a different Culture each month, if eligible
 	MIN_ASSIMILATION = 100						# If there is any assmiliation at least this many people will assimilate
