@@ -1,0 +1,109 @@
+﻿on_monthly_pulse_country = {
+    effect = {
+        every_country = {
+            if = {
+                limit = {
+                    OR = {
+                        country_has_state_religion = rel:protestant
+                        country_has_state_religion = rel:catholic
+                        country_has_state_religion = rel:orthodox
+                        country_has_state_religion = rel:oriental_orthodox
+                    }
+                }
+                set_state_religion = rel:christian
+            }
+            else_if = {
+                limit = {
+                    OR = {
+                        country_has_state_religion = rel:sunni
+                        country_has_state_religion = rel:shiite
+                    }
+                }
+                set_state_religion = rel:muslim
+            }
+            else_if = {
+                limit = {
+                    OR = {
+                        country_has_state_religion = rel:mahayana
+                        country_has_state_religion = rel:gelugpa
+                        country_has_state_religion = rel:theravada
+                    }
+                }
+                set_state_religion = rel:buddhist
+            }
+            every_scope_character = {
+                if = {
+                    limit = {
+                        OR = {
+                            has_religion = protestant
+                            has_religion = catholic
+                            has_religion = orthodox
+                            has_religion = oriental_orthodox
+                        }
+                    }
+                    change_character_religion = rel:christian
+                }
+                else_if = {
+                    limit = {
+                        OR = {
+                            has_religion = sunni
+                            has_religion = shiite
+                        }
+                    }
+                    change_character_religion = rel:muslim
+                }
+                else_if = {
+                    limit = {
+                        OR = {
+                            has_religion = mahayana
+                            has_religion = gelugpa
+                            has_religion = theravada
+                        }
+                    }
+                    change_character_religion = rel:buddhist
+                }
+            }
+            every_scope_pop = {
+                if = {
+                    limit = {
+                        OR = {
+                            has_pop_religion = protestant
+                            has_pop_religion = catholic
+                            has_pop_religion = orthodox
+                            has_pop_religion = oriental_orthodox
+                        }
+                    }
+                    change_pop_religion = {
+                        target = rel:christian
+                        value = 1.0
+                    }
+                }
+                else_if = {
+                    limit = {
+                        OR = {
+                            has_pop_religion = sunni
+                            has_pop_religion = shiite
+                        }
+                    }
+                    change_pop_religion = {
+                        target = rel:muslim
+                        value = 1.0
+                    }
+                }
+                else_if = {
+                    limit = {
+                        OR = {
+                            has_pop_religion = mahayana
+                            has_pop_religion = gelugpa
+                            has_pop_religion = theravada
+                        }
+                    }
+                    change_pop_religion = {
+                        target = rel:buddhist
+                        value = 1.0
+                    }
+                }
+            }
+        }
+    }
+}
