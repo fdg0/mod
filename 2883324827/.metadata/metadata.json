@@ -1,0 +1,13 @@
+{
+  "name": "Condensed Religions",
+  "id": "",
+  "version": "1.0.0",
+  "supported_game_version": "1.0.*",
+  "short_description": "Condensed this list of religions down to their primary groupings.",
+  "tags": [],
+  "relationships": [],
+  "game_custom_data": {
+    "multiplayer_synchronized": true
+  },
+  "picture": "thumbnail.png"
+}
