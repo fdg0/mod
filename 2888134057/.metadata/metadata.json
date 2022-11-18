@@ -1,0 +1,13 @@
+{
+  "name" : "Trade Routes in Goods Panel",
+  "id" : "",
+  "version" : "1.0",
+  "supported_game_version" : "",
+  "picture" : "thumbnail.png",
+  "short_description" : "Mod adds trade routes to Goods panel so that you can manage them directly by clicking on a resource from wherever you can, instead of having to look for it in the trade routes tab of the market panel",
+  "tags" : [],
+  "relationships" : [],
+  "game_custom_data" : {
+    "multiplayer_synchronized" : true
+  }
+}
