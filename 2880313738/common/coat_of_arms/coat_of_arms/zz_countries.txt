@@ -339,3 +339,150 @@ CHI_republic_roc_flag = {
 		instance = { scale = { 0.55 0.55 } position = { 0.25 0.25 } }			
 	}
 }
+
+SAR_republic_tricolor = { # Italy
+	pattern = "pattern_solid.tga"
+	color1 = "green"
+
+	colored_emblem = {
+		texture = "ce_tricolor_vertical.dds"
+		color1 = "white"
+		color2 = "red"
+	}
+	textured_emblem = {
+		texture = "te_coa_italia.dds"
+		instance = { scale = { 0.7 0.7 } position = { 0.5 0.5 } }
+	}		
+}
+
+ITA_sicily = { 
+	pattern = "pattern_solid.tga"
+	color1 = "green"
+
+	colored_emblem = {
+		texture = "ce_tricolor_vertical.dds"
+		color1 = "white"
+		color2 = "red"
+	}
+	textured_emblem = {
+		texture = "te_necklace_two_sicilies.dds"
+		instance = { scale = { 0.75 0.8 } position = { 0.5 0.50 } }
+	}	
+	textured_emblem = {
+		texture = "te_crown.dds"
+		instance = { scale = { 0.4 0.4 } position = { 0.5 0.33 } }
+	}	
+	textured_emblem = {
+		texture = "te_coa_two_sicilies.dds"
+		instance = { scale = { 0.52 0.52 } position = { 0.5 0.50 } }
+	}		
+}
+
+ITA_rome_war = {
+	pattern = "pattern_solid.tga"
+	color1 = "green"
+
+	colored_emblem = {
+		texture = "ce_tricolor_vertical.dds"
+		color1 = "white"
+		color2 = "red"
+	}
+	textured_emblem = {
+		texture = "te_coa_roman_republic_italia_war.dds"
+		instance = { scale = { 1.0 1.0 } position = { 0.5 0.5 } }
+	}		
+}
+
+ITA_war = {
+	pattern = "pattern_solid.tga"
+	color1 = "green"
+
+	colored_emblem = {
+		texture = "ce_tricolor_vertical.dds"
+		color1 = "white"
+		color2 = "red"
+	}
+	textured_emblem = {
+		texture = "te_coa_italia_war.dds"
+		instance = { scale = { 0.55 0.5 } position = { 0.51 0.6 } }
+	}
+	textured_emblem = {
+		texture = "te_crown.dds"
+		instance = { scale = { 0.55 0.55 } position = { 0.5 0.25 } }
+	}			
+}
+
+ITA_pope = {
+	pattern = "pattern_solid.tga"
+	color1 = "green"
+
+	colored_emblem = {
+		texture = "ce_tricolor_vertical.dds"
+		color1 = "white"
+		color2 = "red"
+	}
+	textured_emblem = {
+		texture = "te_coa_papal_states_tiara.dds"
+		instance = { scale = { 0.7 0.7 } position = { 0.5 0.5 } }
+	}
+	colored_emblem = {
+		texture = "ce_shield_accolade_02.dds"
+		color1 = "red"
+		color2 = "black"
+		instance = { scale = { 0.7 0.7 } position = { 0.5 0.5 } }
+	}		
+}
+
+ITA_communist = {
+	pattern = "pattern_solid.tga"
+	color1 = "green"
+
+	colored_emblem = {
+		texture = "ce_tricolor_vertical.dds"
+		color1 = "white"
+		color2 = "red"
+	}	
+	colored_emblem = {
+		texture = "ce_star_05_hollow.dds"
+		color1 = "yellow"
+		color2 = "red"
+		instance = { scale = { 0.6 0.6 } position = { 0.5 0.5 } }
+	}		
+}
+
+ITA_venice = {
+	pattern = "pattern_solid.tga"
+	color1 = "green"
+
+	colored_emblem = {
+		texture = "ce_tricolor_vertical.dds"
+		color1 = "white"
+		color2 = "red"
+	}
+
+	colored_emblem = {
+		texture = "ce_shield_accolade.dds"
+		color1 = "red"
+		instance = { scale = { 0.7 0.65 } position = { 0.5 0.5 } }		
+	}
+
+	textured_emblem = {
+		texture = "te_lion_san_marco.dds"
+		instance = { scale = { 0.47 0.47 } position = { 0.5 0.5 } }
+	}
+}	
+
+PAP_republic_war = {
+	pattern = "pattern_solid.tga"
+	color1 = "black"
+
+	colored_emblem = {
+		texture = "ce_tricolor_vertical.dds"
+		color1 = "white"
+		color2 = "red"
+	}
+	textured_emblem = {
+		texture = "te_coa_roman_republic_war.dds"
+		instance = { scale = { 1.0 1.0 } position = { 0.5 0.5 } }
+	}
+}

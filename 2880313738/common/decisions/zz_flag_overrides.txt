@@ -51,6 +51,10 @@ flag_decisions_enabled = {
 				exists = c:CHI
 				this = c:CHI
 			}
+			AND = {
+				exists = c:PRU
+				this = c:PRU
+			}			
 		}
         NOT = {
 		    has_variable = flag_decisions_enabled_flag
@@ -808,4 +812,42 @@ chi_prc_pla_war_flag_disabled = {
 	ai_chance = {
 		base = 0
 	}	
+}
+
+pru_striped_flag_enabled = {
+	is_shown = {
+		is_player = yes
+		AND = {
+			exists = c:PRU
+			this = c:PRU
+		}
+        NOT = {
+		    has_variable = pru_striped_flag_enabled_flag
+        }
+		has_variable = flag_decisions_enabled_flag
+	}
+	
+	when_taken = {
+		set_variable = pru_striped_flag_enabled_flag
+	}
+	
+	ai_chance = {
+		base = 0
+	}	
+}
+
+pru_striped_flag_disabled = {
+	is_shown = {
+		is_player = yes
+		has_variable = pru_striped_flag_enabled_flag
+		has_variable = flag_decisions_enabled_flag
+	}
+	
+	when_taken = {
+		remove_variable = pru_striped_flag_enabled_flag
+	}
+	
+	ai_chance = {
+		base = 0
+	}
 }

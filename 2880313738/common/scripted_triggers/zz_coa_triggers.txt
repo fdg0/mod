@@ -237,3 +237,38 @@ coa_def_chi_cwpra_warflag_override_trigger = {
 		has_variable = chi_prc_cwpra_war_flag_enabled_flag
 	}
 }
+
+coa_def_italy_formed_by_sardinia_trigger = {
+	exists = scope:actor
+	scope:actor = { 
+		has_variable = zz_italy_formed_by_sardinia
+	}
+}
+
+coa_def_italy_formed_by_sicily_trigger = {
+	exists = scope:actor
+	scope:actor = { 
+		has_variable = zz_italy_formed_by_sicily
+	}
+}
+
+coa_def_italy_formed_by_rome_trigger = {
+	exists = scope:actor
+	scope:actor = { 
+		has_variable = zz_italy_formed_by_rome
+	}
+}
+
+coa_def_italy_formed_by_venice_trigger = {
+	exists = scope:actor
+	scope:actor = { 
+		has_variable = zz_italy_formed_by_venice
+	}
+}
+
+coa_def_pru_striped_flag_override_trigger = {
+	exists = scope:actor
+	scope:actor = {
+		has_variable = pru_striped_flag_enabled_flag
+	}
+}

@@ -1,45 +1,35 @@
-﻿# This is executed last among all history
+﻿# Germany
 GLOBAL = {
-	every_country = {
-		limit = {
-			exists = c:PRU
-			this = c:PRU
-		}
+	c:PRU = {
 		set_variable = zz_germany_formed_by_prussia
 	}
-	every_country = {
-		limit = {
-			exists = c:AUS
-			this = c:AUS
-		}
+	c:AUS = {
 		set_variable = zz_germany_formed_by_austria
 	}
-	every_country = {
-		limit = {
-			exists = c:HAN
-			this = c:HAN
-		}
+	c:HAN = {
 		set_variable = zz_germany_formed_by_hanover
 	}
-	every_country = {
-		limit = {
-			exists = c:BAV
-			this = c:BAV
-		}
+	c:BAV = {
 		set_variable = zz_germany_formed_by_bavaria
 	}
-	every_country = {
-		limit = {
-			exists = c:SAX
-			this = c:SAX
-		}
+	c:SAX = {
 		set_variable = zz_germany_formed_by_saxony
 	}
-	every_country = {
-		limit = {
-			exists = c:WUR
-			this = c:WUR
-		}
+	c:WUR = {
 		set_variable = zz_germany_formed_by_wurttemberg
+	}			
+}
+
+# Italy
+
+GLOBAL = {
+	c:PAP = {
+		set_variable = zz_italy_formed_by_rome
+	}
+	c:SIC = {
+		set_variable = zz_italy_formed_by_sicily
+	}
+	c:SAR = {
+		set_variable = zz_italy_formed_by_sardinia
 	}					
 }
