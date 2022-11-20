@@ -16,3 +16,4 @@
  state_trait_salt_domes:0 "Salt Domes"
  state_trait_hostile_climate:0 "Hostile Sahara Climate"
  
+ automatic_irrigation_building_rubber_plantation:0 "$automatic_irrigation$"

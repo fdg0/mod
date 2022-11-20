@@ -15,3 +15,5 @@
  state_trait_rich_rubber:0 "Geeignet für Kautschukproduktion"
  state_trait_salt_domes:0 "Salzstöcke"
  state_trait_hostile_climate:0 "Feindliches Sahara-Klima"
+ 
+ automatic_irrigation_building_rubber_plantation:0 "$automatic_irrigation$"

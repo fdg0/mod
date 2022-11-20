@@ -15,3 +15,5 @@
  state_trait_rich_rubber:0 "ゴム生産に適した土地"
  state_trait_salt_domes:0 "塩のドーム"
  state_trait_hostile_climate:0 "過酷なサハラ砂漠の気候"
+ 
+ automatic_irrigation_building_rubber_plantation:0 "$automatic_irrigation$"

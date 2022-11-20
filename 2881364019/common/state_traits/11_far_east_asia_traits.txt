@@ -3,6 +3,7 @@
 	
 	modifier = {
 		building_group_bg_agriculture_throughput_mult = 0.1
+		building_group_bg_plantations_throughput_mult = 0.1
 	}
 }
 
@@ -11,6 +12,7 @@ state_trait_the_red_basin = {
 	
 	modifier = {
 		building_group_bg_agriculture_throughput_mult = 0.15
+		building_group_bg_plantations_throughput_mult = 0.15
 	}
 }
 

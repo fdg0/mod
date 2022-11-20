@@ -14,3 +14,5 @@
  state_trait_rich_rubber:0 "Kauçuk Üretimine Uygun"
  state_trait_salt_domes:0 "Tuz Kubbeleri"
  state_trait_hostile_climate:0 "Düşmancıl Sahra İklimi"
+ 
+ automatic_irrigation_building_rubber_plantation:0 "$automatic_irrigation$"

@@ -169,7 +169,7 @@ STATE_LIBERIA = {
     }
     resource = {
         type = "bg_rubber"
-        undiscovered_amount = 2
+        undiscovered_amount = 5
     }
     naval_exit_id = 3088
 }
@@ -215,7 +215,7 @@ STATE_BENIN = {
     }
     resource = {
         type = "bg_rubber"
-        undiscovered_amount = 18
+        undiscovered_amount = 15
     }
     resource = {
         type = "bg_oil_extraction"
@@ -252,6 +252,10 @@ STATE_YORUBA_STATES = {
         type = "bg_oil_extraction"
         undiscovered_amount = 15
     }
+	resource = {
+        type = "bg_rubber"
+        undiscovered_amount = 15
+    }
     naval_exit_id = 3091
 }
 
@@ -278,7 +282,7 @@ STATE_NIGER_DELTA = {
     }
     resource = {
         type = "bg_rubber"
-        undiscovered_amount = 24
+        undiscovered_amount = 15
     }
     resource = {
         type = "bg_oil_extraction"
@@ -771,6 +775,10 @@ STATE_UGANDA = {
         bg_banana_plantations = 20
         bg_tea_plantations = 30
     }
+	resource = {
+        type = "bg_rubber"
+        undiscovered_amount = 4
+    }
 }
 
 STATE_EQUATORIA = {
@@ -791,7 +799,7 @@ STATE_EQUATORIA = {
     }
     resource = {
         type = "bg_rubber"
-        undiscovered_amount = 18
+        undiscovered_amount = 5
     }
 }
 
@@ -977,7 +985,7 @@ STATE_CONGO_ORIENTALE = {
     }
     resource = {
         type = "bg_rubber"
-        undiscovered_amount = 15
+        undiscovered_amount = 20
     }
     resource = {
         type = "bg_gold_fields"
@@ -1006,7 +1014,7 @@ STATE_KASAI = {
     }
     resource = {
         type = "bg_rubber"
-        undiscovered_amount = 8
+        undiscovered_amount = 15
     }
     resource = {
         type = "bg_gold_fields"
@@ -1036,6 +1044,10 @@ STATE_BAS_CONGO = {
     resource = {
         type = "bg_oil_extraction"
         undiscovered_amount = 5
+    }
+	resource = {
+        type = "bg_rubber"
+        undiscovered_amount = 10
     }
     naval_exit_id = 3104
 }
@@ -1154,6 +1166,10 @@ STATE_KATANGA = {
         bg_millet_farms = 3
         bg_livestock_ranches = 30
         bg_cotton_plantations = 60
+    }
+	resource = {
+        type = "bg_rubber"
+        undiscovered_amount = 10
     }
 }
 

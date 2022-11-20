@@ -15,3 +15,5 @@
  state_trait_rich_rubber:0 "适用于橡胶生产"
  state_trait_salt_domes:0 "盐丘"
  state_trait_hostile_climate:0 "恶劣的撒哈拉气候"
+ 
+ automatic_irrigation_building_rubber_plantation:0 "$automatic_irrigation$"

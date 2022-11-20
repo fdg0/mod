@@ -18,7 +18,7 @@ state_trait_ruhr_coalfield = {
     icon = "gfx/interface/icons/state_trait_icons/resources_ore.dds"
 	
 	modifier = {
-		building_coal_mine_throughput_mult = 0.1
+		building_coal_mine_throughput_mult = 0.25
 	}
 }
 
@@ -26,7 +26,7 @@ state_trait_borinage_coalfield = {
     icon = "gfx/interface/icons/state_trait_icons/resources_ore.dds"
 	
 	modifier = {
-		building_coal_mine_throughput_mult = 0.1
+		building_coal_mine_throughput_mult = 0.25
 	}
 }
 
@@ -50,7 +50,7 @@ state_trait_sicilian_sulfur_mines = {
     icon = "gfx/interface/icons/state_trait_icons/resources_ore.dds"
 	
 	modifier = {
-		building_sulfur_mine_throughput_mult = 0.2
+		building_sulfur_mine_throughput_mult = 0.25
 	}
 }
 

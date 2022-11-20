@@ -15,3 +15,5 @@
  state_trait_rich_rubber:0 "Adaptées à la production de caoutchouc"
  state_trait_salt_domes:0 "Dômes de sel"
  state_trait_hostile_climate:0 "Climat hostile du Sahara"
+ 
+ automatic_irrigation_building_rubber_plantation:0 "$automatic_irrigation$"

@@ -12,7 +12,7 @@ state_trait_lancashire_coalfield = {
     icon = "gfx/interface/icons/state_trait_icons/resources_ore.dds"
 	
 	modifier = {
-		building_coal_mine_throughput_mult = 0.1
+		building_coal_mine_throughput_mult = 0.25
 	}
 }
 
@@ -20,7 +20,7 @@ state_trait_south_yorkshire_coalfield = {
     icon = "gfx/interface/icons/state_trait_icons/resources_ore.dds"
 	
 	modifier = {
-		building_coal_mine_throughput_mult = 0.1
+		building_coal_mine_throughput_mult = 0.2
 	}
 }
 
@@ -28,7 +28,7 @@ state_trait_south_wales_valleys = {
     icon = "gfx/interface/icons/state_trait_icons/resources_ore.dds"
 	
 	modifier = {
-		building_coal_mine_throughput_mult = 0.1
+		building_coal_mine_throughput_mult = 0.2
 	}
 }
 
@@ -45,7 +45,7 @@ state_trait_central_belt_coalfield = {
 	icon = "gfx/interface/icons/state_trait_icons/resources_ore.dds"
 	
 	modifier = {
-		building_coal_mine_throughput_mult = 0.1
+		building_coal_mine_throughput_mult = 0.2
 	}
 }
 
