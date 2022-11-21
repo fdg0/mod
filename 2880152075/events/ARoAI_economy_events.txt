@@ -24,6 +24,7 @@ ARoAI_economy_events.1 = {
 			# Calculate incorporated population and weekly income of the country
 			
 			ec_calculate_incorporated_population = yes
+			ec_calculate_army_size = yes
 			ec_calculate_country_budget_income = yes
 			
 			# Collect budget costs and restart costs collection cycle 7 days later
@@ -64,8 +65,8 @@ ARoAI_economy_events.1 = {
 						ec_downsizing_allowed = yes
 					}
 					ec_downsize_excess_buildings = yes
-					ec_clear_downsize_variables = yes
 				}
+				ec_clear_downsize_variables = yes
 				
 				# Start building if it is allowed or clear that data variables otherwise
 				
@@ -83,23 +84,22 @@ ARoAI_economy_events.1 = {
 					if = {
 						limit = {
 							ec_has_free_construction_points = yes
+							ec_regular_building = yes
 						}
 						ec_construct_special_buildings = yes
-						
-						# Then we start constructing standard buildings if there are still some free points
-						
-						ec_check_construction_points = yes
-						if = {
-							limit = {
-								ec_has_free_construction_points = yes
-							}
-							trigger_event = {
-								id = ARoAI_economy_events.2
-								days = 1
-							}
+					}
+					
+					# Then we start constructing standard buildings if there are still some free points
+					
+					ec_check_construction_points = yes
+					
+					if = {
+						limit = {
+							ec_has_free_construction_points = yes
 						}
-						else = {
-							ec_clear_building_variables = yes
+						trigger_event = {
+							id = ARoAI_economy_events.2
+							days = 1
 						}
 					}
 					else = {
@@ -287,7 +287,7 @@ ARoAI_economy_events.6 = {
 	trigger = {}
 
 	immediate = {
-		gb_renew_modifier = {
+		gb_renew_variable = {
 			name = ec_autobuild_settings
 			days = 93
 		}
@@ -496,7 +496,7 @@ ARoAI_economy_events.6 = {
 	option = {
 		name = ARoAI_economy_events.6.x
 		default_option = yes
-		remove_modifier = ec_autobuild_settings
+		remove_variable = ec_autobuild_settings
 	}
 }
 

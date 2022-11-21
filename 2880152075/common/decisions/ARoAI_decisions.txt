@@ -3,7 +3,7 @@
 		is_player = yes
 		has_game_rule = ec_allow_autobuild
 		NOT = {
-			has_modifier = ec_autobuild_settings
+			has_variable = ec_autobuild_settings
 		}
 	}
 	

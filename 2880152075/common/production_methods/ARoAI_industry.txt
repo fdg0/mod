@@ -131,6 +131,60 @@ pm_rotary_valve_engine_building_furniture_manufacturies = {
 	ai_value = 200000
 }
 
+pm_assembly_lines_building_furniture_manufacturies = {
+	texture = "gfx/interface/icons/production_method_icons/assembly_lines.dds"
+	
+	pollution_generation = 10
+	
+	unlocking_technologies = {
+		conveyors
+	}
+	
+	building_modifiers = {
+		workforce_scaled = {
+			# input goods
+			building_input_tools_add = 5
+			building_input_oil_add = 5
+			building_input_electricity_add = 5
+		}
+
+		level_scaled = {
+			building_employment_laborers_add = -3000
+		}
+	}
+	
+	ai_value = 400000
+}
+
+pm_manual_glassblowing = {
+	texture = "gfx/interface/icons/production_method_icons/glassworks_handicraft.dds"
+	
+	ai_value = 50000
+}
+
+pm_automatic_bottle_blowers = {
+	texture = "gfx/interface/icons/production_method_icons/automated_bottle_blowers.dds"
+	pollution_generation = 5
+	
+	unlocking_technologies = {
+		automatic_bottle_blowers
+	}
+	
+	building_modifiers = {
+		workforce_scaled = {
+			# input goods
+			building_input_tools_add = 5
+			building_input_oil_add = 10
+		}
+
+		level_scaled = {
+			building_employment_laborers_add = -2500
+		}
+	}
+	
+	ai_value = 100000
+}
+
 pm_watertube_boiler_building_tooling_workshops = {
 	texture = "gfx/interface/icons/production_method_icons/watertube_boiler.dds"
 	
@@ -173,6 +227,29 @@ pm_rotary_valve_engine_building_tooling_workshops = {
 	}
 	
 	ai_value = 200000
+}
+
+pm_assembly_lines_building_tooling_workshops = {
+	texture = "gfx/interface/icons/production_method_icons/assembly_lines.dds"
+	
+	pollution_generation = 10
+	
+	unlocking_technologies = {
+		conveyors
+	}
+	
+	building_modifiers = {
+		workforce_scaled = {
+			building_input_oil_add = 10
+			building_input_electricity_add = 5
+		}
+
+		level_scaled = {
+			building_employment_laborers_add = -3000
+		}
+	}
+	
+	ai_value = 400000
 }
 
 pm_watertube_boiler_building_paper_mills = {
@@ -319,4 +396,29 @@ pm_rotary_valve_engine_building_motor_industry = {
 	}
 	
 	ai_value = 200000
+}
+
+pm_assembly_lines_building_motor_industry = {
+	texture = "gfx/interface/icons/production_method_icons/assembly_lines.dds"
+	pollution_generation = 15
+	
+	unlocking_technologies = {
+		conveyors
+	}
+	
+	building_modifiers = {
+		workforce_scaled = {
+			# input goods
+			building_input_tools_add = 5
+			building_input_oil_add = 5
+			building_input_electricity_add = 5
+		}
+
+		level_scaled = {
+			building_employment_laborers_add = -1500
+			building_employment_machinists_add = -500
+		}
+	}
+	
+	ai_value = 400000
 }

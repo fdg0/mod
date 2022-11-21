@@ -1,9 +1,7 @@
 ﻿NAI = {
-	TICKS_FOR_FULL_SPENDING_UPDATE = 84 # The higher this is, the less often AIs will update their spending priorities
-	
 	MIN_AVAILABLE_LABOR_FOR_NEW_BUILDING = 5000000		# If state has less than this in available labor, don't bother building anything (multiplied by 1 + number of ongoing constructions)
 	
-	CONSCRIPTION_ESTIMATED_MILITARY_POWER_MULT = 0.75 		# AI multiplies the value of conscriptable battalions by this to estimate potential combat power
+	CONSCRIPTION_ESTIMATED_MILITARY_POWER_MULT = 0.66 		# AI multiplies the value of conscriptable battalions by this to estimate potential combat power
 	
 	RAISE_TAX_TO_DESIRED_INCOME_THRESHOLD = 0.03
 	RAISE_TAX_ABOVE_DESIRED_INCOME_NO_DEBT_THRESHOLD = 0.01
@@ -76,6 +74,6 @@
 	#CONSUMPTION_TAX_LUXURY_MULT = 2.0 # Multiply desire to tax luxury goods by this
 	CONSUMPTION_TAX_LOW_INCOME_THRESHOLD = 3.0 # Income-to-expenses threshold below which consumption taxes are a must-have
 	CONSUMPTION_TAX_HIGH_INCOME_THRESHOLD = 5.0 # Income-to-expenses threshold at which consumption taxes should be removed (if removal would not put us below this)
-	#CONSUMPTION_TAX_MAX_NUM_TAXED_GOODS_BASE = 0 # Base max number of goods AI wants to tax
+	CONSUMPTION_TAX_MAX_NUM_TAXED_GOODS_BASE = 6 # Base max number of goods AI wants to tax
 	#CONSUMPTION_TAX_MAX_NUM_TAXED_GOODS_PER_MISSING_TAX_TYPE = 2 # Added to max number of goods AI wants to tax for each other type of tax it does not collect
 }

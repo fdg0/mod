@@ -67,6 +67,29 @@ pm_tractors = {
 	ai_value = 400000
 }
 
+pm_compression_ignition_tractors = {
+	texture = "gfx/interface/icons/production_method_icons/tractors.dds"
+
+	pollution_generation = 20
+
+	unlocking_technologies = {
+		compression_ignition
+	}
+	building_modifiers = {
+		workforce_scaled = {
+			# input goods								
+			building_input_oil_add = 3
+			building_input_engines_add = 2
+		}
+
+		level_scaled = {
+			building_employment_laborers_add = -3000
+		}
+	}
+	
+	ai_value = 800000
+}
+
 pm_standard_fences = {
 	texture = "gfx/interface/icons/production_method_icons/standard_fences.dds"
 	

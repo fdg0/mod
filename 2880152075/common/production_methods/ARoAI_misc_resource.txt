@@ -27,6 +27,29 @@ pm_steam_donkey_building_logging_camp = {
 	ai_value = 100000
 }
 
+pm_chainsaws = {
+	texture = "gfx/interface/icons/production_method_icons/chainsaws.dds"
+	unlocking_technologies = {
+		combustion_engine
+	}
+	building_modifiers = {
+		workforce_scaled = {
+			# input goods
+			building_input_tools_add = 10
+			building_input_oil_add = 5
+		}
+
+		level_scaled = {
+			# employment
+			building_employment_laborers_add = -1500
+			building_employment_machinists_add = 200
+			building_employment_engineers_add = 200
+		}
+	}
+	
+	ai_value = 200000
+}
+
 pm_rail_transport_building_logging_camp = {
 	texture = "gfx/interface/icons/production_method_icons/rail_transport.dds"
 

@@ -163,3 +163,11 @@ gb_renew_modifier = {
 		days = $days$
 	}
 }
+
+gb_renew_variable = {
+	remove_variable = $name$
+	set_variable = {
+		name = $name$
+		days = $days$
+	}
+}

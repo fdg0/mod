@@ -1,8 +1,22 @@
-﻿ec_difficulty = {
-	default = ec_default_difficulty
-	ec_default_difficulty = {}
-	ec_easy_difficulty = {}
-	ec_easy_except_subjects_difficulty = {}
+﻿ec_construction_points = {
+	default = ec_construction_points_100
+	ec_construction_points_100 = {}
+	ec_construction_points_90 = {}
+	ec_construction_points_80 = {}
+	ec_construction_points_70 = {}
+	ec_construction_points_60 = {}
+	ec_construction_points_50 = {}
+}
+
+ec_subject_construction = {
+	default = ec_subject_construction_same
+	ec_subject_construction_same = {}
+	ec_subject_construction_100 = {}
+	ec_subject_construction_90 = {}
+	ec_subject_construction_80 = {}
+	ec_subject_construction_70 = {}
+	ec_subject_construction_60 = {}
+	ec_subject_construction_50 = {}
 }
 
 rs_mode = {

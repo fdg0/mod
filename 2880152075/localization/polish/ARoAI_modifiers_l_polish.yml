@@ -1,10 +1,2 @@
 ﻿l_polish:
- ec_autobuild_settings:0 "Autobuild Settings"
- ec_wartime_spending:0 "Wartime Spending"
- ec_government_administration_cooldown:0 "Government Administration Cooldown"
- ec_construction_sector_cooldown:0 "Construction Sector Cooldown"
- ec_university_cooldown:0 "University Cooldown"
- ec_port_cooldown:0 "Port Cooldown"
- ec_barracks_cooldown:0 "Barracks Cooldown"
- ec_naval_base_cooldown:0 "Naval Base Cooldown"
  rs_innovation_redirection:0 "Research Simulation"
