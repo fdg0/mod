@@ -1,0 +1,13 @@
+{
+  "name" : "Dense Buildings",
+  "id" : "",
+  "version" : "1.2.1",
+  "supported_game_version" : "1.0.5",
+  "short_description" : "",
+  "tags" : [],
+    "relationships": [],
+    "picture": "thumbnail.png",
+  "game_custom_data" : {
+    "multiplayer_synchronized" : true
+  }
+}
