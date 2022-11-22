@@ -1,5 +1,5 @@
 ﻿nativa={
-	color= rgb{ 226 218 112 }
+	color= hsv{ 0.37 0.28 0.54 }
 	religion = catholic
 	traits = { indigenous_american_heritage }
 	male_common_first_names={

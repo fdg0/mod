@@ -3507,13 +3507,8 @@ STATES = {
 	}
 	s:STATE_MADRAS = {
 		create_state = {
-			country = c:FRA
-			owned_provinces = { xABADB1 }
-			state_type = treaty_port
-		}
-		create_state = {
 			country = c:BIC
-			owned_provinces = { x99B424 x61FE06 x07104C x56456B x9A2EF3 xAEAE4C x0E2990 x10B060 xA3158E x2EAD15 x7CCE50 xA02050 x620762 xA021D0 x1FF7C6 x0559B3 x5AF5BE x20A050 x9E4F00 xEC1945 xB278DD x2D75FD x486310 xA63901 x6A381C }
+			owned_provinces = { xABADB1 x99B424 x61FE06 x07104C x56456B x9A2EF3 xAEAE4C x0E2990 x10B060 xA3158E x2EAD15 x7CCE50 xA02050 x620762 xA021D0 x1FF7C6 x0559B3 x5AF5BE x20A050 x9E4F00 xEC1945 xB278DD x2D75FD x486310 xA63901 x6A381C }
 		}
 		
 		add_homeland = tamil
