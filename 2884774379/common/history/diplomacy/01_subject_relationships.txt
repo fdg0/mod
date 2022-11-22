@@ -18,6 +18,10 @@
 			country = c:SER
 			type = customs_union
 		}	
+		create_diplomatic_pact = {
+			country = c:TUN
+			type = customs_union
+		}	
 	}
 	c:NET = {
 		create_diplomatic_pact = {
