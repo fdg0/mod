@@ -1,0 +1,326 @@
+﻿###################################
+# Default Personality Animations  #
+###################################
+
+bureaucrat_pop_idle = {
+
+	male = {
+		default = { head = "idle_head_pop_calipers" torso = "idle_body_General_VS_Right_Cross" }
+	}
+
+	boy = male female = male girl = male
+}
+
+butcher_pop_idle = {
+
+	male = {
+		default = { head = "idle_head_pop_apron" torso = "idle_body_apron" }
+	}
+
+	boy = male female = male girl = male
+}
+
+apron_pop_idle = {
+
+	male = {
+		default = { head = "idle_head_pop_apron" torso = "idle_body_apron" }
+	}
+
+	boy = male female = male girl = male
+}
+
+hattop_pop_idle = {
+
+	male = {
+		default = { head = "idle_head_pop_hattop" torso = "idle_body_hattop" }
+	}
+
+	boy = male female = male girl = male
+}
+
+hatacademic_pop_idle = {
+
+	male = {
+		default = { head = "idle_head_pop_hatacademic" torso = "idle_body_hatacademic" }
+	}
+
+	boy = male female = male girl = male
+}
+
+hatmonocle_pop_idle = {
+
+	male = {
+		default = { head = "idle_head_pop_hatmonocle" torso = "idle_body_hatmonocle" }
+	}
+
+	boy = male female = male girl = male
+}
+
+apron_pop_idle_struggle = {
+
+	male = {
+		default = { head = "idle_head_struggle_pop_apron" torso = "idle_body_struggle_apron" }
+	}
+
+	boy = male female = male girl = male
+}
+
+hattop_pop_idle_struggle = {
+
+	male = {
+		default = { head = "idle_head_struggle_pop_hattop" torso = "idle_body_struggle_hattop" }
+	}
+
+	boy = male female = male girl = male
+}
+
+hatacademic_pop_idle_struggle = {
+
+	male = {
+		default = { head = "idle_head_struggle_pop_hatacademic" torso = "idle_body_struggle_hatacademic" }
+	}
+
+	boy = male female = male girl = male
+}
+
+hatmonocle_pop_idle_struggle = {
+
+	male = {
+		default = { head = "idle_head_struggle_pop_hatmonocle" torso = "idle_body_struggle_hatmonocle" }
+	}
+
+	boy = male female = male girl = male
+}
+
+basket_pop_idle = {
+	male = {
+		default = { head = "idle_head_pop_basket" torso = "idle_body_basket" }
+		portrait_modifier = { animations_props = basket_attachment	 }
+	}
+	boy = male female = male girl = male
+}
+saber_pop_idle= {
+	male = {
+		default = { head = "idle_head_pop_saber" torso = "idle_body_saber" }
+		portrait_modifier = { animations_props = saber_attachment }
+	}
+	boy = male female = male girl = male
+}
+shovels_pop_idle = {
+	male = {
+		default = { head = "idle_head_pop_hattop" torso = "idle_body_shovels" }
+		portrait_modifier = { animations_props = shovel_attachment	}
+	}
+	boy = male female = male girl = male
+}
+holyscripture_pop_idle = {
+	male = {
+		default = { head = "idle_head_pop_holyscripture" torso = "idle_body_holyscripture" }
+		portrait_modifier = { animations_props = holyscripture_attachment	}
+	}
+	boy = male female = male girl = male
+}
+rifle_pop_idle = {
+	male = {
+		default = { head = "idle_head_pop_holyscripture" torso = "idle_body_rifle" }
+		portrait_modifier = { animations_props = rifle_attachment }
+	}
+	boy = male female = male girl = male
+}
+pitchfork_pop_idle = {
+	male = {
+		default = { head = "idle_head_pop_wrench" torso = "idle_body_pitchfork" }
+		portrait_modifier = { animations_props = pitchfork_attachment }
+	}
+	boy = male female = male girl = male
+}
+shackles_pop_idle = {
+	male = {
+		default = { head = "idle_head_pop_shackles" torso = "idle_body_shackles" }
+		portrait_modifier = { animations_props = shackles_attachment }
+	}
+	boy = male female = male girl = male
+}
+crudehoe_pop_idle = {
+	male = {
+		default = { head = "idle_head_pop_pitchfork" torso = "idle_body_pitchfork" }
+		portrait_modifier = { animations_props = crudehoe_attachment }
+	}
+	boy = male female = male girl = male
+}
+walkingcane_pop_idle = {
+	male = {
+		default = { head = "idle_head_pop_walkingcane" torso = "idle_body_walkingcane" }
+		portrait_modifier = { animations_props = walkingcane_attachment }
+	}
+	boy = male female = male girl = male
+}
+wrench_pop_idle = {
+	male = {
+		default = { head = "idle_head_pop_wrench" torso = "idle_body_wrench" }
+		portrait_modifier = { animations_props = wrench_attachment }
+	}
+	boy = male female = male girl = male
+}
+ledger_pop_idle = {
+	male = {
+		default = { head = "idle_head_pop_ledger" torso = "idle_body_ledger" }
+		portrait_modifier = { animations_props = ledger_attachment }
+	}
+	boy = male female = male girl = male
+}
+caliper_pop_idle = {
+	male = {
+		default = { head = "idle_head_pop_calipers" torso = "idle_body_calipers" }
+		portrait_modifier = { animations_props = caliper_attachment }
+	}
+	boy = male female = male girl = male
+}
+sack_pop_idle = {
+	male = {
+		default = { head = "idle_head_pop_sack" torso = "idle_body_sack" }
+		portrait_modifier = { animations_props = sack_attachment }
+	}
+	boy = male female = male girl = male
+}
+parasol_pop_idle = {
+	male = {
+		default = { head = "idle_head_pop_parasol" torso = "idle_body_parasol" }
+		portrait_modifier = { animations_props = parasol_attachment }
+	}
+	boy = male female = male girl = male
+}
+fan_pop_idle = {
+	male = {
+		default = { head = "idle_head_pop_fan" torso = "idle_body_fan" }
+		portrait_modifier = { animations_props = handheldfan_attachment }
+	}
+	boy = male female = male girl = male
+}
+flowers_pop_idle = {
+	male = {
+		default = { head = "idle_head_pop_flowers" torso = "idle_body_flowers" }
+		portrait_modifier = { animations_props = bundleofflowers_attachment	 }
+	}
+	boy = male female = male girl = male
+}
+saber_pop_idle_struggle = {
+	male = {
+		default = { head = "idle_head_struggle_pop_saber" torso = "idle_body_struggle_saber" }
+		portrait_modifier = { animations_props = saber_attachment }
+	}
+	boy = male female = male girl = male
+}
+shovels_pop_idle_struggle = {
+	male = {
+		default = { head = "idle_head_struggle_pop_shovels" torso = "idle_body_struggle_shovels" }
+		portrait_modifier = { animations_props = shovel_attachment }
+	}
+	boy = male female = male girl = male
+}
+holyscripture_pop_idle_struggle = {
+	male = {
+		default = { head = "idle_head_struggle_pop_holyscripture" torso = "idle_body_struggle_holyscripture" }
+		portrait_modifier = { animations_props = holyscripture_attachment }
+	}
+	boy = male female = male girl = male
+}
+umbrella_pop_idle_struggle = {
+	male = {
+		default = { head = "idle_head_struggle_pop_umbrella" torso = "idle_body_struggle_umbrella" }
+		portrait_modifier = { animations_props = umbrella_attachment }
+	}
+	boy = male female = male girl = male
+}
+rifle_pop_idle_struggle = {
+	male = {
+		default = { head = "idle_head_struggle_pop_pitchfork" torso = "idle_body_struggle_shovels" }
+		portrait_modifier = { animations_props = rifle_attachment }
+	}
+	boy = male female = male girl = male
+}
+pitchfork_pop_idle_struggle = {
+	male = {
+		default = { head = "idle_head_struggle_pop_pitchfork" torso = "idle_body_struggle_pitchfork" }
+		portrait_modifier = { animations_props = pitchfork_attachment }
+	}
+	boy = male female = male girl = male
+}
+crudehoe_pop_idle_struggle = {
+	male = {
+		default = { head = "idle_head_struggle_pop_shovels" torso = "idle_body_struggle_shovels" }
+		portrait_modifier = { animations_props = crudehoe_attachment }
+	}
+	boy = male female = male girl = male
+}
+crudehoe_pop_idle_struggle_02 = {
+	male = {
+		default = { head = "idle_head_struggle_pop_pitchfork" torso = "idle_body_struggle_pitchfork" }
+		portrait_modifier = { animations_props = crudehoe_attachment }
+	}
+	boy = male female = male girl = male
+}
+walkingcane_pop_idle_struggle = {
+	male = {
+		default = { head = "idle_head_struggle_pop_pitchfork" torso = "idle_body_struggle_walkingcane" }
+		portrait_modifier = { animations_props = walkingcane_attachment }
+	}
+	boy = male female = male girl = male
+}
+wrench_pop_idle_struggle = {
+	male = {
+		default = { head = "idle_head_struggle_pop_wrench" torso = "idle_body_struggle_wrench" }
+		portrait_modifier = { animations_props = wrench_attachment }
+	}
+	boy = male female = male girl = male
+}
+ledger_pop_idle_struggle = {
+	male = {
+		default = { head = "idle_head_struggle_pop_ledger" torso = "idle_body_struggle_ledger" }
+		portrait_modifier = { animations_props = ledger_attachment }
+	}
+	boy = male female = male girl = male
+}
+caliper_pop_idle_struggle = {
+	male = {
+		default = { head = "idle_head_struggle_pop_calipers" torso = "idle_body_struggle_calipers" }
+		portrait_modifier = { animations_props = caliper_attachment }
+	}
+	boy = male female = male girl = male
+}
+butcher_pop_idle_struggle = {
+	male = {
+		default = { head = "idle_head_struggle_pop_butcher" torso = "idle_body_struggle_butcher" }
+		portrait_modifier = { animations_props = butcherknife_attachment }
+	}
+	boy = male female = male girl = male
+}
+basket_pop_idle_struggle = {
+	male = {
+		default = { head = "idle_head_struggle_pop_basket" torso = "idle_body_struggle_basket" }
+		portrait_modifier = { animations_props = basket_attachment	 }
+	}
+	boy = male female = male girl = male
+}
+fan_pop_idle_struggle = {
+	male = {
+		default = { head = "idle_head_struggle_pop_fan" torso = "idle_body_struggle_fan" }
+		portrait_modifier = { animations_props = handheldfan_attachment }
+	}
+	boy = male female = male girl = male
+}
+flowers_pop_idle_struggle = {
+	male = {
+		default = { head = "idle_head_struggle_pop_flowers" torso = "idle_body_struggle_flowers" }
+		portrait_modifier = { animations_props = bundleofflowers_attachment	 }
+	}
+	boy = male female = male girl = male
+}
+parasol_pop_idle_struggle = {
+	male = {
+		default = { head = "idle_head_struggle_pop_parasol" torso = "idle_body_struggle_parasol" }
+		portrait_modifier = { animations_props = parasol_attachment }
+	}
+	boy = male female = male girl = male
+}
+

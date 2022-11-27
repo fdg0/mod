@@ -5,7 +5,7 @@ import os
 src = 'C:/Program Files (x86)/Steam/steamapps/workshop/content/529340/'
  
 # Destination path 
-dest = 'C:/Program Files (x86)/Steam/steamapps/workshop/content/529340/multiplayersynchronized/'
+dest = 'C:/Program Files (x86)/Steam/steamapps/workshop/content/529340/multiplayer/'
 
 list_dir = os.listdir(src)
 list_dir.remove('.git')

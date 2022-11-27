@@ -1,0 +1,2676 @@
+# COPY-PASTED FOR NOW
+@panel_width_minus_10 = 530			# used to be 450
+@panel_width = 540  				# used to be 460
+@panel_width_half = 270				# used to be 230
+@panel_width_plus_10 = 550  		# used to be 470
+@panel_width_plus_14 = 554			# used to be 474
+@panel_width_plus_14_half = 277		# used to be 237
+@panel_width_plus_20 = 560			# used to be 480
+@panel_width_plus_30 = 570			# used to be 490
+@panel_width_plus_70 = 610			# used to be 530
+@fsp_width = 300
+types commander_panel_types
+{
+	type bg_button = sort_button {
+		using = clean_button
+		size = { @fsp_width 25 }
+		align = left|nobaseline
+		margin_left = 15
+	}
+
+	type commander_panel = default_block_window_two_lines {
+		name = "commander_panel"
+
+		datacontext = "[CommanderPanel.AccessCharacter]"
+
+
+		###########
+
+		window = { # FSP
+			position = { 0 -85 }
+			using = default_bg
+			size = { 1920 1080 }
+			visible = "[GetVariableSystem.Exists('fullscreen_character')]"
+			scissor = yes
+
+			state = {
+				name = _show
+				position = { 0 -85 }
+			}
+
+			widget = {
+				size = { 970 100% }
+				parentanchor = center
+
+				widget = {
+					visible = "[GetVariableSystem.HasValue('char_bg', 'general')]"
+					size = { 100% 100% }
+
+
+					background = {
+						texture = "gfx/interface/character_panel/backgrounds/char_role_rulergeneral.dds"
+					}
+
+					# VFX
+					vfx = {
+						blockoverride "entity_instance" {
+							entity_instance = vfx_entity_ui_bg_char_ruler_general_glow
+						}
+					}
+					vfx = {
+						blockoverride "entity_instance" {
+							entity_instance = vfx_entity_ui_bg_char_ruler_smoke
+						}
+					}
+				}
+
+				# Politician
+				widget = {
+					visible = "[GetVariableSystem.HasValue('char_bg', 'politician')]"
+					size = { 100% 100% }
+
+					background = {
+						texture = "gfx/interface/character_panel/backgrounds/char_role_politician.dds"
+					}
+
+					# VFX
+					vfx = {
+						blockoverride "entity_instance"
+						{
+							entity_instance = vfx_entity_ui_bg_char_politician_godrays
+						}
+					}
+
+					vfx = {
+						blockoverride "entity_instance" {
+							entity_instance = vfx_entity_ui_bg_politician_candles
+						}
+					}
+
+					vfx = {
+						blockoverride "entity_instance" {
+							entity_instance = vfx_entity_ui_bg_char_ruler_smoke
+						}
+					}
+				}
+
+				# Ruler
+				widget = {
+					visible = "[GetVariableSystem.HasValue('char_bg', 'ruler')]"
+					size = { 100% 100% }
+
+					background = {
+						texture = "gfx/interface/character_panel/backgrounds/char_role_ruler.dds"
+					}
+
+					# VFX
+					vfx = {
+						blockoverride "entity_instance" {
+							entity_instance = vfx_entity_ui_bg_char_ruler
+						}
+					}
+
+					vfx = {
+						blockoverride "entity_instance" {
+							entity_instance = vfx_entity_ui_bg_char_ruler_smoke
+						}
+					}
+				}
+
+				# General
+				widget = {
+					visible = "[GetVariableSystem.HasValue('char_bg', 'general')]"
+					size = { 100% 100% }
+
+					background = {
+						texture = "gfx/interface/character_panel/backgrounds/char_role_general.dds"
+					}
+
+					# VFX
+					vfx = {
+						blockoverride "entity_instance" {
+							entity_instance = vfx_entity_ui_bg_char_general_glow
+						}
+					}
+				}
+
+				# Admiral
+				widget = {
+					size = { 100% 100% }
+					visible = "[GetVariableSystem.HasValue('char_bg', 'admiral')]"
+
+					background = {
+						texture = "gfx/interface/character_panel/backgrounds/char_role_admiral.dds"
+
+					}
+
+					# VFX
+					vfx = {
+						blockoverride "entity_instance" {
+							entity_instance = vfx_entity_ui_bg_char_admiral_glow
+						}
+					}
+					vfx = {
+						blockoverride "entity_instance" {
+							entity_instance = vfx_entity_ui_bg_char_admiral_waves
+						}
+					}
+
+					# VFX birds
+					cameracontrolwidget = {
+						alwaystransparent = yes
+						ignore_in_debug_draw = yes
+						gfxtype = jomini_entitygfx
+
+						size = { 100% 100% }
+						position = { 0 0 }
+
+						camera_position = { 0 0 15 }
+
+						entity_instance = vfx_entity_ui_bg_char_admiral_seagulls
+					}
+				}
+			}
+
+
+
+			icon = {
+				size = { 100% 100% }
+				visible = "[GetVariableSystem.HasValue('char_bg', 'green')]"
+				texture = "gfx/interface/graph/white.dds"
+				tintcolor = { 0 1 0 1 }
+			}
+
+			icon = {
+				size = { 100% 100% }
+				visible = "[GetVariableSystem.HasValue('char_bg', 'blue')]"
+				texture = "gfx/interface/graph/white.dds"
+				tintcolor = { 0 0 1 1 }
+			}
+
+			icon = {
+				size = { 100% 100% }
+				visible = "[GetVariableSystem.HasValue('char_bg', 'black')]"
+				texture = "gfx/interface/graph/white.dds"
+				tintcolor = { 0 0 0 1 }
+			}
+
+			icon = {
+				size = { 100% 100% }
+				visible = "[GetVariableSystem.HasValue('char_bg', 'white')]"
+				texture = "gfx/interface/graph/white.dds"
+			}
+
+			hbox = {
+				margin_left = 70
+				layoutpolicy_horizontal = expanding
+
+				vbox = {
+					layoutpolicy_vertical = expanding
+					margin_top = 90
+
+					flowcontainer = {
+						direction = vertical
+						margin_bottom = 5
+						# position = { 93 90 }
+
+						sort_button = {
+							size = { @fsp_width 30 }
+							using = default_button_primary
+							raw_text = "Backgrounds"
+
+							onclick = "[GetVariableSystem.Clear('fsp_tab')]"
+							down = "[Not(GetVariableSystem.Exists('fsp_tab'))]"
+						}
+
+						sort_button = {
+							size = { @fsp_width 30 }
+							using = default_button_primary
+							raw_text = "Poses"
+
+							onclick = "[GetVariableSystem.Set('fsp_tab', 'poses')]"
+							down = "[GetVariableSystem.HasValue('fsp_tab', 'poses')]"
+						}
+
+						sort_button = {
+							size = { @fsp_width 30 }
+							using = default_button_primary
+							raw_text = "Clothes"
+
+							onclick = "[GetVariableSystem.Set('fsp_tab', 'clothes')]"
+							down = "[GetVariableSystem.HasValue('fsp_tab', 'clothes')]"
+						}
+					}
+
+					bg_button = {
+						max_width = @fsp_width
+						raw_text = "Default"
+						onclick = "[GetVariableSystem.Clear('char_bg')]"
+						down = "[Not(GetVariableSystem.Exists('char_bg'))]"
+						visible = "[Not(GetVariableSystem.Exists('fsp_tab'))]"
+					}
+
+					bg_button = {
+						max_width = @fsp_width
+						raw_text = "default_clothes_name"
+						onclick = "[GetVariableSystem.Set('char_clothes', 'default_clothes')]"
+						onclick = "[ExecuteConsoleCommand('event char_clothes.1000')]"
+						down = "[GetVariableSystem.HasValue('char_clothes', 'default_clothes')]"
+						visible = "[GetVariableSystem.HasValue('fsp_tab', 'clothes')]"
+					}
+
+					bg_button = {
+						max_width = @fsp_width
+						visible = "[GetVariableSystem.HasValue('fsp_tab', 'poses')]"
+						raw_text = "Default"
+						onclick = "[GetVariableSystem.Clear('char_pose')]"
+						down = "[Not(GetVariableSystem.Exists('char_pose'))]"
+					}
+
+
+					widget = {
+						size = { 0 5 }
+					}
+
+
+					scrollbox = {
+						# position = { 70 180 }
+						size = { @[fsp_width+30] 0 }
+						layoutpolicy_vertical = expanding
+
+						blockoverride "scrollbox_content" {
+							margin_top = 0
+							margin_bottom = 0
+
+							flowcontainer = {
+								direction = vertical
+								spacing = -3
+								# ignore_invisible = yes
+
+								flowcontainer = {
+									visible = "[Not(GetVariableSystem.Exists('fsp_tab'))]"
+									direction = vertical
+									spacing = -3
+
+									bg_button = {
+										raw_text = "General"
+										onclick = "[GetVariableSystem.Set('char_bg', 'general')]"
+										down = "[GetVariableSystem.HasValue('char_bg', 'general')]"
+									}
+									bg_button = {
+										raw_text = "Politician"
+										onclick = "[GetVariableSystem.Set('char_bg', 'politician')]"
+										down = "[GetVariableSystem.HasValue('char_bg', 'politician')]"
+									}
+									bg_button = {
+										raw_text = "Ruler"
+										onclick = "[GetVariableSystem.Set('char_bg', 'ruler')]"
+										down = "[GetVariableSystem.HasValue('char_bg', 'ruler')]"
+									}
+									bg_button = {
+										raw_text = "Admiral"
+										onclick = "[GetVariableSystem.Set('char_bg', 'admiral')]"
+										down = "[GetVariableSystem.HasValue('char_bg', 'admiral')]"
+									}
+
+									widget = {
+										size = { 0 7 }
+									}
+
+									bg_button = {
+										raw_text = "Black"
+										onclick = "[GetVariableSystem.Set('char_bg', 'black')]"
+										down = "[GetVariableSystem.HasValue('char_bg', 'black')]"
+									}
+
+									bg_button = {
+										raw_text = "White"
+										onclick = "[GetVariableSystem.Set('char_bg', 'white')]"
+										down = "[GetVariableSystem.HasValue('char_bg', 'white')]"
+									}
+
+									bg_button = {
+										raw_text = "Blue"
+										onclick = "[GetVariableSystem.Set('char_bg', 'blue')]"
+										down = "[GetVariableSystem.HasValue('char_bg', 'blue')]"
+									}
+
+									bg_button = {
+										raw_text = "Green"
+										onclick = "[GetVariableSystem.Set('char_bg', 'green')]"
+										down = "[GetVariableSystem.HasValue('char_bg', 'green')]"
+									}
+								}
+
+								clothes_flowcontainer = {
+									visible = "[GetVariableSystem.HasValue('fsp_tab', 'clothes')]"
+
+								}
+
+								pose_flowcontainer = {
+									visible = "[GetVariableSystem.HasValue('fsp_tab', 'poses')]"
+								}
+							}
+						}
+					}
+
+					widget = {
+						size = { 0 15 }
+					}
+
+					# sort_button = {
+					# 	parentanchor = bottom
+					# 	position = { 93 -30 }
+					# 	size = { 200 30 }
+					# 	raw_text = "Hide controls, F1"
+					# 	shortcut = open_politics
+					# 	onclick = "[GetVariableSystem.Toggle('hide_fsp_controls')]"
+					# }
+					#
+					# button = {
+					# 	visible = "[GetVariableSystem.Exists('hide_fsp_controls')]"
+					# 	shortcut = open_politics
+					# }
+
+					sort_button = {
+						size = { @fsp_width 30 }
+						using = default_button_primary
+						raw_text = "Close"
+						onclick = "[GetVariableSystem.Clear('fullscreen_character')]"
+						onclick = "[ExecuteConsoleCommand('event char_clothes.501')]"
+						# onclick = "[GetVariableSystem.Set('char_clothes', 'default_clothes')]"
+						shortcut = close_window
+
+						close_button = {
+							position = { 5 0 }
+							scale = 0.8
+							parentanchor = vcenter
+							alwaystransparent = yes
+						}
+					}
+				}
+
+				expand = { }
+			}
+
+
+
+			character_portrait_base_no_mask = {
+				parentanchor = center
+				size = { 100% 105% }
+				alwaystransparent = yes
+				# position = { 0 20 }
+
+				blockoverride "portrait_size" {
+					alwaystransparent = yes
+					size = { 100% 100% }
+				}
+
+				blockoverride "portrait_texture" {
+					portrait_texture = "[Character.GetAnimatedPortrait('politician_environment', 'camera_leader', Select_CString(GetVariableSystem.Exists('char_pose'), GetVariableSystem.Get('char_pose'), 'idle'), PdxGetWidgetScreenSize(PdxGuiWidget.Self))]"
+				}
+
+				blockoverride "portrait_icons" {}
+				blockoverride "tooltip" {}
+				blockoverride "show_hat" {}
+			}
+		}
+
+		blockoverride "window_header_name" {
+			text = "[Character.GetFullName]"
+		}
+
+		blockoverride "window_header_name_line_two" {
+			text = "CHARACTER_PANEL_SUBTITLE"
+		}
+
+		blockoverride "goto_button" {
+			button_icon_goto = {
+				size = { 30 30 }
+				datacontext = "[Character.GetCountry]"
+				tooltip = "GO_TO_BUTTON_COUNTRY"
+				onclick = "[InformationPanelBar.OpenCountryPanel(Character.GetCountry.Self)]"
+			}
+		}
+
+		blockoverride "fixed_top"
+		{
+			tab_buttons = {
+				# Army
+				blockoverride "first_button" {
+					text = "CHARACTER_PANEL_TAB_OVERVIEW"
+				}
+				blockoverride "first_button_click" {
+					onclick = "[InformationPanel.SelectTab('overview')]"
+				}
+				blockoverride "first_button_visibility" {
+					visible = "[InformationPanel.IsTabSelected('overview')]"
+				}
+				blockoverride "first_button_visibility_checked" {
+					visible = "[Not( InformationPanel.IsTabSelected('overview') )]"
+				}
+				blockoverride "first_button_selected" {
+					text = "CHARACTER_PANEL_TAB_OVERVIEW_SELECTED"
+				}
+
+				# Garrisons
+				blockoverride "second_button" {
+					text = "CHARACTER_PANEL_TAB_MODIFIERS"
+				}
+				blockoverride "second_button_click" {
+					onclick = "[InformationPanel.SelectTab('modifiers')]"
+				}
+				blockoverride "second_button_visibility" {
+					visible = "[InformationPanel.IsTabSelected('modifiers')]"
+				}
+				blockoverride "second_button_visibility_checked" {
+					visible = "[Not( InformationPanel.IsTabSelected('modifiers') )]"
+				}
+				blockoverride "second_button_selected" {
+					text = "CHARACTER_PANEL_TAB_MODIFIERS_SELECTED"
+				}
+			}
+		}
+
+		blockoverride "scrollarea_content" {
+
+			### CHARACTER PANEL
+			flowcontainer = {
+				visible = "[InformationPanel.IsTabSelected('overview')]"
+				direction = vertical
+				using = default_list_position
+				minimumsize = { @panel_width -1 }
+				margin_top = 5
+
+
+				widget = {
+					minimumsize = { @panel_width_plus_14 520 }
+					### TODO: fix the backgrounds to fit the set container size (currently 540 x 600)
+					widget = {
+						size = { 100% 100% }
+						using = Animation_Character_Panel_Refresh
+
+						# Ruler General
+						widget = {
+							size = { 100% 100% }
+							visible = "[And( Character.IsRuler, Character.IsGeneral )]"
+
+							background = {
+								texture = "gfx/interface/character_panel/backgrounds/char_role_rulergeneral.dds"
+							}
+
+							# VFX
+							vfx = {
+								blockoverride "entity_instance" {
+									entity_instance = vfx_entity_ui_bg_char_ruler_general_glow
+								}
+							}
+							vfx = {
+								blockoverride "entity_instance" {
+									entity_instance = vfx_entity_ui_bg_char_ruler_smoke
+								}
+							}
+						}
+
+						# Politician
+						widget = {
+							size = { 100% 100% }
+							visible = "[Character.IsPolitician]"
+
+							background = {
+								texture = "gfx/interface/character_panel/backgrounds/char_role_politician.dds"
+
+							}
+
+							# VFX
+							vfx = {
+								blockoverride "entity_instance"
+								{
+									entity_instance = vfx_entity_ui_bg_char_politician_godrays
+								}
+							}
+
+							vfx = {
+								blockoverride "entity_instance" {
+									entity_instance = vfx_entity_ui_bg_politician_candles
+								}
+							}
+
+							vfx = {
+								blockoverride "entity_instance" {
+									entity_instance = vfx_entity_ui_bg_char_ruler_smoke
+								}
+							}
+						}
+
+						# Ruler
+						widget = {
+							size = { 100% 100% }
+							visible = "[Character.IsRuler]"
+
+							background = {
+								texture = "gfx/interface/character_panel/backgrounds/char_role_ruler.dds"
+							}
+
+							# VFX
+							vfx = {
+                                blockoverride "entity_instance" {
+                                    entity_instance = vfx_entity_ui_bg_char_ruler
+                                }
+                            }
+
+                            vfx = {
+                                blockoverride "entity_instance" {
+                                    entity_instance = vfx_entity_ui_bg_char_ruler_smoke
+                                }
+                            }
+						}
+
+						# Ruler Heir
+						widget = {
+							size = { 100% 100% }
+							visible = "[And( Character.IsRuler, Character.IsHeir )]"
+
+							background = {
+								texture = "gfx/interface/character_panel/backgrounds/char_role_ruler.dds"
+							}
+
+							# VFX
+							vfx = {
+								blockoverride "entity_instance" {
+									entity_instance = vfx_entity_ui_bg_char_ruler
+								}
+							}
+
+							vfx = {
+								blockoverride "entity_instance" {
+									entity_instance = vfx_entity_ui_bg_char_ruler_smoke
+								}
+							}
+						}
+						# General
+						widget = {
+							size = { 100% 100% }
+							visible = "[And(Character.IsGeneral,And(Not(Character.IsRuler),Not(Character.IsHeir)))]"
+
+							background = {
+								texture = "gfx/interface/character_panel/backgrounds/char_role_general.dds"
+							}
+
+							# VFX
+							vfx = {
+								blockoverride "entity_instance" {
+									entity_instance = vfx_entity_ui_bg_char_general_glow
+								}
+							}
+						}
+
+						# Admiral
+						widget = {
+							size = { 100% 100% }
+							visible = "[Character.IsAdmiral]"
+
+							background = {
+								texture = "gfx/interface/character_panel/backgrounds/char_role_admiral.dds"
+
+							}
+
+							# VFX
+							vfx = {
+								blockoverride "entity_instance" {
+									entity_instance = vfx_entity_ui_bg_char_admiral_glow
+								}
+							}
+							vfx = {
+								blockoverride "entity_instance" {
+									entity_instance = vfx_entity_ui_bg_char_admiral_waves
+								}
+							}
+
+							# VFX birds
+							cameracontrolwidget = {
+								alwaystransparent = yes
+								ignore_in_debug_draw = yes
+								gfxtype = jomini_entitygfx
+
+								size = { 100% 100% }
+								position = { 0 0 }
+
+								camera_position = { 0 0 15 }
+
+								entity_instance = vfx_entity_ui_bg_char_admiral_seagulls
+							}
+						}
+					}
+
+
+					character_portrait_base_no_mask = {
+						parentanchor = left|bottom
+						position = { 50 50 }
+						size = { 250 400 }
+
+						blockoverride "portrait_size" {
+							size = { 650 650 }
+						}
+
+						blockoverride "portrait_texture" {
+							portrait_texture = "[Character.GetAnimatedPortrait('politician_environment', 'camera_leader', 'idle', PdxGetWidgetScreenSize(PdxGuiWidget.Self))]"
+						}
+
+						blockoverride "portrait_icons" {}
+						blockoverride "tooltip" {}
+						blockoverride "show_hat" {}
+						visible = "[Character.IsPolitician]"
+					}
+
+					character_portrait_base_no_mask = {
+						parentanchor = left|bottom
+						position = { 50 50 }
+						size = { 250 400 }
+
+						blockoverride "portrait_size" {
+							size = { 650 650 }
+						}
+
+						blockoverride "portrait_texture" {
+							portrait_texture = "[Character.GetAnimatedPortrait('ruler_environment', 'camera_leader', 'idle', PdxGetWidgetScreenSize(PdxGuiWidget.Self))]"
+						}
+
+						blockoverride "portrait_icons" {}
+						blockoverride "tooltip" {}
+						blockoverride "show_hat" {}
+						visible = "[Character.IsRuler]"
+					}
+
+					character_portrait_base_no_mask = {
+						parentanchor = left|bottom
+						position = { 50 50 }
+						size = { 250 400 }
+
+						blockoverride "portrait_size" {
+							size = { 650 650 }
+						}
+
+						blockoverride "portrait_texture" {
+							portrait_texture = "[Character.GetAnimatedPortrait('admiral_environment', 'camera_leader', 'idle', PdxGetWidgetScreenSize(PdxGuiWidget.Self))]"
+						}
+
+						blockoverride "portrait_icons" {}
+						blockoverride "tooltip" {}
+						blockoverride "show_hat" {}
+						visible = "[Character.IsAdmiral]"
+					}
+
+					character_portrait_base_no_mask = {
+						parentanchor = left|bottom
+						position = { 50 50 }
+						size = { 250 400 }
+
+						blockoverride "portrait_size" {
+							size = { 650 650 }
+						}
+
+						blockoverride "portrait_texture" {
+							portrait_texture = "[Character.GetAnimatedPortrait('general_environment', 'camera_leader', 'idle', PdxGetWidgetScreenSize(PdxGuiWidget.Self))]"
+						}
+
+						blockoverride "portrait_icons" {}
+						blockoverride "tooltip" {}
+						blockoverride "show_hat" {}
+						visible = "[And( Character.IsRuler, Character.IsGeneral )]"
+					}
+
+					character_portrait_base_no_mask = {
+						parentanchor = left|bottom
+						position = { 50 50 }
+						size = { 250 400 }
+
+						blockoverride "portrait_size" {
+							size = { 650 650 }
+						}
+
+						blockoverride "portrait_texture" {
+							portrait_texture = "[Character.GetAnimatedPortrait('general_environment_02', 'camera_leader', 'idle', PdxGetWidgetScreenSize(PdxGuiWidget.Self))]"
+						}
+
+						blockoverride "portrait_icons" {}
+						blockoverride "tooltip" {}
+						blockoverride "show_hat" {}
+						visible = "[And(Character.IsGeneral,And(Not(Character.IsRuler),Not(Character.IsHeir)))]"
+					}
+
+					icon = {
+						using = dark_area
+						parentanchor = bottom|hcenter
+						size = { @panel_width_plus_14 250 }
+						alpha = 0.9
+
+						modify_texture = {
+							texture = "gfx/interface/masks/fade_vertical_top.dds"
+							spriteType = Corneredstretched
+							spriteborder = { 0 0 }
+							blend_mode = alphamultiply
+						}
+					}
+
+					widget = {
+						size = { 100% 100% }
+
+						background = {
+							texture = "gfx/interface/character_panel/char_bg_frame.dds"
+							margin_left = 20
+							margin_right = 12
+							margin_bottom = 10
+							spriteType = Corneredtiled
+
+							spriteborder_left = 400
+							spriteborder_right = 120
+							spriteborder_top = 340
+							spriteborder_bottom = 360
+
+							texture_density = 2
+						}
+					}
+
+					widget = {
+						minimumsize = { @panel_width 520 }
+
+						flowcontainer = {
+							parentanchor = right|vcenter
+							position = { 0 -15 }
+							margin_left = 5
+							margin_bottom = 7
+							margin_top = 7
+							direction = vertical
+							minimumsize = { 250 -1 }
+
+							background =  {
+								using = entry_bg_fancy_dark
+								alpha = 1
+							}
+
+							### RANK & PROMOTE BUTTON
+							widget = {
+								name = "tutorial_highlight_character_panel_promote_button"
+
+								visible = "[Character.IsCommander]"
+								size = { 240 50 }
+
+								promote_commander_button = {
+									parentanchor = center
+									visible = "[And( Not( Character.IsMaxRank ), Character.IsCommander )]"
+									tooltip = "MILITARY_PANEL_PROMOTE_CHARACTER_TOOLTIP"
+									blockoverride "size" {
+										size = { 210 40 }
+									}
+								}
+
+								promote_commander_button = {
+									parentanchor = center
+									visible = "[And( Character.IsMaxRank, Character.IsCommander )]"
+									tooltip = "MILITARY_PANEL_PROMOTE_CHARACTER_TOOLTIP_MAX_RANK"
+
+									blockoverride "size" {
+										size = { 210 40 }
+									}
+								}
+
+								icon = {
+
+									size = { 50 50 }
+									texture = "gfx/interface/backgrounds/round_button_bg.dds"
+									parentanchor = vcenter|left
+
+									icon = {
+										size = { 40 40 }
+										parentanchor = center
+										texture = "[Character.GetCommanderRank.GetTexture]"
+										datacontext = "[Character]"
+										datacontext = "[Character.GetCommanderRank]"
+
+										tooltipwidget = {
+											FancyTooltip_CommanderRank = {}
+										}
+									}
+								}
+							}
+
+							divider_clean = {}
+
+							### BATTALIONS, ATTRITION, MORALE
+							character_stats_entry = {
+
+								tooltip = "MILITARY_PANEL_COMMAND_LIMIT_BREAKDOWN_TOOLTIP"
+
+								blockoverride "visibility" {
+									visible = "[Character.IsGeneral]"
+								}
+
+								blockoverride "icon_texture" {
+									texture = "gfx/interface/icons/generic_icons/battalions.dds"
+									size = { 40 40 }
+								}
+
+								blockoverride "double_text_entry" {}
+
+								blockoverride "single_entry_value" {
+									text = "#v [Character.GetNumCombatUnits]#!"
+								}
+
+								blockoverride "additional_items" {
+
+									### BATTALION ATTRITION
+									textbox = {
+										autoresize = yes
+										parentanchor = left|vcenter
+										position = { 135 0 }
+										align = left|nobaseline
+										text = "COMMANDER_PANEL_ATTRITION_FORMAT"
+									}
+								}
+
+								### BATTALION MORALE
+								white_progressbar_vertical = {
+									parentanchor = left|vcenter
+									position = { 190 0 }
+									size = { 7 30 }
+									tooltip = "COMMANDER_MORALE_TOOLTIP"
+
+									blockoverride "values" {
+										min = 0
+										max = 1
+										value = "[FixedPointToFloat( Character.GetMorale )]"
+									}
+									blockoverride "color" {
+										color = "[GetMoraleColorVec( Character.GetMorale )]"
+									}
+
+									onmousehierarchyenter = "[AccessHighlightManager.HighlightCommanderSupplyNetwork( Character.Self )]"
+									onmousehierarchyleave = "[AccessHighlightManager.RemoveHighlight]"
+									alwaystransparent = no
+								}
+							}
+
+							### FLOTILLAS
+							character_stats_entry = {
+
+								tooltip = "MILITARY_PANEL_COMMAND_LIMIT_BREAKDOWN_TOOLTIP"
+
+								blockoverride "visibility" {
+									visible = "[Character.IsAdmiral]"
+								}
+
+								blockoverride "icon_texture" {
+									texture = "gfx/interface/icons/generic_icons/flotillas.dds"
+									size = { 40 40 }
+								}
+
+								blockoverride "double_text_entry" {}
+
+								blockoverride "single_entry_value" {
+									text = "#v [Character.GetNumCombatUnits]#!"
+								}
+
+								blockoverride "additional_items" {
+
+									### FLOTILLA MORALE
+									white_progressbar_vertical = {
+										parentanchor = left|vcenter
+										position = { 190 0 }
+										size = { 7 30 }
+										tooltip = "COMMANDER_MORALE_TOOLTIP"
+
+										blockoverride "values" {
+											min = 0
+											max = 1
+											value = "[FixedPointToFloat( Character.GetMorale )]"
+										}
+										blockoverride "color" {
+											color = "[GetMoraleColorVec( Character.GetMorale )]"
+										}
+
+										onmousehierarchyenter = "[AccessHighlightManager.HighlightCommanderSupplyNetwork( Character.Self )]"
+										onmousehierarchyleave = "[AccessHighlightManager.RemoveHighlight]"
+										alwaystransparent = no
+									}
+								}
+							}
+
+							### ROLE
+							character_stats_entry = {
+
+								tooltip = "CHARACTER_PRIMARY_ROLE_TOOLTIP"
+
+								blockoverride "icon" {
+									widget = {
+										parentanchor = left|vcenter
+										position = { 10 0 }
+										size = { 35 35 }
+										icon = {
+											visible = "[And(Character.IsPolitician,And(Not(Character.IsRuler),Not(Character.IsHeir)))]"
+											parentanchor = left|vcenter
+											size = { 100% 100% }
+											texture = "gfx/interface/icons/character_role_icons/politician.dds"
+										}
+										icon = {
+											visible = "[Character.IsRuler]"
+											parentanchor = left|vcenter
+											size = { 100% 100% }
+											texture = "gfx/interface/icons/character_role_icons/ruler.dds"
+										}
+										icon = {
+											visible = "[Character.IsHeir]"
+											parentanchor = left|vcenter
+											size = { 100% 100% }
+											texture = "gfx/interface/icons/character_role_icons/heir.dds"
+										}
+										icon = {
+											visible = "[And(Not(Or(Character.IsPolitician, Or(Character.IsRuler, Character.IsHeir))), Character.IsGeneral)]"
+											parentanchor = left|vcenter
+											size = { 100% 100% }
+											texture = "gfx/interface/icons/character_role_icons/general.dds"
+										}
+										icon = {
+											visible = "[And(Not(Or(Character.IsPolitician, Or(Character.IsRuler, Character.IsHeir))), Character.IsAdmiral)]"
+											parentanchor = left|vcenter
+											size = { 100% 100% }
+											texture = "gfx/interface/icons/character_role_icons/admiral.dds"
+										}
+									}
+								}
+								blockoverride "double_entry_label" {
+									text = "ROLE"
+								}
+								blockoverride "double_entry_value" {
+									text = "CHARACTER_PRIMARY_ROLE"
+								}
+								blockoverride "single_text_entry" {}
+							}
+
+							### INTEREST GROUP
+							character_stats_entry = {
+
+								datacontext = "[Character.AccessInterestGroup]"
+								tooltip = "CHARACTER_INTEREST_GROUP"
+
+								blockoverride "icon" {
+
+									icon = {
+										visible = "[Not(Character.AccessInterestGroup.IsValid)]"
+										size = { 35 35 }
+										texture = "gfx/interface/icons/ig_icons/politically_inactive.dds"
+										parentanchor = left|vcenter
+										position = { 10 0 }
+									}
+
+									button_icon_round = {
+										datacontext = "[Character.AccessInterestGroup]"
+										visible = "[InterestGroup.IsValid]"
+										parentanchor = left|vcenter
+										position = { 10 0 }
+										#tooltip = "CHARACTER_INTEREST_GROUP"
+
+										blockoverride "size" {
+											size = { 35 35 }
+										}
+										blockoverride "icon_size" {
+											size = { 75% 75% }
+										}
+
+										block "onclick" {
+											onclick = "[InformationPanelBar.OpenInterestGroupPanel(InterestGroup.AccessSelf)]"
+											onrightclick = "[RightClickMenuManager.ShowForIG(InterestGroup.AccessSelf)]"
+										}
+
+
+										blockoverride "icon" {
+											texture = "[InterestGroup.GetTexture]"
+										}
+									}
+								}
+
+								blockoverride "double_entry_label" {
+									text = "INTEREST_GROUP"
+								}
+								blockoverride "double_entry_value" {
+									text = "#v [Character.AccessInterestGroup.GetNameNoFormatting]#!"
+								}
+								blockoverride "single_text_entry" {}
+							}
+
+							### IDEOLOGY
+							character_stats_entry = {
+								datacontext = "[Character.GetIdeology]"
+
+								tooltipwidget = {
+									FancyTooltip_Ideology = {}
+								}
+
+								blockoverride "icon_texture" {
+									texture = "[Ideology.GetTexture]"
+								}
+								blockoverride "double_entry_label" {
+									text = "IDEOLOGY_CONCEPT"
+								}
+								blockoverride "double_entry_value" {
+									text = "CHARACTER_IDEOLOGY"
+								}
+								blockoverride "single_text_entry" {}
+							}
+
+							### CULTURE
+							character_stats_entry = {
+								datacontext = "[Character.GetCulture]"
+
+								tooltipwidget = {
+									FancyTooltip_Culture = {}
+								}
+
+								blockoverride "icon_texture" {
+									texture = "gfx/interface/backgrounds/round_button_bg.dds"
+									icon = {
+										parentanchor = center
+										size = { 32 32 }
+										texture = "gfx/interface/population/pop_culture.dds"
+									}
+								}
+								blockoverride "double_entry_label" {
+									text = "CHARACTER_PANEL_CULTURE_LABEL"
+								}
+								blockoverride "double_entry_value" {
+									text = "CHARACTER_CULTURE"
+								}
+								blockoverride "single_text_entry" {}
+							}
+
+							#POPULARITY
+							character_stats_entry = {
+
+								tooltip = "POPULARITY_BREAKDOWN"
+
+								blockoverride "animation" {
+									name = commander_panel_show
+									on_finish = "[PdxGuiTriggerAllAnimations('character_panel_stat')]"
+								}
+
+								blockoverride "icon_texture" {
+									texture = "gfx/interface/icons/generic_icons/popularity.dds"
+								}
+
+								blockoverride "double_entry_label" {
+									text = "POPULARITY"
+								}
+								blockoverride "double_entry_value" {
+									text = "CHARACTER_POPULARITY"
+								}
+								blockoverride "single_text_entry" {}
+							}
+
+							### AGE
+							character_stats_entry = {
+
+								tooltip = "CHARACTER_AGE_TOOLTIP"
+
+								blockoverride "icon_texture" {
+									texture = "gfx/interface/icons/generic_icons/age.dds"
+								}
+								blockoverride "double_entry_label" {
+									text = "AGE"
+								}
+								blockoverride "double_entry_value" {
+									text = "CHARACTER_AGE"
+								}
+								blockoverride "single_text_entry" {}
+							}
+
+							widget = {
+
+								visible = "[Character.IsCommander]"
+								size = { 220 50 }
+
+								retire_commander_button = {
+									parentanchor = center
+									size = { 195 40 }
+								}
+							}
+						}
+					}
+
+					button = {
+						size = { 50% 100% }
+
+						onclick = "[GetVariableSystem.Toggle('fullscreen_character')]"
+						onclick = "[ExecuteConsoleCommand('event char_clothes.500')]"
+
+						# onclick = "[GetScriptedGui('select_for_fullscreen').Execute( GuiScope.SetRoot( GetPlayer ).AddScope('target', Character ).End )]"
+						onmousehierarchyenter = "[PdxGuiWidget.FindChild('text').Show]"
+						onmousehierarchyleave = "[PdxGuiWidget.FindChild('text').Hide]"
+
+						sort_button = {
+							onclick = "[GetVariableSystem.Toggle('fullscreen_character')]"
+							onclick = "[ExecuteConsoleCommand('event char_clothes.500')]"
+							size = { 180 0 }
+							using = default_button
+							parentanchor = center
+							name = text
+							text = "Open big view"
+						}
+					}
+
+					### GRANT/REMOVE COMMAND BUTTON
+					add_general_role_button = {
+						visible = "[And(Character.IsRuler, Not(Character.IsCommander))]"
+						using = command_grant_button_sound
+					}
+
+					remove_general_role_button = {
+						visible = "[And(Character.IsRuler, Character.IsCommander)]"
+						using = command_remove_button_sound
+					}
+
+					widget = {
+						size = { @panel_width_plus_14 50 }
+						parentanchor = hcenter|bottom
+
+						### TIMED MODIFIERS
+						flowcontainer = {
+							parentanchor = right
+							margin_top = 10
+							margin_right = 14
+							margin_left = 14
+							margin_bottom = 10
+							datamodel = "[Character.GetTimedModifiers]"
+							spacing = 5
+							visible = "[Not(IsDataModelEmpty(Character.GetTimedModifiers))]"
+							maximumsize = { @panel_width_minus_10 45 }
+							datamodel_wrap = 2
+
+							item = {
+								icon = {
+									tooltip = "[TimedModifier.GetTooltip]"
+									texture = "[TimedModifier.GetIcon]"
+									size = { 30 30 }
+								}
+							}
+						}
+					}
+				}
+
+				### CHARACTER TRAITS
+				default_header = {
+					blockoverride "text" {
+						datacontext = "[Character]"
+						text = "CHARACTER_PANEL_TRAITS_HEADER"
+					}
+				}
+				character_traits = {}
+
+				### SHIPPING LANE
+				default_header = {
+					visible = "[Character.HasShippingLane]"
+
+					blockoverride "text" {
+						text = "SHIPPING_LANE_CHARACTER_HEADER"
+					}
+				}
+
+				shipping_lane_item = {
+					margin_left = 10
+					margin_bottom = 10
+					margin_top = 5
+					visible = [Character.HasShippingLane]
+					datacontext = [Character.GetShippingLane]
+				}
+
+				### COMBAT UNITS
+				default_header = {
+					visible = "[Character.IsCommander]"
+
+					blockoverride "text" {
+						datacontext = "[Character]"
+						text = "COMBAT_UNITS_CHARACTER_HEADER"
+					}
+				}
+
+				widget = { size = { 10 10 }}
+
+				# BATTALIONS / WARSHIPS
+				section_header_button = {
+					parentanchor = hcenter
+					size = { 95% 38 }
+
+					visible = "[And(Character.IsCommander, GreaterThan_int32(Character.GetNumCombatUnits, '(int32)0'))]"
+					enabled = "[And( Not( Character.IsOffer ), Not(IsDataModelEmpty( Character.GetCombatUnits )))]"
+
+					blockoverride "onclick" {
+						onclick = "[GetVariableSystem.Toggle( Concatenate( 'combat_units_', Character.GetIDString ) )]"
+					}
+
+					blockoverride "onclick_showmore" {
+						visible = "[Not(GetVariableSystem.Exists( Concatenate( 'combat_units_', Character.GetIDString ) ))]"
+					}
+
+					blockoverride "onclick_showless" {
+						visible = "[GetVariableSystem.Exists( Concatenate( 'combat_units_', Character.GetIDString ) )]"
+					}
+
+					flowcontainer = {
+						parentanchor = vcenter
+						margin_left = 35
+						spacing = 10
+
+						textbox = {
+							visible = "[And(Character.IsFullyMobilized, Character.IsGeneral)]"
+							parentanchor = vcenter
+							elide = right
+							align = left|nobaseline
+							autoresize = yes
+
+							text = "MILITARY_PANEL_MOBILIZED"
+							tooltip = "GENERAL_IS_MOBILIZED_TOOLTIP"
+						}
+
+						textbox = {
+							visible = "[And(Character.IsMobilizing, Character.IsGeneral)]"
+							parentanchor = vcenter
+							elide = right
+							align = left|nobaseline
+							autoresize = yes
+
+							text = "[Character.GetMobilizationPercentageFormatted]"
+							tooltip = "GENERAL_MOBILIZING_TOOLTIP"
+						}
+
+						textbox = {
+							visible = "[And(Not(Character.IsMobilized), Character.IsGeneral)]"
+							parentanchor = vcenter
+							elide = right
+							align = left|nobaseline
+							autoresize = yes
+
+							text = "GARRISONED_CONCEPT"
+						}
+					}
+
+					flowcontainer = {
+						parentanchor = right|vcenter
+						spacing = 10
+
+						textbox = {
+							visible = "[Character.HasShippingLane]"
+							parentanchor = vcenter
+							elide = right
+							align = right|nobaseline
+							autoresize = yes
+
+							text = "[Character.GetShippingLane.GetConvoyCostFormattedShort]"
+						}
+
+						# Attrition
+						textbox = {
+							visible = "[Or(Character.IsMobilized, NotEqualTo_CFixedPoint(Character.GetAttritionRaw,'(CFixedPoint)0'))]"
+							parentanchor = vcenter
+							autoresize = yes
+							align = nobaseline
+							text = "MILITARY_PANEL_TROOP_ATTRITION_LEVEL"
+							tooltip = "[Character.GetAttritionDesc]"
+						}
+
+						# Units
+						textbox = {
+							visible = "[Character.IsMobilized]"
+							parentanchor = vcenter
+							elide = right
+							align = right|nobaseline
+							autoresize = yes
+							text = "MILITARY_PANEL_COMMANDER_UNITS"
+						}
+						textbox = {
+							visible = "[Not(Character.IsMobilized)]"
+							parentanchor = vcenter
+							elide = right
+							align = right|nobaseline
+							autoresize = yes
+							text = "MILITARY_PANEL_COMMANDER_UNITS_UNMOBILIZED"
+						}
+
+						# Morale
+						morale_bar = {
+							size = { 6 24 }
+							parentanchor = vcenter
+							tooltip = "COMMANDER_MORALE_TOOLTIP"
+
+							blockoverride "morale_value" {
+								value = "[FixedPointToFloat( Character.GetMorale )]"
+							}
+							blockoverride "morale_color" {
+								color = "[GetMoraleColorVec( Character.GetMorale )]"
+							}
+						}
+					}
+				}
+
+				### MANPOWER PACKAGES
+				flowcontainer = {
+					parentanchor = hcenter
+					direction = vertical
+					minimumsize = { @panel_width_minus_10 -1 }
+					maximumsize = { @panel_width_minus_10 -1 }
+					margin = { 0 6 }
+
+					visible = "[And(Character.IsCommander, And( GetVariableSystem.Exists( Concatenate( 'combat_units_', Character.GetIDString ) ), Not( Character.IsOffer )))]"
+
+					background = {
+						using = dark_area
+					}
+
+					dynamicgridbox = {
+						datamodel = "[Character.AccessExpandedBuildingEntries]"
+
+						datamodel_wrap = 1
+						flipdirection = yes
+						parentanchor = hcenter
+
+						item = {
+							flowcontainer = {
+								margin_bottom = 5
+
+								combat_unit_building = {
+									blockoverride "datacontext" {
+										datacontext = "[MilitaryPanelBuildingEntry.GetBuilding]"
+									}
+
+									#TODO PRCAL-16920: Add toggles for building expand units
+									blockoverride "onclick" {
+										onclick = "[MilitaryPanelBuildingEntry.ToggleExpand]"
+									}
+
+									blockoverride "onclick_showmore" {
+										visible = "[Not(MilitaryPanelBuildingEntry.IsExpanded)]"
+									}
+
+									blockoverride "onclick_showless" {
+										visible = "[MilitaryPanelBuildingEntry.IsExpanded]"
+									}
+
+									blockoverride "combat_units_visible" {
+										visible = "[MilitaryPanelBuildingEntry.IsExpanded]"
+									}
+
+									blockoverride "units_datamodel" {
+										datamodel = "[Character.GetCombatUnitsFromBuilding(Building.Self)]"
+									}
+								}
+							}
+						}
+					}
+				}
+
+				widget = { size = { 20 20 }}
+			}
+
+			flowcontainer = {
+				visible = "[InformationPanel.IsTabSelected('modifiers')]"
+				direction = vertical
+				using = default_list_position
+				minimumsize = { @panel_width -1 }
+
+				modifier_list = {
+					blockoverride "timed_modifier_visibility"
+					{
+						visible = no
+					}
+					blockoverride "margin1" {}
+					blockoverride "margin2" {}
+				}
+
+			}
+		}
+		blockoverride "fixed_bottom" {
+			divider_clean = {
+				size = { @panel_width_plus_14 4 }
+				visible = "[And(Character.IsCommander, Character.GetCountry.IsPlayer)]"
+			}
+
+			flowcontainer = {
+				minimumsize = { 400 120 }
+				direction = vertical
+				visible = "[And(Character.IsCommander, Character.GetCountry.IsPlayer)]"
+
+				# Mobilize this general button
+				flowcontainer = {
+					parentanchor = hcenter
+					spacing = 5
+					margin = { 2 12 }
+					visible = "[And(Character.IsGeneral, Not(Character.IsMobilized))]"
+					enabled = "[IsValid( Character.Mobilize )]"
+
+					button = {
+						using = default_button_action
+						using = commander_mobilize_button_sound
+						size = { 430 60 }
+
+						onclick = "[Execute( Character.Mobilize )]"
+						tooltip = "MOBILIZE_GENERAL_TOOLTIP"
+
+						mobilization_icon_big = {
+							visible = yes
+							parentanchor = left|vcenter
+							widgetanchor = center
+							size = { 80 80 }
+						}
+
+						textbox = {
+							parentanchor = center
+							text = "MOBILIZE_GENERAL"
+							autoresize = yes
+							align = nobaseline
+							using = fontsize_xxl
+						}
+					}
+				}
+
+				textbox = {
+					margin_top = 10
+					parentanchor = hcenter
+					visible = "[Not(Character.IsOffer)]"
+					text = "COMMANDER_CURRENT_ORDERS"
+					maximumsize = { 500 -1 }
+					autoresize = yes
+					multiline = yes
+					align = center|nobaseline
+				}
+
+				dynamicgridbox = {
+					visible = "[Or(Character.IsMobilized, Character.IsAdmiral)]"
+					datamodel = "[Character.AccessOrders]"
+					flipdirection = yes
+					parentanchor = hcenter
+					datamodel_wrap = 5
+
+					item = {
+						widget = {
+							size = { 108 120 }
+							tooltip = "COMMANDER_PANEL_ORDER_TOOLTIP"
+							using = tooltip_above
+
+							### COMMANDER BUTTON
+							widget = {
+								size = { 60 60 }
+								parentanchor = hcenter
+
+								position = { 0 20 }
+
+								icon = {
+									using = rotate_glow_blue
+									parentanchor = center
+									size = { 90 90 }
+									visible = "[Character.HasOrder( CommanderOrderType.Self )]"
+								}
+
+
+								button_icon_round_big_action = {
+									tooltip = "COMMANDER_PANEL_ORDER_TOOLTIP"
+									enabled = "[Character.CanSelectOrder( CommanderOrderType.Self )]"
+									onclick = "[Character.SelectOrder( CommanderOrderType.Self )]"
+
+									visible = "[Not( CommanderOrderType.HasMapInteraction )]"
+									clicksound = "[CommanderOrderType.GetClickSound]"
+
+									blockoverride "icon" {
+										texture = "[CommanderOrderType.GetTexture]"
+									}
+									blockoverride "icon_size" {
+										size = { 75% 75% }
+									}
+								}
+
+								button_icon_round_big_map_interaction = {
+									visible = "[CommanderOrderType.HasMapInteraction]"
+									size = { 100% 100% }
+									blockoverride "icon" {
+										texture = "[CommanderOrderType.GetTexture]"
+									}
+									blockoverride "icon_size" {
+										size = { 45 45 }
+									}
+
+									onclick = "[Character.SelectOrder( CommanderOrderType.Self )]"
+									enabled = "[Character.CanSelectOrder( CommanderOrderType.Self )]"
+									clicksound = "[CommanderOrderType.GetClickSound]"
+								}
+
+								container = {
+									visible = "[Character.HasOrder( CommanderOrderType.Self )]"
+									parentanchor = top|right
+
+									# special naval invasion icon for generals
+									icon = {
+										visible = "[And( Character.IsGeneral, Character.HasNavalInvasionPlan )]"
+
+										tooltip = "GENERAL_NAVAL_INVASION_TOOLTIP"
+										texture = "gfx/interface/icons/commander_order_icons/naval_invasion.dds"
+										alwaystransparent = no
+										size = { 30 30 }
+
+										onmousehierarchyenter = "[AccessHighlightManager.HighlightHQ( Character.GetNavalInvasion.GetAdmiral.GetCommanderOrder.GetHQTarget )]"
+										onmousehierarchyleave = "[AccessHighlightManager.RemoveHighlight]"
+									}
+
+									# special patrol_coast highlight
+									icon = {
+										visible = "[And( Character.GetCommanderOrder.HasTarget, Character.GetCommanderOrder.GetType.IsInterception )]"
+										tooltip = "[Character.GetCommanderOrder.GetTooltip]"
+										texture = "gfx/interface/icons/commander_order_icons/has_target.dds"
+										alwaystransparent = no
+										size = { 30 30 }
+
+										onmousehierarchyenter = "[AccessHighlightManager.HighlightCommanderOrderInterception( Character.GetCommanderOrder.GetHQTarget )]"
+										onmousehierarchyleave = "[AccessHighlightManager.RemoveHighlight]"
+									}
+
+									# Front highlight
+									icon = {
+										visible = "[And( Character.GetCommanderOrder.HasTarget, Or( Character.GetCommanderOrder.GetType.IsAdvanceFront, Character.GetCommanderOrder.GetType.IsDefendFront ) ) ]"
+										tooltip = "[Character.GetCommanderOrder.GetTooltip]"
+										texture = "gfx/interface/icons/commander_order_icons/has_target.dds"
+										alwaystransparent = no
+										size = { 30 30 }
+
+										onmousehierarchyenter = "[AccessHighlightManager.HighlightFront( Character.GetCommanderOrder.GetFrontTarget )]"
+										onmousehierarchyleave = "[AccessHighlightManager.RemoveHighlight]"
+									}
+								}
+							}
+
+							### COMMANDER ORDER NAME SELECTED
+							textbox = {
+								text = "[CommanderOrderType.GetName]"
+								size = { 100% 45 }
+								align = hcenter|nobaseline
+								multiline = yes
+								elide = right
+								parentanchor = bottom|hcenter
+								default_format = "#v"
+								visible = "[Character.HasOrder( CommanderOrderType.Self )]"
+							}
+							### COMMANDER ORDER NAME
+							textbox = {
+								text = "[CommanderOrderType.GetName]"
+								size = { 100% 45 }
+								align = hcenter|nobaseline
+								multiline = yes
+								elide = right
+								parentanchor = bottom|hcenter
+								visible = "[Not(Character.HasOrder( CommanderOrderType.Self ))]"
+							}
+						}
+					}
+				}
+			}
+		}
+
+		blockoverride "pin_visibility" {
+			visible = "[ObjectsEqual(CommanderPanel.AccessCharacter.GetCountry, GetPlayer.Self)]"
+		}
+
+		blockoverride "pin_properties" {
+			visible = "[CommanderPanel.AccessCharacter.IsPinnedInOutliner]"
+			onclick = "[CommanderPanel.AccessCharacter.TogglePinInOutliner]"
+			datacontext = "[CommanderPanel.AccessCharacter]"
+			tooltip = "UNPIN_CHARACTER"
+		}
+
+		blockoverride "unpin_properties" {
+			visible = "[Not(CommanderPanel.AccessCharacter.IsPinnedInOutliner)]"
+			onclick = "[CommanderPanel.AccessCharacter.TogglePinInOutliner]"
+			datacontext = "[CommanderPanel.AccessCharacter]"
+			tooltip = "PIN_CHARACTER"
+		}
+	}
+}
+
+#CHARACTER STATS
+types character_stats
+{
+	type character_stats_entry = widget {
+		size = { 220 50 }
+		block "parentanchor" {}
+		block "entire_stat_tooltip" {}
+		block "visibility" {}
+
+		divider_clean = {
+			parentanchor = bottom|hcenter
+			position = { 0 -2 }
+		}
+
+		block "icon" {
+			icon = {
+				block "icon_tooltip" {}
+				block "icon_size" {
+					size = { 35 35 }
+				}
+				block "icon_texture" {
+					texture = "gfx/interface/backgrounds/round_button_bg.dds"
+				}
+				parentanchor = left|vcenter
+				position = { 10 0 }
+			}
+		}
+
+		block "double_text_entry" {
+			textbox = {
+				autoresize = yes
+				position = { 55 6 }
+				elide = left
+				parentanchor = left
+				align = left|nobaseline
+				using = fontsize_small
+				block "double_entry_label" {
+					text = "insert_label"
+				}
+			}
+			textbox = {
+				size = { 170 20 }
+				position = { 55 -6 }
+				elide = right
+				fontsize_min = 14
+				align = left|nobaseline
+				parentanchor = left|bottom
+				block "double_entry_value" {
+					text = "insert_text"
+				}
+			}
+		}
+
+		block "single_text_entry" {
+			textbox = {
+				block "single_text_tooltip" {}
+				autoresize = yes
+				position = { 55 0 }
+				elide = left
+				align = left|nobaseline
+				parentanchor = left|vcenter
+				block "single_entry_value" {
+					text = "insert_text"
+				}
+			}
+		}
+
+		block "additional_items" {}
+	}
+}
+
+types commander_panel_types
+{
+	type promote_commander_button = button {
+		using = default_button_action
+		text = "PROMOTE_COMMANDER"
+		block "size" {
+			size = { 240 50 }
+		}
+		enabled = "[IsValid(Character.GetPromoteCommand)]"
+		onclick = "[PopupManager.AskConfirmationWithSound(Character.GetPromoteCommand, 'event:/SFX/UI/Military/commander_promote')]"
+	}
+
+	type retire_commander_button = button {
+		visible = "[Or(Character.IsGeneral, Character.IsAdmiral)]"
+		using = default_button_action
+		block "size" {
+			size = { 140 35 }
+		}
+		text = "CHARACTER_RIGHT_CLICK_MENU_RETIRE_COMMANDER"
+		tooltip = "MILITARY_PANEL_KILL_CHARACTER_TOOLTIP"
+		enabled = "[IsValid(Character.GetRetireCommand)]"
+		onclick = "[PopupManager.AskConfirmationWithSound(Character.GetRetireCommand, 'event:/SFX/UI/Military/commander_retire')]"
+	}
+
+	type add_general_role_button = button_icon_round {
+
+		block "parentanchor" {
+			parentanchor = left|top
+		}
+
+		block "position" {
+			position = { 20 20 }
+		}
+
+		block "onclick" {
+			onclick = "[Execute(Character.GetAddGeneralRoleCommand)]"
+		}
+
+		blockoverride "size" {
+			size = { 50 50 }
+		}
+
+		blockoverride "icon_size" {
+			size = { 75% 75% }
+		}
+
+		blockoverride "icon" {
+			texture = "gfx/interface/character_panel/grant_command_not.dds"
+		}
+
+		enabled = "[IsValid(Character.GetAddGeneralRoleCommand)]"
+		tooltip = "[Character.GetAddGeneralRoleCommandDesc]"
+	}
+
+	type remove_general_role_button = button_icon_round {
+
+		block "parentanchor" {
+			parentanchor = left|top
+		}
+
+		block "position" {
+			position = { 20 20 }
+		}
+
+		block "onclick" {
+			onclick = "[Execute(Character.GetRemoveGeneralRoleCommand)]"
+		}
+
+		blockoverride "size" {
+			size = { 50 50 }
+		}
+
+		blockoverride "icon_size" {
+			size = { 75% 75% }
+		}
+
+		blockoverride "icon" {
+			texture = "gfx/interface/character_panel/grant_command.dds"
+		}
+
+		enabled = "[IsValid(Character.GetRemoveGeneralRoleCommand)]"
+		tooltip = "[Character.GetRemoveGeneralRoleCommandDesc]"
+	}
+
+	type character_traits = dynamicgridbox {
+		maximumsize = { 500 -1 }
+		datamodel = "[Character.AccessTraits]"
+		datamodel_wrap = 3
+		flipdirection = yes
+		parentanchor = hcenter
+
+		background = {
+			margin = { 100 -5 }
+			using = entry_bg_simple
+		}
+
+		item = {
+			flowcontainer = {
+				margin = { 20 20 }
+				using = tooltip_above
+				tooltipwidget = {
+					FancyTooltip_CharacterTrait = {}
+				}
+				icon = {
+					size = { 32 45 }
+					parentanchor = vcenter
+					texture = "[CharacterTrait.GetTexture]"
+				}
+
+				textbox = {
+					text = "[CharacterTrait.GetNameNoFormatting]"
+					margin_left = 5
+					max_width = 130
+					autoresize = yes
+					parentanchor = vcenter
+					align = left|nobaseline
+					multiline = yes
+					using = fontsize_small
+				}
+			}
+		}
+	}
+
+	type clothes_flowcontainer = flowcontainer {
+		direction = vertical
+		spacing = -3
+
+		bg_button = {
+		    raw_text = "african_clothes_name"
+		    onclick = "[GetVariableSystem.Set('char_clothes', 'african_clothes')]"
+		    onclick = "[ExecuteConsoleCommand('event char_clothes.6')]"
+		    down = "[GetVariableSystem.HasValue('char_clothes', 'african_clothes')]"
+		}
+
+		bg_button = {
+		    raw_text = "african_middle_clothes_name"
+		    onclick = "[GetVariableSystem.Set('char_clothes', 'african_middle_clothes')]"
+		    onclick = "[ExecuteConsoleCommand('event char_clothes.67')]"
+		    down = "[GetVariableSystem.HasValue('char_clothes', 'african_middle_clothes')]"
+		}
+
+		bg_button = {
+		    raw_text = "african_poor_clothes_name"
+		    onclick = "[GetVariableSystem.Set('char_clothes', 'african_poor_clothes')]"
+		    onclick = "[ExecuteConsoleCommand('event char_clothes.66')]"
+		    down = "[GetVariableSystem.HasValue('char_clothes', 'african_poor_clothes')]"
+		}
+
+		bg_button = {
+		    raw_text = "african_upper_clothes_name"
+		    onclick = "[GetVariableSystem.Set('char_clothes', 'african_upper_clothes')]"
+		    onclick = "[ExecuteConsoleCommand('event char_clothes.68')]"
+		    down = "[GetVariableSystem.HasValue('char_clothes', 'african_upper_clothes')]"
+		}
+
+		bg_button = {
+		    raw_text = "american_confederate_military_clothes_name"
+		    onclick = "[GetVariableSystem.Set('char_clothes', 'american_confederate_military_clothes')]"
+		    onclick = "[ExecuteConsoleCommand('event char_clothes.12')]"
+		    down = "[GetVariableSystem.HasValue('char_clothes', 'american_confederate_military_clothes')]"
+		}
+
+		bg_button = {
+		    raw_text = "american_confederate_soldier_clothes_name"
+		    onclick = "[GetVariableSystem.Set('char_clothes', 'american_confederate_soldier_clothes')]"
+		    onclick = "[ExecuteConsoleCommand('event char_clothes.13')]"
+		    down = "[GetVariableSystem.HasValue('char_clothes', 'american_confederate_soldier_clothes')]"
+		}
+
+		bg_button = {
+		    raw_text = "american_military_clothes_name"
+		    onclick = "[GetVariableSystem.Set('char_clothes', 'american_military_clothes')]"
+		    onclick = "[ExecuteConsoleCommand('event char_clothes.11')]"
+		    down = "[GetVariableSystem.HasValue('char_clothes', 'american_military_clothes')]"
+		}
+
+		bg_button = {
+		    raw_text = "arabic_clothes_name"
+		    onclick = "[GetVariableSystem.Set('char_clothes', 'arabic_clothes')]"
+		    onclick = "[ExecuteConsoleCommand('event char_clothes.27')]"
+		    down = "[GetVariableSystem.HasValue('char_clothes', 'arabic_clothes')]"
+		}
+
+		bg_button = {
+		    raw_text = "arabic_coats_name"
+		    onclick = "[GetVariableSystem.Set('char_clothes', 'arabic_coats')]"
+		    onclick = "[ExecuteConsoleCommand('event char_clothes.28')]"
+		    down = "[GetVariableSystem.HasValue('char_clothes', 'arabic_coats')]"
+		}
+
+		bg_button = {
+		    raw_text = "arabic_middle_clothes_name"
+		    onclick = "[GetVariableSystem.Set('char_clothes', 'arabic_middle_clothes')]"
+		    onclick = "[ExecuteConsoleCommand('event char_clothes.53')]"
+		    down = "[GetVariableSystem.HasValue('char_clothes', 'arabic_middle_clothes')]"
+		}
+
+		bg_button = {
+		    raw_text = "arabic_poor_clothes_name"
+		    onclick = "[GetVariableSystem.Set('char_clothes', 'arabic_poor_clothes')]"
+		    onclick = "[ExecuteConsoleCommand('event char_clothes.52')]"
+		    down = "[GetVariableSystem.HasValue('char_clothes', 'arabic_poor_clothes')]"
+		}
+
+		bg_button = {
+		    raw_text = "arabic_soldier_clothes_name"
+		    onclick = "[GetVariableSystem.Set('char_clothes', 'arabic_soldier_clothes')]"
+		    onclick = "[ExecuteConsoleCommand('event char_clothes.64')]"
+		    down = "[GetVariableSystem.HasValue('char_clothes', 'arabic_soldier_clothes')]"
+		}
+
+		bg_button = {
+		    raw_text = "arabic_upper_clothes_name"
+		    onclick = "[GetVariableSystem.Set('char_clothes', 'arabic_upper_clothes')]"
+		    onclick = "[ExecuteConsoleCommand('event char_clothes.54')]"
+		    down = "[GetVariableSystem.HasValue('char_clothes', 'arabic_upper_clothes')]"
+		}
+
+		bg_button = {
+		    raw_text = "british_empire_soldier_clothes_name"
+		    onclick = "[GetVariableSystem.Set('char_clothes', 'british_empire_soldier_clothes')]"
+		    onclick = "[ExecuteConsoleCommand('event char_clothes.61')]"
+		    down = "[GetVariableSystem.HasValue('char_clothes', 'british_empire_soldier_clothes')]"
+		}
+
+		bg_button = {
+		    raw_text = "british_military_clothes_name"
+		    onclick = "[GetVariableSystem.Set('char_clothes', 'british_military_clothes')]"
+		    onclick = "[ExecuteConsoleCommand('event char_clothes.14')]"
+		    down = "[GetVariableSystem.HasValue('char_clothes', 'british_military_clothes')]"
+		}
+
+		bg_button = {
+		    raw_text = "british_military_clothes_soldier_name"
+		    onclick = "[GetVariableSystem.Set('char_clothes', 'british_military_clothes_soldier')]"
+		    onclick = "[ExecuteConsoleCommand('event char_clothes.78')]"
+		    down = "[GetVariableSystem.HasValue('char_clothes', 'british_military_clothes_soldier')]"
+		}
+
+		bg_button = {
+		    raw_text = "buddhist_religious_clothes_name"
+		    onclick = "[GetVariableSystem.Set('char_clothes', 'buddhist_religious_clothes')]"
+		    onclick = "[ExecuteConsoleCommand('event char_clothes.76')]"
+		    down = "[GetVariableSystem.HasValue('char_clothes', 'buddhist_religious_clothes')]"
+		}
+
+		bg_button = {
+		    raw_text = "central_asian_lower_clothes_name"
+		    onclick = "[GetVariableSystem.Set('char_clothes', 'central_asian_lower_clothes')]"
+		    onclick = "[ExecuteConsoleCommand('event char_clothes.45')]"
+		    down = "[GetVariableSystem.HasValue('char_clothes', 'central_asian_lower_clothes')]"
+		}
+
+		bg_button = {
+		    raw_text = "central_asian_upper_clothes_name"
+		    onclick = "[GetVariableSystem.Set('char_clothes', 'central_asian_upper_clothes')]"
+		    onclick = "[ExecuteConsoleCommand('event char_clothes.44')]"
+		    down = "[GetVariableSystem.HasValue('char_clothes', 'central_asian_upper_clothes')]"
+		}
+
+		bg_button = {
+		    raw_text = "chinese_common_clothes_name"
+		    onclick = "[GetVariableSystem.Set('char_clothes', 'chinese_common_clothes')]"
+		    onclick = "[ExecuteConsoleCommand('event char_clothes.5')]"
+		    down = "[GetVariableSystem.HasValue('char_clothes', 'chinese_common_clothes')]"
+		}
+
+		bg_button = {
+		    raw_text = "chinese_court_clothes_name"
+		    onclick = "[GetVariableSystem.Set('char_clothes', 'chinese_court_clothes')]"
+		    onclick = "[ExecuteConsoleCommand('event char_clothes.4')]"
+		    down = "[GetVariableSystem.HasValue('char_clothes', 'chinese_court_clothes')]"
+		}
+
+		bg_button = {
+		    raw_text = "chinese_imperial_clothes_name"
+		    onclick = "[GetVariableSystem.Set('char_clothes', 'chinese_imperial_clothes')]"
+		    onclick = "[ExecuteConsoleCommand('event char_clothes.3')]"
+		    down = "[GetVariableSystem.HasValue('char_clothes', 'chinese_imperial_clothes')]"
+		}
+
+		bg_button = {
+		    raw_text = "chinese_middle_clothes_name"
+		    onclick = "[GetVariableSystem.Set('char_clothes', 'chinese_middle_clothes')]"
+		    onclick = "[ExecuteConsoleCommand('event char_clothes.50')]"
+		    down = "[GetVariableSystem.HasValue('char_clothes', 'chinese_middle_clothes')]"
+		}
+
+		bg_button = {
+		    raw_text = "chinese_poor_clothes_name"
+		    onclick = "[GetVariableSystem.Set('char_clothes', 'chinese_poor_clothes')]"
+		    onclick = "[ExecuteConsoleCommand('event char_clothes.49')]"
+		    down = "[GetVariableSystem.HasValue('char_clothes', 'chinese_poor_clothes')]"
+		}
+
+		bg_button = {
+		    raw_text = "chinese_upper_clothes_name"
+		    onclick = "[GetVariableSystem.Set('char_clothes', 'chinese_upper_clothes')]"
+		    onclick = "[ExecuteConsoleCommand('event char_clothes.51')]"
+		    down = "[GetVariableSystem.HasValue('char_clothes', 'chinese_upper_clothes')]"
+		}
+
+		bg_button = {
+		    raw_text = "christian_character_clothes_name"
+		    onclick = "[GetVariableSystem.Set('char_clothes', 'christian_character_clothes')]"
+		    onclick = "[ExecuteConsoleCommand('event char_clothes.35')]"
+		    down = "[GetVariableSystem.HasValue('char_clothes', 'christian_character_clothes')]"
+		}
+
+		bg_button = {
+		    raw_text = "christian_religious_clothes_name"
+		    onclick = "[GetVariableSystem.Set('char_clothes', 'christian_religious_clothes')]"
+		    onclick = "[ExecuteConsoleCommand('event char_clothes.73')]"
+		    down = "[GetVariableSystem.HasValue('char_clothes', 'christian_religious_clothes')]"
+		}
+
+		bg_button = {
+		    raw_text = "circumpolar_pop_clothes_name"
+		    onclick = "[GetVariableSystem.Set('char_clothes', 'circumpolar_pop_clothes')]"
+		    onclick = "[ExecuteConsoleCommand('event char_clothes.37')]"
+		    down = "[GetVariableSystem.HasValue('char_clothes', 'circumpolar_pop_clothes')]"
+		}
+
+		bg_button = {
+		    raw_text = "enslaved_clothes_name"
+		    onclick = "[GetVariableSystem.Set('char_clothes', 'enslaved_clothes')]"
+		    onclick = "[ExecuteConsoleCommand('event char_clothes.59')]"
+		    down = "[GetVariableSystem.HasValue('char_clothes', 'enslaved_clothes')]"
+		}
+
+		bg_button = {
+		    raw_text = "ethiopian_clothes_name"
+		    onclick = "[GetVariableSystem.Set('char_clothes', 'ethiopian_clothes')]"
+		    onclick = "[ExecuteConsoleCommand('event char_clothes.29')]"
+		    down = "[GetVariableSystem.HasValue('char_clothes', 'ethiopian_clothes')]"
+		}
+
+		bg_button = {
+		    raw_text = "ethiopian_royal_clothes_name"
+		    onclick = "[GetVariableSystem.Set('char_clothes', 'ethiopian_royal_clothes')]"
+		    onclick = "[ExecuteConsoleCommand('event char_clothes.30')]"
+		    down = "[GetVariableSystem.HasValue('char_clothes', 'ethiopian_royal_clothes')]"
+		}
+
+		bg_button = {
+		    raw_text = "european_middle_clothes_name"
+		    onclick = "[GetVariableSystem.Set('char_clothes', 'european_middle_clothes')]"
+		    onclick = "[ExecuteConsoleCommand('event char_clothes.56')]"
+		    down = "[GetVariableSystem.HasValue('char_clothes', 'european_middle_clothes')]"
+		}
+
+		bg_button = {
+		    raw_text = "european_military_clothes_name"
+		    onclick = "[GetVariableSystem.Set('char_clothes', 'european_military_clothes')]"
+		    onclick = "[ExecuteConsoleCommand('event char_clothes.10')]"
+		    down = "[GetVariableSystem.HasValue('char_clothes', 'european_military_clothes')]"
+		}
+
+		bg_button = {
+		    raw_text = "european_politician_clothes_name"
+		    onclick = "[GetVariableSystem.Set('char_clothes', 'european_politician_clothes')]"
+		    onclick = "[ExecuteConsoleCommand('event char_clothes.18')]"
+		    down = "[GetVariableSystem.HasValue('char_clothes', 'european_politician_clothes')]"
+		}
+
+		bg_button = {
+		    raw_text = "european_poor_clothes_name"
+		    onclick = "[GetVariableSystem.Set('char_clothes', 'european_poor_clothes')]"
+		    onclick = "[ExecuteConsoleCommand('event char_clothes.55')]"
+		    down = "[GetVariableSystem.HasValue('char_clothes', 'european_poor_clothes')]"
+		}
+
+		bg_button = {
+		    raw_text = "european_royal_clothes_name"
+		    onclick = "[GetVariableSystem.Set('char_clothes', 'european_royal_clothes')]"
+		    onclick = "[ExecuteConsoleCommand('event char_clothes.7')]"
+		    down = "[GetVariableSystem.HasValue('char_clothes', 'european_royal_clothes')]"
+		}
+
+		bg_button = {
+		    raw_text = "european_ruler_clothes_name"
+		    onclick = "[GetVariableSystem.Set('char_clothes', 'european_ruler_clothes')]"
+		    onclick = "[ExecuteConsoleCommand('event char_clothes.8')]"
+		    down = "[GetVariableSystem.HasValue('char_clothes', 'european_ruler_clothes')]"
+		}
+
+		bg_button = {
+		    raw_text = "european_ruler_republic_clothes_female_name"
+		    onclick = "[GetVariableSystem.Set('char_clothes', 'european_ruler_republic_clothes_female')]"
+		    onclick = "[ExecuteConsoleCommand('event char_clothes.77')]"
+		    down = "[GetVariableSystem.HasValue('char_clothes', 'european_ruler_republic_clothes_female')]"
+		}
+
+		bg_button = {
+		    raw_text = "european_ruler_republic_clothes_name"
+		    onclick = "[GetVariableSystem.Set('char_clothes', 'european_ruler_republic_clothes')]"
+		    onclick = "[ExecuteConsoleCommand('event char_clothes.9')]"
+		    down = "[GetVariableSystem.HasValue('char_clothes', 'european_ruler_republic_clothes')]"
+		}
+
+		bg_button = {
+		    raw_text = "european_semitic_religious_clothes_name"
+		    onclick = "[GetVariableSystem.Set('char_clothes', 'european_semitic_religious_clothes')]"
+		    onclick = "[ExecuteConsoleCommand('event char_clothes.75')]"
+		    down = "[GetVariableSystem.HasValue('char_clothes', 'european_semitic_religious_clothes')]"
+		}
+
+		bg_button = {
+		    raw_text = "european_soldier_clothes_name"
+		    onclick = "[GetVariableSystem.Set('char_clothes', 'european_soldier_clothes')]"
+		    onclick = "[ExecuteConsoleCommand('event char_clothes.58')]"
+		    down = "[GetVariableSystem.HasValue('char_clothes', 'european_soldier_clothes')]"
+		}
+
+		bg_button = {
+		    raw_text = "european_upper_clothes_name"
+		    onclick = "[GetVariableSystem.Set('char_clothes', 'european_upper_clothes')]"
+		    onclick = "[ExecuteConsoleCommand('event char_clothes.57')]"
+		    down = "[GetVariableSystem.HasValue('char_clothes', 'european_upper_clothes')]"
+		}
+
+		bg_button = {
+		    raw_text = "french_military_clothes_name"
+		    onclick = "[GetVariableSystem.Set('char_clothes', 'french_military_clothes')]"
+		    onclick = "[ExecuteConsoleCommand('event char_clothes.15')]"
+		    down = "[GetVariableSystem.HasValue('char_clothes', 'french_military_clothes')]"
+		}
+
+		bg_button = {
+		    raw_text = "french_military_clothes_soldier_name"
+		    onclick = "[GetVariableSystem.Set('char_clothes', 'french_military_clothes_soldier')]"
+		    onclick = "[ExecuteConsoleCommand('event char_clothes.79')]"
+		    down = "[GetVariableSystem.HasValue('char_clothes', 'french_military_clothes_soldier')]"
+		}
+
+		bg_button = {
+		    raw_text = "french_soldier_clothes_name"
+		    onclick = "[GetVariableSystem.Set('char_clothes', 'french_soldier_clothes')]"
+		    onclick = "[ExecuteConsoleCommand('event char_clothes.62')]"
+		    down = "[GetVariableSystem.HasValue('char_clothes', 'french_soldier_clothes')]"
+		}
+
+		bg_button = {
+		    raw_text = "indian_clothes_name"
+		    onclick = "[GetVariableSystem.Set('char_clothes', 'indian_clothes')]"
+		    onclick = "[ExecuteConsoleCommand('event char_clothes.31')]"
+		    down = "[GetVariableSystem.HasValue('char_clothes', 'indian_clothes')]"
+		}
+
+		bg_button = {
+		    raw_text = "indian_middle_clothes_name"
+		    onclick = "[GetVariableSystem.Set('char_clothes', 'indian_middle_clothes')]"
+		    onclick = "[ExecuteConsoleCommand('event char_clothes.47')]"
+		    down = "[GetVariableSystem.HasValue('char_clothes', 'indian_middle_clothes')]"
+		}
+
+		bg_button = {
+		    raw_text = "indian_poor_clothes_name"
+		    onclick = "[GetVariableSystem.Set('char_clothes', 'indian_poor_clothes')]"
+		    onclick = "[ExecuteConsoleCommand('event char_clothes.46')]"
+		    down = "[GetVariableSystem.HasValue('char_clothes', 'indian_poor_clothes')]"
+		}
+
+		bg_button = {
+		    raw_text = "indian_royal_clothes_name"
+		    onclick = "[GetVariableSystem.Set('char_clothes', 'indian_royal_clothes')]"
+		    onclick = "[ExecuteConsoleCommand('event char_clothes.32')]"
+		    down = "[GetVariableSystem.HasValue('char_clothes', 'indian_royal_clothes')]"
+		}
+
+		bg_button = {
+		    raw_text = "indian_upper_clothes_name"
+		    onclick = "[GetVariableSystem.Set('char_clothes', 'indian_upper_clothes')]"
+		    onclick = "[ExecuteConsoleCommand('event char_clothes.48')]"
+		    down = "[GetVariableSystem.HasValue('char_clothes', 'indian_upper_clothes')]"
+		}
+
+		bg_button = {
+		    raw_text = "indigenous_oceanic_high_clothes_recognized_name"
+		    onclick = "[GetVariableSystem.Set('char_clothes', 'indigenous_oceanic_high_clothes_recognized')]"
+		    onclick = "[ExecuteConsoleCommand('event char_clothes.81')]"
+		    down = "[GetVariableSystem.HasValue('char_clothes', 'indigenous_oceanic_high_clothes_recognized')]"
+		}
+
+		bg_button = {
+		    raw_text = "indigenous_oceanic_high_clothes_unrecognized_name"
+		    onclick = "[GetVariableSystem.Set('char_clothes', 'indigenous_oceanic_high_clothes_unrecognized')]"
+		    onclick = "[ExecuteConsoleCommand('event char_clothes.80')]"
+		    down = "[GetVariableSystem.HasValue('char_clothes', 'indigenous_oceanic_high_clothes_unrecognized')]"
+		}
+
+		bg_button = {
+		    raw_text = "indigenous_oceanic_pop_clothes_name"
+		    onclick = "[GetVariableSystem.Set('char_clothes', 'indigenous_oceanic_pop_clothes')]"
+		    onclick = "[ExecuteConsoleCommand('event char_clothes.39')]"
+		    down = "[GetVariableSystem.HasValue('char_clothes', 'indigenous_oceanic_pop_clothes')]"
+		}
+
+		bg_button = {
+		    raw_text = "japanese_common_clothes_name"
+		    onclick = "[GetVariableSystem.Set('char_clothes', 'japanese_common_clothes')]"
+		    onclick = "[ExecuteConsoleCommand('event char_clothes.23')]"
+		    down = "[GetVariableSystem.HasValue('char_clothes', 'japanese_common_clothes')]"
+		}
+
+		bg_button = {
+		    raw_text = "japanese_imperial_clothes_name"
+		    onclick = "[GetVariableSystem.Set('char_clothes', 'japanese_imperial_clothes')]"
+		    onclick = "[ExecuteConsoleCommand('event char_clothes.20')]"
+		    down = "[GetVariableSystem.HasValue('char_clothes', 'japanese_imperial_clothes')]"
+		}
+
+		bg_button = {
+		    raw_text = "japanese_military_clothes_name"
+		    onclick = "[GetVariableSystem.Set('char_clothes', 'japanese_military_clothes')]"
+		    onclick = "[ExecuteConsoleCommand('event char_clothes.16')]"
+		    down = "[GetVariableSystem.HasValue('char_clothes', 'japanese_military_clothes')]"
+		}
+
+		bg_button = {
+		    raw_text = "japanese_officers_clothes_name"
+		    onclick = "[GetVariableSystem.Set('char_clothes', 'japanese_officers_clothes')]"
+		    onclick = "[ExecuteConsoleCommand('event char_clothes.17')]"
+		    down = "[GetVariableSystem.HasValue('char_clothes', 'japanese_officers_clothes')]"
+		}
+
+		bg_button = {
+		    raw_text = "japanese_pop_clothes_name"
+		    onclick = "[GetVariableSystem.Set('char_clothes', 'japanese_pop_clothes')]"
+		    onclick = "[ExecuteConsoleCommand('event char_clothes.21')]"
+		    down = "[GetVariableSystem.HasValue('char_clothes', 'japanese_pop_clothes')]"
+		}
+
+		bg_button = {
+		    raw_text = "japanese_pop_mid_clothes_name"
+		    onclick = "[GetVariableSystem.Set('char_clothes', 'japanese_pop_mid_clothes')]"
+		    onclick = "[ExecuteConsoleCommand('event char_clothes.22')]"
+		    down = "[GetVariableSystem.HasValue('char_clothes', 'japanese_pop_mid_clothes')]"
+		}
+
+		bg_button = {
+		    raw_text = "korean_clothes_name"
+		    onclick = "[GetVariableSystem.Set('char_clothes', 'korean_clothes')]"
+		    onclick = "[ExecuteConsoleCommand('event char_clothes.25')]"
+		    down = "[GetVariableSystem.HasValue('char_clothes', 'korean_clothes')]"
+		}
+
+		bg_button = {
+		    raw_text = "korean_imperial_clothes_name"
+		    onclick = "[GetVariableSystem.Set('char_clothes', 'korean_imperial_clothes')]"
+		    onclick = "[ExecuteConsoleCommand('event char_clothes.26')]"
+		    down = "[GetVariableSystem.HasValue('char_clothes', 'korean_imperial_clothes')]"
+		}
+
+		bg_button = {
+		    raw_text = "korean_pop_clothes_name"
+		    onclick = "[GetVariableSystem.Set('char_clothes', 'korean_pop_clothes')]"
+		    onclick = "[ExecuteConsoleCommand('event char_clothes.24')]"
+		    down = "[GetVariableSystem.HasValue('char_clothes', 'korean_pop_clothes')]"
+		}
+
+		bg_button = {
+		    raw_text = "native_american_character_clothes_name"
+		    onclick = "[GetVariableSystem.Set('char_clothes', 'native_american_character_clothes')]"
+		    onclick = "[ExecuteConsoleCommand('event char_clothes.72')]"
+		    down = "[GetVariableSystem.HasValue('char_clothes', 'native_american_character_clothes')]"
+		}
+
+		bg_button = {
+		    raw_text = "native_american_clothes_high_name"
+		    onclick = "[GetVariableSystem.Set('char_clothes', 'native_american_clothes_high')]"
+		    onclick = "[ExecuteConsoleCommand('event char_clothes.84')]"
+		    down = "[GetVariableSystem.HasValue('char_clothes', 'native_american_clothes_high')]"
+		}
+		bg_button = {
+		    raw_text = "native_american_clothes_low_name"
+		    onclick = "[GetVariableSystem.Set('char_clothes', 'native_american_clothes_low')]"
+		    onclick = "[ExecuteConsoleCommand('event char_clothes.82')]"
+		    down = "[GetVariableSystem.HasValue('char_clothes', 'native_american_clothes_low')]"
+		}
+
+		bg_button = {
+		    raw_text = "native_american_clothes_mid_name"
+		    onclick = "[GetVariableSystem.Set('char_clothes', 'native_american_clothes_mid')]"
+		    onclick = "[ExecuteConsoleCommand('event char_clothes.83')]"
+		    down = "[GetVariableSystem.HasValue('char_clothes', 'native_american_clothes_mid')]"
+		}
+
+		bg_button = {
+		    raw_text = "native_american_female_ruler_clothes_name"
+		    onclick = "[GetVariableSystem.Set('char_clothes', 'native_american_female_ruler_clothes')]"
+		    onclick = "[ExecuteConsoleCommand('event char_clothes.71')]"
+		    down = "[GetVariableSystem.HasValue('char_clothes', 'native_american_female_ruler_clothes')]"
+		}
+
+		bg_button = {
+		    raw_text = "native_american_male_ruler_clothes_name"
+		    onclick = "[GetVariableSystem.Set('char_clothes', 'native_american_male_ruler_clothes')]"
+		    onclick = "[ExecuteConsoleCommand('event char_clothes.70')]"
+		    down = "[GetVariableSystem.HasValue('char_clothes', 'native_american_male_ruler_clothes')]"
+		}
+
+		bg_button = {
+		    raw_text = "no_clothes_name"
+		    onclick = "[GetVariableSystem.Set('char_clothes', 'no_clothes')]"
+		    onclick = "[ExecuteConsoleCommand('event char_clothes.1')]"
+		    down = "[GetVariableSystem.HasValue('char_clothes', 'no_clothes')]"
+		}
+
+		bg_button = {
+		    raw_text = "papal_clothes_name"
+		    onclick = "[GetVariableSystem.Set('char_clothes', 'papal_clothes')]"
+		    onclick = "[ExecuteConsoleCommand('event char_clothes.36')]"
+		    down = "[GetVariableSystem.HasValue('char_clothes', 'papal_clothes')]"
+		}
+
+		bg_button = {
+		    raw_text = "prussian_clothes_name"
+		    onclick = "[GetVariableSystem.Set('char_clothes', 'prussian_clothes')]"
+		    onclick = "[ExecuteConsoleCommand('event char_clothes.19')]"
+		    down = "[GetVariableSystem.HasValue('char_clothes', 'prussian_clothes')]"
+		}
+
+		bg_button = {
+		    raw_text = "prussian_soldier_clothes_name"
+		    onclick = "[GetVariableSystem.Set('char_clothes', 'prussian_soldier_clothes')]"
+		    onclick = "[ExecuteConsoleCommand('event char_clothes.63')]"
+		    down = "[GetVariableSystem.HasValue('char_clothes', 'prussian_soldier_clothes')]"
+		}
+
+		bg_button = {
+		    raw_text = "sami_clothes_name"
+		    onclick = "[GetVariableSystem.Set('char_clothes', 'sami_clothes')]"
+		    onclick = "[ExecuteConsoleCommand('event char_clothes.38')]"
+		    down = "[GetVariableSystem.HasValue('char_clothes', 'sami_clothes')]"
+		}
+
+		bg_button = {
+		    raw_text = "semitic_religious_clothes_name"
+		    onclick = "[GetVariableSystem.Set('char_clothes', 'semitic_religious_clothes')]"
+		    onclick = "[ExecuteConsoleCommand('event char_clothes.74')]"
+		    down = "[GetVariableSystem.HasValue('char_clothes', 'semitic_religious_clothes')]"
+		}
+
+		bg_button = {
+		    raw_text = "shopkeepers_clothes_name"
+		    onclick = "[GetVariableSystem.Set('char_clothes', 'shopkeepers_clothes')]"
+		    onclick = "[ExecuteConsoleCommand('event char_clothes.2')]"
+		    down = "[GetVariableSystem.HasValue('char_clothes', 'shopkeepers_clothes')]"
+		}
+
+		bg_button = {
+		    raw_text = "siamese_clothes_name"
+		    onclick = "[GetVariableSystem.Set('char_clothes', 'siamese_clothes')]"
+		    onclick = "[ExecuteConsoleCommand('event char_clothes.33')]"
+		    down = "[GetVariableSystem.HasValue('char_clothes', 'siamese_clothes')]"
+		}
+
+		bg_button = {
+		    raw_text = "siamese_royal_clothes_name"
+		    onclick = "[GetVariableSystem.Set('char_clothes', 'siamese_royal_clothes')]"
+		    onclick = "[ExecuteConsoleCommand('event char_clothes.34')]"
+		    down = "[GetVariableSystem.HasValue('char_clothes', 'siamese_royal_clothes')]"
+		}
+
+		bg_button = {
+		    raw_text = "slavic_middle_clothes_name"
+		    onclick = "[GetVariableSystem.Set('char_clothes', 'slavic_middle_clothes')]"
+		    onclick = "[ExecuteConsoleCommand('event char_clothes.65')]"
+		    down = "[GetVariableSystem.HasValue('char_clothes', 'slavic_middle_clothes')]"
+		}
+
+		bg_button = {
+		    raw_text = "south_american_clothes_name"
+		    onclick = "[GetVariableSystem.Set('char_clothes', 'south_american_clothes')]"
+		    onclick = "[ExecuteConsoleCommand('event char_clothes.40')]"
+		    down = "[GetVariableSystem.HasValue('char_clothes', 'south_american_clothes')]"
+		}
+
+		bg_button = {
+		    raw_text = "south_east_asia_middle_clothes_name"
+		    onclick = "[GetVariableSystem.Set('char_clothes', 'south_east_asia_middle_clothes')]"
+		    onclick = "[ExecuteConsoleCommand('event char_clothes.42')]"
+		    down = "[GetVariableSystem.HasValue('char_clothes', 'south_east_asia_middle_clothes')]"
+		}
+
+		bg_button = {
+		    raw_text = "south_east_asia_poor_clothes_name"
+		    onclick = "[GetVariableSystem.Set('char_clothes', 'south_east_asia_poor_clothes')]"
+		    onclick = "[ExecuteConsoleCommand('event char_clothes.41')]"
+		    down = "[GetVariableSystem.HasValue('char_clothes', 'south_east_asia_poor_clothes')]"
+		}
+
+		bg_button = {
+		    raw_text = "south_east_asia_upper_clothes_name"
+		    onclick = "[GetVariableSystem.Set('char_clothes', 'south_east_asia_upper_clothes')]"
+		    onclick = "[ExecuteConsoleCommand('event char_clothes.43')]"
+		    down = "[GetVariableSystem.HasValue('char_clothes', 'south_east_asia_upper_clothes')]"
+		}
+
+		bg_button = {
+		    raw_text = "southern_peasant_clothes_name"
+		    onclick = "[GetVariableSystem.Set('char_clothes', 'southern_peasant_clothes')]"
+		    onclick = "[ExecuteConsoleCommand('event char_clothes.60')]"
+		    down = "[GetVariableSystem.HasValue('char_clothes', 'southern_peasant_clothes')]"
+		}
+
+		bg_button = {
+		    raw_text = "subarctic_native_american_clothes_name"
+		    onclick = "[GetVariableSystem.Set('char_clothes', 'subarctic_native_american_clothes')]"
+		    onclick = "[ExecuteConsoleCommand('event char_clothes.69')]"
+		    down = "[GetVariableSystem.HasValue('char_clothes', 'subarctic_native_american_clothes')]"
+		}
+	}
+
+	type pose_flowcontainer = flowcontainer {
+		direction = vertical
+		spacing = -3
+
+		bg_button = {
+			raw_text = "apron_pop_idle_name"
+			onclick = "[GetVariableSystem.Set('char_pose', 'apron_pop_idle')]"
+			down = "[GetVariableSystem.HasValue('char_pose', 'apron_pop_idle')]"
+		}
+		bg_button = {
+			raw_text = "apron_pop_idle_struggle_name"
+			onclick = "[GetVariableSystem.Set('char_pose', 'apron_pop_idle_struggle')]"
+			down = "[GetVariableSystem.HasValue('char_pose', 'apron_pop_idle_struggle')]"
+		}
+		bg_button = {
+			raw_text = "basket_pop_idle_name"
+			onclick = "[GetVariableSystem.Set('char_pose', 'basket_pop_idle')]"
+			down = "[GetVariableSystem.HasValue('char_pose', 'basket_pop_idle')]"
+		}
+		bg_button = {
+			raw_text = "basket_pop_idle_struggle_name"
+			onclick = "[GetVariableSystem.Set('char_pose', 'basket_pop_idle_struggle')]"
+			down = "[GetVariableSystem.HasValue('char_pose', 'basket_pop_idle_struggle')]"
+		}
+		bg_button = {
+			raw_text = "bureaucrat_pop_idle_name"
+			onclick = "[GetVariableSystem.Set('char_pose', 'bureaucrat_pop_idle')]"
+			down = "[GetVariableSystem.HasValue('char_pose', 'bureaucrat_pop_idle')]"
+		}
+		bg_button = {
+			raw_text = "butcher_pop_idle_name"
+			onclick = "[GetVariableSystem.Set('char_pose', 'butcher_pop_idle')]"
+			down = "[GetVariableSystem.HasValue('char_pose', 'butcher_pop_idle')]"
+		}
+		bg_button = {
+			raw_text = "butcher_pop_idle_struggle_name"
+			onclick = "[GetVariableSystem.Set('char_pose', 'butcher_pop_idle_struggle')]"
+			down = "[GetVariableSystem.HasValue('char_pose', 'butcher_pop_idle_struggle')]"
+		}
+		bg_button = {
+			raw_text = "caliper_pop_idle_name"
+			onclick = "[GetVariableSystem.Set('char_pose', 'caliper_pop_idle')]"
+			down = "[GetVariableSystem.HasValue('char_pose', 'caliper_pop_idle')]"
+		}
+		bg_button = {
+			raw_text = "caliper_pop_idle_struggle_name"
+			onclick = "[GetVariableSystem.Set('char_pose', 'caliper_pop_idle_struggle')]"
+			down = "[GetVariableSystem.HasValue('char_pose', 'caliper_pop_idle_struggle')]"
+		}
+		bg_button = {
+			raw_text = "commander_vs_left_name"
+			onclick = "[GetVariableSystem.Set('char_pose', 'commander_vs_left')]"
+			down = "[GetVariableSystem.HasValue('char_pose', 'commander_vs_left')]"
+		}
+
+		bg_button = {
+			raw_text = "commander_vs_right_name"
+			onclick = "[GetVariableSystem.Set('char_pose', 'commander_vs_right')]"
+			down = "[GetVariableSystem.HasValue('char_pose', 'commander_vs_right')]"
+		}
+		bg_button = {
+			raw_text = "crudehoe_pop_idle_name"
+			onclick = "[GetVariableSystem.Set('char_pose', 'crudehoe_pop_idle')]"
+			down = "[GetVariableSystem.HasValue('char_pose', 'crudehoe_pop_idle')]"
+		}
+		bg_button = {
+			raw_text = "crudehoe_pop_idle_struggle_name"
+			onclick = "[GetVariableSystem.Set('char_pose', 'crudehoe_pop_idle_struggle')]"
+			down = "[GetVariableSystem.HasValue('char_pose', 'crudehoe_pop_idle_struggle')]"
+		}
+		bg_button = {
+			raw_text = "crudehoe_pop_idle_struggle_02_name"
+			onclick = "[GetVariableSystem.Set('char_pose', 'crudehoe_pop_idle_struggle_02')]"
+			down = "[GetVariableSystem.HasValue('char_pose', 'crudehoe_pop_idle_struggle_02')]"
+		}
+		bg_button = {
+			raw_text = "fan_pop_idle_name"
+			onclick = "[GetVariableSystem.Set('char_pose', 'fan_pop_idle')]"
+			down = "[GetVariableSystem.HasValue('char_pose', 'fan_pop_idle')]"
+		}
+		bg_button = {
+			raw_text = "fan_pop_idle_struggle_name"
+			onclick = "[GetVariableSystem.Set('char_pose', 'fan_pop_idle_struggle')]"
+			down = "[GetVariableSystem.HasValue('char_pose', 'fan_pop_idle_struggle')]"
+		}
+		bg_button = {
+			raw_text = "flowers_pop_idle_name"
+			onclick = "[GetVariableSystem.Set('char_pose', 'flowers_pop_idle')]"
+			down = "[GetVariableSystem.HasValue('char_pose', 'flowers_pop_idle')]"
+		}
+		bg_button = {
+			raw_text = "flowers_pop_idle_struggle_name"
+			onclick = "[GetVariableSystem.Set('char_pose', 'flowers_pop_idle_struggle')]"
+			down = "[GetVariableSystem.HasValue('char_pose', 'flowers_pop_idle_struggle')]"
+		}
+		bg_button = {
+			raw_text = "hatacademic_pop_idle_name"
+			onclick = "[GetVariableSystem.Set('char_pose', 'hatacademic_pop_idle')]"
+			down = "[GetVariableSystem.HasValue('char_pose', 'hatacademic_pop_idle')]"
+		}
+		bg_button = {
+			raw_text = "hatacademic_pop_idle_struggle_name"
+			onclick = "[GetVariableSystem.Set('char_pose', 'hatacademic_pop_idle_struggle')]"
+			down = "[GetVariableSystem.HasValue('char_pose', 'hatacademic_pop_idle_struggle')]"
+		}
+		bg_button = {
+			raw_text = "hatmonocle_pop_idle_name"
+			onclick = "[GetVariableSystem.Set('char_pose', 'hatmonocle_pop_idle')]"
+			down = "[GetVariableSystem.HasValue('char_pose', 'hatmonocle_pop_idle')]"
+		}
+		bg_button = {
+			raw_text = "hatmonocle_pop_idle_struggle_name"
+			onclick = "[GetVariableSystem.Set('char_pose', 'hatmonocle_pop_idle_struggle')]"
+			down = "[GetVariableSystem.HasValue('char_pose', 'hatmonocle_pop_idle_struggle')]"
+		}
+		bg_button = {
+			raw_text = "hattop_pop_idle_name"
+			onclick = "[GetVariableSystem.Set('char_pose', 'hattop_pop_idle')]"
+			down = "[GetVariableSystem.HasValue('char_pose', 'hattop_pop_idle')]"
+		}
+		bg_button = {
+			raw_text = "hattop_pop_idle_struggle_name"
+			onclick = "[GetVariableSystem.Set('char_pose', 'hattop_pop_idle_struggle')]"
+			down = "[GetVariableSystem.HasValue('char_pose', 'hattop_pop_idle_struggle')]"
+		}
+		bg_button = {
+			raw_text = "holyscripture_pop_idle_name"
+			onclick = "[GetVariableSystem.Set('char_pose', 'holyscripture_pop_idle')]"
+			down = "[GetVariableSystem.HasValue('char_pose', 'holyscripture_pop_idle')]"
+		}
+		bg_button = {
+			raw_text = "holyscripture_pop_idle_struggle_name"
+			onclick = "[GetVariableSystem.Set('char_pose', 'holyscripture_pop_idle_struggle')]"
+			down = "[GetVariableSystem.HasValue('char_pose', 'holyscripture_pop_idle_struggle')]"
+		}
+		bg_button = {
+			raw_text = "ledger_pop_idle_name"
+			onclick = "[GetVariableSystem.Set('char_pose', 'ledger_pop_idle')]"
+			down = "[GetVariableSystem.HasValue('char_pose', 'ledger_pop_idle')]"
+		}
+		bg_button = {
+			raw_text = "ledger_pop_idle_struggle_name"
+			onclick = "[GetVariableSystem.Set('char_pose', 'ledger_pop_idle_struggle')]"
+			down = "[GetVariableSystem.HasValue('char_pose', 'ledger_pop_idle_struggle')]"
+		}
+		bg_button = {
+			raw_text = "parasol_pop_idle_name"
+			onclick = "[GetVariableSystem.Set('char_pose', 'parasol_pop_idle')]"
+			down = "[GetVariableSystem.HasValue('char_pose', 'parasol_pop_idle')]"
+		}
+		bg_button = {
+			raw_text = "parasol_pop_idle_struggle_name"
+			onclick = "[GetVariableSystem.Set('char_pose', 'parasol_pop_idle_struggle')]"
+			down = "[GetVariableSystem.HasValue('char_pose', 'parasol_pop_idle_struggle')]"
+		}
+		bg_button = {
+			raw_text = "pitchfork_pop_idle_name"
+			onclick = "[GetVariableSystem.Set('char_pose', 'pitchfork_pop_idle')]"
+			down = "[GetVariableSystem.HasValue('char_pose', 'pitchfork_pop_idle')]"
+		}
+		bg_button = {
+			raw_text = "pitchfork_pop_idle_struggle_name"
+			onclick = "[GetVariableSystem.Set('char_pose', 'pitchfork_pop_idle_struggle')]"
+			down = "[GetVariableSystem.HasValue('char_pose', 'pitchfork_pop_idle_struggle')]"
+		}
+		bg_button = {
+			raw_text = "rifle_pop_idle_name"
+			onclick = "[GetVariableSystem.Set('char_pose', 'rifle_pop_idle')]"
+			down = "[GetVariableSystem.HasValue('char_pose', 'rifle_pop_idle')]"
+		}
+		bg_button = {
+			raw_text = "rifle_pop_idle_struggle_name"
+			onclick = "[GetVariableSystem.Set('char_pose', 'rifle_pop_idle_struggle')]"
+			down = "[GetVariableSystem.HasValue('char_pose', 'rifle_pop_idle_struggle')]"
+		}
+		bg_button = {
+			raw_text = "saber_pop_idle_name"
+			onclick = "[GetVariableSystem.Set('char_pose', 'saber_pop_idle')]"
+			down = "[GetVariableSystem.HasValue('char_pose', 'saber_pop_idle')]"
+		}
+		bg_button = {
+			raw_text = "saber_pop_idle_struggle_name"
+			onclick = "[GetVariableSystem.Set('char_pose', 'saber_pop_idle_struggle')]"
+			down = "[GetVariableSystem.HasValue('char_pose', 'saber_pop_idle_struggle')]"
+		}
+		bg_button = {
+			raw_text = "sack_pop_idle_name"
+			onclick = "[GetVariableSystem.Set('char_pose', 'sack_pop_idle')]"
+			down = "[GetVariableSystem.HasValue('char_pose', 'sack_pop_idle')]"
+		}
+		bg_button = {
+			raw_text = "shackles_pop_idle_name"
+			onclick = "[GetVariableSystem.Set('char_pose', 'shackles_pop_idle')]"
+			down = "[GetVariableSystem.HasValue('char_pose', 'shackles_pop_idle')]"
+		}
+		bg_button = {
+			raw_text = "shovels_pop_idle_name"
+			onclick = "[GetVariableSystem.Set('char_pose', 'shovels_pop_idle')]"
+			down = "[GetVariableSystem.HasValue('char_pose', 'shovels_pop_idle')]"
+		}
+		bg_button = {
+			raw_text = "shovels_pop_idle_struggle_name"
+			onclick = "[GetVariableSystem.Set('char_pose', 'shovels_pop_idle_struggle')]"
+			down = "[GetVariableSystem.HasValue('char_pose', 'shovels_pop_idle_struggle')]"
+		}
+		bg_button = {
+			raw_text = "umbrella_pop_idle_struggle_name"
+			onclick = "[GetVariableSystem.Set('char_pose', 'umbrella_pop_idle_struggle')]"
+			down = "[GetVariableSystem.HasValue('char_pose', 'umbrella_pop_idle_struggle')]"
+		}
+		bg_button = {
+			raw_text = "walkingcane_pop_idle_name"
+			onclick = "[GetVariableSystem.Set('char_pose', 'walkingcane_pop_idle')]"
+			down = "[GetVariableSystem.HasValue('char_pose', 'walkingcane_pop_idle')]"
+		}
+		bg_button = {
+			raw_text = "walkingcane_pop_idle_struggle_name"
+			onclick = "[GetVariableSystem.Set('char_pose', 'walkingcane_pop_idle_struggle')]"
+			down = "[GetVariableSystem.HasValue('char_pose', 'walkingcane_pop_idle_struggle')]"
+		}
+		bg_button = {
+			raw_text = "wrench_pop_idle_name"
+			onclick = "[GetVariableSystem.Set('char_pose', 'wrench_pop_idle')]"
+			down = "[GetVariableSystem.HasValue('char_pose', 'wrench_pop_idle')]"
+		}
+		bg_button = {
+			raw_text = "wrench_pop_idle_struggle_name"
+			onclick = "[GetVariableSystem.Set('char_pose', 'wrench_pop_idle_struggle')]"
+			down = "[GetVariableSystem.HasValue('char_pose', 'wrench_pop_idle_struggle')]"
+		}
+	}
+}
+template Animation_Character_Panel_Refresh
+{
+	state = {
+		name = character_panel_refresh
+		using = Animation_Refresh_FadeOut
+		alpha = 0.65
+	}
+
+	state = {
+		using = Animation_Refresh_FadeIn
+	}
+}
+
+template Animation_Character_Panel_Refresh_Short
+{
+	state = {
+		name = character_panel_refresh
+		using = Animation_Refresh_FadeOut
+		alpha = 0.8
+	}
+
+	state = {
+		using = Animation_Refresh_FadeIn
+		duration = 0.25
+	}
+}
