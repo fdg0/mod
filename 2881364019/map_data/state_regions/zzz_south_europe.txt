@@ -1080,6 +1080,7 @@ STATE_SOUTHERN_SERBIA = {
         bg_maize_farms = 5
         bg_livestock_ranches = 5
         bg_silk_plantations = 2
+		bg_gold_mining = 3
     }
 }
 

@@ -118,7 +118,6 @@ STATE_SIERRA_LEONE = {
         type = "bg_gold_fields"
         depleted_type = "bg_gold_mining"
         undiscovered_amount = 2
-        amount = 1
     }
     naval_exit_id = 3088
 }
@@ -143,7 +142,6 @@ STATE_VOLTA = {
         type = "bg_gold_fields"
         depleted_type = "bg_gold_mining"
         undiscovered_amount = 2
-        amount = 1
     }
 }
 
@@ -389,7 +387,6 @@ STATE_GUINEA = {
         type = "bg_gold_fields"
         depleted_type = "bg_gold_mining"
         undiscovered_amount = 2
-        amount = 1
     }
     naval_exit_id = 3088
 }
@@ -418,8 +415,7 @@ STATE_GHANA = {
     resource = {
         type = "bg_gold_fields"
         depleted_type = "bg_gold_mining"
-        undiscovered_amount = 4
-        amount = 1
+        undiscovered_amount = 5
     }
     resource = {
         type = "bg_oil_extraction"
@@ -726,6 +722,11 @@ STATE_SOUTH_MADAGASCAR = {
         type = "bg_rubber"
         undiscovered_amount = 4
     }
+	resource = {
+        type = "bg_gold_fields"
+        depleted_type = "bg_gold_mining"
+        undiscovered_amount = 4
+    }
     naval_exit_id = 3107
 }
 
@@ -752,6 +753,11 @@ STATE_NORTH_MADAGASCAR = {
     resource = {
         type = "bg_rubber"
         undiscovered_amount = 4
+    }
+	resource = {
+        type = "bg_gold_fields"
+        depleted_type = "bg_gold_mining"
+        undiscovered_amount = 3
     }
     naval_exit_id = 3107
 }
@@ -1280,7 +1286,7 @@ STATE_ZAMBEZI = {
     resource = {
         type = "bg_gold_fields"
         depleted_type = "bg_gold_mining"
-        undiscovered_amount = 14
+        undiscovered_amount = 35
     }
 }
 
@@ -1351,6 +1357,11 @@ STATE_ZULULAND = {
         bg_livestock_ranches = 20
         bg_sugar_plantations = 24
     }
+	resource = {
+        type = "bg_gold_fields"
+        depleted_type = "bg_gold_mining"
+        undiscovered_amount = 10
+    }
     naval_exit_id = 3106
 }
 
@@ -1372,8 +1383,7 @@ STATE_VRYSTAAT = {
     resource = {
         type = "bg_gold_fields"
         depleted_type = "bg_gold_mining"
-        undiscovered_amount = 10
-        discover_amount_max = 10
+        undiscovered_amount = 30
     }
 }
 
@@ -1399,8 +1409,7 @@ STATE_TRANSVAAL = {
     resource = {
         type = "bg_gold_fields"
         depleted_type = "bg_gold_mining"
-        undiscovered_amount = 20
-        discover_amount_max = 10
+        undiscovered_amount = 40
     }
 }
 
@@ -1422,6 +1431,11 @@ STATE_EASTERN_CAPE = {
         bg_livestock_ranches = 20
         bg_sugar_plantations = 26
     }
+	resource = {
+        type = "bg_gold_fields"
+        depleted_type = "bg_gold_mining"
+        undiscovered_amount = 10
+    }
     naval_exit_id = 3106
 }
 
@@ -1441,6 +1455,11 @@ STATE_CAPE_COLONY = {
         bg_wheat_farms = 30
         bg_livestock_ranches = 22
     }
+	resource = {
+        type = "bg_gold_fields"
+        depleted_type = "bg_gold_mining"
+        undiscovered_amount = 10
+    }
     naval_exit_id = 3105
 }
 
@@ -1459,10 +1478,10 @@ STATE_NORTHERN_CAPE = {
         bg_millet_farms = 3
         bg_livestock_ranches = 4
     }
-    resource = {
+	resource = {
         type = "bg_gold_fields"
         depleted_type = "bg_gold_mining"
-        undiscovered_amount = 4
+        undiscovered_amount = 10
     }
 }
 
@@ -1504,6 +1523,11 @@ STATE_LOURENCO_MARQUES = {
         bg_cotton_plantations = 20
         bg_tobacco_plantations = 30
         bg_sugar_plantations = 30
+    }
+	resource = {
+        type = "bg_gold_fields"
+        depleted_type = "bg_gold_mining"
+        undiscovered_amount = 2
     }
     naval_exit_id = 3106
 }

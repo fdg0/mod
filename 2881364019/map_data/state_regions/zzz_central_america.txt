@@ -67,7 +67,7 @@ STATE_HONDURAS = {
     resource = {
         type = "bg_gold_fields"
         depleted_type = "bg_gold_mining"
-        undiscovered_amount = 2
+        undiscovered_amount = 7
     }
     naval_exit_id = 3026
 }
@@ -97,7 +97,7 @@ STATE_NICARAGUA = {
     resource = {
         type = "bg_gold_fields"
         depleted_type = "bg_gold_mining"
-        undiscovered_amount = 2
+        undiscovered_amount = 7
     }
     naval_exit_id = 3026
 }

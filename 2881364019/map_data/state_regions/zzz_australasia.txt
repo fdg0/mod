@@ -22,8 +22,7 @@
     resource = {
         type = "bg_gold_fields"
         depleted_type = "bg_gold_mining"
-        undiscovered_amount = 8
-        discover_amount_max = 8
+        undiscovered_amount = 11
     }
     naval_exit_id = 3122
 }
@@ -49,8 +48,7 @@ STATE_VICTORIA = {
     resource = {
         type = "bg_gold_fields"
         depleted_type = "bg_gold_mining"
-        undiscovered_amount = 12
-        discover_amount_max = 6
+        undiscovered_amount = 18
     }
     naval_exit_id = 3122
 }
@@ -77,7 +75,7 @@ STATE_TASMANIA = {
     resource = {
         type = "bg_gold_fields"
         depleted_type = "bg_gold_mining"
-        undiscovered_amount = 3
+        undiscovered_amount = 5
     }
     naval_exit_id = 3122
 }
@@ -108,7 +106,7 @@ STATE_QUEENSLAND = {
     resource = {
         type = "bg_gold_fields"
         depleted_type = "bg_gold_mining"
-        undiscovered_amount = 3
+        undiscovered_amount = 13
     }
     naval_exit_id = 3124
 }
@@ -135,7 +133,7 @@ STATE_SOUTH_AUSTRALIA = {
     resource = {
         type = "bg_gold_fields"
         depleted_type = "bg_gold_mining"
-        undiscovered_amount = 3
+        undiscovered_amount = 5
     }
     naval_exit_id = 3121
 }
@@ -164,7 +162,7 @@ STATE_WESTERN_AUSTRALIA = {
     resource = {
         type = "bg_gold_fields"
         depleted_type = "bg_gold_mining"
-        undiscovered_amount = 8
+        undiscovered_amount = 38
     }
     naval_exit_id = 3123
 }
@@ -187,11 +185,6 @@ STATE_NORTHERN_TERRITORY = {
         bg_logging = 6
         bg_fishing = 3
         bg_livestock_ranches = 5
-    }
-    resource = {
-        type = "bg_gold_fields"
-        depleted_type = "bg_gold_mining"
-        undiscovered_amount = 3
     }
     naval_exit_id = 3126
 }
@@ -236,6 +229,11 @@ STATE_SOUTH_ISLAND = {
         bg_fishing = 4
         bg_wheat_farms = 4
         bg_livestock_ranches = 7
+    }
+	resource = {
+        type = "bg_gold_fields"
+        depleted_type = "bg_gold_mining"
+        undiscovered_amount = 21
     }
     naval_exit_id = 3122
 }

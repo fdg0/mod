@@ -11,13 +11,6 @@ ARoAI_research_events.1 = {
 	}
 
 	immediate = {
-		while = {
-			limit = {
-				has_modifier = rs_innovation_redirection
-			}
-			remove_modifier = rs_innovation_redirection
-		}
-		
 		if = {
 			limit = {
 				is_player = no
@@ -52,7 +45,7 @@ ARoAI_research_events.1 = {
 					rs_add_progress_to_technology = {
 						technology = rationalism
 					}
-					add_modifier = { name = rs_innovation_redirection months = 2 }
+					gb_renew_modifier = { name = rs_innovation_redirection days = 35 }
 				}
 			}
 			else_if = {
@@ -72,7 +65,7 @@ ARoAI_research_events.1 = {
 					rs_add_progress_to_technology = {
 						technology = academia
 					}
-					add_modifier = { name = rs_innovation_redirection months = 2 }
+					gb_renew_modifier = { name = rs_innovation_redirection days = 35 }
 				}
 			}
 			
@@ -94,7 +87,7 @@ ARoAI_research_events.1 = {
 					rs_add_progress_to_technology = {
 						technology = enclosure
 					}
-					add_modifier = { name = rs_innovation_redirection months = 2 }
+					gb_renew_modifier = { name = rs_innovation_redirection days = 35 }
 				}
 			}
 			else_if = {
@@ -113,7 +106,7 @@ ARoAI_research_events.1 = {
 					rs_add_progress_to_technology = {
 						technology = manufacturies
 					}
-					add_modifier = { name = rs_innovation_redirection months = 2 }
+					gb_renew_modifier = { name = rs_innovation_redirection days = 35 }
 				}
 			}
 			else_if = {
@@ -134,7 +127,7 @@ ARoAI_research_events.1 = {
 					rs_add_progress_to_technology = {
 						technology = shaft_mining
 					}
-					add_modifier = { name = rs_innovation_redirection months = 2 }
+					gb_renew_modifier = { name = rs_innovation_redirection days = 35 }
 				}
 			}
 			else_if = {
@@ -154,7 +147,7 @@ ARoAI_research_events.1 = {
 					rs_add_progress_to_technology = {
 						technology = steelworking
 					}
-					add_modifier = { name = rs_innovation_redirection months = 2 }
+					gb_renew_modifier = { name = rs_innovation_redirection days = 35 }
 				}
 			}
 			else_if = {
@@ -174,7 +167,7 @@ ARoAI_research_events.1 = {
 					rs_add_progress_to_technology = {
 						technology = cotton_gin
 					}
-					add_modifier = { name = rs_innovation_redirection months = 2 }
+					gb_renew_modifier = { name = rs_innovation_redirection days = 35 }
 				}
 			}
 			else_if = {
@@ -194,7 +187,7 @@ ARoAI_research_events.1 = {
 					rs_add_progress_to_technology = {
 						technology = lathe
 					}
-					add_modifier = { name = rs_innovation_redirection months = 2 }
+					gb_renew_modifier = { name = rs_innovation_redirection days = 35 }
 				}
 			}
 			else_if = {
@@ -215,7 +208,7 @@ ARoAI_research_events.1 = {
 					rs_add_progress_to_technology = {
 						technology = mechanical_tools
 					}
-					add_modifier = { name = rs_innovation_redirection months = 2 }
+					gb_renew_modifier = { name = rs_innovation_redirection days = 35 }
 				}
 			}
 			else_if = {
@@ -235,7 +228,7 @@ ARoAI_research_events.1 = {
 					rs_add_progress_to_technology = {
 						technology = atmospheric_engine
 					}
-					add_modifier = { name = rs_innovation_redirection months = 2 }
+					gb_renew_modifier = { name = rs_innovation_redirection days = 35 }
 				}
 			}
 			else_if = {
@@ -256,7 +249,7 @@ ARoAI_research_events.1 = {
 					rs_add_progress_to_technology = {
 						technology = railways
 					}
-					add_modifier = { name = rs_innovation_redirection months = 2 }
+					gb_renew_modifier = { name = rs_innovation_redirection days = 35 }
 				}
 			}
 			
@@ -301,7 +294,7 @@ ARoAI_research_events.1 = {
 					rs_add_progress_to_technology = {
 						technology = mass_communication
 					}
-					add_modifier = { name = rs_innovation_redirection months = 2 }
+					gb_renew_modifier = { name = rs_innovation_redirection days = 35 }
 				}
 			}
 			else_if = {
@@ -343,7 +336,7 @@ ARoAI_research_events.1 = {
 					rs_add_progress_to_technology = {
 						technology = nationalism
 					}
-					add_modifier = { name = rs_innovation_redirection months = 2 }
+					gb_renew_modifier = { name = rs_innovation_redirection days = 35 }
 				}
 			}
 			else_if = {
@@ -368,7 +361,7 @@ ARoAI_research_events.1 = {
 					rs_add_progress_to_technology = {
 						technology = pan-nationalism
 					}
-					add_modifier = { name = rs_innovation_redirection months = 2 }
+					gb_renew_modifier = { name = rs_innovation_redirection days = 35 }
 				}
 			}
 			
@@ -391,7 +384,7 @@ ARoAI_research_events.1 = {
 					rs_add_progress_to_technology = {
 						technology = pumpjacks
 					}
-					add_modifier = { name = rs_innovation_redirection months = 2 }
+					gb_renew_modifier = { name = rs_innovation_redirection days = 35 }
 				}
 			}
 			

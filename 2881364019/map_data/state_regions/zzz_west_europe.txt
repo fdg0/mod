@@ -741,6 +741,7 @@ STATE_RHONE = {
         bg_wheat_farms = 14
         bg_livestock_ranches = 6
         bg_silk_plantations = 20
+		bg_gold_mining = 2
     }
 }
 
@@ -863,6 +864,7 @@ STATE_LIMOUSIN = {
         bg_logging = 21
         bg_wheat_farms = 12
         bg_livestock_ranches = 8
+		bg_gold_mining = 2
     }
 }
 
@@ -958,6 +960,12 @@ STATE_AUVERGNE = {
         bg_wheat_farms = 15
         bg_livestock_ranches = 12
         bg_silk_plantations = 10
+		bg_gold_mining = 2
+    }
+	resource = {
+        type = "bg_gold_fields"
+        depleted_type = "bg_gold_mining"
+        undiscovered_amount = 6
     }
 }
 
@@ -1146,6 +1154,7 @@ STATE_BOHEMIA = {
         bg_logging = 36
         bg_wheat_farms = 48
         bg_livestock_ranches = 28
+		bg_gold_mining = 2
     }
 }
 
@@ -1204,6 +1213,7 @@ STATE_TYROL = {
         bg_logging = 22
         bg_livestock_ranches = 9
         bg_rye_farms = 2
+		bg_gold_mining = 7
     }
 }
 
@@ -1568,6 +1578,7 @@ STATE_SAXONY = {
         bg_logging = 22
         bg_rye_farms = 16
         bg_livestock_ranches = 15
+		bg_gold_mining = 2
     }
 }
 

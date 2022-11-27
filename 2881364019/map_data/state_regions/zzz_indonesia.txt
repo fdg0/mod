@@ -21,6 +21,7 @@
         bg_dye_plantations = 20
         bg_banana_plantations = 20
         bg_opium_plantations = 20
+		bg_gold_mining = 3
     }
     resource = {
         type = "bg_rubber"
@@ -29,12 +30,6 @@
     resource = {
         type = "bg_oil_extraction"
         undiscovered_amount = 12
-    }
-    resource = {
-        type = "bg_gold_fields"
-        depleted_type = "bg_gold_mining"
-        undiscovered_amount = 2
-        amount = 2
     }
     naval_exit_id = 3052
 }
@@ -57,11 +52,7 @@ STATE_NORTH_BORNEO = {
         bg_rice_farms = 4
         bg_livestock_ranches = 4
         bg_dye_plantations = 10
-    }
-    resource = {
-        type = "bg_gold_fields"
-        depleted_type = "bg_gold_mining"
-        undiscovered_amount = 4
+		bg_gold_mining = 10
     }
     resource = {
         type = "bg_rubber"
@@ -90,16 +81,11 @@ STATE_WEST_BORNEO = {
     capped_resources = {
         bg_logging = 22
         bg_fishing = 6
-        bg_gold_mining = 5
+        bg_gold_mining = 8
         bg_rice_farms = 6
         bg_livestock_ranches = 4
         bg_dye_plantations = 10
         bg_tobacco_plantations = 4
-    }
-    resource = {
-        type = "bg_gold_fields"
-        depleted_type = "bg_gold_mining"
-        undiscovered_amount = 2
     }
     resource = {
         type = "bg_rubber"
@@ -128,6 +114,7 @@ STATE_EAST_BORNEO = {
         bg_livestock_ranches = 4
         bg_dye_plantations = 10
         bg_tobacco_plantations = 10
+		bg_gold_mining = 8
     }
     resource = {
         type = "bg_rubber"

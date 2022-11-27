@@ -399,13 +399,8 @@ ec_has_free_construction_points = {
 ### BUDGET HEALTH LEVEL
 
 ec_in_default = {
-	OR = {
-		in_default = yes
-		AND = {
-			scaled_debt >= 0.95
-			ec_country_budget_surplus < 0
-		}
-	}
+	scaled_debt >= 0.975
+	ec_country_budget_surplus < 0
 }
 
 ec_budget_health = {
@@ -415,8 +410,16 @@ ec_budget_health = {
 			OR = {
 				scaled_debt < 0.750
 				AND = {
+					ec_country_budget_surplus >= ec_5_percent_surplus
+					scaled_debt < 0.8125
+				}
+				AND = {
 					ec_country_budget_surplus >= ec_10_percent_surplus
 					scaled_debt < 0.875
+				}
+				AND = {
+					ec_country_budget_surplus >= ec_15_percent_surplus
+					scaled_debt < 0.9375
 				}
 				ec_country_budget_surplus >= ec_20_percent_surplus
 			}
@@ -426,8 +429,16 @@ ec_budget_health = {
 			OR = {
 				scaled_debt < 0.500
 				AND = {
+					ec_country_budget_surplus >= ec_5_percent_surplus
+					scaled_debt < 0.5625
+				}
+				AND = {
 					ec_country_budget_surplus >= ec_10_percent_surplus
 					scaled_debt < 0.625
+				}
+				AND = {
+					ec_country_budget_surplus >= ec_15_percent_surplus
+					scaled_debt < 0.6875
 				}
 				AND = {
 					ec_country_budget_surplus >= ec_20_percent_surplus
@@ -440,8 +451,16 @@ ec_budget_health = {
 			OR = {
 				scaled_debt < 0.250
 				AND = {
+					ec_country_budget_surplus >= ec_5_percent_surplus
+					scaled_debt < 0.3125
+				}
+				AND = {
 					ec_country_budget_surplus >= ec_10_percent_surplus
 					scaled_debt < 0.375
+				}
+				AND = {
+					ec_country_budget_surplus >= ec_15_percent_surplus
+					scaled_debt < 0.4375
 				}
 				AND = {
 					ec_country_budget_surplus >= ec_20_percent_surplus
@@ -457,8 +476,16 @@ ec_budget_health = {
 					scaled_debt <= 0
 				}
 				AND = {
+					ec_country_budget_surplus >= ec_5_percent_surplus
+					scaled_debt < 0.0625
+				}
+				AND = {
 					ec_country_budget_surplus >= ec_10_percent_surplus
 					scaled_debt < 0.125
+				}
+				AND = {
+					ec_country_budget_surplus >= ec_15_percent_surplus
+					scaled_debt < 0.1875
 				}
 				AND = {
 					ec_country_budget_surplus >= ec_20_percent_surplus
@@ -477,6 +504,10 @@ ec_budget_health = {
 			$level$ = 1
 			OR = {
 				AND = {
+					ec_country_budget_surplus >= ec_25_percent_surplus
+					scaled_debt < 0.250
+				}
+				AND = {
 					ec_country_budget_surplus >= ec_20_percent_surplus
 					scaled_debt <= 0
 				}
@@ -492,9 +523,31 @@ ec_budget_health = {
 					ec_country_budget_surplus >= ec_5_percent_surplus
 					ec_gold_reserves_percent >= 0.75
 				}
+				AND = {
+					ec_country_budget_surplus >= 0
+					ec_gold_reserves_percent >= 1.00
+				}
 			}
 		}
 	}
+}
+
+ec_government_wages_are_low = {
+	modifier:country_government_wages_mult < -0.10
+	modifier:country_government_wages_mult >= -0.25
+}
+
+ec_government_wages_are_very_low = {
+	modifier:country_government_wages_mult < -0.25
+}
+
+ec_military_wages_are_low = {
+	modifier:country_military_wages_mult < -0.10
+	modifier:country_military_wages_mult >= -0.25
+}
+
+ec_military_wages_are_very_low = {
+	modifier:country_military_wages_mult < -0.25
 }
 
 ### IS IT ALLOWED TO CUT BUDGET WAGES
@@ -2543,13 +2596,34 @@ ec_evaluate_government_administration = {
 		$priority$ = 1
 		AND = {
 			$priority$ >= 2
-			$priority$ <= 6
+			$priority$ <= 5
+			OR = {
+				ec_budget_health = {
+					level = 0
+				}
+				tax_level_value <= 2
+				AND = {
+					ec_wartime_spending = no
+					OR = {
+						ec_budget_health = {
+							level = -1
+						}
+						tax_level_value <= 3
+					}
+				}
+			}
 			ec_government_administration_costs_value < ec_government_administration_costs_excess
 			ec_government_administration_costs_expected < ec_government_administration_costs_ceiling
 			bureaucracy < ec_bureaucracy_excess
 		}
 		AND = {
-			$priority$ >= 7
+			$priority$ >= 6
+			OR = {
+				ec_budget_health = {
+					level = 0
+				}
+				tax_level_value <= 2
+			}
 			ec_government_administration_costs_value < ec_government_administration_costs_target
 			ec_government_administration_costs_expected < ec_government_administration_costs_excess
 			bureaucracy < ec_bureaucracy_target
@@ -2583,21 +2657,33 @@ ec_evaluate_government_administration = {
 		}
 		AND = {
 			$priority$ = 5
-			any_scope_state = {
-				ec_sanction_government_administration = yes
-				ec_tax_capacity_load_percent < ec_tax_capacity_5
+			OR = {
+				bureaucracy < ec_bureaucracy_5
+				any_scope_state = {
+					ec_sanction_government_administration = yes
+					ec_tax_capacity_load_percent < ec_tax_capacity_5
+				}
 			}
 		}
 		AND = {
 			$priority$ = 6
-			any_scope_state = {
-				ec_sanction_government_administration = yes
-				ec_tax_capacity_load_percent < ec_tax_capacity_6
+			OR = {
+				bureaucracy < ec_bureaucracy_6
+				any_scope_state = {
+					ec_sanction_government_administration = yes
+					ec_tax_capacity_load_percent < ec_tax_capacity_6
+				}
 			}
 		}
 		AND = {
 			$priority$ = 7
-			bureaucracy < ec_bureaucracy_7
+			OR = {
+				bureaucracy < ec_bureaucracy_7
+				any_scope_state = {
+					ec_sanction_government_administration = yes
+					ec_tax_capacity_load_percent < ec_tax_capacity_7
+				}
+			}
 		}
 		AND = {
 			$priority$ = 8
@@ -2608,15 +2694,7 @@ ec_evaluate_government_administration = {
 			bureaucracy < ec_bureaucracy_9
 		}
 		AND = {
-			$priority$ = 10
-			bureaucracy < ec_bureaucracy_10
-		}
-		AND = {
-			$priority$ = 11
-			bureaucracy < ec_bureaucracy_11
-		}
-		AND = {
-			$priority$ >= 11
+			$priority$ >= 10
 			always = no
 		}
 	}
@@ -2636,7 +2714,7 @@ ec_allocate_government_administration = {
 		AND = {
 			$priority$ = 1
 			is_incorporated = yes
-			ec_tax_capacity_load_percent < ec_tax_capacity_6
+			ec_tax_capacity_load_percent < ec_tax_capacity_7
 			save_temporary_scope_as = ec_current_state
 			owner = {
 				any_scope_state = {
@@ -2648,7 +2726,7 @@ ec_allocate_government_administration = {
 		AND = {
 			$priority$ = 2
 			is_incorporated = yes
-			ec_tax_capacity_load_percent < ec_tax_capacity_6
+			ec_tax_capacity_load_percent < ec_tax_capacity_7
 			save_temporary_scope_as = ec_current_state
 			owner = {
 				any_scope_state = {
@@ -2660,7 +2738,7 @@ ec_allocate_government_administration = {
 		AND = {
 			$priority$ = 3
 			is_incorporated = yes
-			ec_tax_capacity_load_percent < ec_tax_capacity_6
+			ec_tax_capacity_load_percent < ec_tax_capacity_7
 			save_temporary_scope_as = ec_current_state
 			owner = {
 				any_scope_state = {
@@ -2673,7 +2751,7 @@ ec_allocate_government_administration = {
 			$priority$ = 4
 			OR = {
 				is_incorporated = no
-				ec_tax_capacity_load_percent >= ec_tax_capacity_6
+				ec_tax_capacity_load_percent >= ec_tax_capacity_7
 			}
 		}
 	}
@@ -2698,10 +2776,7 @@ ec_consider_construction_sector = {
 		ec_budget_health = {
 			level = 0
 		}
-		OR = {
-			tax_level = very_low
-			tax_level = low
-		}
+		tax_level_value <= 2
 	}
 	OR = {
 		is_player = no
@@ -2763,23 +2838,6 @@ ec_evaluate_construction_sector = {
 		}
 		AND = {
 			$priority$ >= 12
-			$priority$ <= 13
-			always = no
-		}
-		AND = {
-			$priority$ = 14
-			modifier:country_construction_add < ec_construction_points_14
-		}
-		AND = {
-			$priority$ = 15
-			always = no
-		}
-		AND = {
-			$priority$ = 16
-			modifier:country_construction_add < ec_construction_points_16
-		}
-		AND = {
-			$priority$ >= 17
 			always = no
 		}
 	}
@@ -2809,22 +2867,34 @@ ec_consider_university = {
 		profitability = 0
 	}
 	OR = {
-		ec_budget_health = {
-			level = 0
-		}
-		OR = {
-			tax_level = very_low
-			tax_level = low
-		}
-	}
-	OR = {
 		AND = {
 			ec_innovation_current < ec_innovation_target
 			ec_university_count < ec_university_target
+			OR = {
+				ec_budget_health = {
+					level = 0
+				}
+				tax_level_value <= 2
+				AND = {
+					ec_wartime_spending = no
+					OR = {
+						ec_budget_health = {
+							level = -1
+						}
+						tax_level_value <= 3
+					}
+				}
+			}
 			ec_university_costs_value < ec_university_costs_excess
 			ec_university_costs_expected < ec_university_costs_ceiling
 		}
 		AND = {
+			OR = {
+				ec_budget_health = {
+					level = 0
+				}
+				tax_level_value <= 2
+			}
 			ec_university_costs_value < ec_university_costs_target
 			ec_university_costs_expected < ec_university_costs_excess
 		}
@@ -2844,8 +2914,18 @@ ec_consider_university = {
 ec_evaluate_university = {
 	OR = {
 		AND = {
-			$priority$ <= 6
+			$priority$ <= 4
 			always = no
+		}
+		AND = {
+			$priority$ = 5
+			ec_innovation_current < ec_innovation_5
+			ec_university_count < ec_university_5
+		}
+		AND = {
+			$priority$ = 6
+			ec_innovation_current < ec_innovation_6
+			ec_university_count < ec_university_6
 		}
 		AND = {
 			$priority$ = 7
@@ -2858,14 +2938,9 @@ ec_evaluate_university = {
 			ec_university_count < ec_university_8
 		}
 		AND = {
-			$priority$ = 9
-			ec_innovation_current < ec_innovation_9
-			ec_university_count < ec_university_9
-		}
-		AND = {
-			$priority$ = 10
-			ec_innovation_current < ec_innovation_10
-			ec_university_count < ec_university_10
+			$priority$ >= 9
+			$priority$ <= 10
+			always = no
 		}
 		AND = {
 			$priority$ = 11
@@ -3160,8 +3235,20 @@ ec_evaluate_port = {
 					$priority$ <= 4
 				}
 			}
-			ec_budget_health = {
-				level = -1
+			OR = {
+				ec_budget_health = {
+					level = 0
+				}
+				tax_level_value <= 2
+				AND = {
+					ec_wartime_spending = no
+					OR = {
+						ec_budget_health = {
+							level = -1
+						}
+						tax_level_value <= 3
+					}
+				}
 			}
 			ec_port_costs_value < ec_port_costs_excess
 			ec_port_costs_expected < ec_port_costs_ceiling
@@ -3180,8 +3267,11 @@ ec_evaluate_port = {
 					$priority$ >= 5
 				}
 			}
-			ec_budget_health = {
-				level = 0
+			OR = {
+				ec_budget_health = {
+					level = 0
+				}
+				tax_level_value <= 2
 			}
 			ec_port_costs_value < ec_port_costs_target
 			ec_port_costs_expected < ec_port_costs_excess
@@ -3354,7 +3444,7 @@ ec_evaluate_port = {
 		}
 		AND = {
 			$priority$ = 10
-			ec_convoys_current < ec_convoys_10
+			always = no
 		}
 		AND = {
 			$priority$ = 11
@@ -3461,8 +3551,11 @@ ec_consider_barracks = {
 		has_variable = ec_barracks_cooldown
 	}
 	has_technology_researched = standing_army
-	ec_budget_health = {
-		level = -1
+	OR = {
+		ec_budget_health = {
+			level = -1
+		}
+		tax_level_value <= 3
 	}
 	ec_consider_building = {
 		building = building_barracks
@@ -3537,23 +3630,6 @@ ec_evaluate_barracks = {
 		}
 		AND = {
 			$priority$ >= 12
-			$priority$ <= 13
-			always = no
-		}
-		AND = {
-			$priority$ = 14
-			var:ec_barracks_count < ec_battalion_14
-		}
-		AND = {
-			$priority$ = 15
-			always = no
-		}
-		AND = {
-			$priority$ = 16
-			var:ec_barracks_count < ec_battalion_16
-		}
-		AND = {
-			$priority$ >= 17
 			always = no
 		}
 	}
@@ -3589,8 +3665,11 @@ ec_consider_naval_base = {
 		has_variable = ec_naval_base_cooldown
 	}
 	has_technology_researched = admiralty
-	ec_budget_health = {
-		level = -1
+	OR = {
+		ec_budget_health = {
+			level = -1
+		}
+		tax_level_value <= 3
 	}
 	ec_consider_building = {
 		building = building_naval_base
@@ -3668,23 +3747,6 @@ ec_evaluate_naval_base = {
 		}
 		AND = {
 			$priority$ >= 12
-			$priority$ <= 13
-			always = no
-		}
-		AND = {
-			$priority$ = 14
-			navy_size < ec_flotilla_14
-		}
-		AND = {
-			$priority$ = 15
-			always = no
-		}
-		AND = {
-			$priority$ = 16
-			navy_size < ec_flotilla_16
-		}
-		AND = {
-			$priority$ >= 17
 			always = no
 		}
 	}

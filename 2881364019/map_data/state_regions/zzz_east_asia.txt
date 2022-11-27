@@ -257,7 +257,7 @@ STATE_OUTER_MANCHURIA = {
     resource = {
         type = "bg_gold_fields"
         depleted_type = "bg_gold_mining"
-        undiscovered_amount = 4
+        undiscovered_amount = 5
     }
     naval_exit_id = 3059
 }
@@ -564,6 +564,7 @@ STATE_HENAN = {
         bg_maize_farms = 30
         bg_livestock_ranches = 25
         bg_cotton_plantations = 30
+		bg_gold_mining = 6
     }
 }
 
@@ -731,6 +732,7 @@ STATE_FORMOSA = {
         bg_tea_plantations = 10
         bg_dye_plantations = 10
         bg_banana_plantations = 10
+		bg_gold_mining = 6
     }
     naval_exit_id = 3056
 }
@@ -755,6 +757,7 @@ STATE_SHANDONG = {
         bg_cotton_plantations = 40
         bg_silk_plantations = 20
         bg_tobacco_plantations = 20
+		bg_gold_mining = 10
     }
     naval_exit_id = 3057
 }
@@ -890,6 +893,7 @@ STATE_TONKIN = {
         bg_tobacco_plantations = 40
         bg_tea_plantations = 40
         bg_silk_plantations = 40
+		bg_gold_mining = 1
     }
     naval_exit_id = 3054
 }
@@ -1181,6 +1185,11 @@ STATE_HOKKAIDO = {
         bg_wheat_farms = 20
         bg_livestock_ranches = 10
     }
+	resource = {
+        type = "bg_gold_fields"
+        depleted_type = "bg_gold_mining"
+        undiscovered_amount = 10
+    }
     naval_exit_id = 3059
 }
 
@@ -1202,6 +1211,7 @@ STATE_TOHOKU = {
         bg_whaling = 6
         bg_rice_farms = 10
         bg_livestock_ranches = 10
+		bg_gold_mining = 2
     }
     naval_exit_id = 3059
 }
@@ -1248,6 +1258,7 @@ STATE_CHUBU = {
         bg_silk_plantations = 20
         bg_tea_plantations = 10
         bg_tobacco_plantations = 10
+		bg_gold_mining = 4
     }
     resource = {
         type = "bg_oil_extraction"
@@ -1299,6 +1310,11 @@ STATE_KYUSHU = {
         bg_tea_plantations = 10
         bg_tobacco_plantations = 10
         bg_dye_plantations = 20
+    }
+	resource = {
+        type = "bg_gold_fields"
+        depleted_type = "bg_gold_mining"
+        undiscovered_amount = 5
     }
     naval_exit_id = 3059
 }
@@ -1409,6 +1425,7 @@ STATE_BUSAN = {
         bg_livestock_ranches = 10
         bg_tea_plantations = 30
         bg_silk_plantations = 30
+		bg_gold_mining = 9
     }
     naval_exit_id = 3058
 }
@@ -1473,7 +1490,7 @@ STATE_PYONGYANG = {
     capped_resources = {
         bg_coal_mining = 39
         bg_iron_mining = 36
-        bg_gold_mining = 6
+        bg_gold_mining = 10
         bg_logging = 20
         bg_fishing = 15
         bg_rice_farms = 22

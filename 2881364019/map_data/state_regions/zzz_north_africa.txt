@@ -616,12 +616,7 @@ STATE_TIMBUKTU = {
         bg_iron_mining = 4
         bg_livestock_ranches = 12
         bg_cotton_plantations = 20
-		bg_gold_mining = 2
-    }
-    resource = {
-        type = "bg_gold_fields"
-        depleted_type = "bg_gold_mining"
-        undiscovered_amount = 3
+		bg_gold_mining = 3
     }
 }
 

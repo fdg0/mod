@@ -15,6 +15,7 @@
         bg_logging = 40
         bg_rye_farms = 10
         bg_livestock_ranches = 14
+		bg_gold_mining = 5
     }
 }
 
@@ -88,6 +89,11 @@ STATE_UPPER_YENISEYSK = {
         bg_logging = 34
         bg_livestock_ranches = 2
     }
+	resource = {
+        type = "bg_gold_fields"
+        depleted_type = "bg_gold_mining"
+        undiscovered_amount = 5
+    }
 }
 
 STATE_OB = {
@@ -154,7 +160,7 @@ STATE_CHUKOTKA = {
     resource = {
         type = "bg_gold_fields"
         depleted_type = "bg_gold_mining"
-        undiscovered_amount = 2
+        undiscovered_amount = 5
     }
     naval_exit_id = 3128
 }
@@ -176,6 +182,11 @@ STATE_KAMCHATKA = {
         bg_fishing = 12
         bg_livestock_ranches = 1
     }
+	resource = {
+        type = "bg_gold_fields"
+        depleted_type = "bg_gold_mining"
+        undiscovered_amount = 5
+    }
     naval_exit_id = 3128
 }
 
@@ -196,6 +207,11 @@ STATE_OKHOTSK = {
         bg_logging = 38
         bg_fishing = 9
         bg_livestock_ranches = 1
+    }
+	resource = {
+        type = "bg_gold_fields"
+        depleted_type = "bg_gold_mining"
+        undiscovered_amount = 5
     }
     naval_exit_id = 3118
 }
@@ -219,7 +235,7 @@ STATE_YAKUTSK = {
     resource = {
         type = "bg_gold_fields"
         depleted_type = "bg_gold_mining"
-        undiscovered_amount = 4
+        undiscovered_amount = 5
     }
 }
 
@@ -238,6 +254,11 @@ STATE_TRANS_BAIKAL = {
         bg_livestock_ranches = 3
         bg_rye_farms = 3
     }
+	resource = {
+        type = "bg_gold_fields"
+        depleted_type = "bg_gold_mining"
+        undiscovered_amount = 5
+    }
 }
 
 STATE_IRKUTSK = {
@@ -255,6 +276,11 @@ STATE_IRKUTSK = {
         bg_logging = 43
         bg_livestock_ranches = 5
         bg_rye_farms = 3
+    }
+	resource = {
+        type = "bg_gold_fields"
+        depleted_type = "bg_gold_mining"
+        undiscovered_amount = 5
     }
 }
 

@@ -395,6 +395,7 @@ STATE_PERM = {
         bg_logging = 50
         bg_rye_farms = 10
         bg_livestock_ranches = 13
+		bg_gold_mining = 2
     }
     resource = {
         type = "bg_oil_extraction"
@@ -802,6 +803,7 @@ STATE_SOUTHERN_TRANSYLVANIA = {
         bg_logging = 9
         bg_wheat_farms = 15
         bg_livestock_ranches = 15
+		bg_gold_mining = 5
     }
 }
 
