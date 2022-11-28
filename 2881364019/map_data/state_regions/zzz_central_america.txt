@@ -211,7 +211,7 @@ STATE_PUERTO_RICO = {
         bg_maize_farms = 2
         bg_coffee_plantations = 20
         bg_tobacco_plantations = 20
-        bg_sugar_plantations = 20
+        bg_sugar_plantations = 50
         bg_banana_plantations = 20
     }
     naval_exit_id = 3025
@@ -304,7 +304,7 @@ STATE_CUBA = {
         bg_maize_farms = 10
         bg_coffee_plantations = 40
         bg_tobacco_plantations = 60
-        bg_sugar_plantations = 40
+        bg_sugar_plantations = 100
         bg_banana_plantations = 40
     }
     naval_exit_id = 3061

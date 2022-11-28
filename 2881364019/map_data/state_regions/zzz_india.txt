@@ -330,7 +330,7 @@ STATE_INDIAN_OCEAN_TERRITORY = {
         bg_whaling = 5
         bg_fishing = 6
         bg_rice_farms = 2
-        bg_sugar_plantations = 4
+        bg_sugar_plantations = 30
         bg_banana_plantations = 4
     }
     naval_exit_id = 3111

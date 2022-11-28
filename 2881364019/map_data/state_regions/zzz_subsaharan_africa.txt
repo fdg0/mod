@@ -690,8 +690,8 @@ STATE_SOMALILAND = {
         bg_fishing = 15
         bg_livestock_ranches = 10
         bg_banana_plantations = 10
-        bg_cotton_plantations = 30
-        bg_sugar_plantations = 60
+        bg_cotton_plantations = 20
+        bg_sugar_plantations = 40
         bg_millet_farms = 2
     }
     naval_exit_id = 3018

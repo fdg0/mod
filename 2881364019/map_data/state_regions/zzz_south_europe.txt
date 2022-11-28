@@ -359,7 +359,8 @@ STATE_SICILY = {
         bg_fishing = 6
         bg_wheat_farms = 15
         bg_livestock_ranches = 15
-        bg_silk_plantations = 4
+        bg_silk_plantations = 5
+		bg_sugar_plantations = 5
     }
     naval_exit_id = 3033
 }
@@ -548,6 +549,7 @@ STATE_ANDALUSIA = {
         bg_wheat_farms = 27
         bg_livestock_ranches = 15
         bg_cotton_plantations = 20
+		bg_sugar_plantations = 5
     }
     naval_exit_id = 3031
 }
@@ -573,6 +575,7 @@ STATE_GRANADA = {
         bg_livestock_ranches = 10
         bg_silk_plantations = 8
         bg_banana_plantations = 20
+		bg_sugar_plantations = 5
     }
     naval_exit_id = 3031
 }
@@ -1099,8 +1102,9 @@ STATE_CRETE = {
         bg_fishing = 6
         bg_wheat_farms = 5
         bg_livestock_ranches = 1
-        bg_silk_plantations = 4
+        bg_silk_plantations = 5
         bg_cotton_plantations = 5
+		bg_sugar_plantations = 5
     }
     naval_exit_id = 3034
 }

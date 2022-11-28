@@ -6605,7 +6605,6 @@ STATES = {
 		}
 
 		add_homeland = czech
-		add_homeland = south_german
 	}
 	s:STATE_CENTRAL_HUNGARY = {
 		create_state = {

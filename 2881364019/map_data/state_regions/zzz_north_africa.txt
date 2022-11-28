@@ -41,7 +41,6 @@ STATE_UPPER_EGYPT = {
         bg_fishing = 6
         bg_millet_farms = 20
         bg_livestock_ranches = 3
-        bg_sugar_plantations = 20
         bg_dye_plantations = 10
     }
     naval_exit_id = 3047
@@ -251,6 +250,7 @@ STATE_MARRAKECH = {
         bg_millet_farms = 10
         bg_wheat_farms = 10
         bg_livestock_ranches = 10
+		bg_sugar_plantations = 10
     }
     naval_exit_id = 3089
 }
