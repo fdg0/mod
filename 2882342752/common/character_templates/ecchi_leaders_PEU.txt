@@ -17,12 +17,11 @@ ecchi_peu_bermudez_character_template = {
             this = c:PEU
         }
         interest_group_trigger = {
-            is_marginal = no
             is_interest_group_type = ig_armed_forces
         }
         earliest_usage_date = 1836.1.1
         latest_usage_date = 1852.3.30
-        chance = 75
+        chance = 90
     }
 }
 
@@ -51,7 +50,7 @@ ecchi_peu_salaverry_character_template = {
         }
         earliest_usage_date = 1836.1.1
         latest_usage_date = 1836.2.19
-        chance = 75
+        chance = 90
     }
 }
 
@@ -80,7 +79,7 @@ ecchi_peu_gamarra_character_template = {
         }
         earliest_usage_date = 1836.1.1
         latest_usage_date = 1841.11.21
-        chance = 75
+        chance = 90
     }
 }
 
@@ -110,7 +109,7 @@ ecchi_peu_de_san_roman_character_template = {
         }
         earliest_usage_date = 1845.1.1
         latest_usage_date = 1863.4.3
-        chance = 75
+        chance = 90
     }
 }
 
@@ -143,6 +142,6 @@ ecchi_peu_prado_character_template = {
         role = general
         earliest_usage_date = 1874.1.1
         latest_usage_date = 1883.7.15
-        chance = 75
+        chance = 90
     }
 }

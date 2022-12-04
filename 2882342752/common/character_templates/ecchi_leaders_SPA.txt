@@ -34,7 +34,7 @@ ecchi_spa_infante_carlos_character_template = {
         }
         earliest_usage_date = 1836.1.1
         latest_usage_date = 1855.3.10
-        chance = 75
+        chance = 90
     }
 }
 
@@ -72,7 +72,7 @@ ecchi_spa_maria_christina_character_template = {
         }
         earliest_usage_date = 1836.1.1
         latest_usage_date = 1878.8.22
-        chance = 75
+        chance = 90
     }
 }
 
@@ -110,7 +110,7 @@ ecchi_spa_serrano_character_template = {
         }
         earliest_usage_date = 1855.1.1
         latest_usage_date = 1885.11.25
-        chance = 75
+        chance = 90
     }
 }
 
@@ -148,7 +148,7 @@ ecchi_spa_iglesias_character_template = {
         }
         earliest_usage_date = 1880.1.1
         latest_usage_date = 1925.12.9
-        chance = 75
+        chance = 90
     }
 }
 
@@ -181,7 +181,7 @@ ecchi_spa_franco_character_template = {
         role = general
         earliest_usage_date = 1910.1.1
         latest_usage_date = 1975.11.20
-        chance = 75
+        chance = 90
     }
 }
 
@@ -211,7 +211,6 @@ ecchi_spa_picasso_character_template = {
             }
         }
         interest_group_trigger = {
-            is_marginal = no
             is_interest_group_type = ig_intelligentsia
         }
         earliest_usage_date = 1915.1.1

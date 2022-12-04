@@ -26,12 +26,11 @@ ecchi_pol_prus_character_template = {
             }
         }
         interest_group_trigger = {
-            is_marginal = no
             is_interest_group_type = ig_intelligentsia
         }
         earliest_usage_date = 1882.1.1
         latest_usage_date = 1912.5.19
-        chance = 75
+        chance = 90
     }
 }
 
@@ -64,7 +63,7 @@ ecchi_pol_pilsudski_character_template = {
         role = general
         earliest_usage_date = 1890.1.1
         latest_usage_date = 1935.5.12
-        chance = 75
+        chance = 90
     }
 }
 
@@ -97,7 +96,7 @@ ecchi_pol_mieroslawski_character_template = {
         role = general
         earliest_usage_date = 1839.1.1
         latest_usage_date = 1878.11.22
-        chance = 75
+        chance = 90
     }
 }
 
@@ -130,7 +129,7 @@ ecchi_pol_wysocki_character_template = {
         role = general
         earliest_usage_date = 1836.1.1
         latest_usage_date = 1875.1.6
-        chance = 75
+        chance = 90
     }
 }
 
@@ -207,6 +206,6 @@ ecchi_pol_luxemburg_character_template = {
         }
         earliest_usage_date = 1905.1.1
         latest_usage_date = 1919.1.15
-        chance = 75
+        chance = 90
     }
 }
