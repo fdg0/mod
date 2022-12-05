@@ -15,6 +15,9 @@
 			unit_offense_add = 20
 			unit_defense_add = 20
 		}
+		unscaled = {
+			unit_morale_loss_add = 25
+		}
 	}
 
 	country_modifiers = {
@@ -50,6 +53,9 @@ pm_ironclads = {
 		throughput_scaled = {
 			unit_offense_add = 40
 			unit_defense_add = 40
+		}
+		unscaled = {
+			unit_morale_loss_add = 20
 		}
 	}
 
@@ -90,6 +96,9 @@ pm_monitors = {
 		throughput_scaled = {
 			unit_offense_add = 50
 			unit_defense_add = 50
+		}
+		unscaled = {
+			unit_morale_loss_add = 15
 		}
 	}
 
@@ -133,6 +142,9 @@ pm_dreadnoughts = {
 			unit_offense_add = 80
 			unit_defense_add = 80
 		}
+		unscaled = {
+			unit_morale_loss_add = 8
+		}
 	}
 
 	country_modifiers = {
@@ -173,6 +185,9 @@ pm_battleships = {
 		throughput_scaled = {
 			unit_offense_add = 100
 			unit_defense_add = 100
+		}
+		unscaled = {
+			unit_morale_loss_add = 5
 		}
 	}
 

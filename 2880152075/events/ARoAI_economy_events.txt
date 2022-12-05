@@ -11,9 +11,8 @@ ARoAI_economy_events.1 = {
 		
 		# Purely technical stuff not dependant on the country
 		
-		ec_check_identifying_object_list = yes
-		ec_check_arable_resources = yes
-		
+		ec_check_building_type_array = yes
+		ec_collect_arable_resources = yes
 		
 		# Perform script if country is allowed or clear country variables otherwise
 		
@@ -143,7 +142,7 @@ ARoAI_economy_events.2 = {
 			ec_clear_building_variables = yes
 		}
 		else = {
-			ec_prepare_construction_data = yes
+			ec_prepare_data_for_construction = yes
 			trigger_event = {
 				id = ARoAI_economy_events.3
 				days = 1
@@ -195,7 +194,7 @@ ARoAI_economy_events.3 = {
 				limit = {
 					ec_has_free_construction_points = yes
 				}
-				ec_choose_building_to_construct = yes
+				ec_prepare_building_construction = yes
 			}
 			else = {
 				if = {
@@ -516,14 +515,14 @@ ARoAI_economy_events.300 = {
 	immediate = {
 		if = {
 			limit = {
-				has_global_variable = ec_checked_arable_resources
-				global_var:ec_checked_arable_resources < 2
+				has_global_variable = ec_collect_arable_resources
+				global_var:ec_collect_arable_resources < 2
 			}
 			set_global_variable = {
-				name = ec_checked_arable_resources
+				name = ec_collect_arable_resources
 				value = 2
 			}
-			ec_finish_arable_resources_check = yes
+			ec_collect_arables_in_queue = yes
 		}
 		trigger_event = {
 			id = ARoAI_economy_events.301
@@ -541,11 +540,11 @@ ARoAI_economy_events.301 = {
 	immediate = {
 		if = {
 			limit = {
-				has_global_variable = ec_checked_arable_resources
-				global_var:ec_checked_arable_resources < 3
+				has_global_variable = ec_collect_arable_resources
+				global_var:ec_collect_arable_resources < 3
 			}
 			set_global_variable = {
-				name = ec_checked_arable_resources
+				name = ec_collect_arable_resources
 				value = 3
 			}
 			every_country = {

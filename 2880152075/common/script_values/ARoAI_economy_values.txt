@@ -228,11 +228,11 @@ ec_available_workforce = {
 	value = var:ec_available_workforce
 	if = {
 		limit = {
-			has_variable = cbaqb
+			has_variable = ecaqb
 		}
 		subtract = {
 			value = 5000
-			multiply = var:cbaqb
+			multiply = var:ecaqb
 		}
 	}
 }
@@ -2950,12 +2950,12 @@ ec_building_limit_9_11 = { value = ec_simultaneous_constructions multiply = 0.3 
 
 ### PURELY TECHNICAL STUFF
 
-ec_current_cbcbl = {
-	value = scope:ec_current_state.var:cbcbl
+ec_current_ecsbo = {
+	value = scope:ec_current_state.var:ecsbo
 }
 
-ec_current_cbpor = {
-	value = scope:ec_current_building.var:cbpor
+ec_current_ecbtp = {
+	value = scope:ec_current_building.var:ecbtp
 }
 ec_current_government_administration_level = {
 	value = scope:ec_current_state.var:ec_government_administration_level

@@ -80,22 +80,31 @@
 	flag_definition = {
 		coa = GER_war_flag_monarchy
 		subject_canton = GER_modern
-		priority = 100
+		priority = 110
 		trigger = {
 			OR = {
 				NOT = { coa_def_germany_formed_by_prussia_trigger = yes }
-				AND = {
-					coa_def_germany_formed_by_prussia_trigger = yes
-					coa_def_ger_brg_flag_override_trigger = yes
+				OR = {
+					coa_def_ger_brg_warflag_civil_override_trigger = yes
+					AND = {
+						coa_def_germany_formed_by_prussia_trigger = yes
+						coa_def_ger_brg_flag_override_trigger = yes	
+					}
 				}
 			}
-			coa_def_monarchy_flag_trigger = yes
-			coa_def_war_flag_trigger = yes
-			NOT = { has_game_rule = no_war_flags }
-			NOT = { coa_def_ger_bwr_flag_override_trigger = yes }			
-		}
-	}		
-}
+			OR = {
+				AND = {
+					coa_def_monarchy_flag_trigger = yes
+					coa_def_war_flag_trigger = yes
+					NOT = { has_game_rule = no_war_flags }
+					NOT = { coa_def_ger_bwr_flag_override_trigger = yes }
+				}
+				coa_def_ger_brg_warflag_civil_override_trigger = yes	
+			}
+		}	
+	}
+}		
+
 
 GGR = { # Greater Germany
 	includes = GER

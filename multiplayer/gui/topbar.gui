@@ -17,6 +17,7 @@ types topbar_components
 
 		flowcontainer = {
 			direction = vertical
+			spacing = 1
 
 			flowcontainer = {
 				visible = "[GetMetaPlayer.GetPlayedOrObservedCountry.IsValid]"
@@ -268,32 +269,6 @@ types topbar_components
 						align = left|nobaseline
 					}
 				}
-
-				# Battalions
-				flowcontainer = {
-					name = "battalions"
-					minimumsize = { 90 28 }
-					maximumsize = { 90 28 }
-					spacing = 2
-					tooltip = "PANEL_MILITARY_ARMY_OVERVIEW_TOOLTIP"
-					using = tooltip_below
-
-					icon = {
-						size = { @secondary_icon_size @secondary_icon_size }
-						name = battalions_icon
-						texture = "gfx/interface/icons/generic_icons/battalions.dds"
-						parentanchor = vcenter
-					}
-
-					textbox = {
-						parentanchor = vcenter
-						text = "[Country.GetBattalions|v]+[Country.CalcConscriptableBattalions|v]"
-						alpha = "[TransparentIfZero_int32(Country.GetBattalions)]"
-						autoresize = yes
-						align = left|nobaseline
-						margin_left = -1
-					}
-				}
 				
 				# Flotillas
 				flowcontainer = {
@@ -322,12 +297,33 @@ types topbar_components
 					}
 				}
 
-				# Migration Average (?)
+				# Battalions
+				flowcontainer = {
+					name = "battalions"
+					minimumsize = { 90 28 }
+					maximumsize = { 90 28 }
+					spacing = 2
+					tooltip = "PANEL_MILITARY_ARMY_OVERVIEW_TOOLTIP"
+					using = tooltip_below
 
+					icon = {
+						size = { @secondary_icon_size @secondary_icon_size }
+						name = battalions_icon
+						texture = "gfx/interface/icons/generic_icons/battalions.dds"
+						parentanchor = vcenter
+					}
+
+					textbox = {
+						parentanchor = vcenter
+						text = "[Country.GetBattalions|v]+[Country.CalcConscriptableBattalions|v]"
+						alpha = "[TransparentIfZero_int32(Country.GetBattalions)]"
+						autoresize = yes
+						align = left|nobaseline
+						margin_left = -1
+					}
+				}
 			}
-
 		}
-
 	}
 
 	type topbar = widget {

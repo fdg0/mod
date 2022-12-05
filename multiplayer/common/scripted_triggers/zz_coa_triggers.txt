@@ -272,3 +272,10 @@ coa_def_pru_striped_flag_override_trigger = {
 		has_variable = pru_striped_flag_enabled_flag
 	}
 }
+
+coa_def_ger_brg_warflag_civil_override_trigger = {
+	exists = scope:actor
+	scope:actor = {
+		has_variable = ger_brg_warflag_civil_enabled_flag
+	}
+}

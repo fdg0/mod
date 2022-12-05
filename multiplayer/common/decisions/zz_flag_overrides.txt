@@ -237,6 +237,7 @@ ger_brg_flag_disabled = {
 	
 	when_taken = {
 		remove_variable = ger_brg_flag_enabled_flag
+		remove_variable = ger_brg_warflag_civil_enabled_flag
 	}
 	
 	ai_chance = {
@@ -260,6 +261,7 @@ ger_bwr_flag_enabled = {
 	when_taken = {
 		set_variable = ger_bwr_flag_enabled_flag
 		remove_variable = ger_brg_flag_enabled_flag
+		remove_variable = ger_brg_warflag_civil_enabled_flag
 	}
 	
 	ai_chance = {
@@ -276,6 +278,46 @@ ger_bwr_flag_disabled = {
 	
 	when_taken = {
 		remove_variable = ger_bwr_flag_enabled_flag
+	}
+	
+	ai_chance = {
+		base = 0
+	}
+}
+
+ger_brg_warflag_civil_enabled = {
+	is_shown = {
+		is_player = yes
+		AND = {
+			exists = c:GER
+			this = c:GER
+		}
+        NOT = {
+		    has_variable = ger_brg_warflag_civil_enabled_flag
+        }
+		has_variable = flag_decisions_enabled_flag
+	}
+	
+	when_taken = {
+		set_variable = ger_brg_warflag_civil_enabled_flag
+		set_variable = ger_brg_flag_enabled_flag
+		remove_variable = ger_bwr_flag_enabled_flag
+	}
+	
+	ai_chance = {
+		base = 0
+	}		
+}
+
+ger_brg_warflag_civil_disabled = {
+	is_shown = {
+		is_player = yes
+		has_variable = ger_brg_warflag_civil_enabled_flag
+		has_variable = flag_decisions_enabled_flag
+	}
+	
+	when_taken = {
+		remove_variable = ger_brg_warflag_civil_enabled_flag
 	}
 	
 	ai_chance = {

@@ -5,7 +5,7 @@
 	levels_per_mesh = 10
 
 	unlocking_technologies = {
-		bureaucracy
+		tech_bureaucracy
 	}
 
 	production_method_groups = {

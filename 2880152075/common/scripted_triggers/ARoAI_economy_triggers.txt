@@ -25,7 +25,7 @@ ec_building_allowed = {
 	has_variable = ec_incorporated_population
 	has_revolution = no
 	is_revolutionary = no
-	ec_identifying_object_list_is_correct = yes
+	ec_building_type_array_is_correct = yes
 	ec_invalid_objects_in_building_priority_lists = no
 	OR = {
 		ec_regular_building = yes
@@ -82,303 +82,293 @@ ec_has_no_construction_sectors = {
 	}
 }
 
-# Check for identifying object list being set correctly
-
-ec_identifying_object_list_is_correct = {
-	has_global_variable_list = cbiol
-	global_variable_list_size = {
-		name = cbiol
-		value = ec_amount_of_building_types
-	}
-}
-
 # Check if there's any invalid objects in building priority lists
 
 ec_invalid_objects_in_building_priority_lists = {
 	OR = {
 		AND = {
-			has_variable_list = cbbp1
+			has_variable_list = ecpa1
 			variable_list_size = {
-				name = cbbp1
+				name = ecpa1
 				value > 0
 			}
 			any_in_list = {
-				variable = cbbp1
+				variable = ecpa1
 				NOT = {
 					is_target_in_global_variable_list = {
-						name = cbiol
+						name = ecbta
 						target = this
 					}
 				}
 			}
 		}
 		AND = {
-			has_variable_list = cbbp2
+			has_variable_list = ecpa2
 			variable_list_size = {
-				name = cbbp2
+				name = ecpa2
 				value > 0
 			}
 			any_in_list = {
-				variable = cbbp2
+				variable = ecpa2
 				NOT = {
 					is_target_in_global_variable_list = {
-						name = cbiol
+						name = ecbta
 						target = this
 					}
 				}
 			}
 		}
 		AND = {
-			has_variable_list = cbbp3
+			has_variable_list = ecpa3
 			variable_list_size = {
-				name = cbbp3
+				name = ecpa3
 				value > 0
 			}
 			any_in_list = {
-				variable = cbbp3
+				variable = ecpa3
 				NOT = {
 					is_target_in_global_variable_list = {
-						name = cbiol
+						name = ecbta
 						target = this
 					}
 				}
 			}
 		}
 		AND = {
-			has_variable_list = cbbp4
+			has_variable_list = ecpa4
 			variable_list_size = {
-				name = cbbp4
+				name = ecpa4
 				value > 0
 			}
 			any_in_list = {
-				variable = cbbp4
+				variable = ecpa4
 				NOT = {
 					is_target_in_global_variable_list = {
-						name = cbiol
+						name = ecbta
 						target = this
 					}
 				}
 			}
 		}
 		AND = {
-			has_variable_list = cbbp5
+			has_variable_list = ecpa5
 			variable_list_size = {
-				name = cbbp5
+				name = ecpa5
 				value > 0
 			}
 			any_in_list = {
-				variable = cbbp5
+				variable = ecpa5
 				NOT = {
 					is_target_in_global_variable_list = {
-						name = cbiol
+						name = ecbta
 						target = this
 					}
 				}
 			}
 		}
 		AND = {
-			has_variable_list = cbbp6
+			has_variable_list = ecpa6
 			variable_list_size = {
-				name = cbbp6
+				name = ecpa6
 				value > 0
 			}
 			any_in_list = {
-				variable = cbbp6
+				variable = ecpa6
 				NOT = {
 					is_target_in_global_variable_list = {
-						name = cbiol
+						name = ecbta
 						target = this
 					}
 				}
 			}
 		}
 		AND = {
-			has_variable_list = cbbp7
+			has_variable_list = ecpa7
 			variable_list_size = {
-				name = cbbp7
+				name = ecpa7
 				value > 0
 			}
 			any_in_list = {
-				variable = cbbp7
+				variable = ecpa7
 				NOT = {
 					is_target_in_global_variable_list = {
-						name = cbiol
+						name = ecbta
 						target = this
 					}
 				}
 			}
 		}
 		AND = {
-			has_variable_list = cbbp8
+			has_variable_list = ecpa8
 			variable_list_size = {
-				name = cbbp8
+				name = ecpa8
 				value > 0
 			}
 			any_in_list = {
-				variable = cbbp8
+				variable = ecpa8
 				NOT = {
 					is_target_in_global_variable_list = {
-						name = cbiol
+						name = ecbta
 						target = this
 					}
 				}
 			}
 		}
 		AND = {
-			has_variable_list = cbbp9
+			has_variable_list = ecpa9
 			variable_list_size = {
-				name = cbbp9
+				name = ecpa9
 				value > 0
 			}
 			any_in_list = {
-				variable = cbbp9
+				variable = ecpa9
 				NOT = {
 					is_target_in_global_variable_list = {
-						name = cbiol
+						name = ecbta
 						target = this
 					}
 				}
 			}
 		}
 		AND = {
-			has_variable_list = cbbp10
+			has_variable_list = ecpa10
 			variable_list_size = {
-				name = cbbp10
+				name = ecpa10
 				value > 0
 			}
 			any_in_list = {
-				variable = cbbp10
+				variable = ecpa10
 				NOT = {
 					is_target_in_global_variable_list = {
-						name = cbiol
+						name = ecbta
 						target = this
 					}
 				}
 			}
 		}
 		AND = {
-			has_variable_list = cbbp11
+			has_variable_list = ecpa11
 			variable_list_size = {
-				name = cbbp11
+				name = ecpa11
 				value > 0
 			}
 			any_in_list = {
-				variable = cbbp11
+				variable = ecpa11
 				NOT = {
 					is_target_in_global_variable_list = {
-						name = cbiol
+						name = ecbta
 						target = this
 					}
 				}
 			}
 		}
 		AND = {
-			has_variable_list = cbbp12
+			has_variable_list = ecpa12
 			variable_list_size = {
-				name = cbbp12
+				name = ecpa12
 				value > 0
 			}
 			any_in_list = {
-				variable = cbbp12
+				variable = ecpa12
 				NOT = {
 					is_target_in_global_variable_list = {
-						name = cbiol
+						name = ecbta
 						target = this
 					}
 				}
 			}
 		}
 		AND = {
-			has_variable_list = cbbp13
+			has_variable_list = ecpa13
 			variable_list_size = {
-				name = cbbp13
+				name = ecpa13
 				value > 0
 			}
 			any_in_list = {
-				variable = cbbp13
+				variable = ecpa13
 				NOT = {
 					is_target_in_global_variable_list = {
-						name = cbiol
+						name = ecbta
 						target = this
 					}
 				}
 			}
 		}
 		AND = {
-			has_variable_list = cbbp14
+			has_variable_list = ecpa14
 			variable_list_size = {
-				name = cbbp14
+				name = ecpa14
 				value > 0
 			}
 			any_in_list = {
-				variable = cbbp14
+				variable = ecpa14
 				NOT = {
 					is_target_in_global_variable_list = {
-						name = cbiol
+						name = ecbta
 						target = this
 					}
 				}
 			}
 		}
 		AND = {
-			has_variable_list = cbbp15
+			has_variable_list = ecpa15
 			variable_list_size = {
-				name = cbbp15
+				name = ecpa15
 				value > 0
 			}
 			any_in_list = {
-				variable = cbbp15
+				variable = ecpa15
 				NOT = {
 					is_target_in_global_variable_list = {
-						name = cbiol
+						name = ecbta
 						target = this
 					}
 				}
 			}
 		}
 		AND = {
-			has_variable_list = cbbp16
+			has_variable_list = ecpa16
 			variable_list_size = {
-				name = cbbp16
+				name = ecpa16
 				value > 0
 			}
 			any_in_list = {
-				variable = cbbp16
+				variable = ecpa16
 				NOT = {
 					is_target_in_global_variable_list = {
-						name = cbiol
+						name = ecbta
 						target = this
 					}
 				}
 			}
 		}
 		AND = {
-			has_variable_list = cbbp17
+			has_variable_list = ecpa17
 			variable_list_size = {
-				name = cbbp17
+				name = ecpa17
 				value > 0
 			}
 			any_in_list = {
-				variable = cbbp17
+				variable = ecpa17
 				NOT = {
 					is_target_in_global_variable_list = {
-						name = cbiol
+						name = ecbta
 						target = this
 					}
 				}
 			}
 		}
 		AND = {
-			has_variable_list = cbbp18
+			has_variable_list = ecpa18
 			variable_list_size = {
-				name = cbbp18
+				name = ecpa18
 				value > 0
 			}
 			any_in_list = {
-				variable = cbbp18
+				variable = ecpa18
 				NOT = {
 					is_target_in_global_variable_list = {
-						name = cbiol
+						name = ecbta
 						target = this
 					}
 				}
@@ -532,13 +522,31 @@ ec_budget_health = {
 	}
 }
 
+ec_government_wages_are_very_low = {
+	modifier:country_government_wages_mult < -0.25
+}
+
 ec_government_wages_are_low = {
 	modifier:country_government_wages_mult < -0.10
 	modifier:country_government_wages_mult >= -0.25
 }
 
-ec_government_wages_are_very_low = {
-	modifier:country_government_wages_mult < -0.25
+ec_government_wages_are_medium = {
+	modifier:country_government_wages_mult >= -0.10
+	modifier:country_government_wages_mult <= 0.10
+}
+
+ec_government_wages_are_high = {
+	modifier:country_government_wages_mult > 0.10
+	modifier:country_government_wages_mult <= 0.25
+}
+
+ec_government_wages_are_very_high = {
+	modifier:country_government_wages_mult > 0.25
+}
+
+ec_military_wages_are_very_low = {
+	modifier:country_military_wages_mult < -0.25
 }
 
 ec_military_wages_are_low = {
@@ -546,8 +554,18 @@ ec_military_wages_are_low = {
 	modifier:country_military_wages_mult >= -0.25
 }
 
-ec_military_wages_are_very_low = {
-	modifier:country_military_wages_mult < -0.25
+ec_military_wages_are_medium = {
+	modifier:country_military_wages_mult >= -0.10
+	modifier:country_military_wages_mult <= 0.10
+}
+
+ec_military_wages_are_high = {
+	modifier:country_military_wages_mult > 0.10
+	modifier:country_military_wages_mult <= 0.25
+}
+
+ec_military_wages_are_very_high = {
+	modifier:country_military_wages_mult > 0.25
 }
 
 ### IS IT ALLOWED TO CUT BUDGET WAGES
@@ -571,11 +589,11 @@ ec_can_cut_government_wages = {
 						}
 						AND = {
 							is_in_government = yes
-							ig_approval > -1
+							ig_approval > -3
 						}
 						AND = {
 							is_in_government = no
-							ig_approval > -6
+							ig_approval > -8
 						}
 						is_marginal = yes
 					}
@@ -599,11 +617,11 @@ ec_can_cut_government_wages = {
 						}
 						AND = {
 							is_in_government = yes
-							ig_approval > -1
+							ig_approval > -3
 						}
 						AND = {
 							is_in_government = no
-							ig_approval > -6
+							ig_approval > -8
 						}
 						is_marginal = yes
 					}
@@ -632,11 +650,11 @@ ec_can_cut_military_wages = {
 					}
 					AND = {
 						is_in_government = yes
-						ig_approval > -1
+						ig_approval > -3
 					}
 					AND = {
 						is_in_government = no
-						ig_approval > -6
+						ig_approval > -8
 					}
 					is_marginal = yes
 				}
@@ -2304,41 +2322,41 @@ ec_check_arable_resource = {
 	OR = {
 		AND = {
 			$cipher$ < 10
-			var:ecpar6 = $cipher$
+			var:ecaar6 = $cipher$
 		}
 		AND = {
 			$cipher$ < 100
 			OR = {
-				var:ecpar5 = $cipher$
-				var:ecpar5 >= 30
+				var:ecaar5 = $cipher$
+				var:ecaar5 >= 30
 			}
 		}
 		AND = {
 			$cipher$ < 1000
 			OR = {
-				var:ecpar4 = $cipher$
-				var:ecpar4 >= 300
+				var:ecaar4 = $cipher$
+				var:ecaar4 >= 300
 			}
 		}
 		AND = {
 			$cipher$ < 10000
 			OR = {
-				var:ecpar3 = $cipher$
-				var:ecpar3 >= 3000
+				var:ecaar3 = $cipher$
+				var:ecaar3 >= 3000
 			}
 		}
 		AND = {
 			$cipher$ < 100000
 			OR = {
-				var:ecpar2 = $cipher$
-				var:ecpar2 >= 30000
+				var:ecaar2 = $cipher$
+				var:ecaar2 >= 30000
 			}
 		}
 		AND = {
 			$cipher$ < 1000000
 			OR = {
-				var:ecpar1 = $cipher$
-				var:ecpar1 >= 300000
+				var:ecaar1 = $cipher$
+				var:ecaar1 >= 300000
 			}
 		}
 	}
@@ -2562,7 +2580,7 @@ ec_consider_government_administration = {
 	NOT = {
 		has_variable = ec_government_administration_cooldown
 	}
-	#has_technology_researched = bureaucracy
+	has_technology_researched = tech_bureaucracy
 	ec_consider_building = {
 		building = building_government_administration
 		critical = 1
@@ -2601,14 +2619,21 @@ ec_evaluate_government_administration = {
 				ec_budget_health = {
 					level = 0
 				}
-				tax_level_value <= 2
+				OR = {
+					tax_level = very_low
+					tax_level = low
+				}
 				AND = {
 					ec_wartime_spending = no
 					OR = {
 						ec_budget_health = {
 							level = -1
 						}
-						tax_level_value <= 3
+						OR = {
+							tax_level = very_low
+							tax_level = low
+							tax_level = medium
+						}
 					}
 				}
 			}
@@ -2622,7 +2647,10 @@ ec_evaluate_government_administration = {
 				ec_budget_health = {
 					level = 0
 				}
-				tax_level_value <= 2
+				OR = {
+					tax_level = very_low
+					tax_level = low
+				}
 			}
 			ec_government_administration_costs_value < ec_government_administration_costs_target
 			ec_government_administration_costs_expected < ec_government_administration_costs_excess
@@ -2776,7 +2804,10 @@ ec_consider_construction_sector = {
 		ec_budget_health = {
 			level = 0
 		}
-		tax_level_value <= 2
+		OR = {
+			tax_level = very_low
+			tax_level = low
+		}
 	}
 	OR = {
 		is_player = no
@@ -2853,6 +2884,10 @@ ec_sanction_construction_sector = {
 	}
 }
 
+ec_allocate_construction_sector = {
+	$priority$ = 1
+}
+
 ### UNIVERSITY
 
 ec_consider_university = {
@@ -2874,14 +2909,21 @@ ec_consider_university = {
 				ec_budget_health = {
 					level = 0
 				}
-				tax_level_value <= 2
+				OR = {
+					tax_level = very_low
+					tax_level = low
+				}
 				AND = {
 					ec_wartime_spending = no
 					OR = {
 						ec_budget_health = {
 							level = -1
 						}
-						tax_level_value <= 3
+						OR = {
+							tax_level = very_low
+							tax_level = low
+							tax_level = medium
+						}
 					}
 				}
 			}
@@ -2893,7 +2935,10 @@ ec_consider_university = {
 				ec_budget_health = {
 					level = 0
 				}
-				tax_level_value <= 2
+				OR = {
+					tax_level = very_low
+					tax_level = low
+				}
 			}
 			ec_university_costs_value < ec_university_costs_target
 			ec_university_costs_expected < ec_university_costs_excess
@@ -2980,6 +3025,10 @@ ec_sanction_university = {
 		shortage = 1
 		profitability = 0
 	}
+}
+
+ec_allocate_university = {
+	$priority$ = 1
 }
 
 ### RAILWAY
@@ -3121,7 +3170,7 @@ ec_allocate_railway = {
 			ec_infrastructure_load_percent >= ec_infrastructure_5
 			ec_infrastructure_load_percent < ec_infrastructure_6
 			root = {
-				var:cber4 >= 9
+				var:ecpb4 >= 9
 			}
 		}
 		AND = {
@@ -3129,7 +3178,7 @@ ec_allocate_railway = {
 			ec_infrastructure_load_percent >= ec_infrastructure_6
 			ec_infrastructure_load_percent < ec_infrastructure_7
 			root = {
-				var:cber4 >= 16
+				var:ecpb4 >= 16
 			}
 		}
 	}
@@ -3239,14 +3288,21 @@ ec_evaluate_port = {
 				ec_budget_health = {
 					level = 0
 				}
-				tax_level_value <= 2
+				OR = {
+					tax_level = very_low
+					tax_level = low
+				}
 				AND = {
 					ec_wartime_spending = no
 					OR = {
 						ec_budget_health = {
 							level = -1
 						}
-						tax_level_value <= 3
+						OR = {
+							tax_level = very_low
+							tax_level = low
+							tax_level = medium
+						}
 					}
 				}
 			}
@@ -3271,7 +3327,10 @@ ec_evaluate_port = {
 				ec_budget_health = {
 					level = 0
 				}
-				tax_level_value <= 2
+				OR = {
+					tax_level = very_low
+					tax_level = low
+				}
 			}
 			ec_port_costs_value < ec_port_costs_target
 			ec_port_costs_expected < ec_port_costs_excess
@@ -3484,7 +3543,7 @@ ec_allocate_port = {
 		AND = {
 			$priority$ = 1
 			root = {
-				var:cber5 = 1
+				var:ecpb5 = 1
 				is_target_in_variable_list = {
 					name = ec_coastline_of_market_capital
 					target = prev
@@ -3504,7 +3563,7 @@ ec_allocate_port = {
 		AND = {
 			$priority$ = 3
 			root = {
-				var:cber5 >= 3
+				var:ecpb5 >= 3
 			}
 			ec_infrastructure_load_percent < ec_infrastructure_5
 			NOT = {
@@ -3524,7 +3583,7 @@ ec_allocate_port = {
 		AND = {
 			$priority$ = 4
 			root = {
-				var:cber5 >= 3
+				var:ecpb5 >= 3
 			}
 			ec_infrastructure_load_percent >= ec_infrastructure_5
 			NOT = {
@@ -3555,7 +3614,11 @@ ec_consider_barracks = {
 		ec_budget_health = {
 			level = -1
 		}
-		tax_level_value <= 3
+		OR = {
+			tax_level = very_low
+			tax_level = low
+			tax_level = medium
+		}
 	}
 	ec_consider_building = {
 		building = building_barracks
@@ -3669,7 +3732,11 @@ ec_consider_naval_base = {
 		ec_budget_health = {
 			level = -1
 		}
-		tax_level_value <= 3
+		OR = {
+			tax_level = very_low
+			tax_level = low
+			tax_level = medium
+		}
 	}
 	ec_consider_building = {
 		building = building_naval_base
@@ -4783,6 +4850,10 @@ ec_sanction_food_industry = {
 	}
 }
 
+ec_allocate_food_industry = {
+	$priority$ = 1
+}
+
 ### ARTS ACADEMY
 
 ec_consider_arts_academy = {
@@ -4806,6 +4877,10 @@ ec_sanction_arts_academy = {
 		shortage = 1
 		profitability = 1
 	}
+}
+
+ec_allocate_arts_academy = {
+	$priority$ = 1
 }
 
 ### TEXTILE MILLS
@@ -4836,6 +4911,10 @@ ec_sanction_textile_mills = {
 	}
 }
 
+ec_allocate_textile_mills = {
+	$priority$ = 1
+}
+
 ### FURNITURE MANUFACTURIES
 
 ec_consider_furniture_manufacturies = {
@@ -4864,6 +4943,10 @@ ec_sanction_furniture_manufacturies = {
 	}
 }
 
+ec_allocate_furniture_manufacturies = {
+	$priority$ = 1
+}
+
 ### GLASSWORKS
 
 ec_consider_glassworks = {
@@ -4889,7 +4972,11 @@ ec_sanction_glassworks = {
 	}
 }
 
-### TOOLING WORKSHOP
+ec_allocate_glassworks = {
+	$priority$ = 1
+}
+
+### TOOLING WORKSHOPS
 
 ec_consider_tooling_workshops = {
 	has_technology_researched = manufacturies
@@ -4912,6 +4999,10 @@ ec_sanction_tooling_workshops = {
 		shortage = 1
 		profitability = 1
 	}
+}
+
+ec_allocate_tooling_workshops = {
+	$priority$ = 1
 }
 
 ### PAPER MILLS
@@ -4937,6 +5028,10 @@ ec_sanction_paper_mills = {
 		shortage = 1
 		profitability = 1
 	}
+}
+
+ec_allocate_paper_mills = {
+	$priority$ = 1
 }
 
 ### CHEMICAL PLANTS
@@ -4967,6 +5062,10 @@ ec_sanction_chemical_plants = {
 	}
 }
 
+ec_allocate_chemical_plants = {
+	$priority$ = 1
+}
+
 ### SYNTHETICS PLANTS
 
 ec_consider_synthetics_plants = {
@@ -4990,6 +5089,10 @@ ec_sanction_synthetics_plants = {
 		shortage = 1
 		profitability = 1
 	}
+}
+
+ec_allocate_synthetics_plants = {
+	$priority$ = 1
 }
 
 ### STEEL MILLS
@@ -5017,6 +5120,10 @@ ec_sanction_steel_mills = {
 	}
 }
 
+ec_allocate_steel_mills = {
+	$priority$ = 1
+}
+
 ### MOTOR INDUSTRY
 
 ec_consider_motor_industry = {
@@ -5042,6 +5149,10 @@ ec_sanction_motor_industry = {
 	}
 }
 
+ec_allocate_motor_industry = {
+	$priority$ = 1
+}
+
 ### POWER PLANT
 
 ec_consider_power_plant = {
@@ -5065,6 +5176,10 @@ ec_sanction_power_plant = {
 		shortage = 1
 		profitability = 1
 	}
+}
+
+ec_allocate_power_plant = {
+	$priority$ = 1
 }
 
 ### SHIPYARDS
@@ -5157,6 +5272,10 @@ ec_sanction_shipyards = {
 	}
 }
 
+ec_allocate_shipyards = {
+	$priority$ = 1
+}
+
 ### ARMS INDUSTRY
 
 ec_consider_arms_industry = {
@@ -5206,6 +5325,10 @@ ec_sanction_arms_industry = {
 	}
 }
 
+ec_allocate_arms_industry = {
+	$priority$ = 1
+}
+
 ### MUNITION PLANTS
 
 ec_consider_munition_plants = {
@@ -5239,6 +5362,10 @@ ec_sanction_munition_plants = {
 	}
 }
 
+ec_allocate_munition_plants = {
+	$priority$ = 1
+}
+
 ### ELECTRICS INDUSTRY
 
 ec_consider_electrics_industry = {
@@ -5268,6 +5395,10 @@ ec_sanction_electrics_industry = {
 		shortage = 1
 		profitability = 1
 	}
+}
+
+ec_allocate_electrics_industry = {
+	$priority$ = 1
 }
 
 ### WAR MACHINE INDUSTRY
@@ -5319,53 +5450,121 @@ ec_sanction_war_machine_industry = {
 	}
 }
 
+ec_allocate_war_machine_industry = {
+	$priority$ = 1
+}
+
 ### BUILDING SCRIPT
 
-cbcvl = {
+ec_check_if_counter_is_within_limit = {
 	OR = {
 		AND = {
-			$cvler$ = 1
-			var:cbb$cvlcn$c < ec_building_limit_$cvllf$_1
+			$priority$ = 1
+			var:eccb$counter$ < ec_building_limit_$factor$_1
 		}
 		AND = {
-			$cvler$ = 2
-			var:cbb$cvlcn$c < ec_building_limit_$cvllf$_2
+			$priority$ = 2
+			var:eccb$counter$ < ec_building_limit_$factor$_2
 		}
 		AND = {
-			$cvler$ = 3
-			var:cbb$cvlcn$c < ec_building_limit_$cvllf$_3
+			$priority$ = 3
+			var:eccb$counter$ < ec_building_limit_$factor$_3
 		}
 		AND = {
-			$cvler$ = 4
-			var:cbb$cvlcn$c < ec_building_limit_$cvllf$_4
+			$priority$ = 4
+			var:eccb$counter$ < ec_building_limit_$factor$_4
 		}
 		AND = {
-			$cvler$ = 5
-			var:cbb$cvlcn$c < ec_building_limit_$cvllf$_5
+			$priority$ = 5
+			var:eccb$counter$ < ec_building_limit_$factor$_5
 		}
 		AND = {
-			$cvler$ = 6
-			var:cbb$cvlcn$c < ec_building_limit_$cvllf$_6
+			$priority$ = 6
+			var:eccb$counter$ < ec_building_limit_$factor$_6
 		}
 		AND = {
-			$cvler$ = 7
-			var:cbb$cvlcn$c < ec_building_limit_$cvllf$_7
+			$priority$ = 7
+			var:eccb$counter$ < ec_building_limit_$factor$_7
 		}
 		AND = {
-			$cvler$ = 8
-			var:cbb$cvlcn$c < ec_building_limit_$cvllf$_8
+			$priority$ = 8
+			var:eccb$counter$ < ec_building_limit_$factor$_8
 		}
 		AND = {
-			$cvler$ = 9
-			var:cbb$cvlcn$c < ec_building_limit_$cvllf$_9
+			$priority$ = 9
+			var:eccb$counter$ < ec_building_limit_$factor$_9
 		}
 		AND = {
-			$cvler$ = 10
-			var:cbb$cvlcn$c < ec_building_limit_$cvllf$_10
+			$priority$ = 10
+			var:eccb$counter$ < ec_building_limit_$factor$_10
 		}
 		AND = {
-			$cvler$ >= 11
-			var:cbb$cvlcn$c < ec_building_limit_$cvllf$_11
+			$priority$ >= 11
+			var:eccb$counter$ < ec_building_limit_$factor$_11
 		}
+	}
+}
+
+### TRIGGERS GENERATED BY EXTERNAL SCRIPT
+
+ec_building_type_array_is_correct = {
+	has_global_variable_list = ecbta
+	ec_check_building_type_in_array = { number = 1 }
+	ec_check_building_type_in_array = { number = 2 }
+	ec_check_building_type_in_array = { number = 3 }
+	ec_check_building_type_in_array = { number = 4 }
+	ec_check_building_type_in_array = { number = 5 }
+	ec_check_building_type_in_array = { number = 6 }
+	ec_check_building_type_in_array = { number = 7 }
+	ec_check_building_type_in_array = { number = 8 }
+	ec_check_building_type_in_array = { number = 9 }
+	ec_check_building_type_in_array = { number = 10 }
+	ec_check_building_type_in_array = { number = 11 }
+	ec_check_building_type_in_array = { number = 12 }
+	ec_check_building_type_in_array = { number = 13 }
+	ec_check_building_type_in_array = { number = 14 }
+	ec_check_building_type_in_array = { number = 15 }
+	ec_check_building_type_in_array = { number = 16 }
+	ec_check_building_type_in_array = { number = 17 }
+	ec_check_building_type_in_array = { number = 18 }
+	ec_check_building_type_in_array = { number = 19 }
+	ec_check_building_type_in_array = { number = 20 }
+	ec_check_building_type_in_array = { number = 21 }
+	ec_check_building_type_in_array = { number = 22 }
+	ec_check_building_type_in_array = { number = 23 }
+	ec_check_building_type_in_array = { number = 24 }
+	ec_check_building_type_in_array = { number = 25 }
+	ec_check_building_type_in_array = { number = 26 }
+	ec_check_building_type_in_array = { number = 27 }
+	ec_check_building_type_in_array = { number = 28 }
+	ec_check_building_type_in_array = { number = 29 }
+	ec_check_building_type_in_array = { number = 30 }
+	ec_check_building_type_in_array = { number = 31 }
+	ec_check_building_type_in_array = { number = 32 }
+	ec_check_building_type_in_array = { number = 33 }
+	ec_check_building_type_in_array = { number = 34 }
+	ec_check_building_type_in_array = { number = 35 }
+	ec_check_building_type_in_array = { number = 36 }
+	ec_check_building_type_in_array = { number = 37 }
+	ec_check_building_type_in_array = { number = 38 }
+	ec_check_building_type_in_array = { number = 39 }
+	ec_check_building_type_in_array = { number = 40 }
+	ec_check_building_type_in_array = { number = 41 }
+	ec_check_building_type_in_array = { number = 42 }
+	ec_check_building_type_in_array = { number = 43 }
+	ec_check_building_type_in_array = { number = 44 }
+	ec_check_building_type_in_array = { number = 45 }
+	ec_check_building_type_in_array = { number = 46 }
+	ec_check_building_type_in_array = { number = 47 }
+	ec_check_building_type_in_array = { number = 48 }
+	ec_check_building_type_in_array = { number = 49 }
+	cp_building_type_array_is_correct = yes
+}
+
+ec_check_building_type_in_array = {
+	any_in_global_list = {
+		variable = ecbta
+		has_variable = ecbtn
+		var:ecbtn = $number$
 	}
 }

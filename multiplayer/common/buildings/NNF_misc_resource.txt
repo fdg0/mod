@@ -14,7 +14,7 @@
 		pmg_transportation_building_oil_rig
 		pmg_ownership_capital_building_oil_rig
 	}
-	ai_value = 3000
+	ai_value = 4000
 }
 
 building_rubber_plantation = {
