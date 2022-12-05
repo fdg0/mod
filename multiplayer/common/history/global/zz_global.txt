@@ -1,0 +1,35 @@
+﻿# Germany
+GLOBAL = {
+	c:PRU = {
+		set_variable = zz_germany_formed_by_prussia
+	}
+	c:AUS = {
+		set_variable = zz_germany_formed_by_austria
+	}
+	c:HAN = {
+		set_variable = zz_germany_formed_by_hanover
+	}
+	c:BAV = {
+		set_variable = zz_germany_formed_by_bavaria
+	}
+	c:SAX = {
+		set_variable = zz_germany_formed_by_saxony
+	}
+	c:WUR = {
+		set_variable = zz_germany_formed_by_wurttemberg
+	}			
+}
+
+# Italy
+
+GLOBAL = {
+	c:PAP = {
+		set_variable = zz_italy_formed_by_rome
+	}
+	c:SIC = {
+		set_variable = zz_italy_formed_by_sicily
+	}
+	c:SAR = {
+		set_variable = zz_italy_formed_by_sardinia
+	}					
+}
