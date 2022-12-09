@@ -2,7 +2,7 @@
   "name" : "Dense Military Tab",
   "id" : "",
   "version" : "1.1.0",
-  "supported_game_version" : "1.1.0",
+  "supported_game_version" : "1.1.1",
   "short_description" : "Overhauls the Military Panel to be more size-conscious",
   "tags" : [],
   "relationships" : [],

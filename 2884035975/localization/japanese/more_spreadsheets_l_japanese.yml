@@ -1,5 +1,5 @@
 ﻿l_japanese:
-  MS_BTN: "スプレットシート"
+  MS_BTN: "スプレットシ." #スプレットシート
   MS_TOOLTIP: "スプレットシートを見る"
   MS_PANEL_HEADER: "スプレットシート一覧"
   MS_STATES: "ステータス"

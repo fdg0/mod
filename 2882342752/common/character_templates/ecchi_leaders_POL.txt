@@ -187,6 +187,19 @@ ecchi_pol_luxemburg_character_template = {
         country_trigger = {
             OR = {
                 AND = {
+                    exists = c:PRU
+                    this = c:PRU
+                    NOT = { exists = c:POL }
+					NOT = { exists = c:NGF }
+					NOT = { exists = c:GER }
+                }
+				AND = {
+                    exists = c:NGF
+                    this = c:NGF
+                    NOT = { exists = c:POL }
+					NOT = { exists = c:GER }
+                }
+				AND = {
                     exists = c:GER
                     this = c:GER
                     NOT = { exists = c:POL }

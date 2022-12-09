@@ -39,9 +39,18 @@ ecchi_lkt_red_cloud_character_template = {
     commander_rank = default
     commander_usage = {
 		country_trigger = {
-			exists = c:LKT
-			this = c:LKT
-		}
+            OR = {
+                AND = {
+                    exists = c:SEQ
+                    this = c:SEQ
+                    NOT = { exists = c:LKT }
+                }
+                AND = {
+                    exists = c:LKT
+                    this = c:LKT
+                }
+            }
+        }
 		role = general
         earliest_usage_date = 1865.1.1
         latest_usage_date = 1909.12.10
@@ -63,9 +72,18 @@ ecchi_lkt_sitting_bull_character_template = {
     commander_rank = default
     commander_usage = {
 		country_trigger = {
-			exists = c:LKT
-			this = c:LKT
-		}
+            OR = {
+                AND = {
+                    exists = c:SEQ
+                    this = c:SEQ
+                    NOT = { exists = c:LKT }
+                }
+                AND = {
+                    exists = c:LKT
+                    this = c:LKT
+                }
+            }
+        }
 		role = general
         earliest_usage_date = 1865.1.1
         latest_usage_date = 1890.12.15
@@ -87,9 +105,18 @@ ecchi_lkt_crazy_horse_character_template = {
     commander_rank = default
     commander_usage = {
 		country_trigger = {
-			exists = c:LKT
-			this = c:LKT
-		}
+            OR = {
+                AND = {
+                    exists = c:SEQ
+                    this = c:SEQ
+                    NOT = { exists = c:LKT }
+                }
+                AND = {
+                    exists = c:LKT
+                    this = c:LKT
+                }
+            }
+        }
 		role = general
         earliest_usage_date = 1860.1.1
         latest_usage_date = 1877.9.5
@@ -111,9 +138,18 @@ ecchi_apc_geronimo_character_template = {
     commander_rank = default
     commander_usage = {
 		country_trigger = {
-			exists = c:APC
-			this = c:APC
-		}
+            OR = {
+                AND = {
+                    exists = c:SEQ
+                    this = c:SEQ
+                    NOT = { exists = c:APC }
+                }
+                AND = {
+                    exists = c:APC
+                    this = c:APC
+                }
+            }
+        }
 		role = general
         earliest_usage_date = 1850.1.1
         latest_usage_date = 1909.2.17
@@ -132,12 +168,21 @@ ecchi_nzp_chief_joseph_character_template = {
 	dna = ecchi_dna_chief_joseph
     birth_date = 1840.3.3
     traits = { plains_commander mountain_commander brave stalwart_defender }
-	 commander_rank = default
+	commander_rank = default
     commander_usage = {
 		country_trigger = {
-			exists = c:NZP
-			this = c:NZP
-		}
+            OR = {
+                AND = {
+                    exists = c:SEQ
+                    this = c:SEQ
+                    NOT = { exists = c:NZP }
+                }
+                AND = {
+                    exists = c:NZP
+                    this = c:NZP
+                }
+            }
+        }
 		role = general
         earliest_usage_date = 1875.1.1
         latest_usage_date = 1904.9.21
@@ -159,9 +204,18 @@ ecchi_apc_victorio_character_template = {
     commander_rank = default
     commander_usage = {
 		country_trigger = {
-			exists = c:APC
-			this = c:APC
-		}
+            OR = {
+                AND = {
+                    exists = c:SEQ
+                    this = c:SEQ
+                    NOT = { exists = c:APC }
+                }
+                AND = {
+                    exists = c:APC
+                    this = c:APC
+                }
+            }
+        }
 		role = general
         earliest_usage_date = 1870.1.1
         latest_usage_date = 1880.10.14
@@ -183,9 +237,18 @@ ecchi_apc_cochise_character_template = {
     commander_rank = default
     commander_usage = {
 		country_trigger = {
-			exists = c:APC
-			this = c:APC
-		}
+            OR = {
+                AND = {
+                    exists = c:SEQ
+                    this = c:SEQ
+                    NOT = { exists = c:APC }
+                }
+                AND = {
+                    exists = c:APC
+                    this = c:APC
+                }
+            }
+        }
 		role = general
         earliest_usage_date = 1860.1.1
         latest_usage_date = 1874.6.8
@@ -207,9 +270,18 @@ ecchi_apc_mangas_coloradas_character_template = {
     commander_rank = default
     commander_usage = {
 		country_trigger = {
-			exists = c:APC
-			this = c:APC
-		}
+            OR = {
+                AND = {
+                    exists = c:SEQ
+                    this = c:SEQ
+                    NOT = { exists = c:APC }
+                }
+                AND = {
+                    exists = c:APC
+                    this = c:APC
+                }
+            }
+        }
 		role = general
         earliest_usage_date = 1845.1.1
         latest_usage_date = 1863.1.21

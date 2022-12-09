@@ -34,7 +34,7 @@ ecchi_gbr_grey_character_template = {
     }
 }
 
-ecchi_gbr_russell_character_template = {
+ecchi_gbr_john_russell_character_template = {
     first_name = John
     last_name = Russell
     culture = cu:british
@@ -793,7 +793,7 @@ ecchi_gbr_mill_character_template = {
     }
 }
 
-ecchi_gbr_russell_character_template = {
+ecchi_gbr_bertrand_russell_character_template = {
     first_name = Bertrand
     last_name = Russell
     culture = cu:british
