@@ -516,7 +516,7 @@
 		}
 	}
 	s:STATE_MAZOVIA = {
-		region_state:RUS = {
+		region_state:POL = {
 			create_pop = {
 				culture = polish
 				size = 1676000
@@ -567,7 +567,7 @@
 		}
 	}
 	s:STATE_GREATER_POLAND = {
-		region_state:RUS = {
+		region_state:POL = {
 			create_pop = {
 				culture = polish
 				size = 897396
@@ -588,7 +588,7 @@
 		}
 	}
 	s:STATE_LESSER_POLAND = {
-		region_state:RUS = {
+		region_state:POL = {
 			create_pop = {
 				culture = polish
 				size = 1057396
