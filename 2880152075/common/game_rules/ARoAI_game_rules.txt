@@ -29,6 +29,12 @@ ec_subject_construction = {
 	ec_subject_construction_150 = {}
 }
 
+ec_building_priorities = {
+	default = ec_building_priorities_roleplay
+	ec_building_priorities_roleplay = {}
+	ec_building_priorities_uniform = {}
+}
+
 rs_mode = {
 	default = rs_default
 	rs_default = {}

@@ -8,6 +8,7 @@
 	interest_group = ig_petty_bourgeoisie # Can be overriden by interest_group_leader_usage
 	birth_date = 1808.4.20
 	dna = dna_emperor_napoleon_03
+	trait_generation = { set_variable = historical_figure }
 	traits = {
 		concept_wikipedia_Louis-Napoleon_Bonaparte
 		ambitious demagogue

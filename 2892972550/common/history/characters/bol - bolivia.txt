@@ -9,6 +9,7 @@
 			dna = dna_andres_de_santa_cruz
 			interest_group = ig_armed_forces
 			ideology = ideology_moderate
+			trait_generation = { set_variable = historical_figure }
 			traits = {
 				concept_wikipedia_Andres_de_Santa_Cruz
 				ambitious
@@ -20,6 +21,7 @@
 			first_name = Jose
 			last_name = Ballivian
 			age = 31
+			trait_generation = { set_variable = historical_figure }
 			traits = {
 				concept_wikipedia_Jose_Ballivian
 		#		generals_aide

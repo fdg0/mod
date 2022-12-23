@@ -25,12 +25,6 @@ ARoAI_economy_events.1 = {
 			
 			ec_apply_construction_buffs = yes
 			
-			# Calculate incorporated population and weekly income of the country
-			
-			ec_calculate_incorporated_population = yes
-			ec_calculate_army_size = yes
-			ec_calculate_country_budget_surplus = yes
-			
 			# Collect budget costs and restart costs collection cycle 7 days later
 			
 			ec_collect_budget_costs = yes
@@ -38,6 +32,12 @@ ARoAI_economy_events.1 = {
 				id = ARoAI_economy_events.4
 				days = 7
 			}
+			
+			# Calculate incorporated population and weekly income of the country
+			
+			ec_calculate_incorporated_population = yes
+			ec_calculate_army_size = yes
+			ec_calculate_country_budget_surplus = yes
 			
 			# Check if military expenses are higher than usual
 			

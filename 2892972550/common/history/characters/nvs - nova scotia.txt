@@ -10,6 +10,7 @@
 			culture=cu:scottish
 			interest_group = ig_armed_forces
 			ideology = ideology_moderate
+			trait_generation = { set_variable = historical_figure }
 			traits = {
 				concept_wikipedia_Colin_Campbell
 				tactful

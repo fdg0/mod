@@ -1,0 +1,12 @@
+{
+  "name" : "Remove the trade route's line and arrow(移除贸易路线上的箭头和线) ",
+  "id" : "",
+  "version" : "",
+  "supported_game_version" : "",
+  "short_description" : "",
+  "tags" : [],
+  "relationships" : [],
+  "game_custom_data" : {
+    "multiplayer_synchronized" : true
+  }
+}

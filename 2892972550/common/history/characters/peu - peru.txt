@@ -9,6 +9,7 @@
 			age = 41
 			interest_group = ig_armed_forces
 			ideology = ideology_moderate
+			trait_generation = { set_variable = historical_figure }
 			traits = {
 				concept_wikipedia_Luis_2_Jose_de_Orbegoso
 				ambitious
@@ -21,6 +22,7 @@
 			last_name = de_Santa_Cruz
 			interest_group = ig_armed_forces
 			age = 44
+			trait_generation = { set_variable = historical_figure }
 			traits = {
 				concept_wikipedia_Andres_de_Santa_Cruz
 				arrogant

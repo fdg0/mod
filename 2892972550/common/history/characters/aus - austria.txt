@@ -9,6 +9,7 @@
 			dna = dna_emperor_ferdinand_01
 			interest_group = ig_landowners
 			ideology = ideology_moderate
+			trait_generation = { set_variable = historical_figure }
 			traits = {
 				concept_wikipedia_Ferdinand_von_Habsburg
 				arrogant
@@ -27,6 +28,7 @@
 			birth_date = 1830.8.18
 			interest_group = ig_landowners
 			ideology = ideology_moderate
+			trait_generation = { set_variable = historical_figure }
 			traits = {
 				concept_wikipedia_Franz_Josef_von_Habsburg
 				cautious
@@ -40,6 +42,7 @@
 			ig_leader = yes
 			interest_group = ig_landowners
 			ideology = ideology_traditionalist
+			trait_generation = { set_variable = historical_figure }
 			traits = {
 				concept_wikipedia_Klemens_von_Metternich
 				meticulous
@@ -56,6 +59,7 @@
 			ig_leader = yes
 			interest_group = ig_armed_forces
 			ideology = ideology_royalist
+			trait_generation = { set_variable = historical_figure }
 			traits = {
 				concept_wikipedia_Ludwig_von_Habsburg
 				arrogant
@@ -72,6 +76,7 @@
 			# From Bohemia, but a native German speaker
 			interest_group = ig_intelligentsia
 			ideology = ideology_moderate
+			trait_generation = { set_variable = historical_figure }
 			traits = {
 				concept_wikipedia_Franz_Anton_von_Kolowrat_Liebsteinsky
 				imperious
@@ -87,6 +92,7 @@
 			ig_leader = yes
 			interest_group = ig_devout
 			ideology = ideology_moderate
+			trait_generation = { set_variable = historical_figure }
 			traits = {
 				concept_wikipedia_Vincenz_Milde
 				pious
@@ -102,6 +108,7 @@
 			ig_leader = yes
 			interest_group = ig_petty_bourgeoisie
 			ideology = ideology_royalist
+			trait_generation = { set_variable = historical_figure }
 			traits = {
 				concept_wikipedia_Ignaz_Czapka
 				cautious
@@ -117,6 +124,7 @@
 			ig_leader = yes
 			interest_group = ig_rural_folk
 			ideology = ideology_royalist
+			trait_generation = { set_variable = historical_figure }
 			traits = {
 				concept_wikipedia_Anton_von_Doblhoff-Dier
 				innovative
@@ -131,6 +139,7 @@
 			birth_date = 1766.11.2
 			hq = region_south_germany
 			commander_rank = commander_rank_3
+			trait_generation = { set_variable = historical_figure }
 			traits = {
 				concept_wikipedia_Josef_Radetzky
 				persistent
@@ -145,6 +154,7 @@
 			birth_date = 1786.10.14
 			hq = region_poland
 			commander_rank = commander_rank_2
+			trait_generation = { set_variable = historical_figure }
 			traits = {
 				concept_wikipedia_Julius_von_Haynau
 				wrathful
@@ -159,6 +169,7 @@
 			birth_date = 1788.3.17
 			hq = region_danubia
 			commander_rank = commander_rank_4
+			trait_generation = { set_variable = historical_figure }
 			traits = {
 				concept_wikipedia_Heinrich_von_Hess
 				meticulous
@@ -176,6 +187,7 @@
 			birth_date = 1777.11.3
 			hq = region_italy
 			commander_rank = commander_rank_2
+			trait_generation = { set_variable = historical_figure }
 			traits = {
 				concept_wikipedia_Laval_Nugent_von_Westmeath
 				basic_offensive_planner
@@ -193,6 +205,7 @@
 			birth_date = 1777.3.23
 			hq = region_balkans
 			commander_rank = commander_rank_2
+			trait_generation = { set_variable = historical_figure }
 			traits = {
 				concept_wikipedia_Karl_Ludwig_von_Ficquelmont
 				experienced_diplomat
@@ -210,6 +223,7 @@
 			birth_date = 1785.5.22
 			hq = region_italy
 			commander_rank = commander_rank_2
+			trait_generation = { set_variable = historical_figure }
 			traits = {
 				concept_wikipedia_Franz_von_Bandiera
 				direct

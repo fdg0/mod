@@ -11,6 +11,7 @@
 			hq = region_north_germany
 			interest_group = ig_armed_forces
 			ideology= ideology_royalist
+			trait_generation = { set_variable = historical_figure }
 			traits = {
 				concept_wikipedia_Friedrich_Wilhelm1_von_Hohenzollern
 				direct
@@ -28,6 +29,7 @@
 			age = 41
 			interest_group = ig_armed_forces
 			ideology = ideology_royalist
+			trait_generation = { set_variable = historical_figure }
 			traits = {
 				concept_wikipedia_Friedrich_Wilhelm2_von_Hohenzollern
 				reserved
@@ -45,6 +47,7 @@
 			ig_leader = yes
 			interest_group = ig_armed_forces
 			ideology = ideology_royalist
+			trait_generation = { set_variable = historical_figure }
 			traits = {
 				concept_wikipedia_Gustav_von_Rauch
 				persistent
@@ -58,6 +61,7 @@
 			ig_leader = yes
 			interest_group = ig_petty_bourgeoisie
 			ideology = ideology_royalist
+			trait_generation = { set_variable = historical_figure }
 			traits = {
 				concept_wikipedia_Friedrich_Ancillon
 				imperious
@@ -72,6 +76,7 @@
 			ig_leader = yes
 			interest_group = ig_landowners
 			ideology = ideology_moderate
+			trait_generation = { set_variable = historical_figure }
 			traits = {
 				concept_wikipedia_Carl_Heinrich_von_Wylich_und_Lottum
 				ambitious
@@ -86,6 +91,7 @@
 			ig_leader = yes
 			interest_group = ig_devout
 			ideology = ideology_royalist
+			trait_generation = { set_variable = historical_figure }
 			traits = {
 				concept_wikipedia_Ludwig_Gustav_von_Thile
 				tactful
@@ -100,6 +106,7 @@
 			ig_leader = yes
 			interest_group = ig_industrialists
 			ideology = ideology_moderate
+			trait_generation = { set_variable = historical_figure }
 			traits = {
 				concept_wikipedia_August_von_der_Heydt
 				persistent
@@ -113,6 +120,7 @@
 			last_name = von_Moltke
 			hq = region_north_germany
 			age = 36
+			trait_generation = { set_variable = historical_figure }
 			traits = {
 				concept_wikipedia_Helmuth1_von_Moltke
 				expert_offensive_planner
@@ -128,6 +136,7 @@
 			age = 66
 			hq = region_poland
 			commander_rank = commander_rank_3
+			trait_generation = { set_variable = historical_figure }
 			traits = {
 				concept_wikipedia_Hans_Ernst_Karl_von_Zieten
 				plains_commander
@@ -152,6 +161,7 @@
 			hq = region_rhine
 			commander_rank = commander_rank_3
 			age = 62
+			trait_generation = { set_variable = historical_figure }
 			traits = {
 				concept_wikipedia_Wilhelm_von_Krauseneck
 				reserved

@@ -1,7 +1,7 @@
 ﻿
 ### COMMON VALUES
 
-ec_amount_of_building_types = 49
+ec_base_construction_points = 5
 
 ec_construction_points_per_building = {
 	value = define:NEconomy|MAX_WEEKLY_CONSTRUCTION_PROGRESS
@@ -10,6 +10,51 @@ ec_construction_points_per_building = {
 		add = modifier:state_construction_mult
 		min = 0.01
 	}
+	min = 0.5
+}
+
+ec_construction_points_current = {
+	value = modifier:country_construction_add
+	#multiply = {
+	#	value = modifier:country_construction_mult
+	#	add = 1
+	#}
+	min = ec_base_construction_points
+}
+
+ec_usage_of_construction_points_value = {
+	value = num_queued_constructions
+	multiply = ec_construction_points_per_building
+}
+
+ec_usage_of_construction_points_percent = {
+	value = ec_usage_of_construction_points_value
+	divide = ec_construction_points_current
+	min = 0.00
+	max = 1.00
+}
+
+ec_construction_points_from_sectors_current = {
+	value = modifier:country_construction_add
+	#multiply = {
+	#	value = modifier:country_construction_mult
+	#	add = 1
+	#}
+	subtract = ec_base_construction_points
+	min = 0
+}
+
+ec_usage_of_construction_points_from_sectors_value = {
+	value = num_queued_constructions
+	multiply = ec_construction_points_per_building
+	subtract = ec_base_construction_points
+}
+
+ec_usage_of_construction_points_from_sectors_percent = {
+	value = ec_usage_of_construction_points_from_sectors_value
+	divide = ec_construction_points_from_sectors_current
+	min = 0.00
+	max = 1.00
 }
 
 ec_unincorporated_population = {
@@ -109,9 +154,9 @@ ec_country_budget_surplus = {
 ec_country_active_income = {
 	value = ec_country_budget_surplus
 	add = {
-		value = var:ec_building_expenses_value
+		value = var:ec_total_building_expenses
 		divide = {
-			value = var:ec_building_expenses_checks
+			value = var:ec_checks_of_building_costs
 			min = 1
 		}
 	}
@@ -228,6 +273,12 @@ ec_available_workforce = {
 	value = var:ec_available_workforce
 	if = {
 		limit = {
+			has_variable = ec_flexible_workforce
+		}
+		add = var:ec_flexible_workforce
+	}
+	if = {
+		limit = {
 			has_variable = ecaqb
 		}
 		subtract = {
@@ -340,6 +391,11 @@ ec_20_percent_surplus = {
 ec_25_percent_surplus = {
 	value = income
 	multiply = 0.25
+}
+
+ec_30_percent_surplus = {
+	value = income
+	multiply = 0.30
 }
 
 ec_15_percent_deficit = {
@@ -626,35 +682,296 @@ ec_requirements_value_11 = {
 	value = 1
 }
 
+### EXACT AND FLOOR OFFSETS BY GOOD PRIORITY
+
+ec_steps_from_exact_to_floor_offset = 4
+
+ec_resource_priority_1_exact_offset = {
+	value = 0
+	if = {
+		limit = {
+			has_variable = ec_resource_offset_country_factor
+		}
+		add = var:ec_resource_offset_country_factor
+	}
+	min = 0
+	max = 4
+}
+
+ec_resource_priority_2_exact_offset = {
+	value = 1
+	if = {
+		limit = {
+			has_variable = ec_resource_offset_country_factor
+		}
+		add = var:ec_resource_offset_country_factor
+	}
+	min = 0
+	max = 4
+}
+
+ec_resource_priority_3_exact_offset = {
+	value = 2
+	if = {
+		limit = {
+			has_variable = ec_resource_offset_country_factor
+		}
+		add = var:ec_resource_offset_country_factor
+	}
+	min = 0
+	max = 4
+}
+
+ec_resource_priority_4_exact_offset = {
+	value = 3
+	if = {
+		limit = {
+			has_variable = ec_resource_offset_country_factor
+		}
+		add = var:ec_resource_offset_country_factor
+	}
+	min = 0
+	max = 4
+}
+
+ec_resource_priority_5_exact_offset = {
+	value = 4
+	if = {
+		limit = {
+			has_variable = ec_resource_offset_country_factor
+		}
+		add = var:ec_resource_offset_country_factor
+	}
+	min = 0
+	max = 4
+}
+
+ec_resource_priority_1_floor_offset = {
+	value = ec_resource_priority_1_exact_offset
+	subtract = ec_steps_from_exact_to_floor_offset
+}
+
+ec_resource_priority_2_floor_offset = {
+	value = ec_resource_priority_2_exact_offset
+	subtract = ec_steps_from_exact_to_floor_offset
+}
+
+ec_resource_priority_3_floor_offset = {
+	value = ec_resource_priority_3_exact_offset
+	subtract = ec_steps_from_exact_to_floor_offset
+}
+
+ec_resource_priority_4_floor_offset = {
+	value = ec_resource_priority_4_exact_offset
+	subtract = ec_steps_from_exact_to_floor_offset
+}
+
+ec_resource_priority_5_floor_offset = {
+	value = ec_resource_priority_5_exact_offset
+	subtract = ec_steps_from_exact_to_floor_offset
+}
+
+ec_arable_priority_1_exact_offset = {
+	value = 0
+	if = {
+		limit = {
+			has_variable = ec_arable_offset_country_factor
+		}
+		add = var:ec_arable_offset_country_factor
+	}
+	min = 0
+	max = 4
+}
+
+ec_arable_priority_2_exact_offset = {
+	value = 1
+	if = {
+		limit = {
+			has_variable = ec_arable_offset_country_factor
+		}
+		add = var:ec_arable_offset_country_factor
+	}
+	min = 0
+	max = 4
+}
+
+ec_arable_priority_3_exact_offset = {
+	value = 2
+	if = {
+		limit = {
+			has_variable = ec_arable_offset_country_factor
+		}
+		add = var:ec_arable_offset_country_factor
+	}
+	min = 0
+	max = 4
+}
+
+ec_arable_priority_4_exact_offset = {
+	value = 3
+	if = {
+		limit = {
+			has_variable = ec_arable_offset_country_factor
+		}
+		add = var:ec_arable_offset_country_factor
+	}
+	min = 0
+	max = 4
+}
+
+ec_arable_priority_5_exact_offset = {
+	value = 4
+	if = {
+		limit = {
+			has_variable = ec_arable_offset_country_factor
+		}
+		add = var:ec_arable_offset_country_factor
+	}
+	min = 0
+	max = 4
+}
+
+ec_arable_priority_1_floor_offset = {
+	value = ec_arable_priority_1_exact_offset
+	subtract = ec_steps_from_exact_to_floor_offset
+}
+
+ec_arable_priority_2_floor_offset = {
+	value = ec_arable_priority_2_exact_offset
+	subtract = ec_steps_from_exact_to_floor_offset
+}
+
+ec_arable_priority_3_floor_offset = {
+	value = ec_arable_priority_3_exact_offset
+	subtract = ec_steps_from_exact_to_floor_offset
+}
+
+ec_arable_priority_4_floor_offset = {
+	value = ec_arable_priority_4_exact_offset
+	subtract = ec_steps_from_exact_to_floor_offset
+}
+
+ec_arable_priority_5_floor_offset = {
+	value = ec_arable_priority_5_exact_offset
+	subtract = ec_steps_from_exact_to_floor_offset
+}
+
+ec_industry_priority_1_exact_offset = {
+	value = 0
+	if = {
+		limit = {
+			has_variable = ec_industry_offset_country_factor
+		}
+		add = var:ec_industry_offset_country_factor
+	}
+	min = 0
+	max = 4
+}
+
+ec_industry_priority_2_exact_offset = {
+	value = 1
+	if = {
+		limit = {
+			has_variable = ec_industry_offset_country_factor
+		}
+		add = var:ec_industry_offset_country_factor
+	}
+	min = 0
+	max = 4
+}
+
+ec_industry_priority_3_exact_offset = {
+	value = 2
+	if = {
+		limit = {
+			has_variable = ec_industry_offset_country_factor
+		}
+		add = var:ec_industry_offset_country_factor
+	}
+	min = 0
+	max = 4
+}
+
+ec_industry_priority_4_exact_offset = {
+	value = 3
+	if = {
+		limit = {
+			has_variable = ec_industry_offset_country_factor
+		}
+		add = var:ec_industry_offset_country_factor
+	}
+	min = 0
+	max = 4
+}
+
+ec_industry_priority_5_exact_offset = {
+	value = 4
+	if = {
+		limit = {
+			has_variable = ec_industry_offset_country_factor
+		}
+		add = var:ec_industry_offset_country_factor
+	}
+	min = 0
+	max = 4
+}
+
+ec_industry_priority_1_floor_offset = {
+	value = ec_industry_priority_1_exact_offset
+	subtract = ec_steps_from_exact_to_floor_offset
+}
+
+ec_industry_priority_2_floor_offset = {
+	value = ec_industry_priority_2_exact_offset
+	subtract = ec_steps_from_exact_to_floor_offset
+}
+
+ec_industry_priority_3_floor_offset = {
+	value = ec_industry_priority_3_exact_offset
+	subtract = ec_steps_from_exact_to_floor_offset
+}
+
+ec_industry_priority_4_floor_offset = {
+	value = ec_industry_priority_4_exact_offset
+	subtract = ec_steps_from_exact_to_floor_offset
+}
+
+ec_industry_priority_5_floor_offset = {
+	value = ec_industry_priority_5_exact_offset
+	subtract = ec_steps_from_exact_to_floor_offset
+}
+
+ec_floor_when_using_military_forces = 7
+
 ### SCALING OF TARGETS WITH GDP PER CAPITA
 
 ec_target_gdp_per_capita_scaling = {
 	value = var:ec_square_root_of_gdp_per_capita
-	multiply = 7
-	divide = 10
+	multiply = 2
+	divide = 3
 	add = {
-		value = 3
-		divide = 10
+		value = 1
+		divide = 3
 	}
 }
 
 ec_target_incorporated_gdp_per_capita_scaling = {
 	value = var:ec_square_root_of_incorporated_gdp_per_capita
-	multiply = 7
-	divide = 10
+	multiply = 2
+	divide = 3
 	add = {
-		value = 3
-		divide = 10
+		value = 1
+		divide = 3
 	}
 }
 
 ec_target_minus_half_unincorporated_gdp_per_capita_scaling = {
 	value = var:ec_square_root_of_minus_half_unincorporated_gdp_per_capita
-	multiply = 7
-	divide = 10
+	multiply = 2
+	divide = 3
 	add = {
-		value = 3
-		divide = 10
+		value = 1
+		divide = 3
 	}
 }
 
@@ -701,8 +1018,11 @@ ec_government_administration_costs_value = {
 		limit = {
 			has_variable = ec_government_administration_costs
 			var:ec_government_administration_costs > 0
+			has_variable = ec_checks_of_building_costs
+			var:ec_checks_of_building_costs > 0
 		}
 		value = var:ec_government_administration_costs
+		divide = var:ec_checks_of_building_costs
 	}
 	else = {
 		value = ec_income_adjusted_by_tax_level
@@ -877,7 +1197,7 @@ ec_construction_sector_costs_target = {
 		divide = 0.875
 	}
 	multiply = {
-		value = 1.05
+		value = 1.025
 		subtract = {
 			value = ec_government_administration_costs_value
 			add = ec_university_costs_value
@@ -895,8 +1215,8 @@ ec_construction_sector_costs_target = {
 				min = 1
 			}
 		}
-		multiply = 1.143
-		min = 0.25
+		multiply = 1.0714
+		min = 0.20
 		max = 0.60
 	}
 	
@@ -1010,10 +1330,14 @@ ec_construction_sector_costs_ceiling = {
 ec_construction_sector_costs_value = {
 	if = {
 		limit = {
-			has_variable = ec_construction_sector_costs
-			var:ec_construction_sector_costs > 0
+			has_variable = ec_construction_sector_per_point_costs
+			var:ec_construction_sector_per_point_costs > 0
+			has_variable = ec_checks_of_building_costs
+			var:ec_checks_of_building_costs > 0
 		}
-		value = var:ec_construction_sector_costs
+		value = var:ec_construction_sector_per_point_costs
+		divide = var:ec_checks_of_building_costs
+		multiply = ec_construction_points_from_sectors_current
 	}
 	else = {
 		value = ec_temporary_income_and_expenses
@@ -1105,32 +1429,20 @@ ec_construction_points_7 = {
 
 ec_construction_points_8 = {
 	value = ec_construction_points_target
-	multiply = 1.0375
+	multiply = 1.05
 	min = 5
 }
 
 ec_construction_points_9 = {
 	value = ec_construction_points_target
-	multiply = 1.075
-	min = 5
-}
-
-ec_construction_points_10 = {
-	value = ec_construction_points_target
-	multiply = 1.1125
-	min = 5
-}
-
-ec_construction_points_11 = {
-	value = ec_construction_points_target
-	multiply = 1.15
+	multiply = 1.10
 	min = 5
 }
 
 ec_construction_points_target = {
 	value = total_population
 	divide = 1000000
-	multiply = 6.00
+	multiply = 6.50
 	multiply = ec_target_gdp_per_capita_scaling
 	
 	if = {
@@ -1308,38 +1620,33 @@ ec_construction_points_ceiling = {
 
 ### INNOVATION TARGETS
 
+ec_innovation_4 = {
+	value = ec_innovation_target
+	divide = 1.75
+}
+
 ec_innovation_5 = {
 	value = ec_innovation_target
-	divide = 1.60
+	divide = 1.50
 }
 
 ec_innovation_6 = {
 	value = ec_innovation_target
-	divide = 1.40
+	divide = 1.25
 }
 
 ec_innovation_7 = {
 	value = ec_innovation_target
-	divide = 1.20
 }
 
 ec_innovation_8 = {
 	value = ec_innovation_target
-}
-
-ec_innovation_11 = {
-	value = ec_innovation_target
 	multiply = 1.05
 }
 
-ec_innovation_14 = {
+ec_innovation_9 = {
 	value = ec_innovation_target
 	multiply = 1.10
-}
-
-ec_innovation_16 = {
-	value = ec_innovation_target
-	multiply = 1.15
 }
 
 ec_innovation_target = {
@@ -1469,8 +1776,11 @@ ec_university_costs_value = {
 		limit = {
 			has_variable = ec_university_costs
 			var:ec_university_costs > 0
+			has_variable = ec_checks_of_building_costs
+			var:ec_checks_of_building_costs > 0
 		}
 		value = var:ec_university_costs
+		divide = var:ec_checks_of_building_costs
 	}
 	else = {
 		value = ec_income_adjusted_by_tax_level
@@ -1489,6 +1799,11 @@ ec_university_costs_expected = {
 	}
 }
 
+ec_university_4 = {
+	value = ec_university_target
+	divide = 2.50
+}
+
 ec_university_5 = {
 	value = ec_university_target
 	divide = 2.00
@@ -1496,36 +1811,26 @@ ec_university_5 = {
 
 ec_university_6 = {
 	value = ec_university_target
-	divide = 1.66
+	divide = 1.50
 }
 
 ec_university_7 = {
 	value = ec_university_target
-	divide = 1.33
 }
 
 ec_university_8 = {
 	value = ec_university_target
-}
-
-ec_university_11 = {
-	value = ec_university_target
 	multiply = 1.05
 }
 
-ec_university_14 = {
+ec_university_9 = {
 	value = ec_university_target
 	multiply = 1.10
 }
 
-ec_university_16 = {
-	value = ec_university_target
-	multiply = 1.15
-}
-
 ec_university_target = {
 	value = ec_minus_half_unincorporated_population
-	divide = 500000
+	divide = 400000
 	subtract = 1
 	multiply = ec_target_minus_half_unincorporated_gdp_per_capita_scaling
 }
@@ -1641,8 +1946,11 @@ ec_port_costs_value = {
 		limit = {
 			has_variable = ec_port_costs
 			var:ec_port_costs > 0
+			has_variable = ec_checks_of_building_costs
+			var:ec_checks_of_building_costs > 0
 		}
 		value = var:ec_port_costs
+		divide = var:ec_checks_of_building_costs
 	}
 	else = {
 		value = ec_income_adjusted_by_tax_level
@@ -1661,43 +1969,33 @@ ec_port_costs_expected = {
 	}
 }
 
-ec_convoys_5 = {
+ec_convoys_4 = {
 	value = ec_convoys_target
-	divide = 2.33
+	divide = 2.50
 }
 
-ec_convoys_6 = {
+ec_convoys_5 = {
 	value = ec_convoys_target
 	divide = 2.00
 }
 
+ec_convoys_6 = {
+	value = ec_convoys_target
+	divide = 1.50
+}
+
 ec_convoys_7 = {
 	value = ec_convoys_target
-	divide = 1.66
 }
 
 ec_convoys_8 = {
 	value = ec_convoys_target
-	divide = 1.33
+	multiply = 1.05
 }
 
 ec_convoys_9 = {
 	value = ec_convoys_target
-}
-
-ec_convoys_11 = {
-	value = ec_convoys_target
-	multiply = 1.05
-}
-
-ec_convoys_14 = {
-	value = ec_convoys_target
 	multiply = 1.10
-}
-
-ec_convoys_16 = {
-	value = ec_convoys_target
-	multiply = 1.15
 }
 
 ec_convoys_target = {
@@ -2018,8 +2316,11 @@ ec_barracks_costs_value = {
 		limit = {
 			has_variable = ec_barracks_costs
 			var:ec_barracks_costs > 0
+			has_variable = ec_checks_of_building_costs
+			var:ec_checks_of_building_costs > 0
 		}
 		value = var:ec_barracks_costs
+		divide = var:ec_checks_of_building_costs
 	}
 	else = {
 		value = ec_income_adjusted_by_tax_level
@@ -2074,22 +2375,12 @@ ec_battalion_7 = {
 
 ec_battalion_8 = {
 	value = ec_battalion_target
-	multiply = 1.0375
+	multiply = 1.05
 }
 
 ec_battalion_9 = {
 	value = ec_battalion_target
-	multiply = 1.075
-}
-
-ec_battalion_10 = {
-	value = ec_battalion_target
-	multiply = 1.1125
-}
-
-ec_battalion_11 = {
-	value = ec_battalion_target
-	multiply = 1.15
+	multiply = 1.10
 }
 
 ec_battalion_base = {
@@ -2313,6 +2604,11 @@ ec_battalion_ceiling = {
 	}
 }
 
+ec_battalion_paucity = {
+	value = ec_battalion_target
+	multiply = 0.80
+}
+
 ec_battalion_floor = {
 	value = ec_battalion_target
 	multiply = 0.25
@@ -2518,8 +2814,11 @@ ec_naval_base_costs_value = {
 		limit = {
 			has_variable = ec_naval_base_costs
 			var:ec_naval_base_costs > 0
+			has_variable = ec_checks_of_building_costs
+			var:ec_checks_of_building_costs > 0
 		}
 		value = var:ec_naval_base_costs
+		divide = var:ec_checks_of_building_costs
 	}
 	else = {
 		value = ec_income_adjusted_by_tax_level
@@ -2574,22 +2873,12 @@ ec_flotilla_7 = {
 
 ec_flotilla_8 = {
 	value = ec_flotilla_target
-	multiply = 1.0375
+	multiply = 1.05
 }
 
 ec_flotilla_9 = {
 	value = ec_flotilla_target
-	multiply = 1.075
-}
-
-ec_flotilla_10 = {
-	value = ec_flotilla_target
-	multiply = 1.1125
-}
-
-ec_flotilla_11 = {
-	value = ec_flotilla_target
-	multiply = 1.15
+	multiply = 1.10
 }
 
 ec_flotilla_base = {
@@ -2790,6 +3079,11 @@ ec_flotilla_ceiling = {
 	}
 }
 
+ec_flotilla_paucity = {
+	value = ec_flotilla_target
+	multiply = 0.80
+}
+
 ec_flotilla_floor = {
 	value = ec_flotilla_target
 	multiply = 0.25
@@ -2805,7 +3099,7 @@ ec_simultaneously_developed = {
 }
 
 ec_simultaneous_constructions = {
-	value = modifier:country_construction_add
+	value = ec_construction_points_current
 	divide = {
 		value = ec_construction_points_per_building
 		min = 0.5
@@ -2950,8 +3244,20 @@ ec_building_limit_9_11 = { value = ec_simultaneous_constructions multiply = 0.3 
 
 ### PURELY TECHNICAL STUFF
 
+ec_current_ecbtn = {
+	value = scope:ec_current_type.var:ecbtn
+}
+
 ec_current_ecsbo = {
 	value = scope:ec_current_state.var:ecsbo
+}
+
+ec_current_ecbtc = {
+	value = scope:ec_current_building.var:ecbtc
+}
+
+ec_counter_ecbtn = {
+	value = scope:ec_counter_building.var:ecbtn
 }
 
 ec_current_ecbtp = {
@@ -2988,8 +3294,8 @@ ec_university_count = {
 ec_government_administration_costs = {
 	value = var:ec_government_administration_costs
 }
-ec_construction_sector_costs = {
-	value = var:ec_construction_sector_costs
+ec_construction_sector_expenses = {
+	value = var:ec_construction_sector_expenses
 }
 ec_university_costs = {
 	value = var:ec_university_costs

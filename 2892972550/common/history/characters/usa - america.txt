@@ -11,6 +11,7 @@
 			ideology = ideology_radical
 			birth_date = 1767.3.15
 			dna = dna_andrew_jackson
+			trait_generation = { set_variable = historical_figure }
 			traits = {
 				concept_wikipedia_Andrew_Jackson
 				bigoted
@@ -30,6 +31,7 @@
 			ig_leader = yes
 			interest_group = ig_landowners
 			ideology = ideology_slaver
+			trait_generation = { set_variable = historical_figure }
 			traits = {
 				concept_wikipedia_John_Calhoun
 				bigoted
@@ -44,6 +46,7 @@
 			ig_leader = yes
 			interest_group = ig_intelligentsia
 			ideology = ideology_pacifist
+			trait_generation = { set_variable = historical_figure }
 			traits = {
 				concept_wikipedia_Henry_Clay
 				meticulous
@@ -58,6 +61,7 @@
 			ig_leader = yes
 			interest_group = ig_petty_bourgeoisie
 			ideology = ideology_moderate
+			trait_generation = { set_variable = historical_figure }
 			traits = {
 				concept_wikipedia_Daniel_Webster
 				arrogant
@@ -71,6 +75,7 @@
 			ig_leader = yes
 			interest_group = ig_devout
 			ideology = ideology_abolitionist
+			trait_generation = { set_variable = historical_figure }
 			traits = {
 				concept_wikipedia_Charles_Finney
 				cautious
@@ -84,6 +89,7 @@
 			ig_leader = yes
 			interest_group = ig_trade_unions
 			ideology = ideology_moderate
+			trait_generation = { set_variable = historical_figure }
 			traits = {
 				concept_wikipedia_Robert_Rantoul
 				meticulous
@@ -100,6 +106,7 @@
 			ideology = ideology_jingoist_leader
 			hq = region_new_england
 			commander_rank = commander_rank_2
+			trait_generation = { set_variable = historical_figure }
 			traits = {
 				concept_wikipedia_Winfield_Scott
 				cautious
@@ -113,6 +120,7 @@
 			ig_leader = yes
 			interest_group = ig_industrialists
 			ideology = ideology_moderate
+			trait_generation = { set_variable = historical_figure }
 			traits = {
 				concept_wikipedia_Cornelius_Vanderbilt
 				meticulous
@@ -125,6 +133,7 @@
 			last_name = Taylor
 			birth_date = 1784.11.24
 			hq = region_the_midwest
+			trait_generation = { set_variable = historical_figure }
 			traits = {
 				concept_wikipedia_Zachary_Taylor
 				innovative
@@ -162,6 +171,7 @@
 			birth_date = 1773.3.9
 			hq = region_new_england
 			commander_rank = commander_rank_2
+			trait_generation = { set_variable = historical_figure }
 			traits = {
 				concept_wikipedia_Isaac_Hull
 				expert_naval_commander
@@ -195,6 +205,7 @@
 			ideology = ideology_moderate
 			birth_date = 1776.2.9
 			hq = region_dixie
+			trait_generation = { set_variable = historical_figure }
 			traits = {
 				concept_wikipedia_Elie_Augustus_Frederick_Lavallette
 				brave

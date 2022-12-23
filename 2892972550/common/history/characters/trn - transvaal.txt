@@ -9,6 +9,7 @@
 			age = 38
 			interest_group = ig_rural_folk
 			ideology = ideology_moderate
+			trait_generation = { set_variable = historical_figure }
 			traits = {
 				concept_wikipedia_Andries_Pretorius
 				direct

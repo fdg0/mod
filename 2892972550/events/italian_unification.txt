@@ -194,6 +194,7 @@ italian_unification.3 = {
 			birth_date = 1807.7.4
 			dna = dna_giuseppe_garibaldi
 			ideology = ideology_republican_leader
+			trait_generation = { set_variable = historical_figure }
 			traits = {
 				concept_wikipedia_Giuseppe_Garibaldi
 				resupply_commander
@@ -218,6 +219,7 @@ italian_unification.3 = {
 			birth_date = 1807.7.4
 			dna = dna_giuseppe_garibaldi
 			ideology = ideology_republican_leader
+			trait_generation = { set_variable = historical_figure }
 			traits = {
 				concept_wikipedia_Giuseppe_Garibaldi
 				meticulous

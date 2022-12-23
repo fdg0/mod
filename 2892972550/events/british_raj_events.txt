@@ -582,6 +582,7 @@ raj.6 = {
 				religion = sunni
 				interest_group = ig_armed_forces
 				ideology = ideology_jingoist_leader
+				trait_generation = { set_variable = historical_figure }
 				traits = { 
 					concept_wikipedia_Bakht_Khan
 					stalwart_defender 
@@ -606,6 +607,7 @@ raj.6 = {
 					religion = sunni
 					interest_group = ig_landowners
 					ideology = ideology_royalist
+					trait_generation = { set_variable = historical_figure }
 					traits = { 
 						concept_wikipedia_Mirza_Mughal_Gurkani
 						resupply_commander 
@@ -622,6 +624,7 @@ raj.6 = {
 					noble = yes
 					interest_group = ig_landowners
 					ideology = ideology_royalist
+					trait_generation = { set_variable = historical_figure }
 					traits = { 
 						concept_wikipedia_Bahadur_Shah_Gurkani
 						reserved 
@@ -639,6 +642,7 @@ raj.6 = {
 					noble = yes
 					interest_group = ig_landowners
 					ideology = ideology_royalist
+					trait_generation = { set_variable = historical_figure }
 					traits = {
 						concept_wikipedia_Mirza_Fakhru_Gurkani
 					}
@@ -667,6 +671,7 @@ raj.6 = {
 					religion = sunni
 					interest_group = ig_landowners
 					ideology = ideology_royalist
+					trait_generation = { set_variable = historical_figure }
 					traits = { 
 						concept_wikipedia_Mirza_Mughal_Gurkani
 						resupply_commander 
@@ -683,6 +688,7 @@ raj.6 = {
 					noble = yes
 					interest_group = ig_landowners
 					ideology = ideology_royalist
+					trait_generation = { set_variable = historical_figure }
 					traits = { 
 						concept_wikipedia_Bahadur_Shah_Gurkani
 						reserved 
@@ -700,6 +706,7 @@ raj.6 = {
 					noble = yes
 					interest_group = ig_landowners
 					ideology = ideology_royalist
+					trait_generation = { set_variable = historical_figure }
 					traits = { 
 						concept_wikipedia_Mirza_Fakhru_Gurkani
 					}

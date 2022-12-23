@@ -49,11 +49,17 @@
  setting_ec_subject_construction_150:0 "150%"
  setting_ec_subject_construction_150_desc:0 "Warning: values over 100% increase construction efficiency of AI countries, so it's no longer fair play."
  
+ rule_ec_building_priorities:0 "ARoAI | Priorities of Buildings"
+ setting_ec_building_priorities_roleplay:0 "Roleplay"
+ setting_ec_building_priorities_roleplay_desc:0 "Building priorities of AI countries will slightly vary depending on their laws and position in the world."
+ setting_ec_building_priorities_uniform:0 "#high Uniform#!"
+ setting_ec_building_priorities_uniform_desc:0 "All the AI countries will use the same building priorities."
+ 
  rule_rs_mode:0 "ARoAI | Research Simulation"
  setting_rs_default:0 "Default"
- setting_rs_default_desc:0 "AI countries will get a bit of help like focusing on Nationalism for German and Italian states."
+ setting_rs_default_desc:0 "AI countries will specifically prioritize a few techs like Pumpjacks or Nationalism for German and Italian states."
  setting_rs_railroaded:0 "#high Railroaded#!"
- setting_rs_railroaded_desc:0 "AI countries without Academia and Railways technologies will be fully focused on researching them."
+ setting_rs_railroaded_desc:0 "Additionally, AI countries without Academia and Railways technologies will be fully focused on researching them."
  setting_rs_disabled:0 "#high Disabled#!"
  setting_rs_disabled_desc:0 "AI countries will receive no help in choosing which technologies to research."
  

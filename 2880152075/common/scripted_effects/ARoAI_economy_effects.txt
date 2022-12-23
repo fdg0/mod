@@ -6,6 +6,7 @@ ec_check_building_type_array = {
 		limit = {
 			ec_building_type_array_is_correct = no
 		}
+		ec_clear_building_type_array = yes
 		ec_create_building_type_array = yes
 	}
 }
@@ -24,6 +25,18 @@ ec_clear_building_type_array = {
 				has_variable = ecbtp
 			}
 			remove_variable = ecbtp
+		}
+		if = {
+			limit = {
+				has_variable = ecbtc
+			}
+			remove_variable = ecbtc
+		}
+		if = {
+			limit = {
+				has_variable = ecbta
+			}
+			remove_variable = ecbta
 		}
 	}
 }
@@ -376,6 +389,11 @@ ec_calculate_country_budget_surplus = {
 				value = ec_country_current_treasury
 				subtract = var:ec_country_previous_treasury
 				divide = 4.35
+				add = {
+					value = var:ec_construction_sector_expenses
+					divide = var:ec_checks_of_building_costs
+				}
+				subtract = ec_construction_sector_costs_value
 			}
 		}
 	}
@@ -385,36 +403,47 @@ ec_calculate_country_budget_surplus = {
 			value = {
 				if = {
 					limit = {
-						has_variable = ec_building_expenses_value
-						has_variable = ec_building_expenses_checks
-						has_variable = ec_construction_sector_costs
+						has_variable = ec_checks_of_building_costs
+						var:ec_checks_of_building_costs > 0
+						has_variable = ec_total_building_expenses
+						var:ec_total_building_expenses > 0
+						has_variable = ec_construction_sector_expenses
+						var:ec_construction_sector_expenses > 0
 					}
 					value = income
 					subtract = {
-						value = var:ec_building_expenses_value
+						value = var:ec_total_building_expenses
 						divide = {
-							value = var:ec_building_expenses_checks
+							value = var:ec_checks_of_building_costs
 							min = 1
 						}
 					}
-					add = {
-						value = weekly_net_fixed_income
-						subtract = {
-							value = ec_construction_sector_costs_value
-							multiply = 0.95
+					if = {
+						limit = {
+							is_non_customs_union_subject = yes
 						}
+						add = weekly_net_fixed_income
+						subtract = {
+							value = var:ec_construction_sector_expenses
+							divide = var:ec_checks_of_building_costs
+							multiply = 0.80
+						}
+						divide = 2
 					}
-					divide = 2
 				}
 				else = {
 					value = weekly_net_fixed_income
 					if = {
 						limit = {
-							has_variable = ec_construction_sector_costs
+							has_variable = ec_checks_of_building_costs
+							var:ec_checks_of_building_costs > 0
+							has_variable = ec_construction_sector_expenses
+							var:ec_construction_sector_expenses > 0
 						}
 						subtract = {
-							value = ec_construction_sector_costs_value
-							multiply = 0.95
+							value = var:ec_construction_sector_expenses
+							divide = var:ec_checks_of_building_costs
+							multiply = 0.80
 						}
 					}
 				}
@@ -430,30 +459,36 @@ ec_calculate_country_budget_surplus = {
 ### COLLECT BUDGET COSTS SUCH AS CONSTRUCTION AND MILITARY
 
 ec_collect_budget_costs = {
+	
+	# Set up estimate variables
+	
 	set_variable = {
-		name = ec_government_administration_costs_estimate
+		name = ec_government_administration_estimate
 		value = 0
 	}
 	set_variable = {
-		name = ec_construction_sector_costs_estimate
+		name = ec_construction_sector_estimate
 		value = 0
 	}
 	set_variable = {
-		name = ec_university_costs_estimate
+		name = ec_university_estimate
 		value = 0
 	}
 	set_variable = {
-		name = ec_port_costs_estimate
+		name = ec_port_estimate
 		value = 0
 	}
 	set_variable = {
-		name = ec_barracks_costs_estimate
+		name = ec_barracks_estimate
 		value = 0
 	}
 	set_variable = {
-		name = ec_naval_base_costs_estimate
+		name = ec_naval_base_estimate
 		value = 0
 	}
+	
+	# Collect expenses data from buildings
+	
 	every_scope_building = {
 		if = {
 			limit = {
@@ -461,7 +496,7 @@ ec_collect_budget_costs = {
 			}
 			root = {
 				change_variable = {
-					name = ec_government_administration_costs_estimate
+					name = ec_government_administration_estimate
 					subtract = prev.weekly_profit
 				}
 			}
@@ -472,7 +507,7 @@ ec_collect_budget_costs = {
 			}
 			root = {
 				change_variable = {
-					name = ec_construction_sector_costs_estimate
+					name = ec_construction_sector_estimate
 					subtract = prev.weekly_profit
 				}
 			}
@@ -483,7 +518,7 @@ ec_collect_budget_costs = {
 			}
 			root = {
 				change_variable = {
-					name = ec_university_costs_estimate
+					name = ec_university_estimate
 					subtract = prev.weekly_profit
 				}
 			}
@@ -494,7 +529,7 @@ ec_collect_budget_costs = {
 			}
 			root = {
 				change_variable = {
-					name = ec_port_costs_estimate
+					name = ec_port_estimate
 					subtract = prev.weekly_profit
 				}
 			}
@@ -505,7 +540,7 @@ ec_collect_budget_costs = {
 			}
 			root = {
 				change_variable = {
-					name = ec_barracks_costs_estimate
+					name = ec_barracks_estimate
 					subtract = prev.weekly_profit
 				}
 			}
@@ -516,50 +551,193 @@ ec_collect_budget_costs = {
 			}
 			root = {
 				change_variable = {
-					name = ec_naval_base_costs_estimate
+					name = ec_naval_base_estimate
 					subtract = prev.weekly_profit
 				}
 			}
 		}
 	}
 	
+	# Track amount of checks in this cycle
+	
 	if = {
 		limit = {
 			NOT = {
-				has_variable = ec_building_expenses_checks
+				has_variable = ec_checks_of_building_costs
 			}
 		}
 		set_variable = {
-			name = ec_building_expenses_checks
-			value = 0
-		}
-	}
-	if = {
-		limit = {
-			NOT = {
-				has_variable = ec_building_expenses_value
-			}
-		}
-		set_variable = {
-			name = ec_building_expenses_value
+			name = ec_checks_of_building_costs
 			value = 0
 		}
 	}
 	change_variable = {
-		name = ec_building_expenses_checks
+		name = ec_checks_of_building_costs
 		add = 1
 	}
-	change_variable = {
-		name = ec_building_expenses_value
-		add = {
-			value = var:ec_government_administration_costs_estimate
-			add = var:ec_construction_sector_costs_estimate
-			add = var:ec_university_costs_estimate
-			add = var:ec_port_costs_estimate
-			add = var:ec_barracks_costs_estimate
-			add = var:ec_naval_base_costs_estimate
+	
+	# Write real amount of money spent into total variable
+	
+	if = {
+		limit = {
+			NOT = {
+				has_variable = ec_total_building_expenses
+			}
+		}
+		set_variable = {
+			name = ec_total_building_expenses
+			value = 0
 		}
 	}
+	change_variable = {
+		name = ec_total_building_expenses
+		add = {
+			value = var:ec_government_administration_estimate
+			add = var:ec_construction_sector_estimate
+			add = var:ec_university_estimate
+			add = var:ec_port_estimate
+			add = var:ec_barracks_estimate
+			add = var:ec_naval_base_estimate
+		}
+	}
+	
+	# Calculate money spent per construction point from sectors
+	
+	if = {
+		limit = {
+			NOT = {
+				has_variable = ec_construction_sector_per_point_costs
+			}
+		}
+		set_variable = {
+			name = ec_construction_sector_per_point_costs
+			value = 0
+		}
+	}
+	if = {
+		limit = {
+			OR = {
+				var:ec_construction_sector_estimate = 0
+				ec_construction_points_from_sectors_current = 0
+				ec_usage_of_construction_points_from_sectors_percent = 0
+			}
+		}
+		if = {
+			limit = {
+				var:ec_construction_sector_per_point_costs > 0
+			}
+			set_variable = {
+				name = ec_construction_sector_per_point_estimate
+				value = {
+					value = var:ec_construction_sector_per_point_costs
+					divide = var:ec_checks_of_building_costs
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				has_variable = ec_construction_sector_per_point_previous
+				var:ec_construction_sector_per_point_previous > 0
+			}
+			set_variable = {
+				name = ec_construction_sector_per_point_estimate
+				value = var:ec_construction_sector_per_point_previous
+			}
+		}
+	}
+	else = {
+		set_variable = {
+			name = ec_construction_sector_per_point_estimate
+			value = {
+				value = {
+					value = var:ec_construction_sector_estimate
+					multiply = {
+						value = {
+							value = 4
+							multiply = ec_usage_of_construction_points_from_sectors_percent
+						}
+						divide = {
+							value = 4
+							multiply = ec_usage_of_construction_points_from_sectors_percent
+							add = 1
+						}
+					}
+					divide = ec_usage_of_construction_points_from_sectors_percent
+				}
+				add = {
+					value = var:ec_construction_sector_estimate
+					multiply = {
+						value = 1
+						divide = {
+							value = 4
+							multiply = ec_usage_of_construction_points_from_sectors_percent
+							add = 1
+						}
+					}
+					divide = {
+						value = 1
+						add = modifier:country_government_wages_mult
+					}
+				}
+				divide = ec_construction_points_from_sectors_current
+			}
+		}
+	}
+	if = {
+		limit = {
+			NOT = {
+				has_variable = ec_construction_sector_per_point_estimate
+			}
+		}
+		set_variable = {
+			name = ec_construction_sector_per_point_estimate
+			value = 0
+		}
+	}
+	if = {
+		limit = {
+			var:ec_construction_sector_per_point_estimate > 0
+		}
+		if = {
+			limit = {
+				has_variable = ec_construction_sector_per_point_previous
+				var:ec_construction_sector_per_point_previous > 0
+			}
+			change_variable = {
+				name = ec_construction_sector_per_point_estimate
+				add = var:ec_construction_sector_per_point_previous
+			}
+			change_variable = {
+				name = ec_construction_sector_per_point_estimate
+				divide = 2
+			}
+		}
+		set_variable = {
+			name = ec_construction_sector_per_point_previous
+			value = var:ec_construction_sector_per_point_estimate
+		}
+	}
+	if = {
+		limit = {
+			var:ec_construction_sector_per_point_costs = 0
+		}
+		change_variable = {
+			name = ec_construction_sector_per_point_costs
+			add = {
+				value = var:ec_construction_sector_per_point_estimate
+				multiply = var:ec_checks_of_building_costs
+			}
+		}
+	}
+	else = {
+		change_variable = {
+			name = ec_construction_sector_per_point_costs
+			add = var:ec_construction_sector_per_point_estimate
+		}
+	}
+	remove_variable = ec_construction_sector_per_point_estimate
+	
+	# Correct costs with wage modifiers
 	
 	if = {
 		limit = {
@@ -568,7 +746,7 @@ ec_collect_budget_costs = {
 			}
 		}
 		change_variable = {
-			name = ec_government_administration_costs_estimate
+			name = ec_government_administration_estimate
 			divide = {
 				value = 1
 				add = {
@@ -578,17 +756,7 @@ ec_collect_budget_costs = {
 			}
 		}
 		change_variable = {
-			name = ec_construction_sector_costs_estimate
-			divide = {
-				value = 1
-				add = {
-					value = modifier:country_government_wages_mult
-					multiply = 0.20
-				}
-			}
-		}
-		change_variable = {
-			name = ec_university_costs_estimate
+			name = ec_university_estimate
 			divide = {
 				value = 1
 				add = {
@@ -598,7 +766,7 @@ ec_collect_budget_costs = {
 			}
 		}
 		change_variable = {
-			name = ec_port_costs_estimate
+			name = ec_port_estimate
 			divide = {
 				value = 1
 				add = {
@@ -615,7 +783,7 @@ ec_collect_budget_costs = {
 			}
 		}
 		change_variable = {
-			name = ec_barracks_costs_estimate
+			name = ec_barracks_estimate
 			divide = {
 				value = 1
 				add = {
@@ -625,7 +793,7 @@ ec_collect_budget_costs = {
 			}
 		}
 		change_variable = {
-			name = ec_naval_base_costs_estimate
+			name = ec_naval_base_estimate
 			divide = {
 				value = 1
 				add = {
@@ -636,106 +804,82 @@ ec_collect_budget_costs = {
 		}
 	}
 	
+	ec_add_estimate_to_record = {
+		item = government_administration
+		type = costs
+	}
+	ec_add_estimate_to_record = {
+		item = construction_sector
+		type = expenses
+	}
+	ec_add_estimate_to_record = {
+		item = university
+		type = costs
+	}
+	ec_add_estimate_to_record = {
+		item = port
+		type = costs
+	}
+	ec_add_estimate_to_record = {
+		item = barracks
+		type = costs
+	}
+	ec_add_estimate_to_record = {
+		item = naval_base
+		type = costs
+	}
+}
+
+ec_add_estimate_to_record = {
 	if = {
 		limit = {
-			OR = {
-				NOT = {
-					has_variable = ec_government_administration_costs
-				}
-				var:ec_government_administration_costs_estimate > ec_government_administration_costs
+			NOT = {
+				has_variable = ec_$item$_$type$
 			}
 		}
 		set_variable = {
-			name = ec_government_administration_costs
-			value = var:ec_government_administration_costs_estimate
+			name = ec_$item$_$type$
+			value = 0
 		}
 	}
 	if = {
 		limit = {
-			OR = {
-				NOT = {
-					has_variable = ec_construction_sector_costs
-				}
-				var:ec_construction_sector_costs_estimate > ec_construction_sector_costs
+			var:ec_$item$_$type$ = 0
+		}
+		change_variable = {
+			name = ec_$item$_$type$
+			add = {
+				value = var:ec_$item$_estimate
+				multiply = var:ec_checks_of_building_costs
 			}
 		}
-		set_variable = {
-			name = ec_construction_sector_costs
-			value = var:ec_construction_sector_costs_estimate
-		}
 	}
-	if = {
+	else_if = {
 		limit = {
-			OR = {
-				NOT = {
-					has_variable = ec_university_costs
-				}
-				var:ec_university_costs_estimate > ec_university_costs
-			}
+			var:ec_$item$_estimate = 0
 		}
 		set_variable = {
-			name = ec_university_costs
-			value = var:ec_university_costs_estimate
+			name = ec_$item$_$type$
+			value = 0
 		}
 	}
-	if = {
-		limit = {
-			OR = {
-				NOT = {
-					has_variable = ec_port_costs
-				}
-				var:ec_port_costs_estimate > ec_port_costs
-			}
-		}
-		set_variable = {
-			name = ec_port_costs
-			value = var:ec_port_costs_estimate
+	else = {
+		change_variable = {
+			name = ec_$item$_$type$
+			add = var:ec_$item$_estimate
 		}
 	}
-	if = {
-		limit = {
-			OR = {
-				NOT = {
-					has_variable = ec_barracks_costs
-				}
-				var:ec_barracks_costs_estimate > ec_barracks_costs
-			}
-		}
-		set_variable = {
-			name = ec_barracks_costs
-			value = var:ec_barracks_costs_estimate
-		}
-	}
-	if = {
-		limit = {
-			OR = {
-				NOT = {
-					has_variable = ec_naval_base_costs
-				}
-				var:ec_naval_base_costs_estimate > ec_naval_base_costs
-			}
-		}
-		set_variable = {
-			name = ec_naval_base_costs
-			value = var:ec_naval_base_costs_estimate
-		}
-	}
-	
-	remove_variable = ec_government_administration_costs_estimate
-	remove_variable = ec_construction_sector_costs_estimate
-	remove_variable = ec_university_costs_estimate
-	remove_variable = ec_port_costs_estimate
-	remove_variable = ec_barracks_costs_estimate
-	remove_variable = ec_naval_base_costs_estimate
+	remove_variable = ec_$item$_estimate
 }
 
 ### CLEAR BUDGET COSTS VARIABLES
 
 ec_clear_budget_cost_variables = {
-	remove_variable = ec_building_expenses_checks
-	remove_variable = ec_building_expenses_value
+	remove_variable = ec_checks_of_building_costs
+	remove_variable = ec_total_building_expenses
+	remove_variable = ec_construction_sector_per_point_costs
 	remove_variable = ec_government_administration_costs
-	remove_variable = ec_construction_sector_costs
+	remove_variable = ec_construction_sector_expenses
 	remove_variable = ec_university_costs
 	remove_variable = ec_port_costs
 	remove_variable = ec_barracks_costs
@@ -1185,7 +1329,7 @@ ec_preliminary_calculations = {
 	
 	set_variable = {
 		name = csr_input
-		value = modifier:country_construction_add
+		value = ec_construction_points_current
 	}
 	round_variable = {
 		name = csr_input
@@ -1393,6 +1537,83 @@ ec_preliminary_calculations = {
 		}
 	}
 	remove_variable = ec_biggest_navy_threat
+	
+	if = {
+		limit = {
+			is_player = no
+			has_game_rule = ec_building_priorities_roleplay
+		}
+		if = {
+			limit = {
+				NOT = {
+					market.owner = this
+				}
+			}
+			if = {
+				limit = {
+					ec_gdp_per_capita < 4
+				}
+				set_variable = {
+					name = ec_resource_offset_country_factor
+					value = -1
+				}
+				set_variable = {
+					name = ec_arable_offset_country_factor
+					value = -1
+				}
+			}
+			set_variable = {
+				name = ec_industry_offset_country_factor
+				value = 2
+			}
+		}
+		else_if = {
+			limit = {
+				OR = {
+					has_law = law_type:law_traditionalism
+					AND = {
+						country_rank <= 3
+						ec_gdp_per_capita < 4
+					}
+				}
+			}
+			set_variable = {
+				name = ec_resource_offset_country_factor
+				value = 1
+			}
+			set_variable = {
+				name = ec_arable_offset_country_factor
+				value = -1
+			}
+			set_variable = {
+				name = ec_industry_offset_country_factor
+				value = 2
+			}
+		}
+		else_if = {
+			limit = {
+				OR = {
+					has_law = law_type:law_agrarianism
+					AND = {
+						country_rank <= 3
+						ec_gdp_per_capita < 8
+					}
+					AND = {
+						country_rank <= 5
+						ec_gdp_per_capita < 4
+					}
+				}
+			}
+			set_variable = {
+				name = ec_arable_offset_country_factor
+				value = -1
+			}
+			set_variable = {
+				name = ec_industry_offset_country_factor
+				value = 1
+			}
+		}
+	}
 }
 
 ### UPDATE COASTLINE OF MARKET CAPITAL
@@ -2271,10 +2492,7 @@ ec_collect_state_level_data = {
 						}
 					}
 				}
-				OR = {
-					ec_has_enough_workforce = yes
-					has_variable = echeb
-				}
+				ec_has_enough_workforce = yes
 			}
 			root = {
 				add_to_variable_list = {
@@ -2286,10 +2504,7 @@ ec_collect_state_level_data = {
 		else_if = {
 			limit = {
 				ec_infrastructure_load_percent >= 0.70
-				OR = {
-					ec_has_enough_workforce = yes
-					has_variable = echeb
-				}
+				ec_has_enough_workforce = yes
 			}
 			root = {
 				add_to_variable_list = {
@@ -2311,10 +2526,7 @@ ec_collect_state_level_data = {
 		}
 		else_if = {
 			limit = {
-				OR = {
-					ec_has_enough_workforce = yes
-					has_variable = echeb
-				}
+				ec_has_enough_workforce = yes
 			}
 			root = {
 				add_to_variable_list = {
@@ -2323,7 +2535,6 @@ ec_collect_state_level_data = {
 				}
 			}
 		}
-		remove_variable = echeb
 	}
 	
 	# Clear excess production variables
@@ -2366,7 +2577,7 @@ ec_downsize_excess_buildings = {
 						}
 						OR = {
 							AND = {
-								var:ec_government_administration_costs >= ec_government_administration_costs_ceiling
+								ec_government_administration_costs_value >= ec_government_administration_costs_ceiling
 								bureaucracy >= ec_bureaucracy_excess
 							}
 							bureaucracy >= ec_bureaucracy_ceiling
@@ -2380,7 +2591,7 @@ ec_downsize_excess_buildings = {
 						}
 						OR = {
 							AND = {
-								var:ec_government_administration_costs >= ec_government_administration_costs_excess
+								ec_government_administration_costs_value >= ec_government_administration_costs_excess
 								bureaucracy >= ec_bureaucracy_target
 							}
 							bureaucracy >= ec_bureaucracy_excess
@@ -2421,7 +2632,7 @@ ec_downsize_excess_buildings = {
 							}
 						}
 						OR = {
-							modifier:country_construction_add >= ec_construction_points_ceiling
+							ec_construction_points_current >= ec_construction_points_ceiling
 							AND = {
 								ec_wartime_spending = no
 								ec_construction_sector_costs_value > ec_construction_sector_costs_ceiling
@@ -2435,7 +2646,7 @@ ec_downsize_excess_buildings = {
 							}
 						}
 						OR = {
-							modifier:country_construction_add >= ec_construction_points_excess
+							ec_construction_points_current >= ec_construction_points_excess
 							AND = {
 								ec_wartime_spending = no
 								ec_construction_sector_costs_value > ec_construction_sector_costs_excess
@@ -2449,7 +2660,7 @@ ec_downsize_excess_buildings = {
 							}
 						}
 						OR = {
-							modifier:country_construction_add >= ec_construction_points_target
+							ec_construction_points_current >= ec_construction_points_target
 							AND = {
 								ec_wartime_spending = no
 								ec_construction_sector_costs_value > ec_construction_sector_costs_target
@@ -2465,7 +2676,7 @@ ec_downsize_excess_buildings = {
 						ec_wartime_spending = no
 						OR = {
 							ec_in_default = yes
-							modifier:country_construction_add >= ec_construction_points_paucity
+							ec_construction_points_current >= ec_construction_points_paucity
 							ec_construction_sector_costs_value > ec_construction_sector_costs_paucity
 						}
 					}
@@ -2517,7 +2728,7 @@ ec_downsize_excess_buildings = {
 						OR = {
 							modifier:country_weekly_innovation_add >= ec_innovation_ceiling
 							ec_university_count >= ec_university_ceiling
-							var:ec_university_costs >= ec_university_costs_ceiling
+							ec_university_costs_value >= ec_university_costs_ceiling
 						}
 					}
 					AND = {
@@ -2529,7 +2740,7 @@ ec_downsize_excess_buildings = {
 						OR = {
 							modifier:country_weekly_innovation_add >= ec_innovation_excess
 							ec_university_count >= ec_university_excess
-							var:ec_university_costs >= ec_university_costs_excess
+							ec_university_costs_value >= ec_university_costs_excess
 						}
 					}
 					AND = {
@@ -2541,7 +2752,7 @@ ec_downsize_excess_buildings = {
 						OR = {
 							modifier:country_weekly_innovation_add >= ec_innovation_target
 							ec_university_count >= ec_university_target
-							var:ec_university_costs >= ec_university_costs_target
+							ec_university_costs_value >= ec_university_costs_target
 						}
 					}
 					AND = {
@@ -2550,10 +2761,11 @@ ec_downsize_excess_buildings = {
 								level = -2
 							}
 						}
+						ec_wartime_spending = no
 						OR = {
 							modifier:country_weekly_innovation_add >= ec_innovation_paucity
 							ec_university_count >= ec_university_paucity
-							var:ec_university_costs >= ec_university_costs_paucity
+							ec_university_costs_value >= ec_university_costs_paucity
 						}
 					}
 					AND = {
@@ -2567,7 +2779,7 @@ ec_downsize_excess_buildings = {
 							ec_in_default = yes
 							modifier:country_weekly_innovation_add >= ec_innovation_floor
 							ec_university_count >= ec_university_floor
-							var:ec_university_costs >= ec_university_costs_floor
+							ec_university_costs_value >= ec_university_costs_floor
 						}
 					}
 				}
@@ -2644,6 +2856,7 @@ ec_downsize_excess_buildings = {
 								level = -2
 							}
 						}
+						ec_wartime_spending = no
 						OR = {
 							ec_convoys_current >= ec_convoys_paucity
 							ec_port_costs_value >= ec_port_costs_paucity
@@ -2890,7 +3103,7 @@ ec_check_construction_points = {
 			
 			# Base value is how much construction country does have
 			
-			value = modifier:country_construction_add
+			value = ec_construction_points_current
 			
 			# If you are not deep in debt then add standard building limit over it to build a bit more and thus reduce downtime
 			
@@ -3142,6 +3355,7 @@ ec_clear_country_variables = {
 	remove_variable = ec_country_previous_treasury
 	remove_variable = ec_country_budget_surplus
 	ec_clear_budget_cost_variables = yes
+	remove_variable = ec_construction_sector_per_point_previous
 }
 
 # Building variables with all the data used in evaluation and constructing
@@ -3159,6 +3373,9 @@ ec_clear_building_variables = {
 	remove_variable = ec_navy_size_equal_to_average_threat
 	remove_variable = ec_army_size_equal_to_biggest_threat
 	remove_variable = ec_navy_size_equal_to_biggest_threat
+	remove_variable = ec_resource_offset_country_factor
+	remove_variable = ec_arable_offset_country_factor
+	remove_variable = ec_industry_offset_country_factor
 	
 	clear_variable_list = ec_coastline_of_market_capital
 	clear_variable_list = ec_coastline_of_outer_lands
@@ -3190,6 +3407,7 @@ ec_clear_building_variables = {
 	ec_clear_technical_variables = yes
 	every_scope_state = {
 		remove_variable = ec_available_workforce
+		remove_variable = ec_flexible_workforce
 		remove_variable = ec_construction_sector_level
 		remove_variable = ec_port_level
 		remove_variable = ec_barracks_level
@@ -3377,58 +3595,58 @@ ec_clear_decipher_variables = {
 	remove_variable = ecaar6
 }
 
-### EFFECTS GENERATED BY EXTERNAL SCRIPT
+### EXTERNALLY GENERATED EFFECTS
 
 ec_create_building_type_array = {
-	ec_add_building_type_to_array = { number = 1 priority = 1 }
-	ec_add_building_type_to_array = { number = 2 priority = 2 }
-	ec_add_building_type_to_array = { number = 3 priority = 9 }
-	ec_add_building_type_to_array = { number = 4 priority = 3 }
-	ec_add_building_type_to_array = { number = 5 priority = 3 }
-	ec_add_building_type_to_array = { number = 6 priority = 9 }
-	ec_add_building_type_to_array = { number = 7 priority = 9 }
-	ec_add_building_type_to_array = { number = 8 priority = 5 }
-	ec_add_building_type_to_array = { number = 9 priority = 13 }
-	ec_add_building_type_to_array = { number = 10 priority = 5 }
-	ec_add_building_type_to_array = { number = 11 priority = 5 }
-	ec_add_building_type_to_array = { number = 12 priority = 5 }
-	ec_add_building_type_to_array = { number = 13 priority = 6 }
-	ec_add_building_type_to_array = { number = 14 priority = 5 }
-	ec_add_building_type_to_array = { number = 15 priority = 11 }
-	ec_add_building_type_to_array = { number = 16 priority = 6 }
-	ec_add_building_type_to_array = { number = 17 priority = 4 }
-	ec_add_building_type_to_array = { number = 18 priority = 10 }
-	ec_add_building_type_to_array = { number = 19 priority = 10 }
-	ec_add_building_type_to_array = { number = 20 priority = 10 }
-	ec_add_building_type_to_array = { number = 21 priority = 10 }
-	ec_add_building_type_to_array = { number = 22 priority = 10 }
-	ec_add_building_type_to_array = { number = 23 priority = 5 }
-	ec_add_building_type_to_array = { number = 24 priority = 5 }
-	ec_add_building_type_to_array = { number = 25 priority = 11 }
-	ec_add_building_type_to_array = { number = 26 priority = 11 }
-	ec_add_building_type_to_array = { number = 27 priority = 13 }
-	ec_add_building_type_to_array = { number = 28 priority = 13 }
-	ec_add_building_type_to_array = { number = 29 priority = 15 }
-	ec_add_building_type_to_array = { number = 30 priority = 15 }
-	ec_add_building_type_to_array = { number = 31 priority = 14 }
-	ec_add_building_type_to_array = { number = 32 priority = 11 }
-	ec_add_building_type_to_array = { number = 33 priority = 14 }
-	ec_add_building_type_to_array = { number = 34 priority = 15 }
-	ec_add_building_type_to_array = { number = 35 priority = 12 }
-	ec_add_building_type_to_array = { number = 36 priority = 12 }
-	ec_add_building_type_to_array = { number = 37 priority = 7 }
-	ec_add_building_type_to_array = { number = 38 priority = 4 }
-	ec_add_building_type_to_array = { number = 39 priority = 6 }
-	ec_add_building_type_to_array = { number = 40 priority = 6 }
-	ec_add_building_type_to_array = { number = 41 priority = 11 }
-	ec_add_building_type_to_array = { number = 42 priority = 6 }
-	ec_add_building_type_to_array = { number = 43 priority = 7 }
-	ec_add_building_type_to_array = { number = 44 priority = 4 }
-	ec_add_building_type_to_array = { number = 45 priority = 8 }
-	ec_add_building_type_to_array = { number = 46 priority = 7 }
-	ec_add_building_type_to_array = { number = 47 priority = 7 }
-	ec_add_building_type_to_array = { number = 48 priority = 8 }
-	ec_add_building_type_to_array = { number = 49 priority = 8 }
+	ec_add_building_type_to_array = { number = 1 priority = 1 counter = 1 arable = 0 }
+	ec_add_building_type_to_array = { number = 2 priority = 2 counter = 2 arable = 0 }
+	ec_add_building_type_to_array = { number = 3 priority = 9 counter = 3 arable = 0 }
+	ec_add_building_type_to_array = { number = 4 priority = 3 counter = 4 arable = 0 }
+	ec_add_building_type_to_array = { number = 5 priority = 3 counter = 5 arable = 0 }
+	ec_add_building_type_to_array = { number = 6 priority = 9 counter = 6 arable = 0 }
+	ec_add_building_type_to_array = { number = 7 priority = 9 counter = 7 arable = 0 }
+	ec_add_building_type_to_array = { number = 8 priority = 5 counter = 8 arable = 0 }
+	ec_add_building_type_to_array = { number = 9 priority = 13 counter = 9 arable = 0 }
+	ec_add_building_type_to_array = { number = 10 priority = 5 counter = 10 arable = 0 }
+	ec_add_building_type_to_array = { number = 11 priority = 5 counter = 11 arable = 0 }
+	ec_add_building_type_to_array = { number = 12 priority = 5 counter = 12 arable = 0 }
+	ec_add_building_type_to_array = { number = 13 priority = 6 counter = 13 arable = 0 }
+	ec_add_building_type_to_array = { number = 14 priority = 5 counter = 14 arable = 0 }
+	ec_add_building_type_to_array = { number = 15 priority = 11 counter = 15 arable = 0 }
+	ec_add_building_type_to_array = { number = 16 priority = 6 counter = 16 arable = 0 }
+	ec_add_building_type_to_array = { number = 17 priority = 4 counter = 17 arable = 0 }
+	ec_add_building_type_to_array = { number = 18 priority = 10 counter = 18 arable = 1 }
+	ec_add_building_type_to_array = { number = 19 priority = 10 counter = 18 arable = 1 }
+	ec_add_building_type_to_array = { number = 20 priority = 10 counter = 18 arable = 1 }
+	ec_add_building_type_to_array = { number = 21 priority = 10 counter = 18 arable = 1 }
+	ec_add_building_type_to_array = { number = 22 priority = 10 counter = 18 arable = 1 }
+	ec_add_building_type_to_array = { number = 23 priority = 5 counter = 23 arable = 1 }
+	ec_add_building_type_to_array = { number = 24 priority = 5 counter = 23 arable = 1 }
+	ec_add_building_type_to_array = { number = 25 priority = 11 counter = 25 arable = 1 }
+	ec_add_building_type_to_array = { number = 26 priority = 11 counter = 26 arable = 1 }
+	ec_add_building_type_to_array = { number = 27 priority = 13 counter = 27 arable = 1 }
+	ec_add_building_type_to_array = { number = 28 priority = 13 counter = 28 arable = 1 }
+	ec_add_building_type_to_array = { number = 29 priority = 15 counter = 29 arable = 1 }
+	ec_add_building_type_to_array = { number = 30 priority = 15 counter = 30 arable = 1 }
+	ec_add_building_type_to_array = { number = 31 priority = 14 counter = 31 arable = 1 }
+	ec_add_building_type_to_array = { number = 32 priority = 11 counter = 32 arable = 1 }
+	ec_add_building_type_to_array = { number = 33 priority = 14 counter = 33 arable = 0 }
+	ec_add_building_type_to_array = { number = 34 priority = 15 counter = 34 arable = 0 }
+	ec_add_building_type_to_array = { number = 35 priority = 12 counter = 35 arable = 0 }
+	ec_add_building_type_to_array = { number = 36 priority = 12 counter = 36 arable = 0 }
+	ec_add_building_type_to_array = { number = 37 priority = 7 counter = 37 arable = 0 }
+	ec_add_building_type_to_array = { number = 38 priority = 4 counter = 38 arable = 0 }
+	ec_add_building_type_to_array = { number = 39 priority = 6 counter = 39 arable = 0 }
+	ec_add_building_type_to_array = { number = 40 priority = 6 counter = 25 arable = 0 }
+	ec_add_building_type_to_array = { number = 41 priority = 12 counter = 41 arable = 0 }
+	ec_add_building_type_to_array = { number = 42 priority = 6 counter = 42 arable = 0 }
+	ec_add_building_type_to_array = { number = 43 priority = 7 counter = 43 arable = 0 }
+	ec_add_building_type_to_array = { number = 44 priority = 4 counter = 44 arable = 0 }
+	ec_add_building_type_to_array = { number = 45 priority = 8 counter = 45 arable = 0 }
+	ec_add_building_type_to_array = { number = 46 priority = 7 counter = 46 arable = 0 }
+	ec_add_building_type_to_array = { number = 47 priority = 7 counter = 47 arable = 0 }
+	ec_add_building_type_to_array = { number = 48 priority = 8 counter = 48 arable = 0 }
+	ec_add_building_type_to_array = { number = 49 priority = 8 counter = 49 arable = 0 }
 	cp_create_building_type_array = yes
 }
 
@@ -3451,6 +3669,14 @@ ec_add_building_type_to_array = {
 			name = ecbtp
 			value = $priority$
 		}
+		set_variable = {
+			name = ecbtc
+			value = $counter$
+		}
+		set_variable = {
+			name = ecbta
+			value = $arable$
+		}
 	}
 }
 
@@ -3466,21 +3692,21 @@ ec_collect_existing_arables = {
 			}
 			state_region = {
 				set_variable = eccar
-				ec_check_and_queue_arables = { building = wheat_farm number = 18 resource = 1 }
-				ec_check_and_queue_arables = { building = rye_farm number = 19 resource = 2 }
-				ec_check_and_queue_arables = { building = rice_farm number = 20 resource = 3 }
-				ec_check_and_queue_arables = { building = maize_farm number = 21 resource = 4 }
-				ec_check_and_queue_arables = { building = millet_farm number = 22 resource = 5 }
-				ec_check_and_queue_arables = { building = livestock_ranch number = 23 resource = 10 }
-				ec_check_and_queue_arables = { building = cotton_plantation number = 24 resource = 20 }
-				ec_check_and_queue_arables = { building = dye_plantation number = 25 resource = 100 }
-				ec_check_and_queue_arables = { building = silk_plantation number = 26 resource = 200 }
-				ec_check_and_queue_arables = { building = banana_plantation number = 27 resource = 1000 }
-				ec_check_and_queue_arables = { building = sugar_plantation number = 28 resource = 2000 }
-				ec_check_and_queue_arables = { building = tea_plantation number = 29 resource = 10000 }
-				ec_check_and_queue_arables = { building = coffee_plantation number = 30 resource = 20000 }
-				ec_check_and_queue_arables = { building = tobacco_plantation number = 31 resource = 100000 }
-				ec_check_and_queue_arables = { building = opium_plantation number = 32 resource = 200000 }
+				ec_check_and_queue_arables = { building = building_wheat_farm number = 18 resource = 1 }
+				ec_check_and_queue_arables = { building = building_rye_farm number = 19 resource = 2 }
+				ec_check_and_queue_arables = { building = building_rice_farm number = 20 resource = 3 }
+				ec_check_and_queue_arables = { building = building_maize_farm number = 21 resource = 4 }
+				ec_check_and_queue_arables = { building = building_millet_farm number = 22 resource = 5 }
+				ec_check_and_queue_arables = { building = building_livestock_ranch number = 23 resource = 10 }
+				ec_check_and_queue_arables = { building = building_cotton_plantation number = 24 resource = 20 }
+				ec_check_and_queue_arables = { building = building_dye_plantation number = 25 resource = 100 }
+				ec_check_and_queue_arables = { building = building_silk_plantation number = 26 resource = 200 }
+				ec_check_and_queue_arables = { building = building_banana_plantation number = 27 resource = 1000 }
+				ec_check_and_queue_arables = { building = building_sugar_plantation number = 28 resource = 2000 }
+				ec_check_and_queue_arables = { building = building_tea_plantation number = 29 resource = 10000 }
+				ec_check_and_queue_arables = { building = building_coffee_plantation number = 30 resource = 20000 }
+				ec_check_and_queue_arables = { building = building_tobacco_plantation number = 31 resource = 100000 }
+				ec_check_and_queue_arables = { building = building_opium_plantation number = 32 resource = 200000 }
 			}
 		}
 	}
@@ -3491,7 +3717,7 @@ ec_check_and_queue_arables = {
 		limit = {
 			any_scope_state = {
 				any_scope_building = {
-					is_building_type = building_$building$
+					is_building_type = $building$
 				}
 			}
 		}
@@ -3527,7 +3753,7 @@ ec_check_and_queue_arables = {
 			limit = {
 				free_arable_land > 0
 			}
-			start_building_construction = building_$building$
+			start_building_construction = $building$
 			state_region = {
 				set_variable = ecca$number$
 			}
@@ -3544,21 +3770,21 @@ ec_collect_arables_in_queue = {
 				}
 			}
 			state_region = {
-				ec_check_arables_in_queue = { building = wheat_farm number = 18 resource = 1 }
-				ec_check_arables_in_queue = { building = rye_farm number = 19 resource = 2 }
-				ec_check_arables_in_queue = { building = rice_farm number = 20 resource = 3 }
-				ec_check_arables_in_queue = { building = maize_farm number = 21 resource = 4 }
-				ec_check_arables_in_queue = { building = millet_farm number = 22 resource = 5 }
-				ec_check_arables_in_queue = { building = livestock_ranch number = 23 resource = 10 }
-				ec_check_arables_in_queue = { building = cotton_plantation number = 24 resource = 20 }
-				ec_check_arables_in_queue = { building = dye_plantation number = 25 resource = 100 }
-				ec_check_arables_in_queue = { building = silk_plantation number = 26 resource = 200 }
-				ec_check_arables_in_queue = { building = banana_plantation number = 27 resource = 1000 }
-				ec_check_arables_in_queue = { building = sugar_plantation number = 28 resource = 2000 }
-				ec_check_arables_in_queue = { building = tea_plantation number = 29 resource = 10000 }
-				ec_check_arables_in_queue = { building = coffee_plantation number = 30 resource = 20000 }
-				ec_check_arables_in_queue = { building = tobacco_plantation number = 31 resource = 100000 }
-				ec_check_arables_in_queue = { building = opium_plantation number = 32 resource = 200000 }
+				ec_check_arables_in_queue = { building = building_wheat_farm number = 18 resource = 1 }
+				ec_check_arables_in_queue = { building = building_rye_farm number = 19 resource = 2 }
+				ec_check_arables_in_queue = { building = building_rice_farm number = 20 resource = 3 }
+				ec_check_arables_in_queue = { building = building_maize_farm number = 21 resource = 4 }
+				ec_check_arables_in_queue = { building = building_millet_farm number = 22 resource = 5 }
+				ec_check_arables_in_queue = { building = building_livestock_ranch number = 23 resource = 10 }
+				ec_check_arables_in_queue = { building = building_cotton_plantation number = 24 resource = 20 }
+				ec_check_arables_in_queue = { building = building_dye_plantation number = 25 resource = 100 }
+				ec_check_arables_in_queue = { building = building_silk_plantation number = 26 resource = 200 }
+				ec_check_arables_in_queue = { building = building_banana_plantation number = 27 resource = 1000 }
+				ec_check_arables_in_queue = { building = building_sugar_plantation number = 28 resource = 2000 }
+				ec_check_arables_in_queue = { building = building_tea_plantation number = 29 resource = 10000 }
+				ec_check_arables_in_queue = { building = building_coffee_plantation number = 30 resource = 20000 }
+				ec_check_arables_in_queue = { building = building_tobacco_plantation number = 31 resource = 100000 }
+				ec_check_arables_in_queue = { building = building_opium_plantation number = 32 resource = 200000 }
 				if = {
 					limit = {
 						has_variable = ecaas
@@ -3581,7 +3807,7 @@ ec_check_arables_in_queue = {
 			limit = {
 				any_scope_state = {
 					any_scope_building = {
-						is_building_type = building_$building$
+						is_building_type = $building$
 					}
 				}
 			}
@@ -3603,10 +3829,10 @@ ec_check_arables_in_queue = {
 			every_scope_state = {
 				limit = {
 					any_scope_building = {
-						is_building_type = building_$building$
+						is_building_type = $building$
 					}
 				}
-				remove_building = building_$building$
+				remove_building = $building$
 			}
 		}
 		remove_variable = ecca$number$
@@ -3614,47 +3840,47 @@ ec_check_arables_in_queue = {
 }
 
 ec_check_excessive_production = {
-	ec_is_production_excessive = { building = logging_camp number = 8 }
-	ec_is_production_excessive = { building = fishing_wharf number = 9 }
-	ec_is_production_excessive = { building = whaling_station number = 10 }
-	ec_is_production_excessive = { building = coal_mine number = 11 }
-	ec_is_production_excessive = { building = iron_mine number = 12 }
-	ec_is_production_excessive = { building = lead_mine number = 13 }
-	ec_is_production_excessive = { building = sulfur_mine number = 14 }
-	ec_is_production_excessive = { building = gold_mine number = 15 }
-	ec_is_production_excessive = { building = rubber_plantation number = 16 }
-	ec_is_production_excessive = { building = wheat_farm number = 18 }
-	ec_is_production_excessive = { building = rye_farm number = 19 }
-	ec_is_production_excessive = { building = rice_farm number = 20 }
-	ec_is_production_excessive = { building = maize_farm number = 21 }
-	ec_is_production_excessive = { building = millet_farm number = 22 }
-	ec_is_production_excessive = { building = livestock_ranch number = 23 }
-	ec_is_production_excessive = { building = cotton_plantation number = 24 }
-	ec_is_production_excessive = { building = dye_plantation number = 25 }
-	ec_is_production_excessive = { building = silk_plantation number = 26 }
-	ec_is_production_excessive = { building = banana_plantation number = 27 }
-	ec_is_production_excessive = { building = sugar_plantation number = 28 }
-	ec_is_production_excessive = { building = tea_plantation number = 29 }
-	ec_is_production_excessive = { building = coffee_plantation number = 30 }
-	ec_is_production_excessive = { building = tobacco_plantation number = 31 }
-	ec_is_production_excessive = { building = opium_plantation number = 32 }
-	ec_is_production_excessive = { building = food_industry number = 33 }
-	ec_is_production_excessive = { building = arts_academy number = 34 }
-	ec_is_production_excessive = { building = textile_mills number = 35 }
-	ec_is_production_excessive = { building = furniture_manufacturies number = 36 }
-	ec_is_production_excessive = { building = glassworks number = 37 }
-	ec_is_production_excessive = { building = tooling_workshops number = 38 }
-	ec_is_production_excessive = { building = paper_mills number = 39 }
-	ec_is_production_excessive = { building = chemical_plants number = 40 }
-	ec_is_production_excessive = { building = synthetics_plants number = 41 }
-	ec_is_production_excessive = { building = steel_mills number = 42 }
-	ec_is_production_excessive = { building = motor_industry number = 43 }
-	ec_is_production_excessive = { building = power_plant number = 44 }
-	ec_is_production_excessive = { building = shipyards number = 45 }
-	ec_is_production_excessive = { building = arms_industry number = 46 }
-	ec_is_production_excessive = { building = munition_plants number = 47 }
-	ec_is_production_excessive = { building = electrics_industry number = 48 }
-	ec_is_production_excessive = { building = war_machine_industry number = 49 }
+	ec_is_production_excessive = { building = building_logging_camp number = 8 }
+	ec_is_production_excessive = { building = building_fishing_wharf number = 9 }
+	ec_is_production_excessive = { building = building_whaling_station number = 10 }
+	ec_is_production_excessive = { building = building_coal_mine number = 11 }
+	ec_is_production_excessive = { building = building_iron_mine number = 12 }
+	ec_is_production_excessive = { building = building_lead_mine number = 13 }
+	ec_is_production_excessive = { building = building_sulfur_mine number = 14 }
+	ec_is_production_excessive = { building = building_gold_mine number = 15 }
+	ec_is_production_excessive = { building = building_rubber_plantation number = 16 }
+	ec_is_production_excessive = { building = building_wheat_farm number = 18 }
+	ec_is_production_excessive = { building = building_rye_farm number = 19 }
+	ec_is_production_excessive = { building = building_rice_farm number = 20 }
+	ec_is_production_excessive = { building = building_maize_farm number = 21 }
+	ec_is_production_excessive = { building = building_millet_farm number = 22 }
+	ec_is_production_excessive = { building = building_livestock_ranch number = 23 }
+	ec_is_production_excessive = { building = building_cotton_plantation number = 24 }
+	ec_is_production_excessive = { building = building_dye_plantation number = 25 }
+	ec_is_production_excessive = { building = building_silk_plantation number = 26 }
+	ec_is_production_excessive = { building = building_banana_plantation number = 27 }
+	ec_is_production_excessive = { building = building_sugar_plantation number = 28 }
+	ec_is_production_excessive = { building = building_tea_plantation number = 29 }
+	ec_is_production_excessive = { building = building_coffee_plantation number = 30 }
+	ec_is_production_excessive = { building = building_tobacco_plantation number = 31 }
+	ec_is_production_excessive = { building = building_opium_plantation number = 32 }
+	ec_is_production_excessive = { building = building_food_industry number = 33 }
+	ec_is_production_excessive = { building = building_arts_academy number = 34 }
+	ec_is_production_excessive = { building = building_textile_mills number = 35 }
+	ec_is_production_excessive = { building = building_furniture_manufacturies number = 36 }
+	ec_is_production_excessive = { building = building_glassworks number = 37 }
+	ec_is_production_excessive = { building = building_tooling_workshops number = 38 }
+	ec_is_production_excessive = { building = building_paper_mills number = 39 }
+	ec_is_production_excessive = { building = building_chemical_plants number = 40 }
+	ec_is_production_excessive = { building = building_synthetics_plants number = 41 }
+	ec_is_production_excessive = { building = building_steel_mills number = 42 }
+	ec_is_production_excessive = { building = building_motor_industry number = 43 }
+	ec_is_production_excessive = { building = building_power_plant number = 44 }
+	ec_is_production_excessive = { building = building_shipyards number = 45 }
+	ec_is_production_excessive = { building = building_arms_industry number = 46 }
+	ec_is_production_excessive = { building = building_munition_plants number = 47 }
+	ec_is_production_excessive = { building = building_electrics_industry number = 48 }
+	ec_is_production_excessive = { building = building_war_machine_industry number = 49 }
 	cp_check_excessive_production = yes
 }
 
@@ -3672,167 +3898,206 @@ ec_is_production_excessive = {
 ec_collect_building_level_data = {
 	save_scope_as = ec_current_state
 	every_scope_building = {
-		if = { limit = { is_building_type = building_logging_camp } ec_check_building_condition = { number = 8 } }
-		else_if = { limit = { is_building_type = building_fishing_wharf } ec_check_building_condition = { number = 9 } }
-		else_if = { limit = { is_building_type = building_whaling_station } ec_check_building_condition = { number = 10 } }
-		else_if = { limit = { is_building_type = building_coal_mine } ec_check_building_condition = { number = 11 } }
-		else_if = { limit = { is_building_type = building_iron_mine } ec_check_building_condition = { number = 12 } }
-		else_if = { limit = { is_building_type = building_lead_mine } ec_check_building_condition = { number = 13 } }
-		else_if = { limit = { is_building_type = building_sulfur_mine } ec_check_building_condition = { number = 14 } }
-		else_if = { limit = { is_building_type = building_gold_mine } ec_check_building_condition = { number = 15 } }
-		else_if = { limit = { is_building_type = building_rubber_plantation } ec_check_building_condition = { number = 16 } }
-		else_if = { limit = { is_building_type = building_wheat_farm } ec_check_building_condition = { number = 18 } }
-		else_if = { limit = { is_building_type = building_rye_farm } ec_check_building_condition = { number = 19 } }
-		else_if = { limit = { is_building_type = building_rice_farm } ec_check_building_condition = { number = 20 } }
-		else_if = { limit = { is_building_type = building_maize_farm } ec_check_building_condition = { number = 21 } }
-		else_if = { limit = { is_building_type = building_millet_farm } ec_check_building_condition = { number = 22 } }
-		else_if = { limit = { is_building_type = building_livestock_ranch } ec_check_building_condition = { number = 23 } }
-		else_if = { limit = { is_building_type = building_cotton_plantation } ec_check_building_condition = { number = 24 } }
-		else_if = { limit = { is_building_type = building_dye_plantation } ec_check_building_condition = { number = 25 } }
-		else_if = { limit = { is_building_type = building_silk_plantation } ec_check_building_condition = { number = 26 } }
-		else_if = { limit = { is_building_type = building_banana_plantation } ec_check_building_condition = { number = 27 } }
-		else_if = { limit = { is_building_type = building_sugar_plantation } ec_check_building_condition = { number = 28 } }
-		else_if = { limit = { is_building_type = building_tea_plantation } ec_check_building_condition = { number = 29 } }
-		else_if = { limit = { is_building_type = building_coffee_plantation } ec_check_building_condition = { number = 30 } }
-		else_if = { limit = { is_building_type = building_tobacco_plantation } ec_check_building_condition = { number = 31 } }
-		else_if = { limit = { is_building_type = building_opium_plantation } ec_check_building_condition = { number = 32 } }
-		else_if = { limit = { is_building_type = building_food_industry } ec_check_building_condition = { number = 33 } }
-		else_if = { limit = { is_building_type = building_arts_academy } ec_check_building_condition = { number = 34 } }
-		else_if = { limit = { is_building_type = building_textile_mills } ec_check_building_condition = { number = 35 } }
-		else_if = { limit = { is_building_type = building_furniture_manufacturies } ec_check_building_condition = { number = 36 } }
-		else_if = { limit = { is_building_type = building_glassworks } ec_check_building_condition = { number = 37 } }
-		else_if = { limit = { is_building_type = building_tooling_workshops } ec_check_building_condition = { number = 38 } }
-		else_if = { limit = { is_building_type = building_paper_mills } ec_check_building_condition = { number = 39 } }
-		else_if = { limit = { is_building_type = building_chemical_plants } ec_check_building_condition = { number = 40 } }
-		else_if = { limit = { is_building_type = building_synthetics_plants } ec_check_building_condition = { number = 41 } }
-		else_if = { limit = { is_building_type = building_steel_mills } ec_check_building_condition = { number = 42 } }
-		else_if = { limit = { is_building_type = building_motor_industry } ec_check_building_condition = { number = 43 } }
-		else_if = { limit = { is_building_type = building_power_plant } ec_check_building_condition = { number = 44 } }
-		else_if = { limit = { is_building_type = building_shipyards } ec_check_building_condition = { number = 45 } }
-		else_if = { limit = { is_building_type = building_arms_industry } ec_check_building_condition = { number = 46 } }
-		else_if = { limit = { is_building_type = building_munition_plants } ec_check_building_condition = { number = 47 } }
-		else_if = { limit = { is_building_type = building_electrics_industry } ec_check_building_condition = { number = 48 } }
-		else_if = { limit = { is_building_type = building_war_machine_industry } ec_check_building_condition = { number = 49 } }
+		if = { limit = { is_building_type = building_government_administration } ec_check_building_condition = { building = building_government_administration number = 1 workforce = 0 } }
+		else_if = { limit = { is_building_type = building_construction_sector } ec_check_building_condition = { building = building_construction_sector number = 2 workforce = 0 } }
+		else_if = { limit = { is_building_type = building_university } ec_check_building_condition = { building = building_university number = 3 workforce = 0 } }
+		else_if = { limit = { is_building_type = building_railway } ec_check_building_condition = { building = building_railway number = 4 workforce = 0 } }
+		else_if = { limit = { is_building_type = building_port } ec_check_building_condition = { building = building_port number = 5 workforce = 0 } }
+		else_if = { limit = { is_building_type = building_barracks } ec_check_building_condition = { building = building_barracks number = 6 workforce = 0 } }
+		else_if = { limit = { is_building_type = building_naval_base } ec_check_building_condition = { building = building_naval_base number = 7 workforce = 0 } }
+		else_if = { limit = { is_building_type = building_logging_camp } ec_check_building_condition = { building = building_logging_camp number = 8 workforce = 1 } }
+		else_if = { limit = { is_building_type = building_fishing_wharf } ec_check_building_condition = { building = building_fishing_wharf number = 9 workforce = 1 } }
+		else_if = { limit = { is_building_type = building_whaling_station } ec_check_building_condition = { building = building_whaling_station number = 10 workforce = 1 } }
+		else_if = { limit = { is_building_type = building_coal_mine } ec_check_building_condition = { building = building_coal_mine number = 11 workforce = 1 } }
+		else_if = { limit = { is_building_type = building_iron_mine } ec_check_building_condition = { building = building_iron_mine number = 12 workforce = 1 } }
+		else_if = { limit = { is_building_type = building_lead_mine } ec_check_building_condition = { building = building_lead_mine number = 13 workforce = 1 } }
+		else_if = { limit = { is_building_type = building_sulfur_mine } ec_check_building_condition = { building = building_sulfur_mine number = 14 workforce = 1 } }
+		else_if = { limit = { is_building_type = building_gold_mine } ec_check_building_condition = { building = building_gold_mine number = 15 workforce = 1 } }
+		else_if = { limit = { is_building_type = building_rubber_plantation } ec_check_building_condition = { building = building_rubber_plantation number = 16 workforce = 1 } }
+		else_if = { limit = { is_building_type = building_oil_rig } ec_check_building_condition = { building = building_oil_rig number = 17 workforce = 0 } }
+		else_if = { limit = { is_building_type = building_wheat_farm } ec_check_building_condition = { building = building_wheat_farm number = 18 workforce = 1 } }
+		else_if = { limit = { is_building_type = building_rye_farm } ec_check_building_condition = { building = building_rye_farm number = 19 workforce = 1 } }
+		else_if = { limit = { is_building_type = building_rice_farm } ec_check_building_condition = { building = building_rice_farm number = 20 workforce = 1 } }
+		else_if = { limit = { is_building_type = building_maize_farm } ec_check_building_condition = { building = building_maize_farm number = 21 workforce = 1 } }
+		else_if = { limit = { is_building_type = building_millet_farm } ec_check_building_condition = { building = building_millet_farm number = 22 workforce = 1 } }
+		else_if = { limit = { is_building_type = building_livestock_ranch } ec_check_building_condition = { building = building_livestock_ranch number = 23 workforce = 1 } }
+		else_if = { limit = { is_building_type = building_cotton_plantation } ec_check_building_condition = { building = building_cotton_plantation number = 24 workforce = 1 } }
+		else_if = { limit = { is_building_type = building_dye_plantation } ec_check_building_condition = { building = building_dye_plantation number = 25 workforce = 1 } }
+		else_if = { limit = { is_building_type = building_silk_plantation } ec_check_building_condition = { building = building_silk_plantation number = 26 workforce = 1 } }
+		else_if = { limit = { is_building_type = building_banana_plantation } ec_check_building_condition = { building = building_banana_plantation number = 27 workforce = 1 } }
+		else_if = { limit = { is_building_type = building_sugar_plantation } ec_check_building_condition = { building = building_sugar_plantation number = 28 workforce = 1 } }
+		else_if = { limit = { is_building_type = building_tea_plantation } ec_check_building_condition = { building = building_tea_plantation number = 29 workforce = 1 } }
+		else_if = { limit = { is_building_type = building_coffee_plantation } ec_check_building_condition = { building = building_coffee_plantation number = 30 workforce = 1 } }
+		else_if = { limit = { is_building_type = building_tobacco_plantation } ec_check_building_condition = { building = building_tobacco_plantation number = 31 workforce = 1 } }
+		else_if = { limit = { is_building_type = building_opium_plantation } ec_check_building_condition = { building = building_opium_plantation number = 32 workforce = 1 } }
+		else_if = { limit = { is_building_type = building_food_industry } ec_check_building_condition = { building = building_food_industry number = 33 workforce = 1 } }
+		else_if = { limit = { is_building_type = building_arts_academy } ec_check_building_condition = { building = building_arts_academy number = 34 workforce = 1 } }
+		else_if = { limit = { is_building_type = building_textile_mills } ec_check_building_condition = { building = building_textile_mills number = 35 workforce = 1 } }
+		else_if = { limit = { is_building_type = building_furniture_manufacturies } ec_check_building_condition = { building = building_furniture_manufacturies number = 36 workforce = 1 } }
+		else_if = { limit = { is_building_type = building_glassworks } ec_check_building_condition = { building = building_glassworks number = 37 workforce = 1 } }
+		else_if = { limit = { is_building_type = building_tooling_workshops } ec_check_building_condition = { building = building_tooling_workshops number = 38 workforce = 1 } }
+		else_if = { limit = { is_building_type = building_paper_mills } ec_check_building_condition = { building = building_paper_mills number = 39 workforce = 1 } }
+		else_if = { limit = { is_building_type = building_chemical_plants } ec_check_building_condition = { building = building_chemical_plants number = 40 workforce = 1 } }
+		else_if = { limit = { is_building_type = building_synthetics_plants } ec_check_building_condition = { building = building_synthetics_plants number = 41 workforce = 1 } }
+		else_if = { limit = { is_building_type = building_steel_mills } ec_check_building_condition = { building = building_steel_mills number = 42 workforce = 1 } }
+		else_if = { limit = { is_building_type = building_motor_industry } ec_check_building_condition = { building = building_motor_industry number = 43 workforce = 1 } }
+		else_if = { limit = { is_building_type = building_power_plant } ec_check_building_condition = { building = building_power_plant number = 44 workforce = 1 } }
+		else_if = { limit = { is_building_type = building_shipyards } ec_check_building_condition = { building = building_shipyards number = 45 workforce = 1 } }
+		else_if = { limit = { is_building_type = building_arms_industry } ec_check_building_condition = { building = building_arms_industry number = 46 workforce = 1 } }
+		else_if = { limit = { is_building_type = building_munition_plants } ec_check_building_condition = { building = building_munition_plants number = 47 workforce = 1 } }
+		else_if = { limit = { is_building_type = building_electrics_industry } ec_check_building_condition = { building = building_electrics_industry number = 48 workforce = 1 } }
+		else_if = { limit = { is_building_type = building_war_machine_industry } ec_check_building_condition = { building = building_war_machine_industry number = 49 workforce = 1 } }
 		else = { cp_collect_building_level_data = yes }
 	}
 	clear_saved_scope = ec_current_state
 }
 
 ec_check_building_condition = {
-	scope:ec_current_state = {
-		if = {
-			limit = {
-				NOT = {
-					has_variable = echeb
+	if = {
+		limit = {
+			level <= 0
+			is_under_construction = no
+		}
+		scope:ec_current_state = {
+			remove_building = $building$
+		}
+	}
+	else_if = {
+		limit = {
+			$workforce$ = 1
+		}
+		scope:ec_current_state = {
+			if = {
+				limit = {
+					prev = {
+						ec_building_is_abandoned = yes
+					}
+					NOT = {
+						has_active_building = building_conscription_center
+					}
 				}
-				ec_available_workforce < ec_sufficient_workforce
-				root = {
-					has_variable = ecep$number$
+				if = {
+					limit = {
+						NOT = {
+							has_variable = ec$number$ia
+						}
+					}
+					set_variable = {
+						name = ec$number$ia
+						value = prev.ec_occupied_levels
+					}
 				}
-				prev = {
-					ec_building_is_excessive = yes
+				else = {
+					if = {
+						limit = {
+							var:ec$number$ia >= 100000
+						}
+						change_variable = {
+							name = ec$number$ia
+							subtract = 100000
+						}
+					}
+					if = {
+						limit = {
+							var:ec$number$ia > prev.ec_occupied_levels_with_margin
+						}
+						set_variable = {
+							name = ec$number$ia
+							value = {
+								value = prev.ec_occupied_levels
+								add = 100000
+							}
+						}
+					}
+					else = {
+						remove_variable = ec$number$ia
+					}
 				}
 			}
-			set_variable = echeb
-		}
-		if = {
-			limit = {
-				prev = {
-					ec_building_is_abandoned = yes
+			else_if = {
+				limit = {
+					has_variable = ec$number$ia
 				}
-				NOT = {
-					has_active_building = building_conscription_center
-				}
+				remove_variable = ec$number$ia
 			}
 			if = {
 				limit = {
 					NOT = {
 						has_variable = ec$number$ia
 					}
-				}
-				set_variable = {
-					name = ec$number$ia
-					value = prev.ec_occupied_levels
-				}
-			}
-			else = {
-				if = {
-					limit = {
-						var:ec$number$ia >= 100000
+					root = {
+						has_variable = ecep$number$
 					}
-					change_variable = {
-						name = ec$number$ia
-						subtract = 100000
+					prev = {
+						ec_building_is_excessive = yes
 					}
 				}
 				if = {
 					limit = {
-						var:ec$number$ia > prev.ec_occupied_levels_with_margin
-					}
-					set_variable = {
-						name = ec$number$ia
-						value = {
-							value = prev.ec_occupied_levels
-							add = 100000
+						NOT = {
+							has_variable = ec_flexible_workforce
 						}
 					}
+					set_variable = {
+						name = ec_flexible_workforce
+						value = 0
+					}
 				}
-				else = {
-					remove_variable = ec$number$ia
+				change_variable = {
+					name = ec_flexible_workforce
+					add = {
+						value = prev.level
+						multiply = prev.occupancy
+						multiply = 1250
+					}
 				}
 			}
-		}
-		else_if = {
-			limit = {
-				has_variable = ec$number$ia
-			}
-			remove_variable = ec$number$ia
 		}
 	}
 }
 
 ec_sanitize_abandoned_buildings = {
-	ec_recheck_abandoned_building = { building = logging_camp number = 8 }
-	ec_recheck_abandoned_building = { building = fishing_wharf number = 9 }
-	ec_recheck_abandoned_building = { building = whaling_station number = 10 }
-	ec_recheck_abandoned_building = { building = coal_mine number = 11 }
-	ec_recheck_abandoned_building = { building = iron_mine number = 12 }
-	ec_recheck_abandoned_building = { building = lead_mine number = 13 }
-	ec_recheck_abandoned_building = { building = sulfur_mine number = 14 }
-	ec_recheck_abandoned_building = { building = gold_mine number = 15 }
-	ec_recheck_abandoned_building = { building = rubber_plantation number = 16 }
-	ec_recheck_abandoned_building = { building = wheat_farm number = 18 }
-	ec_recheck_abandoned_building = { building = rye_farm number = 19 }
-	ec_recheck_abandoned_building = { building = rice_farm number = 20 }
-	ec_recheck_abandoned_building = { building = maize_farm number = 21 }
-	ec_recheck_abandoned_building = { building = millet_farm number = 22 }
-	ec_recheck_abandoned_building = { building = livestock_ranch number = 23 }
-	ec_recheck_abandoned_building = { building = cotton_plantation number = 24 }
-	ec_recheck_abandoned_building = { building = dye_plantation number = 25 }
-	ec_recheck_abandoned_building = { building = silk_plantation number = 26 }
-	ec_recheck_abandoned_building = { building = banana_plantation number = 27 }
-	ec_recheck_abandoned_building = { building = sugar_plantation number = 28 }
-	ec_recheck_abandoned_building = { building = tea_plantation number = 29 }
-	ec_recheck_abandoned_building = { building = coffee_plantation number = 30 }
-	ec_recheck_abandoned_building = { building = tobacco_plantation number = 31 }
-	ec_recheck_abandoned_building = { building = opium_plantation number = 32 }
-	ec_recheck_abandoned_building = { building = food_industry number = 33 }
-	ec_recheck_abandoned_building = { building = arts_academy number = 34 }
-	ec_recheck_abandoned_building = { building = textile_mills number = 35 }
-	ec_recheck_abandoned_building = { building = furniture_manufacturies number = 36 }
-	ec_recheck_abandoned_building = { building = glassworks number = 37 }
-	ec_recheck_abandoned_building = { building = tooling_workshops number = 38 }
-	ec_recheck_abandoned_building = { building = paper_mills number = 39 }
-	ec_recheck_abandoned_building = { building = chemical_plants number = 40 }
-	ec_recheck_abandoned_building = { building = synthetics_plants number = 41 }
-	ec_recheck_abandoned_building = { building = steel_mills number = 42 }
-	ec_recheck_abandoned_building = { building = motor_industry number = 43 }
-	ec_recheck_abandoned_building = { building = power_plant number = 44 }
-	ec_recheck_abandoned_building = { building = shipyards number = 45 }
-	ec_recheck_abandoned_building = { building = arms_industry number = 46 }
-	ec_recheck_abandoned_building = { building = munition_plants number = 47 }
-	ec_recheck_abandoned_building = { building = electrics_industry number = 48 }
-	ec_recheck_abandoned_building = { building = war_machine_industry number = 49 }
+	ec_recheck_abandoned_building = { building = building_logging_camp number = 8 }
+	ec_recheck_abandoned_building = { building = building_fishing_wharf number = 9 }
+	ec_recheck_abandoned_building = { building = building_whaling_station number = 10 }
+	ec_recheck_abandoned_building = { building = building_coal_mine number = 11 }
+	ec_recheck_abandoned_building = { building = building_iron_mine number = 12 }
+	ec_recheck_abandoned_building = { building = building_lead_mine number = 13 }
+	ec_recheck_abandoned_building = { building = building_sulfur_mine number = 14 }
+	ec_recheck_abandoned_building = { building = building_gold_mine number = 15 }
+	ec_recheck_abandoned_building = { building = building_rubber_plantation number = 16 }
+	ec_recheck_abandoned_building = { building = building_wheat_farm number = 18 }
+	ec_recheck_abandoned_building = { building = building_rye_farm number = 19 }
+	ec_recheck_abandoned_building = { building = building_rice_farm number = 20 }
+	ec_recheck_abandoned_building = { building = building_maize_farm number = 21 }
+	ec_recheck_abandoned_building = { building = building_millet_farm number = 22 }
+	ec_recheck_abandoned_building = { building = building_livestock_ranch number = 23 }
+	ec_recheck_abandoned_building = { building = building_cotton_plantation number = 24 }
+	ec_recheck_abandoned_building = { building = building_dye_plantation number = 25 }
+	ec_recheck_abandoned_building = { building = building_silk_plantation number = 26 }
+	ec_recheck_abandoned_building = { building = building_banana_plantation number = 27 }
+	ec_recheck_abandoned_building = { building = building_sugar_plantation number = 28 }
+	ec_recheck_abandoned_building = { building = building_tea_plantation number = 29 }
+	ec_recheck_abandoned_building = { building = building_coffee_plantation number = 30 }
+	ec_recheck_abandoned_building = { building = building_tobacco_plantation number = 31 }
+	ec_recheck_abandoned_building = { building = building_opium_plantation number = 32 }
+	ec_recheck_abandoned_building = { building = building_food_industry number = 33 }
+	ec_recheck_abandoned_building = { building = building_arts_academy number = 34 }
+	ec_recheck_abandoned_building = { building = building_textile_mills number = 35 }
+	ec_recheck_abandoned_building = { building = building_furniture_manufacturies number = 36 }
+	ec_recheck_abandoned_building = { building = building_glassworks number = 37 }
+	ec_recheck_abandoned_building = { building = building_tooling_workshops number = 38 }
+	ec_recheck_abandoned_building = { building = building_paper_mills number = 39 }
+	ec_recheck_abandoned_building = { building = building_chemical_plants number = 40 }
+	ec_recheck_abandoned_building = { building = building_synthetics_plants number = 41 }
+	ec_recheck_abandoned_building = { building = building_steel_mills number = 42 }
+	ec_recheck_abandoned_building = { building = building_motor_industry number = 43 }
+	ec_recheck_abandoned_building = { building = building_power_plant number = 44 }
+	ec_recheck_abandoned_building = { building = building_shipyards number = 45 }
+	ec_recheck_abandoned_building = { building = building_arms_industry number = 46 }
+	ec_recheck_abandoned_building = { building = building_munition_plants number = 47 }
+	ec_recheck_abandoned_building = { building = building_electrics_industry number = 48 }
+	ec_recheck_abandoned_building = { building = building_war_machine_industry number = 49 }
 	cp_sanitize_abandoned_buildings = yes
 }
 
@@ -3842,7 +4107,7 @@ ec_recheck_abandoned_building = {
 			has_variable = ec$number$ia
 			NOT = {
 				any_scope_building = {
-					is_building_type = building_$building$
+					is_building_type = $building$
 				}
 			}
 		}
@@ -3900,47 +4165,47 @@ ec_clear_excessive_production = {
 }
 
 ec_downsize_production_buildings = {
-	ec_perform_production_downsizing = { building = logging_camp number = 8 }
-	ec_perform_production_downsizing = { building = fishing_wharf number = 9 }
-	ec_perform_production_downsizing = { building = whaling_station number = 10 }
-	ec_perform_production_downsizing = { building = coal_mine number = 11 }
-	ec_perform_production_downsizing = { building = iron_mine number = 12 }
-	ec_perform_production_downsizing = { building = lead_mine number = 13 }
-	ec_perform_production_downsizing = { building = sulfur_mine number = 14 }
-	ec_perform_production_downsizing = { building = gold_mine number = 15 }
-	ec_perform_production_downsizing = { building = rubber_plantation number = 16 }
-	ec_perform_production_downsizing = { building = wheat_farm number = 18 }
-	ec_perform_production_downsizing = { building = rye_farm number = 19 }
-	ec_perform_production_downsizing = { building = rice_farm number = 20 }
-	ec_perform_production_downsizing = { building = maize_farm number = 21 }
-	ec_perform_production_downsizing = { building = millet_farm number = 22 }
-	ec_perform_production_downsizing = { building = livestock_ranch number = 23 }
-	ec_perform_production_downsizing = { building = cotton_plantation number = 24 }
-	ec_perform_production_downsizing = { building = dye_plantation number = 25 }
-	ec_perform_production_downsizing = { building = silk_plantation number = 26 }
-	ec_perform_production_downsizing = { building = banana_plantation number = 27 }
-	ec_perform_production_downsizing = { building = sugar_plantation number = 28 }
-	ec_perform_production_downsizing = { building = tea_plantation number = 29 }
-	ec_perform_production_downsizing = { building = coffee_plantation number = 30 }
-	ec_perform_production_downsizing = { building = tobacco_plantation number = 31 }
-	ec_perform_production_downsizing = { building = opium_plantation number = 32 }
-	ec_perform_production_downsizing = { building = food_industry number = 33 }
-	ec_perform_production_downsizing = { building = arts_academy number = 34 }
-	ec_perform_production_downsizing = { building = textile_mills number = 35 }
-	ec_perform_production_downsizing = { building = furniture_manufacturies number = 36 }
-	ec_perform_production_downsizing = { building = glassworks number = 37 }
-	ec_perform_production_downsizing = { building = tooling_workshops number = 38 }
-	ec_perform_production_downsizing = { building = paper_mills number = 39 }
-	ec_perform_production_downsizing = { building = chemical_plants number = 40 }
-	ec_perform_production_downsizing = { building = synthetics_plants number = 41 }
-	ec_perform_production_downsizing = { building = steel_mills number = 42 }
-	ec_perform_production_downsizing = { building = motor_industry number = 43 }
-	ec_perform_production_downsizing = { building = power_plant number = 44 }
-	ec_perform_production_downsizing = { building = shipyards number = 45 }
-	ec_perform_production_downsizing = { building = arms_industry number = 46 }
-	ec_perform_production_downsizing = { building = munition_plants number = 47 }
-	ec_perform_production_downsizing = { building = electrics_industry number = 48 }
-	ec_perform_production_downsizing = { building = war_machine_industry number = 49 }
+	ec_perform_production_downsizing = { building = building_logging_camp number = 8 }
+	ec_perform_production_downsizing = { building = building_fishing_wharf number = 9 }
+	ec_perform_production_downsizing = { building = building_whaling_station number = 10 }
+	ec_perform_production_downsizing = { building = building_coal_mine number = 11 }
+	ec_perform_production_downsizing = { building = building_iron_mine number = 12 }
+	ec_perform_production_downsizing = { building = building_lead_mine number = 13 }
+	ec_perform_production_downsizing = { building = building_sulfur_mine number = 14 }
+	ec_perform_production_downsizing = { building = building_gold_mine number = 15 }
+	ec_perform_production_downsizing = { building = building_rubber_plantation number = 16 }
+	ec_perform_production_downsizing = { building = building_wheat_farm number = 18 }
+	ec_perform_production_downsizing = { building = building_rye_farm number = 19 }
+	ec_perform_production_downsizing = { building = building_rice_farm number = 20 }
+	ec_perform_production_downsizing = { building = building_maize_farm number = 21 }
+	ec_perform_production_downsizing = { building = building_millet_farm number = 22 }
+	ec_perform_production_downsizing = { building = building_livestock_ranch number = 23 }
+	ec_perform_production_downsizing = { building = building_cotton_plantation number = 24 }
+	ec_perform_production_downsizing = { building = building_dye_plantation number = 25 }
+	ec_perform_production_downsizing = { building = building_silk_plantation number = 26 }
+	ec_perform_production_downsizing = { building = building_banana_plantation number = 27 }
+	ec_perform_production_downsizing = { building = building_sugar_plantation number = 28 }
+	ec_perform_production_downsizing = { building = building_tea_plantation number = 29 }
+	ec_perform_production_downsizing = { building = building_coffee_plantation number = 30 }
+	ec_perform_production_downsizing = { building = building_tobacco_plantation number = 31 }
+	ec_perform_production_downsizing = { building = building_opium_plantation number = 32 }
+	ec_perform_production_downsizing = { building = building_food_industry number = 33 }
+	ec_perform_production_downsizing = { building = building_arts_academy number = 34 }
+	ec_perform_production_downsizing = { building = building_textile_mills number = 35 }
+	ec_perform_production_downsizing = { building = building_furniture_manufacturies number = 36 }
+	ec_perform_production_downsizing = { building = building_glassworks number = 37 }
+	ec_perform_production_downsizing = { building = building_tooling_workshops number = 38 }
+	ec_perform_production_downsizing = { building = building_paper_mills number = 39 }
+	ec_perform_production_downsizing = { building = building_chemical_plants number = 40 }
+	ec_perform_production_downsizing = { building = building_synthetics_plants number = 41 }
+	ec_perform_production_downsizing = { building = building_steel_mills number = 42 }
+	ec_perform_production_downsizing = { building = building_motor_industry number = 43 }
+	ec_perform_production_downsizing = { building = building_power_plant number = 44 }
+	ec_perform_production_downsizing = { building = building_shipyards number = 45 }
+	ec_perform_production_downsizing = { building = building_arms_industry number = 46 }
+	ec_perform_production_downsizing = { building = building_munition_plants number = 47 }
+	ec_perform_production_downsizing = { building = building_electrics_industry number = 48 }
+	ec_perform_production_downsizing = { building = building_war_machine_industry number = 49 }
 	cp_downsize_production_buildings = yes
 }
 
@@ -3954,8 +4219,8 @@ ec_perform_production_downsizing = {
 			value = 200000
 			subtract = var:ec$number$ia
 		}
-		max = 1
-		remove_building = building_$building$
+		position = 0
+		remove_building = $building$
 		remove_variable = ec$number$ia
 	}
 }
@@ -4012,63 +4277,129 @@ ec_clear_abandoned_building = {
 ec_prepare_data_for_construction = {
 	ec_country_level_building_analysis = yes
 	ec_state_level_building_analysis = yes
-	ec_create_building_priority_lists = yes
+	ec_create_building_priority_arrays = yes
 }
 
 ec_country_level_building_analysis = {
-	ec_check_priority_of_building = { building = government_administration number = 1 dynamic = 0 arable = 0 importance = 9 } 
-	ec_check_priority_of_building = { building = construction_sector number = 2 dynamic = 0 arable = 0 importance = 5 } 
-	ec_check_priority_of_building = { building = university number = 3 dynamic = 0 arable = 0 importance = 7 } 
-	ec_check_priority_of_building = { building = railway number = 4 dynamic = 1 arable = 0 importance = 99 } 
-	ec_check_priority_of_building = { building = port number = 5 dynamic = 1 arable = 0 importance = 99 } 
-	ec_check_priority_of_building = { building = barracks number = 6 dynamic = 0 arable = 0 importance = 7 } 
-	ec_check_priority_of_building = { building = naval_base number = 7 dynamic = 0 arable = 0 importance = 7 } 
-	ec_check_priority_of_building = { building = logging_camp number = 8 dynamic = 0 arable = 0 importance = 5 } 
-	ec_check_priority_of_building = { building = fishing_wharf number = 9 dynamic = 0 arable = 0 importance = 5 } 
-	ec_check_priority_of_building = { building = whaling_station number = 10 dynamic = 0 arable = 0 importance = 5 } 
-	ec_check_priority_of_building = { building = coal_mine number = 11 dynamic = 0 arable = 0 importance = 5 } 
-	ec_check_priority_of_building = { building = iron_mine number = 12 dynamic = 0 arable = 0 importance = 5 } 
-	ec_check_priority_of_building = { building = lead_mine number = 13 dynamic = 0 arable = 0 importance = 5 } 
-	ec_check_priority_of_building = { building = sulfur_mine number = 14 dynamic = 0 arable = 0 importance = 5 } 
-	ec_check_priority_of_building = { building = gold_mine number = 15 dynamic = 0 arable = 0 importance = 5 } 
-	ec_check_priority_of_building = { building = rubber_plantation number = 16 dynamic = 0 arable = 0 importance = 11 } 
-	ec_check_priority_of_building = { building = oil_rig number = 17 dynamic = 0 arable = 0 importance = 11 } 
-	ec_check_priority_of_building = { building = wheat_farm number = 18 dynamic = 0 arable = 1 importance = 5 } 
-	ec_check_priority_of_building = { building = rye_farm number = 19 dynamic = 0 arable = 1 importance = 5 } 
-	ec_check_priority_of_building = { building = rice_farm number = 20 dynamic = 0 arable = 1 importance = 5 } 
-	ec_check_priority_of_building = { building = maize_farm number = 21 dynamic = 0 arable = 1 importance = 5 } 
-	ec_check_priority_of_building = { building = millet_farm number = 22 dynamic = 0 arable = 1 importance = 5 } 
-	ec_check_priority_of_building = { building = livestock_ranch number = 23 dynamic = 0 arable = 1 importance = 5 } 
-	ec_check_priority_of_building = { building = cotton_plantation number = 24 dynamic = 0 arable = 1 importance = 5 } 
-	ec_check_priority_of_building = { building = dye_plantation number = 25 dynamic = 0 arable = 1 importance = 5 } 
-	ec_check_priority_of_building = { building = silk_plantation number = 26 dynamic = 0 arable = 1 importance = 5 } 
-	ec_check_priority_of_building = { building = banana_plantation number = 27 dynamic = 0 arable = 1 importance = 5 } 
-	ec_check_priority_of_building = { building = sugar_plantation number = 28 dynamic = 0 arable = 1 importance = 5 } 
-	ec_check_priority_of_building = { building = tea_plantation number = 29 dynamic = 0 arable = 1 importance = 5 } 
-	ec_check_priority_of_building = { building = coffee_plantation number = 30 dynamic = 0 arable = 1 importance = 5 } 
-	ec_check_priority_of_building = { building = tobacco_plantation number = 31 dynamic = 0 arable = 1 importance = 5 } 
-	ec_check_priority_of_building = { building = opium_plantation number = 32 dynamic = 0 arable = 1 importance = 5 } 
-	ec_check_priority_of_building = { building = food_industry number = 33 dynamic = 0 arable = 0 importance = 5 } 
-	ec_check_priority_of_building = { building = arts_academy number = 34 dynamic = 0 arable = 0 importance = 5 } 
-	ec_check_priority_of_building = { building = textile_mills number = 35 dynamic = 0 arable = 0 importance = 5 } 
-	ec_check_priority_of_building = { building = furniture_manufacturies number = 36 dynamic = 0 arable = 0 importance = 5 } 
-	ec_check_priority_of_building = { building = glassworks number = 37 dynamic = 0 arable = 0 importance = 5 } 
-	ec_check_priority_of_building = { building = tooling_workshops number = 38 dynamic = 0 arable = 0 importance = 5 } 
-	ec_check_priority_of_building = { building = paper_mills number = 39 dynamic = 0 arable = 0 importance = 5 } 
-	ec_check_priority_of_building = { building = chemical_plants number = 40 dynamic = 0 arable = 0 importance = 5 } 
-	ec_check_priority_of_building = { building = synthetics_plants number = 41 dynamic = 0 arable = 0 importance = 5 } 
-	ec_check_priority_of_building = { building = steel_mills number = 42 dynamic = 0 arable = 0 importance = 5 } 
-	ec_check_priority_of_building = { building = motor_industry number = 43 dynamic = 0 arable = 0 importance = 5 } 
-	ec_check_priority_of_building = { building = power_plant number = 44 dynamic = 0 arable = 0 importance = 5 } 
-	ec_check_priority_of_building = { building = shipyards number = 45 dynamic = 0 arable = 0 importance = 5 } 
-	ec_check_priority_of_building = { building = arms_industry number = 46 dynamic = 0 arable = 0 importance = 5 } 
-	ec_check_priority_of_building = { building = munition_plants number = 47 dynamic = 0 arable = 0 importance = 5 } 
-	ec_check_priority_of_building = { building = electrics_industry number = 48 dynamic = 0 arable = 0 importance = 5 } 
-	ec_check_priority_of_building = { building = war_machine_industry number = 49 dynamic = 0 arable = 0 importance = 5 } 
+	ec_check_priority_of_building = { building = building_government_administration number = 1 dynamic = 0 importance = 9 } 
+	ec_check_priority_of_building = { building = building_construction_sector number = 2 dynamic = 0 importance = 5 } 
+	ec_check_priority_of_building = { building = building_university number = 3 dynamic = 0 importance = 7 } 
+	ec_check_priority_of_building = { building = building_railway number = 4 dynamic = 1 importance = 99 } 
+	ec_check_priority_of_building = { building = building_port number = 5 dynamic = 1 importance = 99 } 
+	ec_check_priority_of_building = { building = building_barracks number = 6 dynamic = 0 importance = 7 } 
+	ec_check_priority_of_building = { building = building_naval_base number = 7 dynamic = 0 importance = 7 } 
+	ec_check_priority_of_building = { building = building_logging_camp number = 8 dynamic = 0 importance = 5 } 
+	ec_check_priority_of_building = { building = building_fishing_wharf number = 9 dynamic = 0 importance = 5 } 
+	ec_check_priority_of_building = { building = building_whaling_station number = 10 dynamic = 0 importance = 5 } 
+	ec_check_priority_of_building = { building = building_coal_mine number = 11 dynamic = 0 importance = 5 } 
+	ec_check_priority_of_building = { building = building_iron_mine number = 12 dynamic = 0 importance = 5 } 
+	ec_check_priority_of_building = { building = building_lead_mine number = 13 dynamic = 0 importance = 5 } 
+	ec_check_priority_of_building = { building = building_sulfur_mine number = 14 dynamic = 0 importance = 5 } 
+	ec_check_priority_of_building = { building = building_gold_mine number = 15 dynamic = 0 importance = 5 } 
+	ec_check_priority_of_building = { building = building_rubber_plantation number = 16 dynamic = 0 importance = 11 } 
+	ec_check_priority_of_building = { building = building_oil_rig number = 17 dynamic = 0 importance = 11 } 
+	ec_check_priority_of_building = { building = building_wheat_farm number = 18 dynamic = 0 importance = 5 } 
+	ec_check_priority_of_building = { building = building_rye_farm number = 19 dynamic = 0 importance = 5 } 
+	ec_check_priority_of_building = { building = building_rice_farm number = 20 dynamic = 0 importance = 5 } 
+	ec_check_priority_of_building = { building = building_maize_farm number = 21 dynamic = 0 importance = 5 } 
+	ec_check_priority_of_building = { building = building_millet_farm number = 22 dynamic = 0 importance = 5 } 
+	ec_check_priority_of_building = { building = building_livestock_ranch number = 23 dynamic = 0 importance = 5 } 
+	ec_check_priority_of_building = { building = building_cotton_plantation number = 24 dynamic = 0 importance = 5 } 
+	ec_check_priority_of_building = { building = building_dye_plantation number = 25 dynamic = 0 importance = 5 } 
+	ec_check_priority_of_building = { building = building_silk_plantation number = 26 dynamic = 0 importance = 5 } 
+	ec_check_priority_of_building = { building = building_banana_plantation number = 27 dynamic = 0 importance = 5 } 
+	ec_check_priority_of_building = { building = building_sugar_plantation number = 28 dynamic = 0 importance = 5 } 
+	ec_check_priority_of_building = { building = building_tea_plantation number = 29 dynamic = 0 importance = 5 } 
+	ec_check_priority_of_building = { building = building_coffee_plantation number = 30 dynamic = 0 importance = 5 } 
+	ec_check_priority_of_building = { building = building_tobacco_plantation number = 31 dynamic = 0 importance = 5 } 
+	ec_check_priority_of_building = { building = building_opium_plantation number = 32 dynamic = 0 importance = 5 } 
+	ec_check_priority_of_building = { building = building_food_industry number = 33 dynamic = 0 importance = 5 } 
+	ec_check_priority_of_building = { building = building_arts_academy number = 34 dynamic = 0 importance = 5 } 
+	ec_check_priority_of_building = { building = building_textile_mills number = 35 dynamic = 0 importance = 5 } 
+	ec_check_priority_of_building = { building = building_furniture_manufacturies number = 36 dynamic = 0 importance = 5 } 
+	ec_check_priority_of_building = { building = building_glassworks number = 37 dynamic = 0 importance = 5 } 
+	ec_check_priority_of_building = { building = building_tooling_workshops number = 38 dynamic = 0 importance = 5 } 
+	ec_check_priority_of_building = { building = building_paper_mills number = 39 dynamic = 0 importance = 5 } 
+	ec_check_priority_of_building = { building = building_chemical_plants number = 40 dynamic = 0 importance = 5 } 
+	ec_check_priority_of_building = { building = building_synthetics_plants number = 41 dynamic = 0 importance = 5 } 
+	ec_check_priority_of_building = { building = building_steel_mills number = 42 dynamic = 0 importance = 5 } 
+	ec_check_priority_of_building = { building = building_motor_industry number = 43 dynamic = 0 importance = 5 } 
+	ec_check_priority_of_building = { building = building_power_plant number = 44 dynamic = 0 importance = 5 } 
+	ec_check_priority_of_building = { building = building_shipyards number = 45 dynamic = 0 importance = 5 } 
+	ec_check_priority_of_building = { building = building_arms_industry number = 46 dynamic = 0 importance = 5 } 
+	ec_check_priority_of_building = { building = building_munition_plants number = 47 dynamic = 0 importance = 5 } 
+	ec_check_priority_of_building = { building = building_electrics_industry number = 48 dynamic = 0 importance = 5 } 
+	ec_check_priority_of_building = { building = building_war_machine_industry number = 49 dynamic = 0 importance = 5 } 
 	cp_country_level_building_analysis = yes
 }
 
-ec_check_priority_of_building = { if = { limit = { ec_consider_$building$ = yes OR = { $dynamic$ = 1 AND = { NOT = { any_scope_state = { OR = { $arable$ = 0 free_arable_land > 0 } any_scope_building = { is_building_type = building_$building$ is_under_construction = yes } } } OR = { NOT = { $number$ = 18 } NOR = { any_scope_state = { free_arable_land > 0 any_scope_building = { is_building_type = building_rye_farm is_under_construction = yes } } any_scope_state = { free_arable_land > 0 any_scope_building = { is_building_type = building_rice_farm is_under_construction = yes } } any_scope_state = { free_arable_land > 0 any_scope_building = { is_building_type = building_maize_farm is_under_construction = yes } } any_scope_state = { free_arable_land > 0 any_scope_building = { is_building_type = building_millet_farm is_under_construction = yes } } } } OR = { NOT = { $number$ = 19 } NOR = { any_scope_state = { free_arable_land > 0 any_scope_building = { is_building_type = building_wheat_farm is_under_construction = yes } } any_scope_state = { free_arable_land > 0 any_scope_building = { is_building_type = building_rice_farm is_under_construction = yes } } any_scope_state = { free_arable_land > 0 any_scope_building = { is_building_type = building_maize_farm is_under_construction = yes } } any_scope_state = { free_arable_land > 0 any_scope_building = { is_building_type = building_millet_farm is_under_construction = yes } } } } OR = { NOT = { $number$ = 20 } NOR = { any_scope_state = { free_arable_land > 0 any_scope_building = { is_building_type = building_wheat_farm is_under_construction = yes } } any_scope_state = { free_arable_land > 0 any_scope_building = { is_building_type = building_rye_farm is_under_construction = yes } } any_scope_state = { free_arable_land > 0 any_scope_building = { is_building_type = building_maize_farm is_under_construction = yes } } any_scope_state = { free_arable_land > 0 any_scope_building = { is_building_type = building_millet_farm is_under_construction = yes } } } } OR = { NOT = { $number$ = 21 } NOR = { any_scope_state = { free_arable_land > 0 any_scope_building = { is_building_type = building_wheat_farm is_under_construction = yes } } any_scope_state = { free_arable_land > 0 any_scope_building = { is_building_type = building_rye_farm is_under_construction = yes } } any_scope_state = { free_arable_land > 0 any_scope_building = { is_building_type = building_rice_farm is_under_construction = yes } } any_scope_state = { free_arable_land > 0 any_scope_building = { is_building_type = building_millet_farm is_under_construction = yes } } } } OR = { NOT = { $number$ = 22 } NOR = { any_scope_state = { free_arable_land > 0 any_scope_building = { is_building_type = building_wheat_farm is_under_construction = yes } } any_scope_state = { free_arable_land > 0 any_scope_building = { is_building_type = building_rye_farm is_under_construction = yes } } any_scope_state = { free_arable_land > 0 any_scope_building = { is_building_type = building_rice_farm is_under_construction = yes } } any_scope_state = { free_arable_land > 0 any_scope_building = { is_building_type = building_maize_farm is_under_construction = yes } } } } OR = { NOT = { $number$ = 23 } NOR = { any_scope_state = { free_arable_land > 0 any_scope_building = { is_building_type = building_cotton_plantation is_under_construction = yes } } } } OR = { NOT = { $number$ = 24 } NOR = { any_scope_state = { free_arable_land > 0 any_scope_building = { is_building_type = building_livestock_ranch is_under_construction = yes } } } } } } } if = { limit = { OR = { 1 <= $importance$ has_variable_list = ec_suitable_states_1 } ec_evaluate_$building$ = { priority = 1 } } set_variable = { name = ecpb$number$ value = 1 } } else_if = { limit = { OR = { 2 <= $importance$ has_variable_list = ec_suitable_states_1 } ec_evaluate_$building$ = { priority = 2 } } set_variable = { name = ecpb$number$ value = 2 } } else_if = { limit = { OR = { 3 <= $importance$ has_variable_list = ec_suitable_states_1 } ec_evaluate_$building$ = { priority = 3 } } set_variable = { name = ecpb$number$ value = 3 } } else_if = { limit = { OR = { 4 <= $importance$ has_variable_list = ec_suitable_states_1 } ec_evaluate_$building$ = { priority = 4 } } set_variable = { name = ecpb$number$ value = 4 } } else_if = { limit = { OR = { 5 <= $importance$ has_variable_list = ec_suitable_states_1 } ec_evaluate_$building$ = { priority = 5 } } set_variable = { name = ecpb$number$ value = 5 } } else_if = { limit = { OR = { 6 <= $importance$ has_variable_list = ec_suitable_states_1 } ec_evaluate_$building$ = { priority = 6 } } set_variable = { name = ecpb$number$ value = 6 } } else_if = { limit = { OR = { 7 <= $importance$ has_variable_list = ec_suitable_states_1 } ec_evaluate_$building$ = { priority = 7 } } set_variable = { name = ecpb$number$ value = 7 } } else_if = { limit = { OR = { 8 <= $importance$ has_variable_list = ec_suitable_states_1 } ec_evaluate_$building$ = { priority = 8 } } set_variable = { name = ecpb$number$ value = 8 } } else_if = { limit = { OR = { 9 <= $importance$ has_variable_list = ec_suitable_states_1 } ec_evaluate_$building$ = { priority = 9 } } set_variable = { name = ecpb$number$ value = 9 } } else_if = { limit = { OR = { 10 <= $importance$ has_variable_list = ec_suitable_states_1 } ec_evaluate_$building$ = { priority = 10 } } set_variable = { name = ecpb$number$ value = 10 } } else_if = { limit = { OR = { 11 <= $importance$ has_variable_list = ec_suitable_states_1 } ec_evaluate_$building$ = { priority = 11 } } set_variable = { name = ecpb$number$ value = 11 } } else_if = { limit = { OR = { 12 <= $importance$ has_variable_list = ec_suitable_states_1 } ec_evaluate_$building$ = { priority = 12 } } set_variable = { name = ecpb$number$ value = 12 } } else_if = { limit = { OR = { 13 <= $importance$ has_variable_list = ec_suitable_states_1 } ec_evaluate_$building$ = { priority = 13 } } set_variable = { name = ecpb$number$ value = 13 } } else_if = { limit = { OR = { 14 <= $importance$ has_variable_list = ec_suitable_states_1 } ec_evaluate_$building$ = { priority = 14 } } set_variable = { name = ecpb$number$ value = 14 } } else_if = { limit = { OR = { 15 <= $importance$ has_variable_list = ec_suitable_states_1 } ec_evaluate_$building$ = { priority = 15 } } set_variable = { name = ecpb$number$ value = 15 } } else_if = { limit = { OR = { 16 <= $importance$ has_variable_list = ec_suitable_states_1 } ec_evaluate_$building$ = { priority = 16 } } set_variable = { name = ecpb$number$ value = 16 } } else_if = { limit = { OR = { 17 <= $importance$ has_variable_list = ec_suitable_states_1 } ec_evaluate_$building$ = { priority = 17 } } set_variable = { name = ecpb$number$ value = 17 } } else_if = { limit = { OR = { 18 <= $importance$ has_variable_list = ec_suitable_states_1 } ec_evaluate_$building$ = { priority = 18 } } set_variable = { name = ecpb$number$ value = 18 } } } }
+ec_check_priority_of_building = {
+	if = {
+		limit = {
+			ec_consider_$building$ = yes
+			OR = {
+				$dynamic$ = 1
+				any_in_global_list = {
+					variable = ecbta
+					trigger_if = {
+						limit = {
+							var:ecbtn = $number$
+						}
+						save_temporary_scope_as = ec_current_building
+						NOT = {
+							any_in_global_list = {
+								variable = ecbta
+								trigger_if = {
+									limit = {
+										var:ecbtc = ec_current_ecbtc
+									}
+									save_temporary_scope_as = ec_counter_building
+									trigger_if = {
+										limit = {
+											var:ecbtn = $number$
+										}
+										ec_building_is_under_construction = {
+											building = $building$
+										}
+									}
+									trigger_else = {
+										ec_number_is_under_construction = {
+											number = ec_counter_ecbtn
+										}
+									}
+								}
+								trigger_else = {
+									always = no
+								}
+							}
+						}
+					}
+					trigger_else = {
+						always = no
+					}
+				}
+			}
+		}
+		if = { limit = { OR = { $importance$ >= 1 has_variable_list = ec_suitable_states_1 } ec_evaluate_$building$ = { priority = 1 } } set_variable = { name = ecpb$number$ value = 1 } } 
+		else_if = { limit = { OR = { $importance$ >= 2 has_variable_list = ec_suitable_states_1 } ec_evaluate_$building$ = { priority = 2 } } set_variable = { name = ecpb$number$ value = 2 } } 
+		else_if = { limit = { OR = { $importance$ >= 3 has_variable_list = ec_suitable_states_1 } ec_evaluate_$building$ = { priority = 3 } } set_variable = { name = ecpb$number$ value = 3 } } 
+		else_if = { limit = { OR = { $importance$ >= 4 has_variable_list = ec_suitable_states_1 } ec_evaluate_$building$ = { priority = 4 } } set_variable = { name = ecpb$number$ value = 4 } } 
+		else_if = { limit = { OR = { $importance$ >= 5 has_variable_list = ec_suitable_states_1 } ec_evaluate_$building$ = { priority = 5 } } set_variable = { name = ecpb$number$ value = 5 } } 
+		else_if = { limit = { OR = { $importance$ >= 6 has_variable_list = ec_suitable_states_1 } ec_evaluate_$building$ = { priority = 6 } } set_variable = { name = ecpb$number$ value = 6 } } 
+		else_if = { limit = { OR = { $importance$ >= 7 has_variable_list = ec_suitable_states_1 } ec_evaluate_$building$ = { priority = 7 } } set_variable = { name = ecpb$number$ value = 7 } } 
+		else_if = { limit = { OR = { $importance$ >= 8 has_variable_list = ec_suitable_states_1 } ec_evaluate_$building$ = { priority = 8 } } set_variable = { name = ecpb$number$ value = 8 } } 
+		else_if = { limit = { OR = { $importance$ >= 9 has_variable_list = ec_suitable_states_1 } ec_evaluate_$building$ = { priority = 9 } } set_variable = { name = ecpb$number$ value = 9 } } 
+		else_if = { limit = { OR = { $importance$ >= 10 has_variable_list = ec_suitable_states_1 } ec_evaluate_$building$ = { priority = 10 } } set_variable = { name = ecpb$number$ value = 10 } } 
+		else_if = { limit = { OR = { $importance$ >= 11 has_variable_list = ec_suitable_states_1 } ec_evaluate_$building$ = { priority = 11 } } set_variable = { name = ecpb$number$ value = 11 } } 
+		else_if = { limit = { OR = { $importance$ >= 12 has_variable_list = ec_suitable_states_1 } ec_evaluate_$building$ = { priority = 12 } } set_variable = { name = ecpb$number$ value = 12 } } 
+		else_if = { limit = { OR = { $importance$ >= 13 has_variable_list = ec_suitable_states_1 } ec_evaluate_$building$ = { priority = 13 } } set_variable = { name = ecpb$number$ value = 13 } } 
+		else_if = { limit = { OR = { $importance$ >= 14 has_variable_list = ec_suitable_states_1 } ec_evaluate_$building$ = { priority = 14 } } set_variable = { name = ecpb$number$ value = 14 } } 
+		else_if = { limit = { OR = { $importance$ >= 15 has_variable_list = ec_suitable_states_1 } ec_evaluate_$building$ = { priority = 15 } } set_variable = { name = ecpb$number$ value = 15 } } 
+		else_if = { limit = { OR = { $importance$ >= 16 has_variable_list = ec_suitable_states_1 } ec_evaluate_$building$ = { priority = 16 } } set_variable = { name = ecpb$number$ value = 16 } } 
+		else_if = { limit = { OR = { $importance$ >= 17 has_variable_list = ec_suitable_states_1 } ec_evaluate_$building$ = { priority = 17 } } set_variable = { name = ecpb$number$ value = 17 } } 
+		else_if = { limit = { OR = { $importance$ >= 18 has_variable_list = ec_suitable_states_1 } ec_evaluate_$building$ = { priority = 18 } } set_variable = { name = ecpb$number$ value = 18 } } 
+	}
+}
 
 ec_state_level_building_analysis = {
 	every_scope_state = {
@@ -4079,55 +4410,55 @@ ec_state_level_building_analysis = {
 			}
 		}
 		ec_decipher_arable_resources = yes
-		ec_manage_building_allocation = { building = government_administration number = 1 counter = 1 factor = 3 dynamic = 0 singular = 0 depth = 4 importance = 9 }
-		ec_manage_building_allocation = { building = construction_sector number = 2 counter = 2 factor = 3 dynamic = 0 singular = 0 depth = 1 importance = 5 }
-		ec_manage_building_allocation = { building = university number = 3 counter = 3 factor = 3 dynamic = 0 singular = 0 depth = 1 importance = 7 }
-		ec_manage_building_allocation = { building = railway number = 4 counter = 4 factor = 5 dynamic = 1 singular = 1 depth = 7 importance = 99 }
-		ec_manage_building_allocation = { building = port number = 5 counter = 5 factor = 3 dynamic = 1 singular = 1 depth = 4 importance = 99 }
-		ec_manage_building_allocation = { building = barracks number = 6 counter = 6 factor = 7 dynamic = 0 singular = 0 depth = 2 importance = 7 }
-		ec_manage_building_allocation = { building = naval_base number = 7 counter = 7 factor = 3 dynamic = 0 singular = 0 depth = 2 importance = 7 }
-		ec_manage_building_allocation = { building = logging_camp number = 8 counter = 8 factor = 5 dynamic = 0 singular = 0 depth = 2 importance = 5 }
-		ec_manage_building_allocation = { building = fishing_wharf number = 9 counter = 9 factor = 5 dynamic = 0 singular = 0 depth = 2 importance = 5 }
-		ec_manage_building_allocation = { building = whaling_station number = 10 counter = 10 factor = 5 dynamic = 0 singular = 0 depth = 2 importance = 5 }
-		ec_manage_building_allocation = { building = coal_mine number = 11 counter = 11 factor = 5 dynamic = 0 singular = 0 depth = 2 importance = 5 }
-		ec_manage_building_allocation = { building = iron_mine number = 12 counter = 12 factor = 5 dynamic = 0 singular = 0 depth = 2 importance = 5 }
-		ec_manage_building_allocation = { building = lead_mine number = 13 counter = 13 factor = 5 dynamic = 0 singular = 0 depth = 2 importance = 5 }
-		ec_manage_building_allocation = { building = sulfur_mine number = 14 counter = 14 factor = 5 dynamic = 0 singular = 0 depth = 2 importance = 5 }
-		ec_manage_building_allocation = { building = gold_mine number = 15 counter = 15 factor = 5 dynamic = 0 singular = 0 depth = 2 importance = 5 }
-		ec_manage_building_allocation = { building = rubber_plantation number = 16 counter = 16 factor = 5 dynamic = 0 singular = 0 depth = 2 importance = 11 }
-		ec_manage_building_allocation = { building = oil_rig number = 17 counter = 17 factor = 5 dynamic = 0 singular = 0 depth = 2 importance = 11 }
-		ec_manage_building_allocation = { building = wheat_farm number = 18 counter = 18 factor = 5 dynamic = 0 singular = 0 depth = 2 importance = 5 }
-		ec_manage_building_allocation = { building = rye_farm number = 19 counter = 18 factor = 5 dynamic = 0 singular = 0 depth = 2 importance = 5 }
-		ec_manage_building_allocation = { building = rice_farm number = 20 counter = 18 factor = 5 dynamic = 0 singular = 0 depth = 2 importance = 5 }
-		ec_manage_building_allocation = { building = maize_farm number = 21 counter = 18 factor = 5 dynamic = 0 singular = 0 depth = 2 importance = 5 }
-		ec_manage_building_allocation = { building = millet_farm number = 22 counter = 18 factor = 5 dynamic = 0 singular = 0 depth = 2 importance = 5 }
-		ec_manage_building_allocation = { building = livestock_ranch number = 23 counter = 23 factor = 5 dynamic = 0 singular = 0 depth = 2 importance = 5 }
-		ec_manage_building_allocation = { building = cotton_plantation number = 24 counter = 23 factor = 5 dynamic = 0 singular = 0 depth = 2 importance = 5 }
-		ec_manage_building_allocation = { building = dye_plantation number = 25 counter = 25 factor = 5 dynamic = 0 singular = 0 depth = 2 importance = 5 }
-		ec_manage_building_allocation = { building = silk_plantation number = 26 counter = 26 factor = 5 dynamic = 0 singular = 0 depth = 2 importance = 5 }
-		ec_manage_building_allocation = { building = banana_plantation number = 27 counter = 27 factor = 5 dynamic = 0 singular = 0 depth = 2 importance = 5 }
-		ec_manage_building_allocation = { building = sugar_plantation number = 28 counter = 28 factor = 5 dynamic = 0 singular = 0 depth = 2 importance = 5 }
-		ec_manage_building_allocation = { building = tea_plantation number = 29 counter = 29 factor = 5 dynamic = 0 singular = 0 depth = 2 importance = 5 }
-		ec_manage_building_allocation = { building = coffee_plantation number = 30 counter = 30 factor = 5 dynamic = 0 singular = 0 depth = 2 importance = 5 }
-		ec_manage_building_allocation = { building = tobacco_plantation number = 31 counter = 31 factor = 5 dynamic = 0 singular = 0 depth = 2 importance = 5 }
-		ec_manage_building_allocation = { building = opium_plantation number = 32 counter = 32 factor = 5 dynamic = 0 singular = 0 depth = 2 importance = 5 }
-		ec_manage_building_allocation = { building = food_industry number = 33 counter = 33 factor = 5 dynamic = 0 singular = 0 depth = 1 importance = 5 }
-		ec_manage_building_allocation = { building = arts_academy number = 34 counter = 34 factor = 5 dynamic = 0 singular = 0 depth = 1 importance = 5 }
-		ec_manage_building_allocation = { building = textile_mills number = 35 counter = 35 factor = 5 dynamic = 0 singular = 0 depth = 1 importance = 5 }
-		ec_manage_building_allocation = { building = furniture_manufacturies number = 36 counter = 36 factor = 5 dynamic = 0 singular = 0 depth = 1 importance = 5 }
-		ec_manage_building_allocation = { building = glassworks number = 37 counter = 37 factor = 5 dynamic = 0 singular = 0 depth = 1 importance = 5 }
-		ec_manage_building_allocation = { building = tooling_workshops number = 38 counter = 38 factor = 5 dynamic = 0 singular = 0 depth = 1 importance = 5 }
-		ec_manage_building_allocation = { building = paper_mills number = 39 counter = 39 factor = 5 dynamic = 0 singular = 0 depth = 1 importance = 5 }
-		ec_manage_building_allocation = { building = chemical_plants number = 40 counter = 40 factor = 5 dynamic = 0 singular = 0 depth = 1 importance = 5 }
-		ec_manage_building_allocation = { building = synthetics_plants number = 41 counter = 41 factor = 5 dynamic = 0 singular = 0 depth = 1 importance = 5 }
-		ec_manage_building_allocation = { building = steel_mills number = 42 counter = 42 factor = 5 dynamic = 0 singular = 0 depth = 1 importance = 5 }
-		ec_manage_building_allocation = { building = motor_industry number = 43 counter = 43 factor = 5 dynamic = 0 singular = 0 depth = 1 importance = 5 }
-		ec_manage_building_allocation = { building = power_plant number = 44 counter = 44 factor = 5 dynamic = 0 singular = 0 depth = 1 importance = 5 }
-		ec_manage_building_allocation = { building = shipyards number = 45 counter = 45 factor = 5 dynamic = 0 singular = 0 depth = 1 importance = 5 }
-		ec_manage_building_allocation = { building = arms_industry number = 46 counter = 46 factor = 5 dynamic = 0 singular = 0 depth = 1 importance = 5 }
-		ec_manage_building_allocation = { building = munition_plants number = 47 counter = 47 factor = 5 dynamic = 0 singular = 0 depth = 1 importance = 5 }
-		ec_manage_building_allocation = { building = electrics_industry number = 48 counter = 48 factor = 5 dynamic = 0 singular = 0 depth = 1 importance = 5 }
-		ec_manage_building_allocation = { building = war_machine_industry number = 49 counter = 49 factor = 5 dynamic = 0 singular = 0 depth = 1 importance = 5 }
+		ec_manage_building_allocation = { building = building_government_administration number = 1 counter = 1 factor = 3 dynamic = 0 singular = 0 depth = 4 importance = 9 }
+		ec_manage_building_allocation = { building = building_construction_sector number = 2 counter = 2 factor = 4 dynamic = 0 singular = 0 depth = 1 importance = 5 }
+		ec_manage_building_allocation = { building = building_university number = 3 counter = 3 factor = 3 dynamic = 0 singular = 0 depth = 1 importance = 7 }
+		ec_manage_building_allocation = { building = building_railway number = 4 counter = 4 factor = 5 dynamic = 1 singular = 1 depth = 7 importance = 99 }
+		ec_manage_building_allocation = { building = building_port number = 5 counter = 5 factor = 3 dynamic = 1 singular = 1 depth = 4 importance = 99 }
+		ec_manage_building_allocation = { building = building_barracks number = 6 counter = 6 factor = 7 dynamic = 0 singular = 0 depth = 2 importance = 7 }
+		ec_manage_building_allocation = { building = building_naval_base number = 7 counter = 7 factor = 5 dynamic = 0 singular = 0 depth = 2 importance = 7 }
+		ec_manage_building_allocation = { building = building_logging_camp number = 8 counter = 8 factor = 5 dynamic = 0 singular = 0 depth = 2 importance = 5 }
+		ec_manage_building_allocation = { building = building_fishing_wharf number = 9 counter = 9 factor = 5 dynamic = 0 singular = 0 depth = 2 importance = 5 }
+		ec_manage_building_allocation = { building = building_whaling_station number = 10 counter = 10 factor = 5 dynamic = 0 singular = 0 depth = 2 importance = 5 }
+		ec_manage_building_allocation = { building = building_coal_mine number = 11 counter = 11 factor = 5 dynamic = 0 singular = 0 depth = 2 importance = 5 }
+		ec_manage_building_allocation = { building = building_iron_mine number = 12 counter = 12 factor = 5 dynamic = 0 singular = 0 depth = 2 importance = 5 }
+		ec_manage_building_allocation = { building = building_lead_mine number = 13 counter = 13 factor = 5 dynamic = 0 singular = 0 depth = 2 importance = 5 }
+		ec_manage_building_allocation = { building = building_sulfur_mine number = 14 counter = 14 factor = 5 dynamic = 0 singular = 0 depth = 2 importance = 5 }
+		ec_manage_building_allocation = { building = building_gold_mine number = 15 counter = 15 factor = 5 dynamic = 0 singular = 0 depth = 2 importance = 5 }
+		ec_manage_building_allocation = { building = building_rubber_plantation number = 16 counter = 16 factor = 5 dynamic = 0 singular = 0 depth = 2 importance = 11 }
+		ec_manage_building_allocation = { building = building_oil_rig number = 17 counter = 17 factor = 5 dynamic = 0 singular = 0 depth = 2 importance = 11 }
+		ec_manage_building_allocation = { building = building_wheat_farm number = 18 counter = 18 factor = 5 dynamic = 0 singular = 0 depth = 2 importance = 5 }
+		ec_manage_building_allocation = { building = building_rye_farm number = 19 counter = 18 factor = 5 dynamic = 0 singular = 0 depth = 2 importance = 5 }
+		ec_manage_building_allocation = { building = building_rice_farm number = 20 counter = 18 factor = 5 dynamic = 0 singular = 0 depth = 2 importance = 5 }
+		ec_manage_building_allocation = { building = building_maize_farm number = 21 counter = 18 factor = 5 dynamic = 0 singular = 0 depth = 2 importance = 5 }
+		ec_manage_building_allocation = { building = building_millet_farm number = 22 counter = 18 factor = 5 dynamic = 0 singular = 0 depth = 2 importance = 5 }
+		ec_manage_building_allocation = { building = building_livestock_ranch number = 23 counter = 23 factor = 5 dynamic = 0 singular = 0 depth = 2 importance = 5 }
+		ec_manage_building_allocation = { building = building_cotton_plantation number = 24 counter = 23 factor = 5 dynamic = 0 singular = 0 depth = 2 importance = 5 }
+		ec_manage_building_allocation = { building = building_dye_plantation number = 25 counter = 25 factor = 5 dynamic = 0 singular = 0 depth = 2 importance = 5 }
+		ec_manage_building_allocation = { building = building_silk_plantation number = 26 counter = 26 factor = 5 dynamic = 0 singular = 0 depth = 2 importance = 5 }
+		ec_manage_building_allocation = { building = building_banana_plantation number = 27 counter = 27 factor = 5 dynamic = 0 singular = 0 depth = 2 importance = 5 }
+		ec_manage_building_allocation = { building = building_sugar_plantation number = 28 counter = 28 factor = 5 dynamic = 0 singular = 0 depth = 2 importance = 5 }
+		ec_manage_building_allocation = { building = building_tea_plantation number = 29 counter = 29 factor = 5 dynamic = 0 singular = 0 depth = 2 importance = 5 }
+		ec_manage_building_allocation = { building = building_coffee_plantation number = 30 counter = 30 factor = 5 dynamic = 0 singular = 0 depth = 2 importance = 5 }
+		ec_manage_building_allocation = { building = building_tobacco_plantation number = 31 counter = 31 factor = 5 dynamic = 0 singular = 0 depth = 2 importance = 5 }
+		ec_manage_building_allocation = { building = building_opium_plantation number = 32 counter = 32 factor = 5 dynamic = 0 singular = 0 depth = 2 importance = 5 }
+		ec_manage_building_allocation = { building = building_food_industry number = 33 counter = 33 factor = 5 dynamic = 0 singular = 0 depth = 1 importance = 5 }
+		ec_manage_building_allocation = { building = building_arts_academy number = 34 counter = 34 factor = 5 dynamic = 0 singular = 0 depth = 1 importance = 5 }
+		ec_manage_building_allocation = { building = building_textile_mills number = 35 counter = 35 factor = 5 dynamic = 0 singular = 0 depth = 1 importance = 5 }
+		ec_manage_building_allocation = { building = building_furniture_manufacturies number = 36 counter = 36 factor = 5 dynamic = 0 singular = 0 depth = 1 importance = 5 }
+		ec_manage_building_allocation = { building = building_glassworks number = 37 counter = 37 factor = 5 dynamic = 0 singular = 0 depth = 1 importance = 5 }
+		ec_manage_building_allocation = { building = building_tooling_workshops number = 38 counter = 38 factor = 5 dynamic = 0 singular = 0 depth = 1 importance = 5 }
+		ec_manage_building_allocation = { building = building_paper_mills number = 39 counter = 39 factor = 5 dynamic = 0 singular = 0 depth = 1 importance = 5 }
+		ec_manage_building_allocation = { building = building_chemical_plants number = 40 counter = 25 factor = 5 dynamic = 0 singular = 0 depth = 1 importance = 5 }
+		ec_manage_building_allocation = { building = building_synthetics_plants number = 41 counter = 41 factor = 5 dynamic = 0 singular = 0 depth = 1 importance = 5 }
+		ec_manage_building_allocation = { building = building_steel_mills number = 42 counter = 42 factor = 5 dynamic = 0 singular = 0 depth = 1 importance = 5 }
+		ec_manage_building_allocation = { building = building_motor_industry number = 43 counter = 43 factor = 5 dynamic = 0 singular = 0 depth = 1 importance = 5 }
+		ec_manage_building_allocation = { building = building_power_plant number = 44 counter = 44 factor = 5 dynamic = 0 singular = 0 depth = 1 importance = 5 }
+		ec_manage_building_allocation = { building = building_shipyards number = 45 counter = 45 factor = 5 dynamic = 0 singular = 0 depth = 1 importance = 5 }
+		ec_manage_building_allocation = { building = building_arms_industry number = 46 counter = 46 factor = 5 dynamic = 0 singular = 0 depth = 1 importance = 5 }
+		ec_manage_building_allocation = { building = building_munition_plants number = 47 counter = 47 factor = 5 dynamic = 0 singular = 0 depth = 1 importance = 5 }
+		ec_manage_building_allocation = { building = building_electrics_industry number = 48 counter = 48 factor = 5 dynamic = 0 singular = 0 depth = 1 importance = 5 }
+		ec_manage_building_allocation = { building = building_war_machine_industry number = 49 counter = 49 factor = 5 dynamic = 0 singular = 0 depth = 1 importance = 5 }
 		cp_state_level_building_analysis = yes
 		ec_clear_decipher_variables = yes
 	}
@@ -4158,7 +4489,7 @@ ec_manage_building_allocation = {
 			limit = {
 				$dynamic$ = 1
 				any_scope_building = {
-					is_building_type = building_$building$
+					is_building_type = $building$
 					is_under_construction = yes
 				}
 				OR = {
@@ -4224,60 +4555,60 @@ ec_manage_building_allocation = {
 	}
 }
 
-ec_create_building_priority_lists = {
-	ec_add_building_to_priority_list = { number = 1 }
-	ec_add_building_to_priority_list = { number = 2 }
-	ec_add_building_to_priority_list = { number = 3 }
-	ec_add_building_to_priority_list = { number = 4 }
-	ec_add_building_to_priority_list = { number = 5 }
-	ec_add_building_to_priority_list = { number = 6 }
-	ec_add_building_to_priority_list = { number = 7 }
-	ec_add_building_to_priority_list = { number = 8 }
-	ec_add_building_to_priority_list = { number = 9 }
-	ec_add_building_to_priority_list = { number = 10 }
-	ec_add_building_to_priority_list = { number = 11 }
-	ec_add_building_to_priority_list = { number = 12 }
-	ec_add_building_to_priority_list = { number = 13 }
-	ec_add_building_to_priority_list = { number = 14 }
-	ec_add_building_to_priority_list = { number = 15 }
-	ec_add_building_to_priority_list = { number = 16 }
-	ec_add_building_to_priority_list = { number = 17 }
-	ec_add_building_to_priority_list = { number = 18 }
-	ec_add_building_to_priority_list = { number = 19 }
-	ec_add_building_to_priority_list = { number = 20 }
-	ec_add_building_to_priority_list = { number = 21 }
-	ec_add_building_to_priority_list = { number = 22 }
-	ec_add_building_to_priority_list = { number = 23 }
-	ec_add_building_to_priority_list = { number = 24 }
-	ec_add_building_to_priority_list = { number = 25 }
-	ec_add_building_to_priority_list = { number = 26 }
-	ec_add_building_to_priority_list = { number = 27 }
-	ec_add_building_to_priority_list = { number = 28 }
-	ec_add_building_to_priority_list = { number = 29 }
-	ec_add_building_to_priority_list = { number = 30 }
-	ec_add_building_to_priority_list = { number = 31 }
-	ec_add_building_to_priority_list = { number = 32 }
-	ec_add_building_to_priority_list = { number = 33 }
-	ec_add_building_to_priority_list = { number = 34 }
-	ec_add_building_to_priority_list = { number = 35 }
-	ec_add_building_to_priority_list = { number = 36 }
-	ec_add_building_to_priority_list = { number = 37 }
-	ec_add_building_to_priority_list = { number = 38 }
-	ec_add_building_to_priority_list = { number = 39 }
-	ec_add_building_to_priority_list = { number = 40 }
-	ec_add_building_to_priority_list = { number = 41 }
-	ec_add_building_to_priority_list = { number = 42 }
-	ec_add_building_to_priority_list = { number = 43 }
-	ec_add_building_to_priority_list = { number = 44 }
-	ec_add_building_to_priority_list = { number = 45 }
-	ec_add_building_to_priority_list = { number = 46 }
-	ec_add_building_to_priority_list = { number = 47 }
-	ec_add_building_to_priority_list = { number = 48 }
-	ec_add_building_to_priority_list = { number = 49 }
-	cp_create_building_priority_lists = yes
+ec_create_building_priority_arrays = {
+	ec_add_building_to_priority_array = { number = 1 }
+	ec_add_building_to_priority_array = { number = 2 }
+	ec_add_building_to_priority_array = { number = 3 }
+	ec_add_building_to_priority_array = { number = 4 }
+	ec_add_building_to_priority_array = { number = 5 }
+	ec_add_building_to_priority_array = { number = 6 }
+	ec_add_building_to_priority_array = { number = 7 }
+	ec_add_building_to_priority_array = { number = 8 }
+	ec_add_building_to_priority_array = { number = 9 }
+	ec_add_building_to_priority_array = { number = 10 }
+	ec_add_building_to_priority_array = { number = 11 }
+	ec_add_building_to_priority_array = { number = 12 }
+	ec_add_building_to_priority_array = { number = 13 }
+	ec_add_building_to_priority_array = { number = 14 }
+	ec_add_building_to_priority_array = { number = 15 }
+	ec_add_building_to_priority_array = { number = 16 }
+	ec_add_building_to_priority_array = { number = 17 }
+	ec_add_building_to_priority_array = { number = 18 }
+	ec_add_building_to_priority_array = { number = 19 }
+	ec_add_building_to_priority_array = { number = 20 }
+	ec_add_building_to_priority_array = { number = 21 }
+	ec_add_building_to_priority_array = { number = 22 }
+	ec_add_building_to_priority_array = { number = 23 }
+	ec_add_building_to_priority_array = { number = 24 }
+	ec_add_building_to_priority_array = { number = 25 }
+	ec_add_building_to_priority_array = { number = 26 }
+	ec_add_building_to_priority_array = { number = 27 }
+	ec_add_building_to_priority_array = { number = 28 }
+	ec_add_building_to_priority_array = { number = 29 }
+	ec_add_building_to_priority_array = { number = 30 }
+	ec_add_building_to_priority_array = { number = 31 }
+	ec_add_building_to_priority_array = { number = 32 }
+	ec_add_building_to_priority_array = { number = 33 }
+	ec_add_building_to_priority_array = { number = 34 }
+	ec_add_building_to_priority_array = { number = 35 }
+	ec_add_building_to_priority_array = { number = 36 }
+	ec_add_building_to_priority_array = { number = 37 }
+	ec_add_building_to_priority_array = { number = 38 }
+	ec_add_building_to_priority_array = { number = 39 }
+	ec_add_building_to_priority_array = { number = 40 }
+	ec_add_building_to_priority_array = { number = 41 }
+	ec_add_building_to_priority_array = { number = 42 }
+	ec_add_building_to_priority_array = { number = 43 }
+	ec_add_building_to_priority_array = { number = 44 }
+	ec_add_building_to_priority_array = { number = 45 }
+	ec_add_building_to_priority_array = { number = 46 }
+	ec_add_building_to_priority_array = { number = 47 }
+	ec_add_building_to_priority_array = { number = 48 }
+	ec_add_building_to_priority_array = { number = 49 }
+	cp_create_building_priority_arrays = yes
 }
 
-ec_add_building_to_priority_list = { root = { if = { limit = { OR = { has_variable_list = ecb$number$a1 has_variable_list = ecb$number$a2 has_variable_list = ecb$number$a3 has_variable_list = ecb$number$a4 has_variable_list = ecb$number$a5 has_variable_list = ecb$number$a6 has_variable_list = ecb$number$a7 has_variable_list = ecb$number$a8 has_variable_list = ecb$number$a9 has_variable_list = ecb$number$a10 } } random_in_global_list = { variable = ecbta limit = { var:ecbtn = $number$ } save_scope_as = ec_current_building } if = { limit = { var:ecpb$number$ = 1 } add_to_variable_list = { name = ecpa1 target = scope:ec_current_building } } else_if = { limit = { var:ecpb$number$ = 2 } add_to_variable_list = { name = ecpa2 target = scope:ec_current_building } } else_if = { limit = { var:ecpb$number$ = 3 } add_to_variable_list = { name = ecpa3 target = scope:ec_current_building } } else_if = { limit = { var:ecpb$number$ = 4 } add_to_variable_list = { name = ecpa4 target = scope:ec_current_building } } else_if = { limit = { var:ecpb$number$ = 5 } add_to_variable_list = { name = ecpa5 target = scope:ec_current_building } } else_if = { limit = { var:ecpb$number$ = 6 } add_to_variable_list = { name = ecpa6 target = scope:ec_current_building } } else_if = { limit = { var:ecpb$number$ = 7 } add_to_variable_list = { name = ecpa7 target = scope:ec_current_building } } else_if = { limit = { var:ecpb$number$ = 8 } add_to_variable_list = { name = ecpa8 target = scope:ec_current_building } } else_if = { limit = { var:ecpb$number$ = 9 } add_to_variable_list = { name = ecpa9 target = scope:ec_current_building } } else_if = { limit = { var:ecpb$number$ = 10 } add_to_variable_list = { name = ecpa10 target = scope:ec_current_building } } else_if = { limit = { var:ecpb$number$ = 11 } add_to_variable_list = { name = ecpa11 target = scope:ec_current_building } } else_if = { limit = { var:ecpb$number$ = 12 } add_to_variable_list = { name = ecpa12 target = scope:ec_current_building } } else_if = { limit = { var:ecpb$number$ = 13 } add_to_variable_list = { name = ecpa13 target = scope:ec_current_building } } else_if = { limit = { var:ecpb$number$ = 14 } add_to_variable_list = { name = ecpa14 target = scope:ec_current_building } } else_if = { limit = { var:ecpb$number$ = 15 } add_to_variable_list = { name = ecpa15 target = scope:ec_current_building } } else_if = { limit = { var:ecpb$number$ = 16 } add_to_variable_list = { name = ecpa16 target = scope:ec_current_building } } else_if = { limit = { var:ecpb$number$ = 17 } add_to_variable_list = { name = ecpa17 target = scope:ec_current_building } } else_if = { limit = { var:ecpb$number$ = 18 } add_to_variable_list = { name = ecpa18 target = scope:ec_current_building } } clear_saved_scope = ec_current_building } } }
+ec_add_building_to_priority_array = { root = { if = { limit = { OR = { has_variable_list = ecb$number$a1 has_variable_list = ecb$number$a2 has_variable_list = ecb$number$a3 has_variable_list = ecb$number$a4 has_variable_list = ecb$number$a5 has_variable_list = ecb$number$a6 has_variable_list = ecb$number$a7 has_variable_list = ecb$number$a8 has_variable_list = ecb$number$a9 has_variable_list = ecb$number$a10 } } random_in_global_list = { variable = ecbta limit = { var:ecbtn = $number$ } save_scope_as = ec_current_building } if = { limit = { var:ecpb$number$ = 1 } add_to_variable_list = { name = ecpa1 target = scope:ec_current_building } } else_if = { limit = { var:ecpb$number$ = 2 } add_to_variable_list = { name = ecpa2 target = scope:ec_current_building } } else_if = { limit = { var:ecpb$number$ = 3 } add_to_variable_list = { name = ecpa3 target = scope:ec_current_building } } else_if = { limit = { var:ecpb$number$ = 4 } add_to_variable_list = { name = ecpa4 target = scope:ec_current_building } } else_if = { limit = { var:ecpb$number$ = 5 } add_to_variable_list = { name = ecpa5 target = scope:ec_current_building } } else_if = { limit = { var:ecpb$number$ = 6 } add_to_variable_list = { name = ecpa6 target = scope:ec_current_building } } else_if = { limit = { var:ecpb$number$ = 7 } add_to_variable_list = { name = ecpa7 target = scope:ec_current_building } } else_if = { limit = { var:ecpb$number$ = 8 } add_to_variable_list = { name = ecpa8 target = scope:ec_current_building } } else_if = { limit = { var:ecpb$number$ = 9 } add_to_variable_list = { name = ecpa9 target = scope:ec_current_building } } else_if = { limit = { var:ecpb$number$ = 10 } add_to_variable_list = { name = ecpa10 target = scope:ec_current_building } } else_if = { limit = { var:ecpb$number$ = 11 } add_to_variable_list = { name = ecpa11 target = scope:ec_current_building } } else_if = { limit = { var:ecpb$number$ = 12 } add_to_variable_list = { name = ecpa12 target = scope:ec_current_building } } else_if = { limit = { var:ecpb$number$ = 13 } add_to_variable_list = { name = ecpa13 target = scope:ec_current_building } } else_if = { limit = { var:ecpb$number$ = 14 } add_to_variable_list = { name = ecpa14 target = scope:ec_current_building } } else_if = { limit = { var:ecpb$number$ = 15 } add_to_variable_list = { name = ecpa15 target = scope:ec_current_building } } else_if = { limit = { var:ecpb$number$ = 16 } add_to_variable_list = { name = ecpa16 target = scope:ec_current_building } } else_if = { limit = { var:ecpb$number$ = 17 } add_to_variable_list = { name = ecpa17 target = scope:ec_current_building } } else_if = { limit = { var:ecpb$number$ = 18 } add_to_variable_list = { name = ecpa18 target = scope:ec_current_building } } clear_saved_scope = ec_current_building } } }
 
 ec_prepare_building_construction = {
 	if = { limit = { has_variable_list = ecpa1 variable_list_size = { name = ecpa1 value > 0 } } ec_choose_building_to_construct = { priority = 1 } }
@@ -4349,55 +4680,55 @@ ec_choose_building_to_construct = {
 }
 
 ec_collect_building_attributes = {
-	if = { limit = { $number$ = 1 } ec_perform_building_construction = { building = government_administration number = 1 dynamic = 0 branching = 0 depth = 4 workforce = 1 importance = 9 arable = 0 counter = 1 factor = 3 scaling = 0 singular = 0 cooldown = 1 } } 
-	else_if = { limit = { $number$ = 2 } ec_perform_building_construction = { building = construction_sector number = 2 dynamic = 0 branching = 0 depth = 1 workforce = 1 importance = 5 arable = 0 counter = 2 factor = 3 scaling = 0 singular = 0 cooldown = 1 } } 
-	else_if = { limit = { $number$ = 3 } ec_perform_building_construction = { building = university number = 3 dynamic = 0 branching = 0 depth = 1 workforce = 1 importance = 7 arable = 0 counter = 3 factor = 3 scaling = 0 singular = 0 cooldown = 1 } } 
-	else_if = { limit = { $number$ = 4 } ec_perform_building_construction = { building = railway number = 4 dynamic = 1 branching = 0 depth = 7 workforce = 0 importance = 99 arable = 0 counter = 4 factor = 5 scaling = 0 singular = 1 cooldown = 0 } } 
-	else_if = { limit = { $number$ = 5 } ec_perform_building_construction = { building = port number = 5 dynamic = 1 branching = 0 depth = 4 workforce = 0 importance = 99 arable = 0 counter = 5 factor = 3 scaling = 0 singular = 1 cooldown = 1 } } 
-	else_if = { limit = { $number$ = 6 } ec_perform_building_construction = { building = barracks number = 6 dynamic = 0 branching = 0 depth = 2 workforce = 1 importance = 7 arable = 0 counter = 6 factor = 7 scaling = 0 singular = 0 cooldown = 1 } } 
-	else_if = { limit = { $number$ = 7 } ec_perform_building_construction = { building = naval_base number = 7 dynamic = 0 branching = 0 depth = 2 workforce = 1 importance = 7 arable = 0 counter = 7 factor = 3 scaling = 0 singular = 0 cooldown = 1 } } 
-	else_if = { limit = { $number$ = 8 } ec_perform_building_construction = { building = logging_camp number = 8 dynamic = 0 branching = 1 depth = 2 workforce = 1 importance = 5 arable = 0 counter = 8 factor = 5 scaling = 1 singular = 0 cooldown = 0 } } 
-	else_if = { limit = { $number$ = 9 } ec_perform_building_construction = { building = fishing_wharf number = 9 dynamic = 0 branching = 1 depth = 2 workforce = 1 importance = 5 arable = 0 counter = 9 factor = 5 scaling = 1 singular = 0 cooldown = 0 } } 
-	else_if = { limit = { $number$ = 10 } ec_perform_building_construction = { building = whaling_station number = 10 dynamic = 0 branching = 1 depth = 2 workforce = 1 importance = 5 arable = 0 counter = 10 factor = 5 scaling = 1 singular = 0 cooldown = 0 } } 
-	else_if = { limit = { $number$ = 11 } ec_perform_building_construction = { building = coal_mine number = 11 dynamic = 0 branching = 1 depth = 2 workforce = 1 importance = 5 arable = 0 counter = 11 factor = 5 scaling = 1 singular = 0 cooldown = 0 } } 
-	else_if = { limit = { $number$ = 12 } ec_perform_building_construction = { building = iron_mine number = 12 dynamic = 0 branching = 1 depth = 2 workforce = 1 importance = 5 arable = 0 counter = 12 factor = 5 scaling = 1 singular = 0 cooldown = 0 } } 
-	else_if = { limit = { $number$ = 13 } ec_perform_building_construction = { building = lead_mine number = 13 dynamic = 0 branching = 1 depth = 2 workforce = 1 importance = 5 arable = 0 counter = 13 factor = 5 scaling = 1 singular = 0 cooldown = 0 } } 
-	else_if = { limit = { $number$ = 14 } ec_perform_building_construction = { building = sulfur_mine number = 14 dynamic = 0 branching = 1 depth = 2 workforce = 1 importance = 5 arable = 0 counter = 14 factor = 5 scaling = 1 singular = 0 cooldown = 0 } } 
-	else_if = { limit = { $number$ = 15 } ec_perform_building_construction = { building = gold_mine number = 15 dynamic = 0 branching = 1 depth = 2 workforce = 1 importance = 5 arable = 0 counter = 15 factor = 5 scaling = 1 singular = 0 cooldown = 0 } } 
-	else_if = { limit = { $number$ = 16 } ec_perform_building_construction = { building = rubber_plantation number = 16 dynamic = 0 branching = 1 depth = 2 workforce = 1 importance = 11 arable = 0 counter = 16 factor = 5 scaling = 1 singular = 0 cooldown = 0 } } 
-	else_if = { limit = { $number$ = 17 } ec_perform_building_construction = { building = oil_rig number = 17 dynamic = 0 branching = 1 depth = 2 workforce = 1 importance = 11 arable = 0 counter = 17 factor = 5 scaling = 1 singular = 0 cooldown = 0 } } 
-	else_if = { limit = { $number$ = 18 } ec_perform_building_construction = { building = wheat_farm number = 18 dynamic = 0 branching = 1 depth = 2 workforce = 1 importance = 5 arable = 1 counter = 18 factor = 5 scaling = 1 singular = 0 cooldown = 0 } } 
-	else_if = { limit = { $number$ = 19 } ec_perform_building_construction = { building = rye_farm number = 19 dynamic = 0 branching = 1 depth = 2 workforce = 1 importance = 5 arable = 1 counter = 18 factor = 5 scaling = 1 singular = 0 cooldown = 0 } } 
-	else_if = { limit = { $number$ = 20 } ec_perform_building_construction = { building = rice_farm number = 20 dynamic = 0 branching = 1 depth = 2 workforce = 1 importance = 5 arable = 1 counter = 18 factor = 5 scaling = 1 singular = 0 cooldown = 0 } } 
-	else_if = { limit = { $number$ = 21 } ec_perform_building_construction = { building = maize_farm number = 21 dynamic = 0 branching = 1 depth = 2 workforce = 1 importance = 5 arable = 1 counter = 18 factor = 5 scaling = 1 singular = 0 cooldown = 0 } } 
-	else_if = { limit = { $number$ = 22 } ec_perform_building_construction = { building = millet_farm number = 22 dynamic = 0 branching = 1 depth = 2 workforce = 1 importance = 5 arable = 1 counter = 18 factor = 5 scaling = 1 singular = 0 cooldown = 0 } } 
-	else_if = { limit = { $number$ = 23 } ec_perform_building_construction = { building = livestock_ranch number = 23 dynamic = 0 branching = 1 depth = 2 workforce = 1 importance = 5 arable = 1 counter = 23 factor = 5 scaling = 1 singular = 0 cooldown = 0 } } 
-	else_if = { limit = { $number$ = 24 } ec_perform_building_construction = { building = cotton_plantation number = 24 dynamic = 0 branching = 1 depth = 2 workforce = 1 importance = 5 arable = 1 counter = 23 factor = 5 scaling = 1 singular = 0 cooldown = 0 } } 
-	else_if = { limit = { $number$ = 25 } ec_perform_building_construction = { building = dye_plantation number = 25 dynamic = 0 branching = 1 depth = 2 workforce = 1 importance = 5 arable = 1 counter = 25 factor = 5 scaling = 1 singular = 0 cooldown = 0 } } 
-	else_if = { limit = { $number$ = 26 } ec_perform_building_construction = { building = silk_plantation number = 26 dynamic = 0 branching = 1 depth = 2 workforce = 1 importance = 5 arable = 1 counter = 26 factor = 5 scaling = 1 singular = 0 cooldown = 0 } } 
-	else_if = { limit = { $number$ = 27 } ec_perform_building_construction = { building = banana_plantation number = 27 dynamic = 0 branching = 1 depth = 2 workforce = 1 importance = 5 arable = 1 counter = 27 factor = 5 scaling = 1 singular = 0 cooldown = 0 } } 
-	else_if = { limit = { $number$ = 28 } ec_perform_building_construction = { building = sugar_plantation number = 28 dynamic = 0 branching = 1 depth = 2 workforce = 1 importance = 5 arable = 1 counter = 28 factor = 5 scaling = 1 singular = 0 cooldown = 0 } } 
-	else_if = { limit = { $number$ = 29 } ec_perform_building_construction = { building = tea_plantation number = 29 dynamic = 0 branching = 1 depth = 2 workforce = 1 importance = 5 arable = 1 counter = 29 factor = 5 scaling = 1 singular = 0 cooldown = 0 } } 
-	else_if = { limit = { $number$ = 30 } ec_perform_building_construction = { building = coffee_plantation number = 30 dynamic = 0 branching = 1 depth = 2 workforce = 1 importance = 5 arable = 1 counter = 30 factor = 5 scaling = 1 singular = 0 cooldown = 0 } } 
-	else_if = { limit = { $number$ = 31 } ec_perform_building_construction = { building = tobacco_plantation number = 31 dynamic = 0 branching = 1 depth = 2 workforce = 1 importance = 5 arable = 1 counter = 31 factor = 5 scaling = 1 singular = 0 cooldown = 0 } } 
-	else_if = { limit = { $number$ = 32 } ec_perform_building_construction = { building = opium_plantation number = 32 dynamic = 0 branching = 1 depth = 2 workforce = 1 importance = 5 arable = 1 counter = 32 factor = 5 scaling = 1 singular = 0 cooldown = 0 } } 
-	else_if = { limit = { $number$ = 33 } ec_perform_building_construction = { building = food_industry number = 33 dynamic = 0 branching = 1 depth = 1 workforce = 1 importance = 5 arable = 0 counter = 33 factor = 5 scaling = 1 singular = 0 cooldown = 0 } } 
-	else_if = { limit = { $number$ = 34 } ec_perform_building_construction = { building = arts_academy number = 34 dynamic = 0 branching = 1 depth = 1 workforce = 1 importance = 5 arable = 0 counter = 34 factor = 5 scaling = 1 singular = 0 cooldown = 0 } } 
-	else_if = { limit = { $number$ = 35 } ec_perform_building_construction = { building = textile_mills number = 35 dynamic = 0 branching = 1 depth = 1 workforce = 1 importance = 5 arable = 0 counter = 35 factor = 5 scaling = 1 singular = 0 cooldown = 0 } } 
-	else_if = { limit = { $number$ = 36 } ec_perform_building_construction = { building = furniture_manufacturies number = 36 dynamic = 0 branching = 1 depth = 1 workforce = 1 importance = 5 arable = 0 counter = 36 factor = 5 scaling = 1 singular = 0 cooldown = 0 } } 
-	else_if = { limit = { $number$ = 37 } ec_perform_building_construction = { building = glassworks number = 37 dynamic = 0 branching = 1 depth = 1 workforce = 1 importance = 5 arable = 0 counter = 37 factor = 5 scaling = 1 singular = 0 cooldown = 0 } } 
-	else_if = { limit = { $number$ = 38 } ec_perform_building_construction = { building = tooling_workshops number = 38 dynamic = 0 branching = 1 depth = 1 workforce = 1 importance = 5 arable = 0 counter = 38 factor = 5 scaling = 1 singular = 0 cooldown = 0 } } 
-	else_if = { limit = { $number$ = 39 } ec_perform_building_construction = { building = paper_mills number = 39 dynamic = 0 branching = 1 depth = 1 workforce = 1 importance = 5 arable = 0 counter = 39 factor = 5 scaling = 1 singular = 0 cooldown = 0 } } 
-	else_if = { limit = { $number$ = 40 } ec_perform_building_construction = { building = chemical_plants number = 40 dynamic = 0 branching = 1 depth = 1 workforce = 1 importance = 5 arable = 0 counter = 40 factor = 5 scaling = 1 singular = 0 cooldown = 0 } } 
-	else_if = { limit = { $number$ = 41 } ec_perform_building_construction = { building = synthetics_plants number = 41 dynamic = 0 branching = 1 depth = 1 workforce = 1 importance = 5 arable = 0 counter = 41 factor = 5 scaling = 1 singular = 0 cooldown = 0 } } 
-	else_if = { limit = { $number$ = 42 } ec_perform_building_construction = { building = steel_mills number = 42 dynamic = 0 branching = 1 depth = 1 workforce = 1 importance = 5 arable = 0 counter = 42 factor = 5 scaling = 1 singular = 0 cooldown = 0 } } 
-	else_if = { limit = { $number$ = 43 } ec_perform_building_construction = { building = motor_industry number = 43 dynamic = 0 branching = 1 depth = 1 workforce = 1 importance = 5 arable = 0 counter = 43 factor = 5 scaling = 1 singular = 0 cooldown = 0 } } 
-	else_if = { limit = { $number$ = 44 } ec_perform_building_construction = { building = power_plant number = 44 dynamic = 0 branching = 1 depth = 1 workforce = 1 importance = 5 arable = 0 counter = 44 factor = 5 scaling = 1 singular = 0 cooldown = 0 } } 
-	else_if = { limit = { $number$ = 45 } ec_perform_building_construction = { building = shipyards number = 45 dynamic = 0 branching = 1 depth = 1 workforce = 1 importance = 5 arable = 0 counter = 45 factor = 5 scaling = 1 singular = 0 cooldown = 0 } } 
-	else_if = { limit = { $number$ = 46 } ec_perform_building_construction = { building = arms_industry number = 46 dynamic = 0 branching = 1 depth = 1 workforce = 1 importance = 5 arable = 0 counter = 46 factor = 5 scaling = 1 singular = 0 cooldown = 0 } } 
-	else_if = { limit = { $number$ = 47 } ec_perform_building_construction = { building = munition_plants number = 47 dynamic = 0 branching = 1 depth = 1 workforce = 1 importance = 5 arable = 0 counter = 47 factor = 5 scaling = 1 singular = 0 cooldown = 0 } } 
-	else_if = { limit = { $number$ = 48 } ec_perform_building_construction = { building = electrics_industry number = 48 dynamic = 0 branching = 1 depth = 1 workforce = 1 importance = 5 arable = 0 counter = 48 factor = 5 scaling = 1 singular = 0 cooldown = 0 } } 
-	else_if = { limit = { $number$ = 49 } ec_perform_building_construction = { building = war_machine_industry number = 49 dynamic = 0 branching = 1 depth = 1 workforce = 1 importance = 5 arable = 0 counter = 49 factor = 5 scaling = 1 singular = 0 cooldown = 0 } } 
+	if = { limit = { $number$ = 1 } ec_perform_building_construction = { building = building_government_administration number = 1 dynamic = 0 branching = 0 depth = 4 workforce = 1 importance = 9 arable = 0 counter = 1 factor = 3 scaling = 0 singular = 0 cooldown = 1 } } 
+	else_if = { limit = { $number$ = 2 } ec_perform_building_construction = { building = building_construction_sector number = 2 dynamic = 0 branching = 0 depth = 1 workforce = 1 importance = 5 arable = 0 counter = 2 factor = 4 scaling = 0 singular = 0 cooldown = 1 } } 
+	else_if = { limit = { $number$ = 3 } ec_perform_building_construction = { building = building_university number = 3 dynamic = 0 branching = 0 depth = 1 workforce = 1 importance = 7 arable = 0 counter = 3 factor = 3 scaling = 0 singular = 0 cooldown = 1 } } 
+	else_if = { limit = { $number$ = 4 } ec_perform_building_construction = { building = building_railway number = 4 dynamic = 1 branching = 0 depth = 7 workforce = 0 importance = 99 arable = 0 counter = 4 factor = 5 scaling = 0 singular = 1 cooldown = 0 } } 
+	else_if = { limit = { $number$ = 5 } ec_perform_building_construction = { building = building_port number = 5 dynamic = 1 branching = 0 depth = 4 workforce = 0 importance = 99 arable = 0 counter = 5 factor = 3 scaling = 0 singular = 1 cooldown = 1 } } 
+	else_if = { limit = { $number$ = 6 } ec_perform_building_construction = { building = building_barracks number = 6 dynamic = 0 branching = 0 depth = 2 workforce = 1 importance = 7 arable = 0 counter = 6 factor = 7 scaling = 0 singular = 0 cooldown = 1 } } 
+	else_if = { limit = { $number$ = 7 } ec_perform_building_construction = { building = building_naval_base number = 7 dynamic = 0 branching = 0 depth = 2 workforce = 1 importance = 7 arable = 0 counter = 7 factor = 5 scaling = 0 singular = 0 cooldown = 1 } } 
+	else_if = { limit = { $number$ = 8 } ec_perform_building_construction = { building = building_logging_camp number = 8 dynamic = 0 branching = 1 depth = 2 workforce = 1 importance = 5 arable = 0 counter = 8 factor = 5 scaling = 1 singular = 0 cooldown = 0 } } 
+	else_if = { limit = { $number$ = 9 } ec_perform_building_construction = { building = building_fishing_wharf number = 9 dynamic = 0 branching = 1 depth = 2 workforce = 1 importance = 5 arable = 0 counter = 9 factor = 5 scaling = 1 singular = 0 cooldown = 0 } } 
+	else_if = { limit = { $number$ = 10 } ec_perform_building_construction = { building = building_whaling_station number = 10 dynamic = 0 branching = 1 depth = 2 workforce = 1 importance = 5 arable = 0 counter = 10 factor = 5 scaling = 1 singular = 0 cooldown = 0 } } 
+	else_if = { limit = { $number$ = 11 } ec_perform_building_construction = { building = building_coal_mine number = 11 dynamic = 0 branching = 1 depth = 2 workforce = 1 importance = 5 arable = 0 counter = 11 factor = 5 scaling = 1 singular = 0 cooldown = 0 } } 
+	else_if = { limit = { $number$ = 12 } ec_perform_building_construction = { building = building_iron_mine number = 12 dynamic = 0 branching = 1 depth = 2 workforce = 1 importance = 5 arable = 0 counter = 12 factor = 5 scaling = 1 singular = 0 cooldown = 0 } } 
+	else_if = { limit = { $number$ = 13 } ec_perform_building_construction = { building = building_lead_mine number = 13 dynamic = 0 branching = 1 depth = 2 workforce = 1 importance = 5 arable = 0 counter = 13 factor = 5 scaling = 1 singular = 0 cooldown = 0 } } 
+	else_if = { limit = { $number$ = 14 } ec_perform_building_construction = { building = building_sulfur_mine number = 14 dynamic = 0 branching = 1 depth = 2 workforce = 1 importance = 5 arable = 0 counter = 14 factor = 5 scaling = 1 singular = 0 cooldown = 0 } } 
+	else_if = { limit = { $number$ = 15 } ec_perform_building_construction = { building = building_gold_mine number = 15 dynamic = 0 branching = 1 depth = 2 workforce = 1 importance = 5 arable = 0 counter = 15 factor = 5 scaling = 1 singular = 0 cooldown = 0 } } 
+	else_if = { limit = { $number$ = 16 } ec_perform_building_construction = { building = building_rubber_plantation number = 16 dynamic = 0 branching = 1 depth = 2 workforce = 1 importance = 11 arable = 0 counter = 16 factor = 5 scaling = 1 singular = 0 cooldown = 0 } } 
+	else_if = { limit = { $number$ = 17 } ec_perform_building_construction = { building = building_oil_rig number = 17 dynamic = 0 branching = 1 depth = 2 workforce = 1 importance = 11 arable = 0 counter = 17 factor = 5 scaling = 1 singular = 0 cooldown = 0 } } 
+	else_if = { limit = { $number$ = 18 } ec_perform_building_construction = { building = building_wheat_farm number = 18 dynamic = 0 branching = 1 depth = 2 workforce = 1 importance = 5 arable = 1 counter = 18 factor = 5 scaling = 1 singular = 0 cooldown = 0 } } 
+	else_if = { limit = { $number$ = 19 } ec_perform_building_construction = { building = building_rye_farm number = 19 dynamic = 0 branching = 1 depth = 2 workforce = 1 importance = 5 arable = 1 counter = 18 factor = 5 scaling = 1 singular = 0 cooldown = 0 } } 
+	else_if = { limit = { $number$ = 20 } ec_perform_building_construction = { building = building_rice_farm number = 20 dynamic = 0 branching = 1 depth = 2 workforce = 1 importance = 5 arable = 1 counter = 18 factor = 5 scaling = 1 singular = 0 cooldown = 0 } } 
+	else_if = { limit = { $number$ = 21 } ec_perform_building_construction = { building = building_maize_farm number = 21 dynamic = 0 branching = 1 depth = 2 workforce = 1 importance = 5 arable = 1 counter = 18 factor = 5 scaling = 1 singular = 0 cooldown = 0 } } 
+	else_if = { limit = { $number$ = 22 } ec_perform_building_construction = { building = building_millet_farm number = 22 dynamic = 0 branching = 1 depth = 2 workforce = 1 importance = 5 arable = 1 counter = 18 factor = 5 scaling = 1 singular = 0 cooldown = 0 } } 
+	else_if = { limit = { $number$ = 23 } ec_perform_building_construction = { building = building_livestock_ranch number = 23 dynamic = 0 branching = 1 depth = 2 workforce = 1 importance = 5 arable = 1 counter = 23 factor = 5 scaling = 1 singular = 0 cooldown = 0 } } 
+	else_if = { limit = { $number$ = 24 } ec_perform_building_construction = { building = building_cotton_plantation number = 24 dynamic = 0 branching = 1 depth = 2 workforce = 1 importance = 5 arable = 1 counter = 23 factor = 5 scaling = 1 singular = 0 cooldown = 0 } } 
+	else_if = { limit = { $number$ = 25 } ec_perform_building_construction = { building = building_dye_plantation number = 25 dynamic = 0 branching = 1 depth = 2 workforce = 1 importance = 5 arable = 1 counter = 25 factor = 5 scaling = 1 singular = 0 cooldown = 0 } } 
+	else_if = { limit = { $number$ = 26 } ec_perform_building_construction = { building = building_silk_plantation number = 26 dynamic = 0 branching = 1 depth = 2 workforce = 1 importance = 5 arable = 1 counter = 26 factor = 5 scaling = 1 singular = 0 cooldown = 0 } } 
+	else_if = { limit = { $number$ = 27 } ec_perform_building_construction = { building = building_banana_plantation number = 27 dynamic = 0 branching = 1 depth = 2 workforce = 1 importance = 5 arable = 1 counter = 27 factor = 5 scaling = 1 singular = 0 cooldown = 0 } } 
+	else_if = { limit = { $number$ = 28 } ec_perform_building_construction = { building = building_sugar_plantation number = 28 dynamic = 0 branching = 1 depth = 2 workforce = 1 importance = 5 arable = 1 counter = 28 factor = 5 scaling = 1 singular = 0 cooldown = 0 } } 
+	else_if = { limit = { $number$ = 29 } ec_perform_building_construction = { building = building_tea_plantation number = 29 dynamic = 0 branching = 1 depth = 2 workforce = 1 importance = 5 arable = 1 counter = 29 factor = 5 scaling = 1 singular = 0 cooldown = 0 } } 
+	else_if = { limit = { $number$ = 30 } ec_perform_building_construction = { building = building_coffee_plantation number = 30 dynamic = 0 branching = 1 depth = 2 workforce = 1 importance = 5 arable = 1 counter = 30 factor = 5 scaling = 1 singular = 0 cooldown = 0 } } 
+	else_if = { limit = { $number$ = 31 } ec_perform_building_construction = { building = building_tobacco_plantation number = 31 dynamic = 0 branching = 1 depth = 2 workforce = 1 importance = 5 arable = 1 counter = 31 factor = 5 scaling = 1 singular = 0 cooldown = 0 } } 
+	else_if = { limit = { $number$ = 32 } ec_perform_building_construction = { building = building_opium_plantation number = 32 dynamic = 0 branching = 1 depth = 2 workforce = 1 importance = 5 arable = 1 counter = 32 factor = 5 scaling = 1 singular = 0 cooldown = 0 } } 
+	else_if = { limit = { $number$ = 33 } ec_perform_building_construction = { building = building_food_industry number = 33 dynamic = 0 branching = 1 depth = 1 workforce = 1 importance = 5 arable = 0 counter = 33 factor = 5 scaling = 1 singular = 0 cooldown = 0 } } 
+	else_if = { limit = { $number$ = 34 } ec_perform_building_construction = { building = building_arts_academy number = 34 dynamic = 0 branching = 1 depth = 1 workforce = 1 importance = 5 arable = 0 counter = 34 factor = 5 scaling = 1 singular = 0 cooldown = 0 } } 
+	else_if = { limit = { $number$ = 35 } ec_perform_building_construction = { building = building_textile_mills number = 35 dynamic = 0 branching = 1 depth = 1 workforce = 1 importance = 5 arable = 0 counter = 35 factor = 5 scaling = 1 singular = 0 cooldown = 0 } } 
+	else_if = { limit = { $number$ = 36 } ec_perform_building_construction = { building = building_furniture_manufacturies number = 36 dynamic = 0 branching = 1 depth = 1 workforce = 1 importance = 5 arable = 0 counter = 36 factor = 5 scaling = 1 singular = 0 cooldown = 0 } } 
+	else_if = { limit = { $number$ = 37 } ec_perform_building_construction = { building = building_glassworks number = 37 dynamic = 0 branching = 1 depth = 1 workforce = 1 importance = 5 arable = 0 counter = 37 factor = 5 scaling = 1 singular = 0 cooldown = 0 } } 
+	else_if = { limit = { $number$ = 38 } ec_perform_building_construction = { building = building_tooling_workshops number = 38 dynamic = 0 branching = 1 depth = 1 workforce = 1 importance = 5 arable = 0 counter = 38 factor = 5 scaling = 1 singular = 0 cooldown = 0 } } 
+	else_if = { limit = { $number$ = 39 } ec_perform_building_construction = { building = building_paper_mills number = 39 dynamic = 0 branching = 1 depth = 1 workforce = 1 importance = 5 arable = 0 counter = 39 factor = 5 scaling = 1 singular = 0 cooldown = 0 } } 
+	else_if = { limit = { $number$ = 40 } ec_perform_building_construction = { building = building_chemical_plants number = 40 dynamic = 0 branching = 1 depth = 1 workforce = 1 importance = 5 arable = 0 counter = 25 factor = 5 scaling = 1 singular = 0 cooldown = 0 } } 
+	else_if = { limit = { $number$ = 41 } ec_perform_building_construction = { building = building_synthetics_plants number = 41 dynamic = 0 branching = 1 depth = 1 workforce = 1 importance = 5 arable = 0 counter = 41 factor = 5 scaling = 1 singular = 0 cooldown = 0 } } 
+	else_if = { limit = { $number$ = 42 } ec_perform_building_construction = { building = building_steel_mills number = 42 dynamic = 0 branching = 1 depth = 1 workforce = 1 importance = 5 arable = 0 counter = 42 factor = 5 scaling = 1 singular = 0 cooldown = 0 } } 
+	else_if = { limit = { $number$ = 43 } ec_perform_building_construction = { building = building_motor_industry number = 43 dynamic = 0 branching = 1 depth = 1 workforce = 1 importance = 5 arable = 0 counter = 43 factor = 5 scaling = 1 singular = 0 cooldown = 0 } } 
+	else_if = { limit = { $number$ = 44 } ec_perform_building_construction = { building = building_power_plant number = 44 dynamic = 0 branching = 1 depth = 1 workforce = 1 importance = 5 arable = 0 counter = 44 factor = 5 scaling = 1 singular = 0 cooldown = 0 } } 
+	else_if = { limit = { $number$ = 45 } ec_perform_building_construction = { building = building_shipyards number = 45 dynamic = 0 branching = 1 depth = 1 workforce = 1 importance = 5 arable = 0 counter = 45 factor = 5 scaling = 1 singular = 0 cooldown = 0 } } 
+	else_if = { limit = { $number$ = 46 } ec_perform_building_construction = { building = building_arms_industry number = 46 dynamic = 0 branching = 1 depth = 1 workforce = 1 importance = 5 arable = 0 counter = 46 factor = 5 scaling = 1 singular = 0 cooldown = 0 } } 
+	else_if = { limit = { $number$ = 47 } ec_perform_building_construction = { building = building_munition_plants number = 47 dynamic = 0 branching = 1 depth = 1 workforce = 1 importance = 5 arable = 0 counter = 47 factor = 5 scaling = 1 singular = 0 cooldown = 0 } } 
+	else_if = { limit = { $number$ = 48 } ec_perform_building_construction = { building = building_electrics_industry number = 48 dynamic = 0 branching = 1 depth = 1 workforce = 1 importance = 5 arable = 0 counter = 48 factor = 5 scaling = 1 singular = 0 cooldown = 0 } } 
+	else_if = { limit = { $number$ = 49 } ec_perform_building_construction = { building = building_war_machine_industry number = 49 dynamic = 0 branching = 1 depth = 1 workforce = 1 importance = 5 arable = 0 counter = 49 factor = 5 scaling = 1 singular = 0 cooldown = 0 } } 
 	else = { cp_collect_building_attributes = { number = $number$ } }
 }
 
@@ -4490,23 +4821,18 @@ ec_start_building_construction = {
 		limit = {
 			OR = {
 				$workforce$ = 0
+				root.var:ecpb$number$ <= $importance$
+				ec_available_workforce >= ec_required_workforce
+			}
+			OR = {
+				$arable$ = 0
 				AND = {
+					free_arable_land > 0
 					OR = {
-						root.var:ecpb$number$ <= $importance$
-						ec_available_workforce >= ec_required_workforce
-						has_variable = echeb
-					}
-					OR = {
-						$arable$ = 0
-						AND = {
-							free_arable_land > 0
-							OR = {
-								NOT = {
-									has_variable = ecqab
-								}
-								var:ecqab < free_arable_land
-							}
+						NOT = {
+							has_variable = ecqab
 						}
+						var:ecqab < free_arable_land
 					}
 				}
 			}
@@ -4521,10 +4847,10 @@ ec_start_building_construction = {
 			limit = {
 				OR = {
 					NOT = {
-						has_building = building_$building$
+						has_building = $building$
 					}
 					any_scope_building = {
-						is_building_type = building_$building$
+						is_building_type = $building$
 						level <= 0
 						is_under_construction = no
 					}
@@ -4539,7 +4865,7 @@ ec_start_building_construction = {
 			save_scope_as = ec_current_state
 			random_scope_building = {
 				limit = {
-					is_building_type = building_$building$
+					is_building_type = $building$
 				}
 				if = {
 					limit = {
@@ -4579,7 +4905,10 @@ ec_start_building_construction = {
 	while = {
 		limit = {
 			has_variable_list = eccsa
-			variable_list_size = { name = eccsa value > 0 }
+			variable_list_size = {
+				name = eccsa
+				value > 0
+			}
 			ec_check_if_counter_is_within_limit = {
 				counter = $counter$
 				factor = $factor$
@@ -4641,7 +4970,7 @@ ec_start_building_construction = {
 					value = root.num_queued_constructions
 				}
 			}
-			start_building_construction = building_$building$
+			start_building_construction = $building$
 			if = {
 				limit = {
 					$cooldown$ = 1
@@ -4709,12 +5038,21 @@ ec_start_building_construction = {
 					if = {
 						limit = {
 							OR = {
-								ec_available_workforce < ec_required_workforce
-								AND = {
-									$arable$ = 1
-									OR = {
-										free_arable_land <= 0
-										var:ecqab >= free_arable_land
+								NOR = {
+									$workforce$ = 0
+									root.var:ecpb$number$ <= $importance$
+									ec_available_workforce >= ec_required_workforce
+								}
+								NOR = {
+									$arable$ = 0
+									AND = {
+										free_arable_land > 0
+										OR = {
+											NOT = {
+												has_variable = ecqab
+											}
+											var:ecqab < free_arable_land
+										}
 									}
 								}
 							}
@@ -4728,7 +5066,10 @@ ec_start_building_construction = {
 						}
 					}
 					else = {
-						change_variable = { name = ecsbo add = 1 }
+						change_variable = {
+							name = ecsbo
+							add = 1
+						}
 					}
 				}
 				else = {
