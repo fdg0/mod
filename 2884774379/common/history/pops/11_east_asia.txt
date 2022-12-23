@@ -149,7 +149,7 @@
 				size = 3781992
 			}
 			create_pop = {
-				culture = hakka
+				culture = malay
 				size = 1564000
 			}
 			create_pop = {
@@ -454,7 +454,7 @@
 				size = 204400
 			}
 			create_pop = {
-				culture = hakka
+				culture = malay
 				size = 148000
 			}
 		}
@@ -489,7 +489,7 @@
 				size = 4690204
 			}
 			create_pop = {
-				culture = hakka
+				culture = malay
 				size = 2096000
 			}
 			create_pop = {
@@ -597,7 +597,7 @@
 				size = 3500
 			}
 			create_pop = {
-				culture = hakka
+				culture = malay
 				size = 4954600
 			}
 			create_pop = {
@@ -1300,7 +1300,7 @@
 				size = 3170167
 			}
 			create_pop = {
-				culture = micronesian
+				culture = malay
 				size = 132
 			}
 			create_pop = {

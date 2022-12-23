@@ -56,7 +56,7 @@
 			}
 			create_pop = {
 				pop_type = slaves
-				culture = lacustrine_bantu
+				culture = africana
 				size = 9000
 			}
 		}
@@ -362,7 +362,7 @@
 			}
 			create_pop = {
 				pop_type = slaves
-				culture = lacustrine_bantu
+				culture = africana
 				size = 3000
 			}
 		}
@@ -401,7 +401,7 @@
 			}
 			create_pop = {
 				pop_type = slaves
-				culture = lacustrine_bantu
+				culture = africana
 				size = 300
 			}
 		}
@@ -449,7 +449,7 @@
 			}
 			create_pop = {
 				pop_type = slaves
-				culture = lacustrine_bantu
+				culture = africana
 				size = 2300
 			}
 		}
@@ -506,7 +506,7 @@
 			}
 			create_pop = {
 				pop_type = slaves
-				culture = lacustrine_bantu
+				culture = africana
 				size = 3000
 			}
 		}
@@ -549,7 +549,7 @@
 			}
 			create_pop = {
 				pop_type = slaves
-				culture = lacustrine_bantu
+				culture = africana
 				size = 4000
 			}
 		}
@@ -611,7 +611,7 @@
 			}
 			create_pop = {
 				pop_type = slaves
-				culture = lacustrine_bantu
+				culture = africana
 				size = 9000
 			}
 		}
@@ -661,7 +661,7 @@
 			}
 			create_pop = {
 				pop_type = slaves
-				culture = lacustrine_bantu
+				culture = africana
 				size = 10000
 			}
 		}
@@ -697,7 +697,7 @@
 			}
 			create_pop = {
 				pop_type = slaves
-				culture = lacustrine_bantu
+				culture = africana
 				size = 1300
 			}
 		}
@@ -729,7 +729,7 @@
 			}
 			create_pop = {
 				pop_type = slaves
-				culture = lacustrine_bantu
+				culture = africana
 				size = 200
 			}
 		}
@@ -761,7 +761,7 @@
 			}
 			create_pop = {
 				pop_type = slaves
-				culture = lacustrine_bantu
+				culture = africana
 				size = 13000
 			}
 		}
@@ -798,12 +798,12 @@
 				size = 30696
 			}
 			create_pop = {
-				culture = somali
+				culture = africana
 				size = 8920
 				pop_type = slaves
 			}
 			create_pop = {
-				culture = bambara
+				culture = africana
 				size = 8720
 				pop_type = slaves
 			}
@@ -818,12 +818,12 @@
 				size = 9300
 			}
 			create_pop = {
-				culture = somali
+				culture = africana
 				size = 2000
 				pop_type = slaves
 			}
 			create_pop = {
-				culture = bambara
+				culture = africana
 				size = 2200
 				pop_type = slaves
 			}
@@ -840,7 +840,7 @@
 				size = 82300
 			}
 			create_pop = {
-				culture = somali
+				culture = africana
 				size = 9750
 				pop_type = slaves
 			}
@@ -1059,7 +1059,7 @@
 			}
 			create_pop = {
 				pop_type = slaves
-				culture = lacustrine_bantu
+				culture = africana
 				size = 3000
 			}
 		}
@@ -1102,7 +1102,7 @@
 			}
 			create_pop = {
 				pop_type = slaves
-				culture = lacustrine_bantu
+				culture = africana
 				size = 6100
 			}
 		}
@@ -1136,7 +1136,7 @@
 			}
 			create_pop = {
 				pop_type = slaves
-				culture = lacustrine_bantu
+				culture = africana
 				size = 1200
 			}
 		}
@@ -1162,7 +1162,7 @@
 			}
 			create_pop = {
 				pop_type = slaves
-				culture = lacustrine_bantu
+				culture = africana
 				size = 1200
 			}
 		}
@@ -1198,7 +1198,7 @@
 			}
 			create_pop = {
 				pop_type = slaves
-				culture = lacustrine_bantu
+				culture = africana
 				size = 1000
 			}
 		}
@@ -1233,7 +1233,7 @@
 			}
 			create_pop = {
 				pop_type = slaves
-				culture = lacustrine_bantu
+				culture = africana
 				size = 1000
 			}
 		}
@@ -1257,7 +1257,7 @@
 			}
 			create_pop = {
 				pop_type = slaves
-				culture = lacustrine_bantu
+				culture = africana
 				size = 400
 			}
 		}
@@ -1293,7 +1293,7 @@
 			}
 			create_pop = {
 				pop_type = slaves
-				culture = lacustrine_bantu
+				culture = africana
 				size = 291
 			}
 			create_pop = {
@@ -1337,7 +1337,7 @@
 			}
 			create_pop = {
 				pop_type = slaves
-				culture = lacustrine_bantu
+				culture = africana
 				size = 500
 			}
 			create_pop = {
@@ -1435,7 +1435,7 @@
 			}
 			create_pop = {
 				pop_type = slaves
-				culture = lacustrine_bantu
+				culture = africana
 				size = 300
 			}
 			create_pop = {

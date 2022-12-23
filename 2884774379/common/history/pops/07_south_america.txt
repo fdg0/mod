@@ -8,20 +8,20 @@ POPS = {
 				size = 332100
 			}
 			create_pop = {
-				culture = afro_caribeno
+				culture = afro_nativa
 				size = 72600
 			}
 			create_pop = {
-				culture = quechua
+				culture = nativa
 				size = 427596
 			}
 			create_pop = {
-				culture = amazonian
+				culture = nativa
 				size = 12000
 			}
 			create_pop = {
 				pop_type = slaves
-				culture = afro_caribeno
+				culture = afro_nativa
 				size = 84429
 			}		
 		}
@@ -29,7 +29,7 @@ POPS = {
 	s:STATE_GUAYANA = {
 		region_state:NET = {
 			create_pop = {
-				culture = afro_caribbean
+				culture = afro_american
 				religion = animist
 				size = 36000
 			}
@@ -38,11 +38,11 @@ POPS = {
 				size = 632
 			}
 			create_pop = {
-				culture = amazonian
+				culture = nativa
 				size = 7796
 			}
 			create_pop = {
-				culture = afro_caribbean
+				culture = afro_american
 				size = 12000
 			}
 		}
@@ -52,17 +52,17 @@ POPS = {
 				size = 1592
 			}
 			create_pop = {
-				culture = amazonian
+				culture = nativa
 				size = 4000
 			}
 			create_pop = {
-				culture = afro_antillean
+				culture = afro_american
 				size = 14400
 			}
 		}
 		region_state:GBR = {
 			create_pop = {
-				culture = afro_caribbean
+				culture = afro_american
 				size = 92000
 			}
 			create_pop = {
@@ -70,7 +70,7 @@ POPS = {
 				size = 3588
 			}
 			create_pop = {
-				culture = amazonian
+				culture = nativa
 				size = 8000
 			}
 		}
@@ -82,21 +82,21 @@ POPS = {
 				size = 325608
 			}
 			create_pop = {
-				culture = cariban
+				culture = nativa
 				religion = catholic
 				size = 4004
 			}
 			create_pop = {
-				culture = afro_caribeno
+				culture = afro_nativa
 				size = 72200
 			}
 			create_pop = {
 				pop_type = slaves
-				culture = afro_caribeno
+				culture = afro_nativa
 				size = 25300
 			}
 			create_pop = {
-				culture = guajiro
+				culture = nativa
 				size = 4004
 			}
 			
@@ -109,17 +109,17 @@ POPS = {
 				size = 266908
 			}
 			create_pop = {
-				culture = cariban
+				culture = nativa
 				religion = catholic
 				size = 8004
 			}
 			create_pop = {
-				culture = afro_caribeno
+				culture = afro_nativa
 				size = 60208
 			}
 			create_pop = {
 				pop_type = slaves
-				culture = afro_caribeno
+				culture = afro_nativa
 				size = 24004
 			}
 		}
@@ -132,16 +132,16 @@ POPS = {
 			}
 			create_pop = {
 				pop_type = slaves
-				culture = afro_caribeno
+				culture = afro_nativa
 				size = 21140
 			}
 			create_pop = {
 				pop_type = slaves
-				culture = afro_caribeno
+				culture = afro_nativa
 				size = 4630
 			}
 			create_pop = {
-				culture = amazonian
+				culture = nativa
 				size = 28000
 			}
 		}
@@ -153,20 +153,20 @@ POPS = {
 				size = 269804
 			}
 			create_pop = {
-				culture = guajiro
+				culture = nativa
 				size = 12000
 			}
 			create_pop = {
-				culture = afro_caribeno
+				culture = afro_nativa
 				size = 162004
 			}
 			create_pop = {
 				pop_type = slaves
-				culture = afro_caribeno
+				culture = afro_nativa
 				size = 62000
 			}
 			create_pop = {
-				culture = muisca
+				culture = nativa
 				religion = catholic
 				size = 32004
 			}
@@ -175,16 +175,16 @@ POPS = {
 	s:STATE_GUAVIARE = {
 		region_state:CLM = {
 			create_pop = {
-				culture = amazonian
+				culture = nativa
 				size = 88000
 			}
 			create_pop = {
-				culture = afro_caribeno
+				culture = afro_nativa
 				size = 9996
 			}
 			create_pop = {
 				pop_type = slaves
-				culture = afro_caribeno
+				culture = afro_nativa
 				size = 2400
 			}
 			create_pop = {
@@ -200,16 +200,16 @@ POPS = {
 				size = 463396
 			}
 			create_pop = {
-				culture = afro_caribeno
+				culture = afro_nativa
 				size = 17000
 			}
 			create_pop = {
 				pop_type = slaves
-				culture = afro_caribeno
+				culture = afro_nativa
 				size = 3000
 			}
 			create_pop = {
-				culture = muisca
+				culture = nativa
 				religion = catholic
 				size = 44204
 			}
@@ -222,20 +222,20 @@ POPS = {
 				size = 164400
 			}
 			create_pop = {
-				culture = muisca
+				culture = nativa
 				size = 12000
 			}
 			create_pop = {
-				culture = quechua
+				culture = nativa
 				size = 68000
 			}
 			create_pop = {
-				culture = afro_caribeno
+				culture = afro_nativa
 				size = 32000
 			}
 			create_pop = {
 				pop_type = slaves
-				culture = afro_caribeno
+				culture = afro_nativa
 				size = 8000
 			}
 		}
@@ -243,7 +243,7 @@ POPS = {
 	s:STATE_PASTAZA = {
 		region_state:PEU = {
 			create_pop = {
-				culture = amazonian
+				culture = nativa
 				size = 40000
 			}
 			create_pop = {
@@ -251,13 +251,13 @@ POPS = {
 				size = 11996
 			}
 			create_pop = {
-				culture = quechua
+				culture = nativa
 				size = 4004
 			}
 		}
 		region_state:ECU = {
 			create_pop = {
-				culture = amazonian
+				culture = nativa
 				size = 32000
 			}
 			create_pop = {
@@ -265,7 +265,7 @@ POPS = {
 				size = 1700
 			}
 			create_pop = {
-				culture = quechua
+				culture = nativa
 				size = 3200
 			}
 		}
@@ -277,16 +277,16 @@ POPS = {
 				size = 12000
 			}
 			create_pop = {
-				culture = aimara
+				culture = nativa
 				size = 38500
 			}
 			create_pop = {
-				culture = afro_caribeno
+				culture = afro_nativa
 				size = 1200
 			}
 			create_pop = {
 				pop_type = slaves
-				culture = afro_caribeno
+				culture = afro_nativa
 				size = 300
 			}
 		}
@@ -298,15 +298,15 @@ POPS = {
 				size = 43996
 			}
 			create_pop = {
-				culture = aimara
+				culture = nativa
 				size = 64200
 			}
 			create_pop = {
-				culture = afro_caribeno
+				culture = afro_nativa
 				size = 600
 			}
 			create_pop = {
-				culture = quechua
+				culture = nativa
 				size = 3400
 			}
 		}
@@ -318,15 +318,15 @@ POPS = {
 				size = 28200
 			}
 			create_pop = {
-				culture = amazonian
+				culture = nativa
 				size = 8000
 			}
 			create_pop = {
-				culture = quechua
+				culture = nativa
 				size = 102800
 			}
 			create_pop = {
-				culture = guarani
+				culture = nativa
 				size = 32000
 			}
 		}
@@ -338,19 +338,19 @@ POPS = {
 				size = 220792
 			}
 			create_pop = {
-				culture = quechua
+				culture = nativa
 				size = 321000
 			}
 			create_pop = {
-				culture = aimara
+				culture = nativa
 				size = 268004
 			}
 			create_pop = {
-				culture = amazonian
+				culture = nativa
 				size = 48000
 			}
 			create_pop = {
-				culture = afro_caribeno	# Yungas Afro-Bolivians
+				culture = afro_nativa	# Yungas Afro-Bolivians
 				size = 3200
 			}
 		}
@@ -362,11 +362,11 @@ POPS = {
 				size = 24000
 			}
 			create_pop = {
-				culture = aimara
+				culture = nativa
 				size = 121996
 			}
 			create_pop = {
-				culture = quechua
+				culture = nativa
 				size = 14000
 			}
 		}
@@ -378,20 +378,20 @@ POPS = {
 				size = 91804
 			}
 			create_pop = {
-				culture = afro_caribeno
+				culture = afro_nativa
 				size = 12000
 			}
 			create_pop = {
 				pop_type = slaves
-				culture = afro_caribeno
+				culture = afro_nativa
 				size = 4000
 			}
 			create_pop = {
-				culture = amazonian
+				culture = nativa
 				size = 12000
 			}
 			create_pop = {
-				culture = quechua
+				culture = nativa
 				size = 186696
 			}
 		}
@@ -403,20 +403,20 @@ POPS = {
 				size = 248000
 			}
 			create_pop = {
-				culture = quechua
+				culture = nativa
 				size = 212000
 			}
 			create_pop = {
-				culture = afro_caribeno
+				culture = afro_nativa
 				size = 21900
 			}
 			create_pop = {
 				pop_type = slaves
-				culture = afro_caribeno
+				culture = afro_nativa
 				size = 6200
 			}
 			create_pop = {
-				culture = amazonian
+				culture = nativa
 				size = 16000
 			}
 		}
@@ -428,20 +428,20 @@ POPS = {
 				size = 92904
 			}
 			create_pop = {
-				culture = afro_caribeno
+				culture = afro_nativa
 				size = 3350
 			}
 			create_pop = {
 				pop_type = slaves
-				culture = afro_caribeno
+				culture = afro_nativa
 				size = 650
 			}
 			create_pop = {
-				culture = quechua
+				culture = nativa
 				size = 302804
 			}
 			create_pop = {
-				culture = amazonian
+				culture = nativa
 				size = 12000
 			}
 		}
@@ -453,20 +453,20 @@ POPS = {
 				size = 48000
 			}
 			create_pop = {
-				culture = aimara
+				culture = nativa
 				size = 80400
 			}
 			create_pop = {
-				culture = quechua
+				culture = nativa
 				size = 146500
 			}
 			create_pop = {
-				culture = afro_caribeno
+				culture = afro_nativa
 				size = 2000
 			}
 			create_pop = {
 				pop_type = slaves
-				culture = afro_caribeno
+				culture = afro_nativa
 				size = 500
 			}
 		}
@@ -478,7 +478,7 @@ POPS = {
 				size = 95192
 			}
 			create_pop = {
-				culture = afro_caribeno
+				culture = afro_nativa
 				size = 19996
 			}
 			create_pop = {
@@ -487,7 +487,7 @@ POPS = {
 			}
 			create_pop = {
 				pop_type = slaves
-				culture = afro_caribeno
+				culture = afro_nativa
 				size = 8678
 			}
 		}
@@ -499,7 +499,7 @@ POPS = {
 				size = 4000
 			}
 			create_pop = {
-				culture = quechua
+				culture = nativa
 				size = 48000
 			}
 			create_pop = {
@@ -513,7 +513,7 @@ POPS = {
 				size = 29304
 			}
 			create_pop = {
-				culture = quechua
+				culture = nativa
 				size = 3100
 			}
 		}
@@ -521,7 +521,7 @@ POPS = {
 	s:STATE_ALTO_PARAGUAY = {
 		region_state:GNI = {
 			create_pop = {
-				culture = guarani
+				culture = nativa
 				size = 11000
 			}
 			create_pop = {
@@ -537,21 +537,21 @@ POPS = {
 				size = 308396
 			}
 			create_pop = {
-				culture = guarani
+				culture = nativa
 				size = 24000
 			}
 			create_pop = {
-				culture = guarani
+				culture = nativa
 				religion = catholic
 				size = 282240
 			}
 			create_pop = {
 				pop_type = slaves
-				culture = afro_caribeno
+				culture = afro_nativa
 				size = 14560
 			}
 			create_pop = {
-				culture = afro_caribeno
+				culture = afro_nativa
 				size = 17996
 			}
 		}
@@ -563,22 +563,22 @@ POPS = {
 				size = 206600
 			}
 			create_pop = {
-				culture = afro_caribeno
+				culture = afro_nativa
 				size = 20800
 			}
 			create_pop = {
 				pop_type = slaves
-				culture = afro_caribeno
+				culture = afro_nativa
 				size = 13200
 			}
 			create_pop = {
-				culture = patagonian
+				culture = nativa
 				size = 2000
 			}
 		}
 		region_state:PAT = {
 			create_pop = {
-				culture = patagonian
+				culture = nativa
 				size = 30000
 			}		
 		}
@@ -586,13 +586,13 @@ POPS = {
 	s:STATE_PATAGONIA = {
 		region_state:THL = {
 			create_pop = {
-				culture = patagonian
+				culture = nativa
 				size = 25100
 			}
 		}
 		region_state:PAT = {
 			create_pop = {
-				culture = patagonian
+				culture = nativa
 				size = 31100
 			}
 			create_pop = {
@@ -604,7 +604,7 @@ POPS = {
 	s:STATE_RIO_NEGRO = {
 		region_state:ARG = {
 			create_pop = {
-				culture = patagonian
+				culture = nativa
 				size = 6880
 			}
 			create_pop = {
@@ -612,18 +612,18 @@ POPS = {
 				size = 6096
 			}
 			create_pop = {
-				culture = afro_caribeno
+				culture = afro_nativa
 				size = 100
 			}
 			create_pop = {
 				pop_type = slaves
-				culture = afro_caribeno
+				culture = afro_nativa
 				size = 20
 			}
 		}
 		region_state:PAT = {
 			create_pop = {
-				culture = patagonian
+				culture = nativa
 				size = 17000
 			}
 			create_pop = {
@@ -639,16 +639,16 @@ POPS = {
 				size = 159740
 			}
 			create_pop = {
-				culture = afro_caribeno
+				culture = afro_nativa
 				size = 200
 			}
 			create_pop = {
 				pop_type = slaves
-				culture = afro_caribeno
+				culture = afro_nativa
 				size = 60
 			}
 			create_pop = {
-				culture = patagonian
+				culture = nativa
 				size = 16000
 			}
 		}
@@ -660,18 +660,18 @@ POPS = {
 				size = 94658
 			}
 			create_pop = {
-				culture = afro_caribeno
+				culture = afro_nativa
 				size = 900
 			}
 			create_pop = {
 				pop_type = slaves
-				culture = afro_caribeno
+				culture = afro_nativa
 				size = 450
 			}
 		}
 		region_state:GNI = {
 			create_pop = {
-				culture = guarani
+				culture = nativa
 				size = 8000
 			}		
 		}
@@ -687,16 +687,16 @@ POPS = {
 				size = 16004
 			}
 			create_pop = {
-				culture = guarani
+				culture = nativa
 				size = 35996
 			}
 			create_pop = {
-				culture = afro_caribeno
+				culture = afro_nativa
 				size = 2100
 			}
 			create_pop = {
 				pop_type = slaves
-				culture = afro_caribeno
+				culture = afro_nativa
 				size = 630
 			}
 		}
@@ -708,16 +708,16 @@ POPS = {
 				size = 76078
 			}
 			create_pop = {
-				culture = afro_caribeno
+				culture = afro_nativa
 				size = 250
 			}
 			create_pop = {
 				pop_type = slaves
-				culture = afro_caribeno
+				culture = afro_nativa
 				size = 80
 			}
 			create_pop = {
-				culture = quechua
+				culture = nativa
 				size = 2600
 			}
 		}
@@ -725,11 +725,11 @@ POPS = {
 	s:STATE_CHACO = {
 		region_state:GNI = {
 			create_pop = {
-				culture = guarani
+				culture = nativa
 				size = 9000
 			}
 			create_pop = {
-				culture = quechua # Santiagueño Quechua
+				culture = nativa # Santiagueño Quechua
 				size = 400
 			}
 		}
@@ -739,11 +739,11 @@ POPS = {
 				size = 34804
 			}
 			create_pop = {
-				culture = guarani
+				culture = nativa
 				size = 1500
 			}
 			create_pop = {
-				culture = quechua # Santiagueño Quechua
+				culture = nativa # Santiagueño Quechua
 				size = 1200
 			}
 		}
@@ -755,7 +755,7 @@ POPS = {
 				size = 655608
 			}
 			create_pop = {
-				culture = afro_caribeno	# Afro Chileans
+				culture = afro_nativa	# Afro Chileans
 				size = 1200
 			}
 		}
@@ -767,7 +767,7 @@ POPS = {
 				size = 204892
 			}
 			create_pop = {
-				culture = patagonian
+				culture = nativa
 				size = 48000
 			}
 		}
@@ -779,19 +779,19 @@ POPS = {
 				size = 52004
 			}
 			create_pop = {
-				culture = patagonian
+				culture = nativa
 				size = 3200
 			}
 		}
 		region_state:THL = {
 			create_pop = {
-				culture = patagonian
+				culture = nativa
 				size = 28200
 			}
 		}
 		region_state:SLK = {
 			create_pop = {
-				culture = patagonian
+				culture = nativa
 				size = 12000
 			}
 		}
@@ -807,7 +807,7 @@ POPS = {
 	s:STATE_ACRE={
 		region_state:BOL = {
 			create_pop = {
-				culture = amazonian
+				culture = nativa
 				size = 15750
 			}
 			create_pop = {				# sources indicate existence of small numbers of both peruvians and brazilians
@@ -823,7 +823,7 @@ POPS = {
 	s:STATE_AMAZONAS = {
 		region_state:CLM = {
 			create_pop = {
-				culture = amazonian
+				culture = nativa
 				size = 12000
 			}
 			create_pop = {
@@ -833,7 +833,7 @@ POPS = {
 		}
 		region_state:PRA = {
 			create_pop = {
-				culture = amazonian
+				culture = nativa
 				size = 36800
 			}
 			create_pop = {
@@ -852,7 +852,7 @@ POPS = {
 		}
 		region_state:BOL = { # I have literally no idea what number to put here.
 			create_pop = {
-				culture = amazonian
+				culture = nativa
 				size = 10000
 			}
 		}		
@@ -860,7 +860,7 @@ POPS = {
 	s:STATE_MATO_GROSSO = {
 		region_state:PRG = {
 			create_pop = {
-				culture = guarani
+				culture = nativa
 				size = 38000
 			}
 			create_pop = {
@@ -883,11 +883,11 @@ POPS = {
 				size = 15532 # 1828 census
 			}
 			create_pop = {
-				culture = guarani
+				culture = nativa
 				size = 30000
 			}
 			create_pop = {
-				culture = amazonian
+				culture = nativa
 				size = 44000
 			}
 		}
@@ -908,7 +908,7 @@ POPS = {
 				size = 4086
 			}
 			create_pop = {
-				culture = guarani
+				culture = nativa
 				size = 40000
 			}
 		}
@@ -1183,7 +1183,7 @@ POPS = {
 				size = 77642
 			}
 			create_pop = {
-				culture = amazonian
+				culture = nativa
 				size = 43800
 			}
 			create_pop = {

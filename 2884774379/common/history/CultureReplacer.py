@@ -1,10 +1,10 @@
 import os
 
 # AFRICA
-COUNTRY_PATH = "C:\\Program Files (x86)\\Steam\\steamapps\\workshop\\content\\529340\\2884774379\\common\\history\\input_country_definitions"
-OUTPUT_COUNTRY_PATH = "C:\\Program Files (x86)\\Steam\\steamapps\\workshop\\content\\529340\\2884774379\\common\\history\\country_definitions"
-POPS_PATH = "C:\\Program Files (x86)\\Steam\\steamapps\\workshop\\content\\529340\\2884774379\\common\\history\\input_pops"
-OUTPUT_POPS_PATH = "C:\\Program Files (x86)\\Steam\\steamapps\\workshop\\content\\529340\\2884774379\\common\\history\\pops"
+COUNTRY_PATH = "D:\\SteamLibrary\\steamapps\\workshop\\content\\529340\\2884774379\\common\\history\\input_country_definitions"
+OUTPUT_COUNTRY_PATH = "D:\\SteamLibrary\\steamapps\\workshop\\content\\529340\\2884774379\\common\\history\\country_definitions"
+POPS_PATH = "D:\\SteamLibrary\steamapps\\workshop\\content\\529340\\2884774379\\common\\history\\input_pops"
+OUTPUT_POPS_PATH = "D:\\SteamLibrary\\steamapps\\workshop\\content\\529340\\2884774379\\common\\history\\pops"
 CULTURES_TO_CONVERT_AFRICA = ['akan', 'senufo','dyula','kru','fulbe','wolof','bambara',
 'kissi','mossi','hausa','songhai','yoruba','equatorial_bantu',' edo','ibo','tiv','fon',
 'ibibio','kanuri','ewe','unyamwezi','chewa','yao','makua','lacustrine_bantu',

@@ -146,12 +146,12 @@
 				size = 410
 			}
 			create_pop = {
-				culture = inuit
+				culture = nativa
 				religion = protestant
 				size = 9254
 			}
 			create_pop = {
-				culture = inuit
+				culture = nativa
 				religion = animist
 				size = 1510
 			}

@@ -93,18 +93,18 @@
 	s:STATE_NORTH_ISLAND = {
 		region_state:UNT = {
 			create_pop = {
-				culture = maori
+				culture = aborigine
 				religion = protestant
 				size = 30000
 			}
 			create_pop = {
-				culture = maori
+				culture = aborigine
 				size = 25000
 			}
 		}
 		region_state:NSW = {
 			create_pop = {
-				culture = maori
+				culture = aborigine
 				size = 5000
 			}
 			create_pop = {
@@ -114,7 +114,7 @@
 		}
 		region_state:NTO = {
 			create_pop = {
-				culture = maori
+				culture = aborigine
 				size = 32000
 			}
 		}
@@ -126,13 +126,13 @@
 				size = 428
 			}
 			create_pop = {
-				culture = maori
+				culture = aborigine
 				size = 12000
 			}
 		}
 		region_state:NTU = {
 			create_pop = {
-				culture = maori
+				culture = aborigine
 				size = 64000
 			}
 		}

@@ -14,13 +14,13 @@
 				size = 164404
 			}
 			create_pop = {
-				culture = mayan
+				culture = nativa
 				size = 312000
 			}
 		}
 		region_state:GBR = {
 			create_pop = {
-				culture = afro_caribbean
+				culture = afro_american
 				size = 7104
 			}
 			create_pop = {
@@ -36,7 +36,7 @@
 				size = 385204
 			}
 			create_pop = {
-				culture = miskito # Cape of Gracias a Dios Miskito
+				culture = nativa # Cape of Gracias a Dios Miskito
 				size = 3000
 			}
 		}
@@ -48,26 +48,26 @@
 				size = 284000
 			}
 			create_pop = {
-				culture = miskito # Miskito pop. across the 'borders'
+				culture = nativa # Miskito pop. across the 'borders'
 				size = 4000
 			}
 		}
 		region_state:MKT = {
 			create_pop = {
-				culture = miskito # Tawira Miskito
+				culture = nativa # Tawira Miskito
 				size = 30000
 			}
 			create_pop = {
-				culture = miskito
+				culture = nativa
 				religion = protestant
 				size = 10000
 			}
 			create_pop = {
-				culture = afro_caribbean # Miskito Sambu
+				culture = afro_american # Miskito Sambu
 				size = 20000
 			}
 			create_pop = {
-				culture = afro_caribeno
+				culture = afro_nativa
 				size = 500
 			}
 			create_pop = {
@@ -76,7 +76,7 @@
 			}
 			create_pop = {
 				pop_type = slaves
-				culture = afro_caribeno
+				culture = afro_nativa
 				size = 1000
 			}
 		}
@@ -96,12 +96,12 @@
 				size = 87792
 			}
 			create_pop = {
-				culture = afro_caribeno
+				culture = afro_nativa
 				size = 28300
 			}
 			create_pop = {
 				pop_type = slaves
-				culture = afro_caribeno
+				culture = afro_nativa
 				size = 4100
 			}
 			create_pop = {
@@ -109,7 +109,7 @@
 				size = 4000
 			}
 			create_pop = {
-				culture = cariban
+				culture = nativa
 				size = 4000
 			}
 		}
@@ -117,15 +117,15 @@
 	s:STATE_HAITI = {
 		region_state:HAI = {
 			create_pop = {
-				culture = afro_antillean
+				culture = afro_american
 				size = 316808
 			}
 			create_pop = {
-				culture = afro_caribeno
+				culture = afro_nativa
 				size = 40000
 			}
 			create_pop = {
-				culture = caribeno
+				culture = nativa
 				size = 40000
 			}
 		}
@@ -133,15 +133,15 @@
 	s:STATE_SANTO_DOMINGO = {
 		region_state:HAI = {
 			create_pop = {
-				culture = afro_antillean
+				culture = afro_american
 				size = 226020
 			}
 			create_pop = {
-				culture = afro_caribeno
+				culture = afro_nativa
 				size = 24000
 			}
 			create_pop = {
-				culture = caribeno
+				culture = nativa
 				size = 20000
 			}
 		}
@@ -149,11 +149,11 @@
 	s:STATE_PUERTO_RICO = {
 		region_state:SPA = {
 			create_pop = {
-				culture = caribeno
+				culture = nativa
 				size = 182500
 			}
 			create_pop = {
-				culture = afro_caribeno
+				culture = afro_nativa
 				size = 168400
 			}
 			create_pop = {
@@ -162,7 +162,7 @@
 			}
 			create_pop = {
 				pop_type = slaves
-				culture = afro_caribeno
+				culture = afro_nativa
 				size = 42000
 			}		
 		}
@@ -174,7 +174,7 @@
 				size = 19200
 			}
 			create_pop = {
-				culture = afro_caribbean
+				culture = afro_american
 				size = 100400
 			}
 		}
@@ -186,7 +186,7 @@
 				size = 22200
 			}
 			create_pop = {
-				culture = afro_antillean
+				culture = afro_american
 				size = 216104
 			}
 		}
@@ -196,7 +196,7 @@
 				size = 3992
 			}
 			create_pop = {
-				culture = afro_caribbean
+				culture = afro_american
 				size = 39996
 			}
 		}
@@ -206,7 +206,7 @@
 				size = 34704
 			}
 			create_pop = {
-				culture = afro_caribbean
+				culture = afro_american
 				size = 234768
 			}
 			create_pop = {
@@ -218,7 +218,7 @@
 	s:STATE_JAMAICA = {
 		region_state:GBR = {
 			create_pop = {
-				culture = afro_caribbean
+				culture = afro_american
 				size = 358596
 			}
 			create_pop = {
@@ -231,16 +231,16 @@
 		region_state:CUB = {
 			# 896400
 			create_pop = {
-				culture = caribeno
+				culture = nativa
 				size = 461304 # est. "white" population in 1836 of 483308, minus the explicit Spanish pops below
 			}
 			create_pop = {
-				culture = afro_caribeno
+				culture = afro_nativa
 				size = 152011
 			}
 			create_pop = {
 				pop_type = slaves
-				culture = afro_caribeno
+				culture = afro_nativa
 				size = 288786
 			}			
 			create_pop = {

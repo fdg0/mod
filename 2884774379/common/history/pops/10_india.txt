@@ -669,7 +669,7 @@
 			}
 			create_pop = {
 				pop_type = slaves
-				culture = lacustrine_bantu
+				culture = africana
 				size = 31000
 			}
 			create_pop = {
@@ -792,7 +792,7 @@
 				size = 849208
 			}
 			create_pop = {
-				culture = lacustrine_bantu
+				culture = africana
 				religion = catholic
 				size = 700
 			}
@@ -847,7 +847,7 @@
 				size = 29992
 			}
 			create_pop = {
-				culture = afro_antillean
+				culture = afro_american
 				size = 68000
 			}
 			create_pop = {
@@ -855,7 +855,7 @@
 				size = 2000
 			}
 			create_pop = {
-				culture = afro_antillean
+				culture = afro_american
 				religion = animist
 				size = 6000
 			}
@@ -866,7 +866,7 @@
 				size = 2088
 			}
 			create_pop = {
-				culture = afro_antillean
+				culture = afro_american
 				size = 94612
 			}
 			create_pop = {
@@ -874,7 +874,7 @@
 				size = 800
 			}
 			create_pop = {
-				culture = afro_caribbean
+				culture = afro_american
 				size = 5900
 			}
 		}
