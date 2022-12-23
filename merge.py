@@ -2,10 +2,10 @@ import shutil
 import os
 
 # Source path 
-src = 'C:/Program Files (x86)/Steam/steamapps/workshop/content/529340/'
+src = 'D:/SteamLibrary/steamapps/workshop/content/529340/'
  
 # Destination path 
-dest = 'C:/Program Files (x86)/Steam/steamapps/workshop/content/529340/multiplayer/'
+dest = 'D:/SteamLibrary/steamapps/workshop/content/529340/multiplayer/'
 
 list_dir = os.listdir(src)
 list_dir.remove('.git')
