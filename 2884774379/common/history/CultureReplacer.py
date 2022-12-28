@@ -43,7 +43,7 @@ if __name__ == '__main__':
             popFile = popFile.replace(b, 'sudanese')
         for c in ['amhara','tigray','sidama']:
             popFile = popFile.replace(c, 'oromo')
-        for e in ['mongo\n']:
+        for e in ['mongo\n', 'malagasy']:
             popFile = popFile.replace(e, 'africana\n')
         newPopFile.write(popFile)
     for fo in os.listdir(COUNTRY_PATH):
@@ -66,6 +66,6 @@ if __name__ == '__main__':
             countryFile = countryFile.replace(b, 'sudanese')
         for c in ['amhara','tigray','sidama']:
             countryFile = countryFile.replace(c, 'oromo')
-        for e in ['mongo\n']:
-            popFile = popFile.replace(e, 'africana\n')
+        for e in ['mongo\n', 'malagasy']:
+            countryFile = countryFile.replace(e, 'africana\n')
         newCountryFile.write(countryFile)

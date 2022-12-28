@@ -150,7 +150,7 @@ LOU = {
 	
 	tier = principality
 	
-	cultures = { nativa afro_american }
+	cultures = { naafricanaa afro_american }
 	capital = STATE_LOUISIANA
 }
 
@@ -172,7 +172,7 @@ AMZ = {
 	
 	tier = kingdom
 	
-	cultures = { nativa }
+	cultures = { naafricanaa }
 	capital = STATE_AMAZONAS
 }
 
@@ -183,7 +183,7 @@ GRI = {
 	
 	tier = kingdom
 	
-	cultures = { nativa }
+	cultures = { naafricanaa }
 	capital = STATE_AMAZONAS
 }
 
@@ -1972,7 +1972,7 @@ CHE = {
 	
 	tier = principality
 	
-	cultures = { nativa }
+	cultures = { naafricanaa }
 	capital = STATE_ARKANSAS
 }
 
@@ -2006,7 +2006,7 @@ CUB = {
 	
 	tier = principality
 	
-	cultures = { nativa }
+	cultures = { naafricanaa }
 	capital = STATE_CUBA
 	is_named_from_capital = yes
 }
@@ -2029,7 +2029,7 @@ DOM = {
 	
 	tier = principality
 	
-	cultures = { nativa }
+	cultures = { naafricanaa }
 	capital = STATE_SANTO_DOMINGO
 	is_named_from_capital = yes
 }
@@ -2076,7 +2076,7 @@ HAI = {
 	
 	tier = principality
 	
-	cultures = { afro_american nativa afro_nativa }
+	cultures = { afro_american naafricanaa afro_naafricanaa }
 	capital = STATE_HAITI
 }
 
@@ -2101,7 +2101,7 @@ MTC = {
 	
 	tier = principality
 	
-	cultures = { nativa }
+	cultures = { naafricanaa }
 	capital = STATE_MANITOBA
 }
 
@@ -2490,7 +2490,7 @@ PAT = {
 	
 	tier = principality
 	
-	cultures = { nativa }
+	cultures = { naafricanaa }
 	capital = STATE_PATAGONIA
 }
 
@@ -2501,7 +2501,7 @@ THL = {
 	
 	tier = principality
 	
-	cultures = { nativa }
+	cultures = { naafricanaa }
 	capital = STATE_PATAGONIA
 }
 
@@ -2512,7 +2512,7 @@ SLK = {
 	
 	tier = principality
 	
-	cultures = { nativa }
+	cultures = { naafricanaa }
 	capital = STATE_ARAUCANIA
 }
 
@@ -2545,7 +2545,7 @@ MAY = {
 	
 	tier = kingdom
 	
-	cultures = { nativa }
+	cultures = { naafricanaa }
 	capital = STATE_YUCATAN
 }
 
@@ -2578,7 +2578,7 @@ COM = {
 
 	tier = principality
 	
-	cultures = { nativa }
+	cultures = { naafricanaa }
 	capital = STATE_TEXAS
 }
 
@@ -2589,7 +2589,7 @@ SEQ = {
 
 	tier = principality
 	
-	cultures = { nativa nativa }
+	cultures = { naafricanaa naafricanaa }
 	capital = STATE_OKLAHOMA
 }
 
@@ -2600,7 +2600,7 @@ DKT = {
 
 	tier = principality
 	
-	cultures = { nativa }
+	cultures = { naafricanaa }
 	capital = STATE_MINNESOTA
 }
 
@@ -2611,7 +2611,7 @@ LKT = {
 
 	tier = principality
 	
-	cultures = { nativa }
+	cultures = { naafricanaa }
 	capital = STATE_SOUTH_DAKOTA
 }
 
@@ -2622,7 +2622,7 @@ NVJ = {
 
 	tier = principality
 	
-	cultures = { nativa }
+	cultures = { naafricanaa }
 	capital = STATE_ARIZONA
 }
 
@@ -2633,7 +2633,7 @@ ARP = {
 
 	tier = principality
 	
-	cultures = { nativa }
+	cultures = { naafricanaa }
 	capital = STATE_COLORADO
 }
 
@@ -2644,7 +2644,7 @@ NZP = {
 
 	tier = principality
 	
-	cultures = { nativa }
+	cultures = { naafricanaa }
 	capital = STATE_IDAHO
 }
 
@@ -2655,7 +2655,7 @@ ABS = {
 
 	tier = principality
 	
-	cultures = { nativa }
+	cultures = { naafricanaa }
 	capital = STATE_MONTANA
 }
 
@@ -2666,7 +2666,7 @@ IRC = {
 
 	tier = principality
 	
-	cultures = { nativa nativa }
+	cultures = { naafricanaa naafricanaa }
 	capital = STATE_SASKATCHEWAN
 }
 
@@ -2700,7 +2700,7 @@ PCO = {
 	
 	tier = principality
 	
-	cultures = { nativa }
+	cultures = { naafricanaa }
 	capital = STATE_PUERTO_RICO
 	is_named_from_capital = yes
 }
@@ -2712,7 +2712,7 @@ MKT = {
 	
 	tier = principality
 	
-	cultures = { nativa afro_american }
+	cultures = { naafricanaa afro_american }
 	capital = STATE_NICARAGUA
 }
 
@@ -2723,7 +2723,7 @@ NAH = {
 	
 	tier = principality
 	
-	cultures = { nativa nativa nativa nativa }
+	cultures = { naafricanaa naafricanaa naafricanaa naafricanaa }
 	capital = STATE_MEXICO
 }
 
@@ -2734,7 +2734,7 @@ GRN = {
 	
 	tier = principality
 	
-	cultures = { danish nativa }
+	cultures = { danish naafricanaa }
 	capital = STATE_GREENLAND
 	is_named_from_capital = yes
 }
@@ -2829,7 +2829,7 @@ SIB = { # Siberia
 	country_type = unrecognized
 
 	tier = kingdom
-	cultures = { yakut siberian nativa }
+	cultures = { yakut siberian naafricanaa }
 	capital = STATE_TOMSK
 }
 
@@ -3018,7 +3018,7 @@ OAX = { # Oaxaca
 	
 	tier = principality
 	
-	cultures = { nativa nativa }
+	cultures = { naafricanaa naafricanaa }
 	
 	capital = STATE_OAXACA
 }
@@ -3030,7 +3030,7 @@ MCO = { # Michoacan
 	
 	tier = principality
 	
-	cultures = { nativa }
+	cultures = { naafricanaa }
 	
 	capital = STATE_JALISCO
 }
@@ -3042,7 +3042,7 @@ TWT = { # Tawantinsuyu
 	
 	tier = principality
 	
-	cultures = { nativa }
+	cultures = { naafricanaa }
 	
 	capital = STATE_LIMA
 }
@@ -3054,7 +3054,7 @@ AYM = { # Aymara
 	
 	tier = principality
 	
-	cultures = { nativa }
+	cultures = { naafricanaa }
 	
 	capital = STATE_LA_PAZ
 }
@@ -3066,7 +3066,7 @@ WYU = { # Wayuu
 	
 	tier = principality
 	
-	cultures = { nativa }
+	cultures = { naafricanaa }
 	
 	capital = STATE_ANTIOQUIA
 }
@@ -3090,7 +3090,7 @@ PUE = { # Pueblo
 	
 	tier = principality
 	
-	cultures = { nativa }
+	cultures = { naafricanaa }
 	
 	capital = STATE_NEW_MEXICO
 }
@@ -3102,7 +3102,7 @@ NNV = { # Nunavut
 	
 	tier = principality
 	
-	cultures = { nativa }
+	cultures = { naafricanaa }
 	
 	capital = STATE_NUNAVUT
 }
@@ -3114,7 +3114,7 @@ NVL = { # Navajoland
 	
 	tier = principality
 	
-	cultures = { nativa }
+	cultures = { naafricanaa }
 	
 	capital = STATE_ARIZONA
 }
@@ -3126,7 +3126,7 @@ ATB = { # Athabaska
 	
 	tier = principality
 	
-	cultures = { nativa }
+	cultures = { naafricanaa }
 	
 	capital = STATE_NORTHWEST_TERRITORIES
 }
@@ -3138,7 +3138,7 @@ CSC = { # Cascadia
 	
 	tier = principality
 	
-	cultures = { nativa }
+	cultures = { naafricanaa }
 	
 	capital = STATE_BRITISH_COLUMBIA
 }
@@ -3150,7 +3150,7 @@ IRO = { # Haudenosaunee, archaically known as the Iroquois Confederacy
 	
 	tier = principality
 	
-	cultures = { nativa }
+	cultures = { naafricanaa }
 	
 	capital = STATE_NEW_YORK
 }
@@ -3162,7 +3162,7 @@ CTF = { # the Council of Three Fires, Niswa-mishkodewinan
 	
 	tier = principality
 	
-	cultures = { nativa }
+	cultures = { naafricanaa }
 	
 	capital = STATE_MICHIGAN
 }
@@ -3174,7 +3174,7 @@ MSC = { # Muscogee
 	
 	tier = principality
 	
-	cultures = { nativa }
+	cultures = { naafricanaa }
 	
 	capital = STATE_FLORIDA
 }
@@ -3182,7 +3182,7 @@ MSC = { # Muscogee
 UTE = { # Ute
 	color = { 235 126 175 }
 	
-	cultures = { nativa }
+	cultures = { naafricanaa }
 	
 	country_type = decentralized
 	
@@ -3194,7 +3194,7 @@ UTE = { # Ute
 PWN = { # Pawnee
 	color = { 252 84 118 }
 	
-	cultures = { nativa }
+	cultures = { naafricanaa }
 	
 	country_type = decentralized
 	
@@ -3206,7 +3206,7 @@ PWN = { # Pawnee
 APC = { # Apacheria
 	color = { 198 158 109 }
 	
-	cultures = { nativa }
+	cultures = { naafricanaa }
 	
 	country_type = decentralized
 	
@@ -3218,7 +3218,7 @@ APC = { # Apacheria
 BLF = { # Niitsitapi / Blackfoot Confederacy
 	color = hsv{ 0.63 0.68 0.60 }
 	
-	cultures = { nativa }
+	cultures = { naafricanaa }
 	
 	country_type = decentralized
 	
@@ -3234,7 +3234,7 @@ CCM = { # O'odham Country
 	
 	tier = principality
 	
-	cultures = { nativa }
+	cultures = { naafricanaa }
 	
 	capital = STATE_CHIHUAHUA
 }
@@ -3246,7 +3246,7 @@ ORN = { # Orinoco
 	
 	tier = principality
 	
-	cultures = { nativa }
+	cultures = { naafricanaa }
 	
 	capital = STATE_MIRANDA
 }
@@ -3258,7 +3258,7 @@ MUI = { # Muisca
 	
 	tier = principality
 	
-	cultures = { nativa }
+	cultures = { naafricanaa }
 	
 	capital = STATE_CUNDINAMARCA
 }
@@ -3391,7 +3391,7 @@ FER = {
  	color = { 207 25 25 }
 	country_type = decentralized
 	tier = principality
-	cultures = { siberian nativa }
+	cultures = { siberian naafricanaa }
 	capital = STATE_OKHOTSK
 }
 
@@ -3532,7 +3532,7 @@ GNI = {
 	
 	tier = principality
 	
-	cultures = { nativa }
+	cultures = { naafricanaa }
 	capital = STATE_ALTO_PARAGUAY
 }
 

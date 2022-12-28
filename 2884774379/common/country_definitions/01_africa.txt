@@ -39,7 +39,8 @@ MAD = {
 	
 	tier = kingdom
 	
-	cultures = { malagasy }
+	cultures = { africana
+ }
 	capital = STATE_NORTH_MADAGASCAR
 }
 
@@ -150,7 +151,7 @@ TUN = {
 ZAN = {
 	color = { 166  189  199 }
 	
-	country_type = decentralized
+	country_type = unrecognized
 	
 	tier = principality
 	
@@ -174,7 +175,7 @@ ZUL = {
 SIL = {
 	color = { 123  206  101 }
 	
-	country_type = decentralized
+	country_type = unrecognized
 	
 	tier = principality
 	
@@ -683,7 +684,7 @@ KKY = {
 WSG = {
 	color = { 18 97 128 }
 	
-	country_type = decentralized
+	country_type = unrecognized
 	
 	tier = principality
 	
@@ -694,7 +695,7 @@ WSG = {
 GLD = {
 	color = { 38 160 67 }
 	
-	country_type = decentralized
+	country_type = unrecognized
 	
 	tier = principality
 	
@@ -705,7 +706,7 @@ GLD = {
 MJT = {
 	color = { 220 200 100 }
 	
-	country_type = decentralized
+	country_type = unrecognized
 	
 	tier = principality
 	
@@ -727,7 +728,7 @@ DFR = {
 ISQ = {
 	color = { 224 255 182 }
 	
-	country_type = decentralized
+	country_type = unrecognized
 	
 	tier = principality
 	
@@ -738,7 +739,7 @@ ISQ = {
 HOB = {
 	color = { 255 73 7 }
 	
-	country_type = decentralized
+	country_type = unrecognized
 	
 	tier = principality
 	

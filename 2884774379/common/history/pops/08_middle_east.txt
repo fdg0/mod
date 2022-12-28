@@ -555,7 +555,7 @@
 		}
 	}
 	s:STATE_ALEPPO = {
-		region_state:TUR = {
+		region_state:EGY = {
 			create_pop = {
 				culture = mashriqi
 				religion = sunni
@@ -617,7 +617,7 @@
 		}
 	}
 	s:STATE_BAGHDAD = {
-		region_state:IRQ = {
+		region_state:TUR = {
 			create_pop = {
 				culture = mashriqi
 				religion = sunni
@@ -735,7 +735,7 @@
 		}
 	}
 	s:STATE_BASRA = {
-		region_state:IRQ = {
+		region_state:TUR = {
 			create_pop = {
 				culture = mashriqi
 				size = 272000
@@ -1204,7 +1204,7 @@
 		}
 	}
 	s:STATE_ADANA = {
-		region_state:TUR = {
+		region_state:EGY = {
 			create_pop = {
 				culture = turkish
 				size = 270062
@@ -1236,6 +1236,8 @@
 				culture = africana
 				size = 1000
 			}
+		}
+		region_state:TUR = {
 			create_pop = {
 				culture = turkish
 				size = 30012

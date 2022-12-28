@@ -5,7 +5,7 @@
 	
 	country_type = unrecognized
 	
-	cultures = { nativa }
+	cultures = { naafricanaa }
 	religion = protestant
 	
 	capital = STATE_HAWAIIAN_ISLANDS

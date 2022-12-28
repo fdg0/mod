@@ -1,1 +1,0 @@
-﻿concept_zz_war_flags_nations = {}
