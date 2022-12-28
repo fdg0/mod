@@ -2,7 +2,7 @@ import os
 
 # AFRICA
 COUNTRY_PATH = "D:\\SteamLibrary\\steamapps\\workshop\\content\\529340\\2884774379\\common\\history\\input_country_definitions"
-OUTPUT_COUNTRY_PATH = "D:\\SteamLibrary\\steamapps\\workshop\\content\\529340\\2884774379\\common\\history\\country_definitions"
+OUTPUT_COUNTRY_PATH = "D:\\SteamLibrary\\steamapps\\workshop\\content\\529340\\2884774379\\common\\country_definitions"
 POPS_PATH = "D:\\SteamLibrary\steamapps\\workshop\\content\\529340\\2884774379\\common\\history\\input_pops"
 OUTPUT_POPS_PATH = "D:\\SteamLibrary\\steamapps\\workshop\\content\\529340\\2884774379\\common\\history\\pops"
 CULTURES_TO_CONVERT_AFRICA = ['akan', 'senufo','dyula','kru','fulbe','wolof','bambara',
@@ -23,6 +23,29 @@ CULTURES_TO_CONVERT_N_AFRICA = ['tuareg','maures','haratin','teda']
 CULTURES_TO_CONVERT_AMERICA_AFRICA = ['afro_antillean','afro_caribbean','afro_caribeno']
 
 if __name__ == '__main__':
+    for fo in os.listdir(COUNTRY_PATH):
+        newCountryFile = open(OUTPUT_COUNTRY_PATH + '/' + fo, 'w')
+        countryFile = open(COUNTRY_PATH + '/' + fo)
+        countryFile = countryFile.read()
+        for x in CULTURES_TO_CONVERT_AFRICA:
+            countryFile = countryFile.replace(x, 'africana')
+        for y in CULTURES_TO_CONVERT_N_AFRICA:
+            countryFile = countryFile.replace(y, 'berber')
+        for z in CULTURES_TO_CONVERT_AMERICA:
+            countryFile = countryFile.replace(z, 'nativa')
+        for w in CULTURES_TO_CONVERT_INDONESIA:
+            countryFile = countryFile.replace(w, 'malay')
+        for d in CULTURES_TO_CONVERT_AMERICA_AFRICA:
+            countryFile = countryFile.replace(d, 'afro_american')
+        for a in ['maori']:
+            countryFile = countryFile.replace(a, 'aborigine')
+        for b in [' beja']:
+            countryFile = countryFile.replace(b, 'sudanese')
+        for c in ['amhara','tigray','sidama']:
+            countryFile = countryFile.replace(c, 'oromo')
+        for e in ['mongo\n', ' malagasy']:
+            countryFile = countryFile.replace(e, 'africana\n')
+        newCountryFile.write(countryFile)
     for f in os.listdir(POPS_PATH):
         newPopFile = open(OUTPUT_POPS_PATH + '/' + f, 'w')
         popFile = open(POPS_PATH + '/' + f)
@@ -46,26 +69,3 @@ if __name__ == '__main__':
         for e in ['mongo\n', 'malagasy']:
             popFile = popFile.replace(e, 'africana\n')
         newPopFile.write(popFile)
-    for fo in os.listdir(COUNTRY_PATH):
-        newCountryFile = open(OUTPUT_COUNTRY_PATH + '/' + fo, 'w')
-        countryFile = open(COUNTRY_PATH + '/' + fo)
-        countryFile = countryFile.read()
-        for x in CULTURES_TO_CONVERT_AFRICA:
-            countryFile = countryFile.replace(x, 'africana')
-        for y in CULTURES_TO_CONVERT_N_AFRICA:
-            countryFile = countryFile.replace(y, 'berber')
-        for z in CULTURES_TO_CONVERT_AMERICA:
-            countryFile = countryFile.replace(z, 'nativa')
-        for w in CULTURES_TO_CONVERT_INDONESIA:
-            countryFile = countryFile.replace(w, 'malay')
-        for d in CULTURES_TO_CONVERT_AMERICA_AFRICA:
-            countryFile = countryFile.replace(d, 'afro_american')
-        for a in ['maori']:
-            countryFile = countryFile.replace(a, 'aborigine')
-        for b in [' beja']:
-            countryFile = countryFile.replace(b, 'sudanese')
-        for c in ['amhara','tigray','sidama']:
-            countryFile = countryFile.replace(c, 'oromo')
-        for e in ['mongo\n', 'malagasy']:
-            countryFile = countryFile.replace(e, 'africana\n')
-        newCountryFile.write(countryFile)

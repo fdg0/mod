@@ -5,7 +5,7 @@
 	
 	country_type = unrecognized
 	
-	cultures = { nativa }
+	cultures = { hawaiian }
 	religion = protestant
 	
 	capital = STATE_HAWAIIAN_ISLANDS
@@ -19,7 +19,7 @@ NTU = {
 
 	tier = principality
 	
-	cultures = { aborigine }
+	cultures = { maori }
 	capital = STATE_SOUTH_ISLAND
 }
 
@@ -30,7 +30,7 @@ NTO = {
 
 	tier = principality
 	
-	cultures = { aborigine }
+	cultures = { maori }
 	capital = STATE_NORTH_ISLAND
 }
 
@@ -41,7 +41,7 @@ KNK = {
 
 	tier = principality
 	
-	cultures = { malay }
+	cultures = { melanesian }
 	capital = STATE_KANAK
 }
 
@@ -52,7 +52,7 @@ PPU = {
 
 	tier = principality
 	
-	cultures = { malay }
+	cultures = { melanesian }
 	capital = STATE_EASTERN_NEW_GUINEA
 }
 
@@ -63,7 +63,7 @@ HLA = { # Halia, for Bougainville
 
 	tier = principality
 	
-	cultures = { malay }
+	cultures = { melanesian }
 	capital = STATE_BOUGAINVILLE
 }
 
@@ -74,7 +74,7 @@ BLA = { # Bilua
 
 	tier = principality
 	
-	cultures = { malay }
+	cultures = { melanesian }
 	capital = STATE_SOLOMON_ISLANDS
 }
 
@@ -85,7 +85,7 @@ BLG = { # Bulungan
 
 	tier = principality
 	
-	cultures = { malay }
+	cultures = { bornean }
 	capital = STATE_EAST_BORNEO
 }
 
@@ -96,7 +96,7 @@ KTI = { # Kutai
 
 	tier = principality
 	
-	cultures = { malay }
+	cultures = { bornean }
 	capital = STATE_EAST_BORNEO
 }
 
@@ -107,7 +107,7 @@ FJI = { # Fiji
 
 	tier = principality
 	
-	cultures = { malay }
+	cultures = { melanesian }
 	capital = STATE_FIJI
 }
 
@@ -129,7 +129,7 @@ MCR = { # Micronesia
 
 	tier = principality
 	
-	cultures = { malay }
+	cultures = { micronesian }
 	capital = STATE_EAST_MICRONESIA
 }
 
@@ -141,7 +141,7 @@ VNT = { # Vanuatu
 
 	tier = principality
 	
-	cultures = { malay }
+	cultures = { melanesian }
 	capital = STATE_VANUATU
 }
 
@@ -152,7 +152,7 @@ NRU = { # Nauru
 
 	tier = principality
 	
-	cultures = { malay }
+	cultures = { melanesian }
 	capital = STATE_NAURU
 }
 
@@ -163,7 +163,7 @@ PLY = { # Polynesia
 
 	tier = principality
 	
-	cultures = { malay }
+	cultures = { polynesian }
 	capital = STATE_TAHITI
 }
 
@@ -174,7 +174,7 @@ AOT = { # Aotearoa
 
 	tier = empire
 	
-	cultures = { aborigine }
+	cultures = { maori }
 	capital = STATE_NORTH_ISLAND
 }
 
@@ -231,7 +231,7 @@ UNT = { # United Tribes of New Zealand
 	tier = principality
 	
 	capital = STATE_NORTH_ISLAND
-	cultures = { aborigine }
+	cultures = { maori }
 	religion = protestant
 }
 
@@ -311,7 +311,7 @@ SAK = {
 
 	tier = principality
 	
-	cultures = { malay }
+	cultures = { sumatran }
 	capital = STATE_NORTH_SUMATRA
 }
 
@@ -323,7 +323,7 @@ PON = {
 
 	tier = principality
 	
-	cultures = { malay }
+	cultures = { bornean }
 	capital = STATE_WEST_BORNEO
 }
 
@@ -335,7 +335,7 @@ SMB = {
 
 	tier = principality
 	
-	cultures = { malay }
+	cultures = { bornean }
 	capital = STATE_WEST_BORNEO
 }
 
@@ -347,7 +347,7 @@ JMB = {
 
 	tier = principality
 	
-	cultures = { malay }
+	cultures = { sumatran }
 	capital = STATE_NORTH_SUMATRA
 }
 
@@ -359,7 +359,7 @@ YOG = {
 
 	tier = principality
 	
-	cultures = { malay }
+	cultures = { javan }
 	capital = STATE_CENTRAL_JAVA
 }
 
@@ -371,7 +371,7 @@ SRK = {
 
 	tier = principality
 	
-	cultures = { malay }
+	cultures = { javan }
 	capital = STATE_CENTRAL_JAVA
 }
 
@@ -383,7 +383,7 @@ BTN = {
 
 	tier = principality
 	
-	cultures = { malay }
+	cultures = { moluccan }
 	capital = STATE_CELEBES
 }
 
@@ -419,7 +419,7 @@ SUL = {
 
 	tier = principality
 	
-	cultures = { malay }
+	cultures = { moro }
 	capital = STATE_MINDANAO
 }
 
@@ -431,7 +431,7 @@ SLW = {
 	
 	tier = principality
 	
-	cultures = { malay }
+	cultures = { moluccan }
 	capital = STATE_CELEBES
 }
 
@@ -443,7 +443,7 @@ TID = {
 	
 	tier = principality
 	
-	cultures = { malay }
+	cultures = { moluccan }
 	capital = STATE_MOLUCCAS
 }
 
@@ -455,7 +455,7 @@ STG = {
 	
 	tier = principality
 	
-	cultures = { malay }
+	cultures = { bornean }
 	capital = STATE_WEST_BORNEO
 }
 
@@ -467,7 +467,7 @@ BNJ = {
 	
 	tier = principality
 	
-	cultures = { malay }
+	cultures = { bornean }
 	capital = STATE_EAST_BORNEO
 }
 
@@ -479,7 +479,7 @@ IDN = {
 
 	tier = empire
 	
-	cultures = { malay malay malay malay malay malay malay malay }
+	cultures = { balinese batak bornean dayak javan malay moluccan sumatran }
 	capital = STATE_WEST_JAVA
 }
 
@@ -491,6 +491,6 @@ MGD = {
 	
 	tier = principality
 	
-	cultures = { malay }
+	cultures = { moro }
 	capital = STATE_MINDANAO
 }
