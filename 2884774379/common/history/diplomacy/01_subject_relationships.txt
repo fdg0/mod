@@ -7,12 +7,10 @@
 		create_diplomatic_pact = {
 			country = c:TUN
 			type = customs_union
-		}	
-	}
-	c:NET = {
+		}		
 		create_diplomatic_pact = {
-			country = c:DEI
-			type = protectorate
-		}
+			country = c:TRI
+			type = customs_union
+		}	
 	}
 }

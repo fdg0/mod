@@ -162,7 +162,7 @@ ZAN = {
 ZUL = {
 	color = { 204  186  201 }
 	
-	country_type = decentralized
+	country_type = colonial
 	
 	tier = principality
 	
@@ -485,7 +485,7 @@ BNG = {
 BST = {
 	color = { 137 106 217 }
 	
-	country_type = decentralized
+	country_type = unrecognized
 	
 	tier = principality
 	
