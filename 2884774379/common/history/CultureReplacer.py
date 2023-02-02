@@ -3,7 +3,7 @@ import os
 # AFRICA
 COUNTRY_PATH = "D:\\SteamLibrary\\steamapps\\workshop\\content\\529340\\2884774379\\common\\history\\input_country_definitions"
 OUTPUT_COUNTRY_PATH = "D:\\SteamLibrary\\steamapps\\workshop\\content\\529340\\2884774379\\common\\country_definitions"
-POPS_PATH = "D:\\SteamLibrary\steamapps\\workshop\\content\\529340\\2884774379\\common\\history\\input_pops"
+POPS_PATH = "D:\\SteamLibrary\\steamapps\\common\\Victoria 3\\game\\common\\history\\pops"
 OUTPUT_POPS_PATH = "D:\\SteamLibrary\\steamapps\\workshop\\content\\529340\\2884774379\\common\\history\\pops"
 CULTURES_TO_CONVERT_AFRICA = ['akan', 'senufo','dyula','kru','fulbe','wolof','bambara',
 'kissi','mossi','hausa','songhai','yoruba','equatorial_bantu',' edo','ibo','tiv','fon',

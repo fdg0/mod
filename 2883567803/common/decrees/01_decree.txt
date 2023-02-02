@@ -1,0 +1,59 @@
+﻿# texture = filename								The icon that will show up in the Lens and on the map when this Focus is deployed
+# modifier											The effects this Decree has on its state
+# cost												The cost in AUT to set this Decree on a state (scales with Power Rank)
+# unlocking_technologies							A list of technologies, at least one of which must be known to the country to use this Focus
+# unlocking_laws									A list of laws, at least one which must be active in the country to use this Focus. If the country switches away from all unlocking laws the Focus will be removed
+# valid												A trigger in state context that determines if the Decree is permitted or not; should invalidate the Decree on a weekly basis if found invalid 
+# ai_weight											Scripted value which determines the chance of getting the Decree by AI
+
+
+decree_genocide_suppression = {
+	texture = "gfx/interface/icons/decree/decree_violent_suppression.dds"		
+	
+	unlocking_technologies = {
+		standing_army
+	}
+	
+	unlocking_technologies = {
+		centralization
+	}
+	valid = {
+		owner = { 
+			OR = {
+				has_law = law_type:law_ethnostate
+				AND = {
+					year > 1880
+					NOT = { has_law = law_type:law_multicultural }
+					OR = {
+						has_law = law_type:law_council_republic
+						has_law = law_type:law_chiefdom
+					}
+					OR = {
+						has_law = law_type:law_monarchy
+						has_law = law_type:law_autocracy 
+					}
+				}
+			}
+		any_scope_pop = {
+			pop_is_discriminated = yes
+			OR = {
+				culture_accepted = no
+				religion_accepted = no
+			}	
+		}
+	}
+	modifier = {
+		state_turmoil_effects_mult = 0.95
+        state_radicals_from_discrimination_mult = 10000
+        country_revolution_secession_speed_mult = 0.5
+        state_mortality_mult = 0.2
+        state_accepted_birth_rate_mult = 0.1
+	}
+
+	cost = 100
+	
+	ai_weight = {
+		value = 0
+	}
+}
+
