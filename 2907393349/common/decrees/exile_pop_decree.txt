@@ -1,0 +1,28 @@
+
+decree_exile_pop = {
+	texture = "gfx/interface/icons/decree/decree_promote_national_values.dds"
+	unlocking_technologies = {
+		nationalism
+	}
+	valid = {
+		is_incorporated = yes
+		custom_tooltip = {
+			text = decree_exile_pop.tt
+			any_scope_pop = { 
+				culture_accepted = no		
+			}
+		}
+		owner = { is_player = yes }
+	}
+	modifier = {
+	    state_radicals_from_discrimination_mult = 1
+	    state_radicals_from_sol_change_mult = 0.25
+	    state_turmoil_effects_mult = 0.25
+	    state_tax_waste_add = 0.25
+	}
+	cost = 100
+	
+	ai_weight = {
+		value = 0
+	}
+}

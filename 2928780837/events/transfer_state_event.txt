@@ -1,0 +1,47 @@
+﻿namespace = transfer_state_event
+
+transfer_state_event = {
+	type = country_event
+	placement = ROOT
+
+	trigger = {
+		exists = scope:target_country
+	}
+
+	title = transfer_state_event.t
+	desc = transfer_state_event.d
+
+	event_image = {
+		video = "gfx/event_pictures/unspecific_signed_contract.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/unspecific/signed_contract"
+
+	icon = "gfx/interface/icons/event_icons/event_default.dds"
+
+	duration = 3
+
+	immediate = {
+		add_modifier = {
+			name = transfer_state
+			days = 90
+		}
+		GetLensToolbar.ActivateOption('decree_lens_option_decree_transfer_state_mark')
+	}
+	option = { 
+		name = transfer_state_event.a
+		every_scope_state = {
+			limit = {
+				has_decree = decree_transfer_state_mark
+				owner = root
+			}
+			set_state_owner = scope:target_country
+		}
+		remove_modifier = transfer_state
+	}
+	option = { 
+		name = transfer_state_event.b
+		remove_modifier = transfer_state
+	}
+}

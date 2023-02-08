@@ -1,0 +1,18 @@
+﻿l_simp_chinese:
+
+ decree_exile_pop: "流亡"
+ decree_exile_pop_desc: "流亡不被接受的文化。"
+
+ decree_exile_pop.tt: "存在不被接受的文化"
+   exile_pop1.tt: "流亡 10% 的 [SCOPE.sCulture('scope_exile_culture').GetName] 文化人口。"
+   exile_pop2.tt: "流亡 25% 的 [SCOPE.sCulture('scope_exile_culture').GetName] 文化人口。"
+   exile_pop3.tt: "流亡 50% 的 [SCOPE.sCulture('scope_exile_culture').GetName] 文化人口。"
+   exile_pop4.tt: "流亡 100% 的 [SCOPE.sCulture('scope_exile_culture').GetName] 文化人口。"
+
+  exile_pop_support_modifier: "迁移支持"
+
+  exile_pop_events.1.t: "流亡"
+ exile_pop_events.1.d: "根据迁移条约，是时候让[ROOT.GetState.GetName]的[SCOPE.sCulture('scope_exile_culture').GetName]人迁移到[SCOPE.sCountry('scope_exile_country').GetName]了。一些钉子户拒绝离开家乡，还有许多人旅行装备不足。"
+ exile_pop_events.1.f: "“朋友们，环境使你们不可能在我们的社区中蓬勃发展。你们只有一种补救办法，那就是迁往[SCOPE.sState('scope_exile_state').GetName]。你们越早这样做，就越早开始进步和繁荣。”"
+ exile_pop_events.1.b: "用刺刀逼迫他们。"
+ exile_pop_events.1.a: "为他们的旅途提供一些帮助。"

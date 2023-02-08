@@ -1,0 +1,11 @@
+﻿l_spanish:
+transfer_state: "Transferir Estados"
+  transfer_state_desc: "Transfiere los estados seleccionados a esta nación. Seleccionas los estados en el panel de eventos o lente política -> decretos -> Marcar transferencia de estado"
+  transfer_state_action_name: "Transferir Estados"
+  transfer_state_event.t: "Transferencia de Estados"
+  transfer_state_event.d: "[ROOT.GetCountry.GetName] está haciendo una selección de estados para ser transferidos a [SCOPE.sC('target_country').GetName]"
+  transfer_state_event.a: "Transferir los Estados"
+  transfer_state_event.b: "No importa"
+  decree_transfer_state_mark: "Marcar Transferencia de Estado"
+  decree_transfer_state_mark_desc: "Marcar un estado para ser transferido más tarde con la acción diplomática del estado de transferencia"
+  LENS_TIP: "Ir a Lente"

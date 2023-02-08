@@ -1,0 +1,17 @@
+﻿l_spanish:
+decree_exile_pop: "Exilio"
+  decree_exile_pop_desc: "Exiliar las culturas no aceptadas."
+
+  decree_exile_pop.tt: "Cultura no aceptada existe"
+   exile_pop1.tt: "Exiliar el 10% de [SCOPE.sCulture('scope_exile_culture').GetName] cultura pop."
+   exile_pop2.tt: "Exiliar el 25% de [SCOPE.sCulture('scope_exile_culture').GetName] cultura pop."
+   exile_pop3.tt: "Exiliar el 50% de [SCOPE.sCulture('scope_exile_culture').GetName] cultura pop."
+   exile_pop4.tt: "Exiliar el 100% de [SCOPE.sCulture('scope_exile_culture').GetName] cultura pop."
+
+  exile_pop_support_modifier: "Apoyo a la Migración"
+
+  exile_pop_events.1.t: "El exilio"
+  exile_pop_events.1.d: "De acuerdo con la política de exilio, es hora de que [SCOPE.sCulture('scope_exile_culture').GetName] de [ROOT.GetState.GetName] se traslade a [SCOPE.sCountry('scope_exile_country ').GetName]. Algunos reductos se niegan a abandonar sus hogares y muchos están mal equipados para el viaje".
+  exile_pop_events.1.f: ""Amigos míos, las circunstancias hacen imposible que podáis prosperar en medio de nuestra comunidad. Solo tiene un remedio a su alcance, y es moverse a [SCOPE.sState('scope_exile_state').GetName]. Y cuanto antes hagas esto, antes comenzarás tu carrera de mejora y prosperidad".
+  exile_pop_events.1.b: "Coaccionarlos a punta de bayoneta."
+  exile_pop_events.1.a: "Ofrece ayuda para su viaje".

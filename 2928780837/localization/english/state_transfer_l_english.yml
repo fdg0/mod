@@ -1,0 +1,11 @@
+﻿l_english:
+ transfer_state: "Transfer States"
+ transfer_state_desc: "Transfer the selected states to this nation. You select the states in the event panel or Political lens -> decrees -> Mark State Transfer"
+ transfer_state_action_name: "Transfer States"
+ transfer_state_event.t: "Transfer Of States"
+ transfer_state_event.d: "[ROOT.GetCountry.GetName] is making a selection of states to be transfered to [SCOPE.sC('target_country').GetName]"
+ transfer_state_event.a: "Transfer the States"
+ transfer_state_event.b: "Nevermind"
+ decree_transfer_state_mark: "Mark State Transfer"
+ decree_transfer_state_mark_desc: "Mark a state to be transfered later with the transfer state diplomatic action"
+ LENS_TIP: "Go to Lens"

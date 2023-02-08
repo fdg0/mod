@@ -1,0 +1,13 @@
+{
+  "name" : "Visual Transfer Tool",
+  "id" : "",
+  "version" : "1.0.0",
+  "supported_game_version" : "1.1.*",
+  "short_description" : "Tool which enables players to transfer state to other countries by selecting them on the map",
+  "thumbnail" : "thumbnail.png",
+  "tags" : [],
+  "relationships" : [],
+  "game_custom_data" : {
+    "multiplayer_synchronized" : true
+  }
+}

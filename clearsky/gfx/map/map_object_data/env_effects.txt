@@ -1,0 +1,298 @@
+﻿object={
+	name="env_geyser_large_obj"
+	clamp_to_water_level=no
+	render_under_water=yes
+	generated_content=no
+	layer="environmental_effects"
+	entity="env_geyser_large"
+	count=4
+	transform="7743.207031 0.000000 2897.591309 0.000000 0.000000 0.000000 1.000000 1.000000 1.000000 1.000000
+3650.886963 0.000000 3226.195557 0.000000 0.000000 0.000000 1.000000 1.159969 1.159969 1.159969
+3607.281250 0.000000 3245.046143 0.000000 0.000000 0.000000 1.000000 0.485625 0.485625 0.485625
+3749.367432 0.000000 3247.259033 0.000000 0.000000 0.000000 1.000000 1.809839 1.809839 1.809839
+"}
+object={
+	name="env_geyser_medium_obj"
+	clamp_to_water_level=no
+	render_under_water=yes
+	generated_content=no
+	layer="environmental_effects"
+	entity="env_geyser_medium"
+	count=2
+	transform="7747.733887 0.000000 2896.963867 0.000000 0.000000 0.000000 1.000000 1.000000 1.000000 1.000000
+7749.055664 0.000000 2896.044678 0.000000 0.000000 0.000000 1.000000 1.000000 1.000000 1.000000
+"}
+object={
+	name="env_geyser_small_obj"
+	clamp_to_water_level=no
+	render_under_water=yes
+	generated_content=no
+	layer="environmental_effects"
+	entity="env_geyser_small"
+	count=2
+	transform="7751.267578 0.000000 2894.211426 0.000000 0.000000 0.000000 1.000000 1.000000 1.000000 1.000000
+7749.095215 0.000000 2895.119385 0.000000 0.000000 0.000000 1.000000 1.000000 1.000000 1.000000
+"}
+object={
+	name="env_godrays"	#上帝并不想要什么光束，因为那妨碍了上帝去俯视大地
+	clamp_to_water_level=no
+	render_under_water=no
+	generated_content=no
+	layer="environmental_effects"
+	entity="env_god_rays"
+	#count=25
+	transform=""
+}
+object={
+	name="env_jungle_mist_l"
+	clamp_to_water_level=no
+	render_under_water=no
+	generated_content=no
+	layer="environmental_effects"
+	entity="env_jungle_mist_l"
+	#count=28
+	transform=""
+}
+object={
+	name="env_jungle_mist_s"
+	clamp_to_water_level=no
+	render_under_water=no
+	generated_content=no
+	layer="environmental_effects"
+	entity="env_jungle_mist_s"
+	#count=36
+	transform=""
+}
+object={
+	name="env_rolling_clouds"
+	clamp_to_water_level=yes
+	render_under_water=no
+	generated_content=no
+	layer="environmental_effects"
+	entity="env_mist"
+	#count=93
+	transform=""
+}
+object={
+	name="env_rolling_fog_mountain"
+	clamp_to_water_level=no
+	render_under_water=no
+	generated_content=no
+	layer="environmental_effects"
+	entity="env_rolling_fog_mountain"
+	#count=82
+	transform=""
+}
+object={
+	name="env_rough_water"
+	clamp_to_water_level=yes
+	render_under_water=yes
+	generated_content=no
+	layer="environmental_effects"
+	entity="env_rough_water"
+	count=3
+	transform="4225.295898 0.000000 3422.607910 0.000000 -0.941496 0.000000 -0.337024 1.000000 1.000000 1.000000
+4128.375000 0.000000 3247.946777 0.000000 0.000000 0.000000 1.000000 1.000000 1.000000 1.000000
+3459.900879 0.000000 3356.586182 0.000000 0.000000 0.000000 1.000000 1.987500 1.987500 1.987500
+"}
+object={
+	name="env_sandstorm_obj"
+	clamp_to_water_level=no
+	render_under_water=no
+	generated_content=no
+	layer="environmental_effects"
+	entity="env_sandstorm"
+	#count=41
+	transform=""
+}
+object={
+	name="env_sandstorm_small"
+	clamp_to_water_level=no
+	render_under_water=no
+	generated_content=no
+	layer="environmental_effects"
+	entity="env_sandstorm_small"
+	#count=11
+	transform=""
+}
+object={
+	name="env_snow_01_obj"
+	clamp_to_water_level=no
+	render_under_water=yes
+	generated_content=no
+	layer="environmental_effects"
+	entity="env_snow_01"
+	#count=25
+	transform=""
+}
+object={
+	name="env_snow_02_obj"
+	clamp_to_water_level=no
+	render_under_water=yes
+	generated_content=no
+	layer="environmental_effects"
+	entity="env_snow_02"
+	#count=20
+	transform=""
+}
+object={
+	name="env_snow_fall"
+	clamp_to_water_level=no
+	render_under_water=no
+	generated_content=no
+	layer="environmental_effects"
+	entity="env_snow_fall"
+	#count=9
+	transform=""
+}
+object={
+	name="env_snow_fall_small"
+	clamp_to_water_level=no
+	render_under_water=no
+	generated_content=no
+	layer="environmental_effects"
+	entity="env_snow_fall_small"
+	#count=21
+	transform=""
+}
+object={
+	name="env_swamp_fog"
+	clamp_to_water_level=no
+	render_under_water=no
+	generated_content=no
+	layer="environmental_effects"
+	entity="env_swamp_fog"
+	#count=15
+	transform=""
+}
+object={
+	name="env_tropical_rain"
+	clamp_to_water_level=no
+	render_under_water=no
+	generated_content=no
+	layer="environmental_effects"
+	entity="env_tropical_rain_entity"
+	#count=54
+	transform=""
+}
+object={
+	name="env_tropical_rain_dense"
+	clamp_to_water_level=no
+	render_under_water=no
+	generated_content=no
+	layer="environmental_effects"
+	entity="env_tropical_rain_dense_entity"
+	#count=9
+	transform=""
+}
+object={
+	name="env_volcano_idle_obj"
+	clamp_to_water_level=no
+	render_under_water=no
+	generated_content=no
+	layer="environmental_effects"
+	entity="env_volcano_idle"
+	count=4
+	transform="4434.877441 0.000000 2416.325684 0.000000 0.000000 0.000000 1.000000 1.000000 1.000000 1.000000
+7748.016602 0.000000 2942.383057 0.000000 0.000000 0.000000 1.000000 1.000000 1.000000 1.000000
+3655.964600 0.000000 3216.136230 0.000000 0.000000 0.000000 1.000000 1.000000 1.000000 1.000000
+7257.213867 0.000000 2356.598877 0.000000 0.000000 0.000000 1.000000 1.000000 1.000000 1.000000
+"}
+object={
+	name="env_waterfall_bottom"
+	clamp_to_water_level=no
+	render_under_water=yes
+	generated_content=no
+	layer="environmental_effects"
+	entity="env_waterfall_02"
+	count=10
+	transform="4290.433594 0.000000 3085.937256 0.000000 -0.784706 0.000000 0.619868 0.638376 0.638376 0.638376
+4298.413086 0.000000 3086.586914 0.000000 -0.497321 0.000000 0.867567 0.496438 0.496438 0.496438
+4334.052734 0.000000 3114.748047 0.000000 0.013671 0.000000 0.999907 0.496438 0.496438 0.496438
+4572.210449 0.000000 1474.234375 0.000000 0.194253 0.000000 0.980951 0.776111 0.776111 0.776111
+4812.871094 0.000000 1605.357422 0.000000 -0.742784 0.000000 0.669531 1.000000 1.000000 1.000000
+4810.495605 0.000000 1551.989746 0.000000 -0.788212 0.000000 0.615404 1.000000 1.000000 1.000000
+2712.891357 0.558594 1712.359497 0.000000 0.547553 0.000000 0.836771 1.000000 1.000000 1.000000
+7441.970703 0.000000 484.471710 0.000000 0.941190 0.000000 0.337878 1.000000 1.000000 1.000000
+5144.908203 0.000000 1077.122314 0.000000 0.000000 0.000000 1.000000 1.000000 1.000000 1.000000
+3615.497070 0.000000 3219.679199 0.000000 -0.929859 0.000000 0.367915 1.573901 1.573901 1.573901
+"}
+object={
+	name="env_waterfall_top"
+	clamp_to_water_level=no
+	render_under_water=yes
+	generated_content=no
+	layer="environmental_effects"
+	entity="env_waterfall_01"
+	count=15
+	transform="4289.335449 0.000000 3086.134033 0.000000 -0.575803 0.000000 0.817588 0.722831 0.722831 0.722831
+4297.382324 0.000000 3086.787354 0.000000 -0.559170 0.000000 0.829053 0.649893 0.649893 0.649893
+4334.042480 0.000000 3115.390381 0.000000 0.000000 0.000000 1.000000 0.649893 0.649893 0.649893
+4571.533203 -0.462646 1474.854370 0.000000 -0.197724 0.000000 0.980258 1.001148 1.001148 1.001148
+6480.081055 0.000000 2132.783691 0.000000 0.000000 0.000000 1.000000 1.057869 1.057869 1.057869
+6461.730957 0.000000 2109.465332 0.000000 0.000000 0.000000 1.000000 1.507593 1.507593 1.507593
+4812.988281 -0.634766 1603.300781 0.000000 0.999812 0.000000 0.019403 1.171411 1.171411 1.171411
+4810.705078 -0.602051 1550.585327 0.000000 0.999848 0.000000 0.017451 1.171411 1.171411 1.171411
+2711.482178 -0.807739 1711.453491 0.000000 0.855529 0.000000 -0.517755 1.281909 1.281909 1.281909
+7126.787598 0.000000 946.363098 0.000000 -0.318105 0.000000 0.948055 1.171595 1.171595 1.171595
+7440.966797 0.000000 485.682495 0.000000 -0.317295 0.000000 0.948327 1.279531 1.279531 1.279531
+6681.367676 0.000000 1536.088013 0.000000 -0.181064 0.000000 0.983471 1.123545 1.123545 1.123545
+5146.238770 -0.692383 1076.744873 0.000000 0.826865 0.000000 0.562400 1.000000 1.000000 1.000000
+5145.695801 -0.692383 1075.740845 0.000000 0.949522 0.000000 0.313700 1.000000 1.000000 1.000000
+3617.405518 0.000000 3221.951660 0.000000 0.353802 0.000000 0.935320 1.378100 1.378100 1.378100
+"}
+object={
+	name="rock_granite_river_01_entity"
+	clamp_to_water_level=no
+	render_under_water=yes
+	generated_content=no
+	layer="environmental_effects"
+	entity="rock_granite_river_01_entity"
+	count=19
+	transform="4581.155273 0.000000 2453.247070 0.000000 -0.999896 0.000000 0.014399 1.000000 1.000000 1.000000
+4113.811523 0.000000 2563.953613 0.000000 0.534748 0.000000 0.845012 1.000000 1.000000 1.000000
+4108.886230 0.000000 2560.987793 0.000000 0.712183 0.000000 0.701994 1.000000 1.000000 1.000000
+4112.128906 0.000000 2562.652588 0.000000 0.396961 0.000000 0.917836 1.000000 1.000000 1.000000
+6983.366699 0.000000 2418.413086 0.000000 -0.974129 0.000000 0.225993 1.062451 1.062451 1.062451
+5891.408691 0.000000 2260.467529 0.000000 -0.263160 0.000000 0.964752 1.000000 1.000000 1.000000
+5891.295410 0.000000 2261.965332 0.000000 -0.669806 0.000000 0.742536 1.000000 1.000000 1.000000
+5891.331055 0.000000 2262.630859 0.000000 -0.863072 0.000000 0.505081 1.000000 1.000000 1.000000
+4333.828125 0.000000 3111.473145 0.000000 -0.997614 0.000000 -0.069041 0.838916 0.838916 0.838916
+4288.256836 0.000000 3086.618164 0.000000 -0.775883 0.000000 -0.630877 0.838916 0.838916 0.838916
+4296.208496 0.000000 3086.985596 0.000000 -0.788469 0.000000 -0.615074 0.838916 0.838916 0.838916
+4333.889160 0.000000 3116.708984 0.000000 -0.997614 0.000000 -0.069041 0.838916 0.838916 0.838916
+7294.740723 0.000000 2366.121826 0.000000 0.800227 0.000000 0.599697 1.000000 1.000000 1.000000
+5008.526855 0.000000 2420.301025 0.000000 -0.899721 0.000000 -0.436463 1.000000 1.000000 1.000000
+4971.341797 0.000000 2441.687012 0.000000 -0.956879 0.000000 0.290486 1.000000 1.000000 1.000000
+5042.341309 0.000000 2439.821045 0.000000 -0.614637 0.000000 0.788810 1.000000 1.000000 1.000000
+7455.166504 0.000000 470.235596 0.000000 0.934803 0.000000 0.355168 1.000000 1.000000 1.000000
+7447.607910 0.000000 477.671356 0.000000 0.993931 0.000000 0.110002 1.000000 1.000000 1.000000
+4293.264160 0.000000 2661.314453 0.000000 0.604039 0.000000 0.796955 1.000000 1.000000 1.000000
+"}
+#object={
+#	name="sfx_rain_emitter"
+#	clamp_to_water_level=no
+#	render_under_water=no
+#	generated_content=no
+#	layer="environmental_effects"
+#	entity="vfx_rain_emitter"
+#	count=0
+#}
+#object={
+#	name="sfx_sandstorm_emitter"
+#	clamp_to_water_level=no
+#	render_under_water=no
+#	generated_content=no
+#	layer="environmental_effects"
+#	entity="vfx_sandstorm_emitter"
+#	count=0
+#}
+#object={
+#	name="sfx_snowstorm_emitter"
+#	clamp_to_water_level=no
+#	render_under_water=no
+#	generated_content=no
+#	layer="environmental_effects"
+#	entity="vfx_snowstorm_emitter"
+#	count=0
+#}

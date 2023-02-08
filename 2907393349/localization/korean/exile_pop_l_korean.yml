@@ -1,0 +1,17 @@
+﻿l_korean:
+ decree_exile_pop: "타민족 추방"
+ decree_exile_pop_desc: "수용되지 않은 문화를 추방합니다."
+
+ decree_exile_pop.tt: "수용되지 않은 문화가 존재할 것"
+ exile_pop1.tt: "10%의 [SCOPE.sCulture('scope_exile_culture').GetName] 문화 팝을 추방합니다."
+ exile_pop2.tt: "25%의 [SCOPE.sCulture('scope_exile_culture').GetName] 문화 팝을 추방합니다."
+ exile_pop3.tt: "50%의 [SCOPE.sCulture('scope_exile_culture').GetName] 문화 팝을 추방합니다."
+ exile_pop4.tt: "100%의 [SCOPE.sCulture('scope_exile_culture').GetName] 문화 팝을 추방합니다."
+
+ exile_pop_support_modifier: "이주 지원금"
+
+ exile_pop_events.1.t: "타민족 추방 정책"
+ exile_pop_events.1.d: "타민족 추방 정책에 따라 [ROOT.GetState.GetName]의 [SCOPE.sCulture('scope_exile_culture').GetName](이)가 [SCOPE.sCountry('scope_exile_country').GetName](으)로 이주할 시기가 되었다. 몇몇 사람들은 고향을 떠나지 않겠다고 오기를 부리기도 했다. 사실 긴 여정을 견딜 준비조차 안 된 사람이 태반이다."
+ exile_pop_events.1.f: ""여러분, 피치 못할 사정으로 더는 이 지역 사회에서 살아가실 수 없게 되었습니다. 여러분에게 남은 선택지는 단 하나, [SCOPE.sState('scope_exile_state').GetName](으)로 이주하는 것입니다. 서두를수록 더 빨리 윤택하고 번영하는 삶을 이룩하실 수 있을 거예요.""
+ exile_pop_events.1.a: "여정에 지원을 제안한다."
+ exile_pop_events.1.b: "총검으로 등을 찌르면 움직이겠지."

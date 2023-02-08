@@ -1,0 +1,13 @@
+{
+	"name" : "Protectorates Color Fix",
+	"id" : "org.protectorates.awesome",	
+	"version" : "1.0.0",
+	"supported_game_version" : "1.0.*",
+	"short_description" : "Protectorates Color Fix",
+	"tags" : [],
+	"relationships" : [],
+	"game_custom_data" : {
+			"multiplayer_synchronized": false,
+			"test": 42
+	}
+}

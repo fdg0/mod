@@ -1,0 +1,441 @@
+﻿namespace = exile_pop_events
+
+exile_pop_events.1 = {
+	type = state_event
+	placement = root
+
+	title = exile_pop_events.1.t
+	desc = exile_pop_events.1.d
+	flavor = exile_pop_events.1.f
+
+	event_image = {
+		video = "gfx/event_pictures/asia_poor_people_moving.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/asia/poor_people_moving"
+
+	icon = "gfx/interface/icons/event_icons/event_skull.dds"
+
+	duration = 1
+
+	trigger = {
+		has_decree = decree_exile_pop
+	}
+
+	immediate = {
+		random_scope_pop = {
+			limit = {
+				culture_accepted = no
+			}
+			save_scope_as = scope_exile_pop
+			culture = { save_scope_as = scope_exile_culture }
+		}
+		if = {
+			limit = {
+				any_country = {
+					any_scope_state = {
+						state_region = { is_homeland = scope:scope_exile_culture }
+					}
+					any_primary_culture = {
+						this = scope:scope_exile_culture
+					}
+					NOT = { this = root.owner}
+				}
+			}
+			random_country = {
+				limit = {
+					any_scope_state ={
+						state_region = { is_homeland = scope:scope_exile_culture }
+					}
+					any_primary_culture = {
+						this = scope:scope_exile_culture
+					}
+					NOT = { this = root.owner}
+				}
+				save_scope_as = scope_exile_country
+				random_scope_state = {
+					limit = {
+						state_region = { is_homeland = scope:scope_exile_culture }
+					}
+					save_scope_as = scope_exile_state
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				any_country = {
+					any_scope_state = {
+						state_region = { is_homeland = scope:scope_exile_culture }
+					}
+					NOT = { this = root.owner}
+				}
+			}
+			random_country = {
+				limit = {
+					any_scope_state ={
+						state_region = { is_homeland = scope:scope_exile_culture }
+					}
+					NOT = { this = root.owner}
+				}
+				save_scope_as = scope_exile_country
+				random_scope_state = {
+					limit = {
+						state_region = { is_homeland = scope:scope_exile_culture }
+					}
+					save_scope_as = scope_exile_state
+				}
+			}
+		}
+		else_if ={
+			limit = {
+				any_country = {
+					any_scope_culture = {
+						this = scope:scope_exile_culture
+					}
+					NOT = { this = root.owner}
+				}
+			}
+			random_country = {
+				limit = {
+					any_scope_culture = {
+						this = scope:scope_exile_culture
+					}
+					NOT = { this = root.owner}
+				}
+				save_scope_as = scope_exile_country
+				random_scope_state = {
+					limit = {
+						any_scope_culture = {
+							this = scope:scope_exile_culture
+						}
+					}
+					save_scope_as = scope_exile_state
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				any_country = {
+					NOT = { this = root.owner}
+					is_adjacent = root.owner
+				}
+			}
+			random_country = {
+				limit = {
+					NOT = { this = root.owner}
+					is_adjacent = root.owner
+				}
+				save_scope_as = scope_exile_country
+				random_scope_state = {
+					save_scope_as = scope_exile_state
+				}
+			}
+		}
+		else = {
+			random_country = {
+				limit = {
+					NOT = { this = root.owner}
+				}
+				save_scope_as = scope_exile_country
+				random_scope_state = {
+					save_scope_as = scope_exile_state
+				}
+			}
+		}
+
+		if = {
+			limit = {
+				NOT = { has_variable = exile_pop_variable }
+			}
+			every_scope_pop = {
+				limit = {
+					culture = scope:scope_exile_culture
+				}
+				change_pop_culture = { target = cu:immigrant value = 0.1 }
+			}
+		}
+		else_if = {
+			limit = {
+				exists = var:exile_pop_variable
+				var:exile_pop_variable < 3
+			}
+			every_scope_pop = {
+				limit = {
+					culture = scope:scope_exile_culture
+				}
+				change_pop_culture = { target = cu:immigrant value = 0.25 }
+			}
+		}
+		else_if = {
+			limit = {
+				exists = var:exile_pop_variable
+				var:exile_pop_variable < 5
+			}
+			every_scope_pop = {
+				limit = {
+					culture = scope:scope_exile_culture
+				}
+				change_pop_culture = { target = cu:immigrant value = 0.5 }
+			}
+		}
+		else = {
+			every_scope_pop = {
+				limit = {
+					culture = scope:scope_exile_culture
+				}
+				change_pop_culture = { target = cu:immigrant value = 1 }
+			}
+		}
+		every_scope_pop = {
+			limit = {
+				culture = cu:immigrant
+			}
+			move_pop = scope:scope_exile_state
+		}
+		scope:scope_exile_country = {
+			every_scope_pop = {
+				limit = {
+					culture = cu:immigrant
+				}
+				change_pop_culture = { target = scope:scope_exile_culture value = 1 }
+			}
+		}
+	}
+
+	option = {
+		name = exile_pop_events.1.a
+		default_option = yes
+		if = {
+			limit = {
+				NOT = { has_variable = exile_pop_variable }
+			}
+			custom_tooltip = exile_pop1.tt
+		}
+		else_if = {
+			limit = {
+				exists = var:exile_pop_variable
+				var:exile_pop_variable < 3
+			}
+			custom_tooltip = exile_pop2.tt
+		}
+		else_if = {
+			limit = {
+				exists = var:exile_pop_variable
+				var:exile_pop_variable < 5
+			}
+			custom_tooltip = exile_pop3.tt
+		}
+		else = {
+			custom_tooltip = exile_pop4.tt
+		}
+		
+		owner = {
+			change_relations = {
+				country = scope:scope_exile_country
+				value = -5
+			}
+			add_modifier = {
+				name = exile_pop_support_modifier
+				multiplier = money_amount_multiplier_large
+				months = 11
+			}
+		}
+	
+		if = {
+			limit = {
+				NOT = { has_variable = exile_pop_variable }
+			}
+			set_variable = {
+				name = exile_pop_variable
+				value = 0
+			}
+		}
+		change_variable = {
+			name = exile_pop_variable
+			add = 1
+		}
+		
+	}
+	option = {
+		name = exile_pop_events.1.b
+		if = {
+			limit = {
+				NOT = { has_variable = exile_pop_variable }
+			}
+			custom_tooltip = exile_pop1.tt
+		}
+		else_if = {
+			limit = {
+				exists = var:exile_pop_variable
+				var:exile_pop_variable < 3
+			}
+			custom_tooltip = exile_pop2.tt
+		}
+		else_if = {
+			limit = {
+				exists = var:exile_pop_variable
+				var:exile_pop_variable < 5
+			}
+			custom_tooltip = exile_pop3.tt
+		}
+		else = {
+			custom_tooltip = exile_pop4.tt
+		}
+
+		owner = {
+			change_relations = {
+				country = scope:scope_exile_country
+				value = -15
+			}
+			change_infamy = 3
+		}
+
+		if = {
+			limit = {
+				NOT = { has_variable = exile_pop_variable }
+			}
+			set_variable = {
+				name = exile_pop_variable
+				value = 0
+			}
+		}
+		change_variable = {
+			name = exile_pop_variable
+			add = 1
+		}
+	}
+}
+
+
+ #violence suppression escalates
+exile_pop_events.2 = {
+	type = state_event
+	placement = root
+	
+	title = decree_events.108.t
+	desc = decree_events.108.d
+	flavor = decree_events.108.f
+
+	event_image = {
+		video = "gfx/event_pictures/europenorthamerica_springtime_of_nations.bk2"
+	}
+	
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/europenorthamerica/springtime_of_nation"
+
+	icon = "gfx/interface/icons/event_icons/event_protest.dds"
+
+	duration = 3
+	
+	trigger = {
+		has_decree = decree_exile_pop
+		NOT = {
+			OR = {
+				has_modifier = decree_let_them_riot
+				has_modifier = decree_put_the_riot_down
+			}
+		}
+	}
+
+	immediate = {
+		save_scope_as = decree_violent_supp
+	}
+	
+	option = { #get loyalists but more radicals
+		name = decree_events.108.a
+		default_option = yes
+		add_modifier = {
+			name = decree_let_them_riot
+			months = short_modifier_time
+		}
+	}
+	option = { #more mortality but less radicals
+		name = decree_events.108.b
+		add_modifier = {
+			name = decree_put_the_riot_down
+			months = short_modifier_time
+		}
+	}
+}
+
+#Protests in neighboring state
+exile_pop_events.3 = { 
+	type = state_event
+	placement = root
+	
+	title = decree_events.109.t
+	desc = decree_events.109.d
+	flavor = decree_events.109.f
+
+	event_image = {
+		video = "gfx/event_pictures/middleeast_police_breaking_door.bk2"
+	}
+	
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/middleeast/police_breaking_door"
+
+	icon = "gfx/interface/icons/event_icons/event_protest.dds"
+
+	duration = 3
+	
+	trigger = {
+		is_incorporated = yes
+		NOT = { has_decree = decree_exile_pop }
+		any_neighbouring_state = {
+			has_decree = decree_exile_pop 
+		}
+		any_scope_pop = {
+			culture_accepted = no
+		}
+		NOT = {
+			OR = {
+				has_modifier = decree_break_it_up
+				has_modifier = decree_let_them_protest
+			}
+		}
+	}
+
+	immediate = {
+			save_scope_as = decree_increased_violence
+			random_scope_pop = {
+				limit = { 
+					culture_accepted = no
+				}
+				culture = { save_scope_as = violent_suppression_discriminated }
+			}
+		
+	}
+	
+	option = { #more radicals but armed forces approval
+		name = decree_events.109.a
+		default_option = yes
+		
+		add_modifier = {
+			name = decree_break_it_up
+			months = short_modifier_time
+		}
+		owner = {
+			add_modifier = {
+				name = decree_protests_dispersed
+				months = short_modifier_time
+			}
+		}
+	}
+
+	option = { #migration pull in state and less radicals
+		name = decree_events.109.b
+		
+		add_modifier = {
+			name = decree_let_them_protest
+			months = short_modifier_time
+		}
+		owner = {
+			add_modifier = {
+				name = decree_protests_handled
+				months = short_modifier_time
+			}
+		}
+	}
+}
+
