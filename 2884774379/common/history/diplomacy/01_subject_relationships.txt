@@ -6,11 +6,11 @@
 		}	
 		create_diplomatic_pact = {
 			country = c:TUN
-			type = customs_union
+			type = puppet
 		}		
 		create_diplomatic_pact = {
 			country = c:TRI
-			type = customs_union
+			type = puppet
 		}	
 	}
 }
