@@ -1,0 +1,3 @@
+﻿NEconomy = {
+	TRADE_ROUTE_MAX_LEVEL = 9999							# Trade routes cannot be higher level than this
+}
